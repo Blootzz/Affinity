@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="11" height="7" tilewidth="20" tileheight="20" infinite="0" nextlayerid="9" nextobjectid="1">
+ <tileset firstgid="1" source="../../BAR.tsx"/>
+ <tileset firstgid="4" source="../autotest.tsx"/>
+ <tileset firstgid="49" source="Grass.tsx"/>
+ <layer id="1" name="regions" width="11" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,3,0,3,0,3,0,3,0,3,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,3,0,0,0,3,0,3,0,3,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,3,0,3,0,3,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="input_base" width="11" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,49,0,50,0,51,0,52,0,53,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,54,0,0,0,56,0,57,0,58,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,59,0,60,0,61,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="output_base" width="11" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,49,0,50,0,51,0,52,0,53,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,54,0,0,0,56,0,57,0,58,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,59,0,60,0,61,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="output1_base" width="11" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,64,0,65,0,66,0,67,0,68,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,69,0,0,0,71,0,72,0,73,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,74,0,75,0,76,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="8" name="output2_base" width="11" height="7">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,
+0,79,0,80,0,81,0,82,0,83,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,84,0,0,0,86,0,87,0,88,0,
+0,0,0,0,0,0,0,0,0,0,0,
+0,89,0,90,0,91,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="5" name="output_collision"/>
+</map>

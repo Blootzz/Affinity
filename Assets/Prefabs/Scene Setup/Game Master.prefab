@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &866302224629652349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866302224629652339}
+  - component: {fileID: 866302224629652348}
+  m_Layer: 0
+  m_Name: Game Master
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866302224629652339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866302224629652349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &866302224629652348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866302224629652349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1e40bd7b0780f4b838f8b022cd3745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thePlayer: {fileID: 0}
+  paused: 0
+  dialogueManager:
+    thePlayer: {fileID: 0}
+    barsAnimator: {fileID: 0}
+    nameAnimator: {fileID: 0}
+    answersAnimator: {fileID: 0}
+    HUDAnimator: {fileID: 0}
+    displayText: {fileID: 0}
+    nameText: {fileID: 0}
+    answer1Text: {fileID: 0}
+    answer2Text: {fileID: 0}
+    answer3Text: {fileID: 0}
+    answer4Text: {fileID: 0}
+    answer5Text: {fileID: 0}
+    answer1: {fileID: 0}
+    answer2: {fileID: 0}
+    answer3: {fileID: 0}
+    answer4: {fileID: 0}
+    answer5: {fileID: 0}
+    continueButton: {fileID: 0}
+    closeButton: {fileID: 0}
+    buttonInSelectPosition: {fileID: 0}
+    sentenceIndex: 0
+    Blue: '#80D4FF'
+    Red: '#e33434'
+    DefaultFont: {fileID: 0}
+    typeSpeed: 0.03
+  interactableTargets: []

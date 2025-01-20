@@ -1,0 +1,9 @@
+Known Issues:
+
+Letting go of the ledge sometimes causes immediate regrab, but only once
+Getting stuck on the ledge sometimes. Possibly due to null animation shenanigains.
+
+UI
+Button was misaligned with the box on screen, as if the part where the mouse could click was closer to the camera than the visible box
+Enabling Pixel Perfect component on camera causes black bars, which is not playing well with the UI
+Changing the Canvas Render Mode to World can band aid the solution. Not sure why
