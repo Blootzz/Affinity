@@ -33,7 +33,7 @@ public class DoubleJump : MonoBehaviour
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         canDoubleJump = false;
-        rb.velocity = new Vector2(0, 0); // prevents jump forces from accumulating
+        rb.linearVelocity = new Vector2(0, 0); // prevents jump forces from accumulating
         rb.AddForce(new Vector2(0f, doubleJumpHeight), ForceMode2D.Impulse);
     }
 

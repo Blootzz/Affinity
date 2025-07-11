@@ -261,7 +261,7 @@ public abstract class Player : MonoBehaviour
             {
                 //if (!attacking) // prevents changing direction while attacking (slide forward)
                     movement = new Vector3(hor, 0, 0);
-                speed = rb.velocity;
+                speed = rb.linearVelocity;
                 transform.position += movement * moveSpeed * Time.timeScale;
             }// dynamically controlled
         }// !controlsDisabled
@@ -394,7 +394,7 @@ public abstract class Player : MonoBehaviour
                         }
 
                         // Check if apex has been reached
-                        if (!isFalling && rb.velocity.y < 0) // Begin falling
+                        if (!isFalling && rb.linearVelocity.y < 0) // Begin falling
                         {
                             isFalling = true;
                             if (!ledgeGrabActive) // prevent ledge grab and wall slide from competing with each other, giving priority to ledge grab to avoid going into kinematic mode
@@ -404,9 +404,9 @@ public abstract class Player : MonoBehaviour
                     }// !attacking
 
                     // Cancel Jump
-                    if (Input.GetKeyUp(GameMaster.GM.controlManager.jumpKey) && rb.velocity.y > 0)
+                    if (Input.GetKeyUp(GameMaster.GM.controlManager.jumpKey) && rb.linearVelocity.y > 0)
                     {
-                        rb.velocity = new Vector2(rb.velocity.x, 0);
+                        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
                         coyoteTimeCounter = 0;
                     }
 
@@ -423,7 +423,7 @@ public abstract class Player : MonoBehaviour
                     if (Input.GetKeyDown(GameMaster.GM.controlManager.ledgeGrabKey))
                     {
                         animator.Play(AorUFalling);
-                        rb.velocity = new Vector2((faceRight ? -1 : 1) * moveSpeed, 0);
+                        rb.linearVelocity = new Vector2((faceRight ? -1 : 1) * moveSpeed, 0);
                         onLedge = false;
                         ledgeGrabCooldown = true;
                         Invoke("DisableLedgeGrabCooldown", 0.2f);// Prevents instantaneously regrabbing. Unfortunately, disabling LedgeGrabCheck's collider triggers OnExit2D
@@ -597,7 +597,7 @@ public abstract class Player : MonoBehaviour
     // ======================================== STATE =======================================
     void Unstun()
     {
-        rb.velocity = new Vector2(0, rb.velocity.y);
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         DisableEndLag(); // Possibly causes controls to be disabled???? No idea how
         controlsDisabled = false;
         isStunned = false;
@@ -759,7 +759,7 @@ public abstract class Player : MonoBehaviour
         ledgeGrabActive = false;
         onLedge = true;
         animator.Play(AorUHanging);
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         DisableWallJumpBox();
     }
 
@@ -785,7 +785,7 @@ public abstract class Player : MonoBehaviour
                 isStunned = true;
                 controlsDisabled = true;
                 Invoke(nameof(Unstun), playerStunTime);
-                rb.velocity = new Vector2(0, 0);
+                rb.linearVelocity = new Vector2(0, 0);
                 rb.AddForce(new Vector2((rightOfPlayer ? -1 : 1) * knockback.x, knockback.y), ForceMode2D.Impulse);
 
                 // slow time
@@ -804,7 +804,7 @@ public abstract class Player : MonoBehaviour
         attackConnected = false;
         lightCancellable = false;
         rb.isKinematic = false;
-        rb.velocity = new Vector2(0, 0);
+        rb.linearVelocity = new Vector2(0, 0);
     }
 
     void DisableLedgeGrabCooldown()
@@ -816,7 +816,7 @@ public abstract class Player : MonoBehaviour
     {
         if (isFalling)
         {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0);
             rb.AddForce(new Vector2(0, verticalNudgeHeight), ForceMode2D.Impulse);
         }
     }// Gives the player a vertical boost while throwing shield if falling
@@ -856,7 +856,7 @@ public abstract class Player : MonoBehaviour
     {
         if (stamina > 0)
         {
-            rb.velocity = new Vector2(0, 0); // prevents jump forces from accumulating
+            rb.linearVelocity = new Vector2(0, 0); // prevents jump forces from accumulating
             rb.AddForce(new Vector2(0f, jumpHeight), ForceMode2D.Impulse);
             landingDust.Stop();
             jumpDust.Play();
@@ -972,19 +972,19 @@ public abstract class Player : MonoBehaviour
     // velocities
     void _Set_velocity_Forward()
     {
-        rb.velocity = new Vector2((faceRight ? 1 : -1) * 2, 0);
+        rb.linearVelocity = new Vector2((faceRight ? 1 : -1) * 2, 0);
     }
     void _Set_velocity_Upward()
     {
-        rb.velocity = new Vector2(0, 4);
+        rb.linearVelocity = new Vector2(0, 4);
     }
     void _Set_velocity_Upward_Slow()
     {
-        rb.velocity = new Vector2(0, 2);
+        rb.linearVelocity = new Vector2(0, 2);
     }
     void _Set_velocity_Upward_Fast()
     {
-        rb.velocity = new Vector2(0, 8);
+        rb.linearVelocity = new Vector2(0, 8);
     }
     // Unique stuff
     void _Apply_Ledge_Jump_Force()

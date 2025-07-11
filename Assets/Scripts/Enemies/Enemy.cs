@@ -163,7 +163,7 @@ public abstract class Enemy : MonoBehaviour
             return;
         }
 
-        GetComponent<Rigidbody2D>().velocity = new Vector2(0,0); // prevents knockback from accumulating
+        GetComponent<Rigidbody2D>().linearVelocity = new Vector2(0,0); // prevents knockback from accumulating
         GetComponent<Rigidbody2D>().AddForce(launchDirection * knockbackMultiplier, ForceMode2D.Impulse);
 
         // ==================Hit effects===============

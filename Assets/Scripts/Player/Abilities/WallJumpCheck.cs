@@ -33,7 +33,7 @@ public class WallJumpCheck : MonoBehaviour
             {
                 rb.isKinematic = false;
                 isWallSliding = false;
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }// if out of stamina
 
             // player is facing the wall while sliding (if sliding on a right wall, faceRight = true)
@@ -94,7 +94,7 @@ public class WallJumpCheck : MonoBehaviour
     {
         isWallSliding = true;
         rb.isKinematic = true;
-        rb.velocity = new Vector2(0, wallSlideSpeed); // wallSlideSpeed is a private float that is already negative
+        rb.linearVelocity = new Vector2(0, wallSlideSpeed); // wallSlideSpeed is a private float that is already negative
         thePlayer.GetComponent<Animator>().Play(thePlayer.AorUWallSlide);
 
         // reset double jump
@@ -107,7 +107,7 @@ public class WallJumpCheck : MonoBehaviour
         if (rb.isKinematic && collision.gameObject.name.CompareTo("Collision_Default") == 0 /*&& !thePlayer.onLedge && !thePlayer.ledgeGrabActive*/)
         {
             ReleaseWall();
-            rb.velocity = Vector2.zero; // wallSlideSpeed is a private float that is already negative
+            rb.linearVelocity = Vector2.zero; // wallSlideSpeed is a private float that is already negative
         }// if colliding with wall
     }
 
@@ -115,7 +115,7 @@ public class WallJumpCheck : MonoBehaviour
     {
         rb.isKinematic = false;
         // set velocity according to direction
-        rb.velocity = new Vector2((thePlayer.faceRight ? -1 : 1) * wallJumpVelocity.x, wallJumpVelocity.y);
+        rb.linearVelocity = new Vector2((thePlayer.faceRight ? -1 : 1) * wallJumpVelocity.x, wallJumpVelocity.y);
 
         // ignore horizontal input for a brief moment so that the wall jump always begins with an arc
         thePlayer.isIgnoringHorInput = true;
@@ -132,7 +132,7 @@ public class WallJumpCheck : MonoBehaviour
 
     void ResetIsIgnoringHorInput() // called by WallJump()
     {
-        rb.velocity = new Vector2(0, rb.velocity.y); // makese it so that player does not maintain inertia when taking over controls in the air
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // makese it so that player does not maintain inertia when taking over controls in the air
         thePlayer.ResetIsIgnoringHorInput();
         // allows horizontal input to be used in Update()
         //thePlayer.isIgnoringHorInput = true;

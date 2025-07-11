@@ -93,7 +93,7 @@ public class Rope : MonoBehaviour
     {
         if (!thePlayer.GetComponent<Anselm>().playerShield.shieldDeployed && collision.gameObject.name.CompareTo("LedgeGrabCheck") == 0)
         {
-            thePlayer.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            thePlayer.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             thePlayer.GetComponent<Rigidbody2D>().isKinematic = true;
             thePlayer.isBusy = true;
             playerIsOnRope = true;

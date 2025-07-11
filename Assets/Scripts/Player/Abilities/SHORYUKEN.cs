@@ -89,7 +89,7 @@ public class SHORYUKEN : MonoBehaviour
 
         thePlayer.attacking = true;
         rb.isKinematic = true;
-        rb.velocity = new Vector2(thePlayer.faceRight ? shoryuSpeed.x : -shoryuSpeed.x, shoryuSpeed.y);
+        rb.linearVelocity = new Vector2(thePlayer.faceRight ? shoryuSpeed.x : -shoryuSpeed.x, shoryuSpeed.y);
 
         thePlayer.SetUpAttack(shoryuDamage, 0.2f, shoryuKnockbackMultiplier, shoryuKnockbackAngle);
         animator.Play(Shoryuken);
