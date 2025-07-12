@@ -45,9 +45,9 @@
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
+                    "name": "2D Vector",
                     "id": "33d65a01-583e-49bb-988a-6e1d93936000",
-                    "path": "1DAxis(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -56,8 +56,30 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "Negative",
+                    "name": "Up",
                     "id": "b4f9f2fb-3d08-455c-bb4c-9ccf3246955b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "d49c1537-8996-46a9-aed3-931f6f2ffcc8",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "f0b308e5-9cdf-4e08-95c6-ddf58388a9cf",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -67,8 +89,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Positive",
-                    "id": "d49c1537-8996-46a9-aed3-931f6f2ffcc8",
+                    "name": "Right",
+                    "id": "6ba8c982-8a1d-4233-a702-49d8586fa05a",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
