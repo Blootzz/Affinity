@@ -5,6 +5,7 @@ public class PlayerStateManager : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerBaseState currentState;
+    [SerializeField] private string currentStateName;
     [HideInInspector] public Animator animator;
     [HideInInspector] public CharacterMover characterMover;
 
@@ -29,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState?.OnExit();
         currentState = newState;
+        currentStateName = newState.GetType().Name;
         currentState.OnEnter();
     }
 
