@@ -30,4 +30,17 @@ public class CharacterMover : MonoBehaviour
         currentVelocity = newVelocity;
     }
 
+    /// <summary>
+    /// To be used after SetVelocity. Compares CharacterMover currentVelocity to passed in faceRight
+    /// </summary>
+    /// <returns>true if sprite flip was performed</returns>
+    public bool FlipResult(bool wasFacingRight)
+    {
+        if ((currentVelocity.x > 0 && !wasFacingRight) || (currentVelocity.x < 0 && wasFacingRight))
+        {
+            transform.Rotate(Vector3.up * 180);
+            return true;
+        }
+        return false;
+    }
 }

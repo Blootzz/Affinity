@@ -11,5 +11,7 @@ public class PlayerStateRunning : PlayerBaseState
     {
         stateManager.characterMover.SetSpeed(stateManager.runSpeed);
         stateManager.characterMover.SetVelocity(new Vector2(xInput, 0));
+        if (stateManager.characterMover.FlipResult(stateManager.faceRight))
+            stateManager.faceRight = !stateManager.faceRight;
     }
 }

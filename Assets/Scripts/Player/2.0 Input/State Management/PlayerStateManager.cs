@@ -10,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public CharacterMover characterMover;
 
     [Header("Basic Movement Settings")]
+    public bool faceRight = true;
     [Tooltip("This gets fed to CharacterMover every time the PlayerStateRunning calls its HorizontalAxis method")]
     public float runSpeed = 6f;
 

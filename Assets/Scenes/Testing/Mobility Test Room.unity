@@ -835,8 +835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a325bcb80d64e45a7403ce588dda38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
   animator: {fileID: 0}
   characterMover: {fileID: 0}
+  faceRight: 1
   runSpeed: 8
 --- !u!1001 &5657717883751818383
 PrefabInstance:
