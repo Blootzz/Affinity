@@ -4,12 +4,11 @@ public class CharacterMover : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] Vector3 currentVelocity = Vector3.zero;
-    [SerializeField] float speed;
+    [SerializeField] float speed = 0;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        speed = 0;
     }
 
     private void FixedUpdate()

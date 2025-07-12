@@ -17,7 +17,7 @@ public class PlayerStateBlocking : PlayerBaseState
         animator.SetBool("isBlocking", false);
     }
 
-    public override void WASD(Vector2 xyInput)
+    public override void HorizontalAxis(float xInput)
     {
         Debug.Log("implement directional block here");
     }

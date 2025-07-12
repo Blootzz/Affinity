@@ -4,11 +4,12 @@ public class PlayerStateRunning : PlayerBaseState
 {
     public PlayerStateRunning(PlayerStateManager newStateManager, float xInput) : base(newStateManager)
     {
-        WASD(new Vector2(xInput, 0));
+        HorizontalAxis(xInput);
     }
 
-    public override void WASD(Vector2 xyInput)
+    public override void HorizontalAxis(float xInput)
     {
-        stateManager.characterMover.SetVelocity(new Vector2(xyInput.x, 0));
+        stateManager.characterMover.SetSpeed(stateManager.runSpeed);
+        stateManager.characterMover.SetVelocity(new Vector2(xInput, 0));
     }
 }

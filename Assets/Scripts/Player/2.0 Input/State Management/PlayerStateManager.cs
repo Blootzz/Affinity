@@ -9,7 +9,8 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public CharacterMover characterMover;
 
     [Header("Basic Movement Settings")]
-    public float runSpeed = 8f;
+    [Tooltip("This gets fed to CharacterMover every time the PlayerStateRunning calls its HorizontalAxis method")]
+    public float runSpeed = 6f;
 
     private void Awake()
     {
@@ -33,8 +34,8 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnActionTriggered(InputAction.CallbackContext context)
     {
-        if (context.action.name.Equals("Move"))
-            DoStateWASD(context.ReadValue<Vector2>());
+        if (context.action.name.Equals("HorizontalAxis"))
+            DoStateHorizontal(context.ReadValue<float>());
         if (context.action.name.Equals("Jump"))
             DoStateJump();
         if (context.action.name.Equals("Block"))
@@ -49,9 +50,9 @@ public class PlayerStateManager : MonoBehaviour
             DoStateParry();
     }
 
-    void DoStateWASD(Vector2 xyInput)
+    void DoStateHorizontal(float xInput)
     {
-        currentState.WASD(xyInput);
+        currentState.HorizontalAxis(xInput);
     }
 
     // default behaviour is Jump, can be overridden

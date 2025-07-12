@@ -20,7 +20,7 @@ public abstract class PlayerBaseState
 
     }
     
-    public virtual void WASD(Vector2 xyInput)
+    public virtual void HorizontalAxis(float xInput)
     {
     }
 }

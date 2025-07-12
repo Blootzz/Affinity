@@ -5,8 +5,8 @@ public class PlayerStateIdle : PlayerBaseState
     public PlayerStateIdle(PlayerStateManager newStateManager) : base(newStateManager)
     { }
 
-    public override void WASD(Vector2 xyInput)
+    public override void HorizontalAxis(float xInput)
     {
-        stateManager.SwitchState(new PlayerStateRunning(stateManager, xyInput.x));
+        stateManager.SwitchState(new PlayerStateRunning(stateManager, xInput));
     }
 }
