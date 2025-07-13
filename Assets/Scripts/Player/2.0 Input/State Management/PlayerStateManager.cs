@@ -8,6 +8,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private string currentStateName;
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public CharacterMover characterMover;
+    [HideInInspector] public CharacterJumper characterJumper;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -18,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>();
         characterMover = GetComponent<CharacterMover>();
+        characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         playerInput.onActionTriggered += OnActionTriggered;
     }

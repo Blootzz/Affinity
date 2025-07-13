@@ -9,10 +9,10 @@ public class CharacterJumper : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void DoJump()
+    public void Jump()
     {
-        print("setting rb.linearVelocityY = 20");
-        rb.linearVelocityY = 20;
+        print("setting rb.linearVelocityY = 200");
+        rb.linearVelocityY = 200;
     }
 
 }

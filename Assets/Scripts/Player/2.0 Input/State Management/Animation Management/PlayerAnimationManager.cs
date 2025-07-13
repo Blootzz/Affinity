@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAnimationManager : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] string animationPrefix = "Anselm";
 
     #region Animation Hashes
     // public...  { get; private set; } ensures PlayerState can activate this animation without messing with it
@@ -84,53 +85,53 @@ public class PlayerAnimationManager : MonoBehaviour
     private void EstablishAnimations() // Relies on naming convention
     {
         // Regular
-        Idle = Animator.StringToHash(name + "Idle");
-        //Walk = Animator.StringToHash(name + "Walk");
-        Pant = Animator.StringToHash(name + "Pant");
-        Run = Animator.StringToHash(name + "Run");
-        Stunned = Animator.StringToHash(name + "Stunned");
-        Falling = Animator.StringToHash(name + "Falling");
-        FallingExt = Animator.StringToHash(name + "FallingExt");
-        Reach = Animator.StringToHash(name + "Reach");
-        Hanging = Animator.StringToHash(name + "Hanging");
-        ClimbLedge = Animator.StringToHash(name + "ClimbLedge");
-        LedgeJump = Animator.StringToHash(name + "LedgeJump");
-        WallSlide = Animator.StringToHash(name + "WallSlide");
-        Crouch = Animator.StringToHash(name + "Crouch");
+        Idle = Animator.StringToHash(animationPrefix + "Idle");
+        //Walk = Animator.StringToHash(animationPrefix + "Walk");
+        Pant = Animator.StringToHash(animationPrefix + "Pant");
+        Run = Animator.StringToHash(animationPrefix + "Run");
+        Stunned = Animator.StringToHash(animationPrefix + "Stunned");
+        Falling = Animator.StringToHash(animationPrefix + "Falling");
+        FallingExt = Animator.StringToHash(animationPrefix + "FallingExt");
+        Reach = Animator.StringToHash(animationPrefix + "Reach");
+        Hanging = Animator.StringToHash(animationPrefix + "Hanging");
+        ClimbLedge = Animator.StringToHash(animationPrefix + "ClimbLedge");
+        LedgeJump = Animator.StringToHash(animationPrefix + "LedgeJump");
+        WallSlide = Animator.StringToHash(animationPrefix + "WallSlide");
+        Crouch = Animator.StringToHash(animationPrefix + "Crouch");
 
         // Unarmed
-        IdleUnarmed = Animator.StringToHash(name + "IdleUnarmed");
-        PantUnarmed = Animator.StringToHash(name + "PantUnarmed");
-        RunUnarmed = Animator.StringToHash(name + "RunUnarmed");
-        StunnedUnarmed = Animator.StringToHash(name + "StunnedUnarmed");
-        FallingUnarmed = Animator.StringToHash(name + "FallingUnarmed");
-        FallingExtUnarmed = Animator.StringToHash(name + "FallingExtUnarmed");
-        ReachUnarmed = Animator.StringToHash(name + "ReachUnarmed");
-        HangingUnarmed = Animator.StringToHash(name + "HangingUnarmed");
-        ClimbLedgeUnarmed = Animator.StringToHash(name + "ClimbLedgeUnarmed");
-        LedgeJumpUnarmed = Animator.StringToHash(name + "LedgeJumpUnarmed");
-        WallSlideUnarmed = Animator.StringToHash(name + "WallSlideUnarmed");
-        CrouchUnarmed = Animator.StringToHash(name + "CrouchUnarmed");
+        IdleUnarmed = Animator.StringToHash(animationPrefix + "IdleUnarmed");
+        PantUnarmed = Animator.StringToHash(animationPrefix + "PantUnarmed");
+        RunUnarmed = Animator.StringToHash(animationPrefix + "RunUnarmed");
+        StunnedUnarmed = Animator.StringToHash(animationPrefix + "StunnedUnarmed");
+        FallingUnarmed = Animator.StringToHash(animationPrefix + "FallingUnarmed");
+        FallingExtUnarmed = Animator.StringToHash(animationPrefix + "FallingExtUnarmed");
+        ReachUnarmed = Animator.StringToHash(animationPrefix + "ReachUnarmed");
+        HangingUnarmed = Animator.StringToHash(animationPrefix + "HangingUnarmed");
+        ClimbLedgeUnarmed = Animator.StringToHash(animationPrefix + "ClimbLedgeUnarmed");
+        LedgeJumpUnarmed = Animator.StringToHash(animationPrefix + "LedgeJumpUnarmed");
+        WallSlideUnarmed = Animator.StringToHash(animationPrefix + "WallSlideUnarmed");
+        CrouchUnarmed = Animator.StringToHash(animationPrefix + "CrouchUnarmed");
 
         // attacks
-        Block = Animator.StringToHash(name + "Block");
-        BlockUp = Animator.StringToHash(name + "BlockUp");
-        Parry = Animator.StringToHash(name + "Parry");
-        ParryUp = Animator.StringToHash(name + "ParryUp");
-        QuickThrow = Animator.StringToHash(name + "QuickThrow");
-        StraightAttack = Animator.StringToHash(name + "StraightAttack");
-        UpAttack = Animator.StringToHash(name + "UpAttack");
-        DownAttack = Animator.StringToHash(name + "DownAttack");
-        Jab1Animation = Animator.StringToHash(name + "Jab1");
-        Jab2Animation = Animator.StringToHash(name + "Jab2");
-        Jab3Animation = Animator.StringToHash(name + "Jab3");
-        OverheadAnimation = Animator.StringToHash(name + "Overhead");
-        Throw = Animator.StringToHash(name + "Throw");
-        ThrowHeavy = Animator.StringToHash(name + "ThrowHeavy");
+        Block = Animator.StringToHash(animationPrefix + "Block");
+        BlockUp = Animator.StringToHash(animationPrefix + "BlockUp");
+        Parry = Animator.StringToHash(animationPrefix + "Parry");
+        ParryUp = Animator.StringToHash(animationPrefix + "ParryUp");
+        QuickThrow = Animator.StringToHash(animationPrefix + "QuickThrow");
+        StraightAttack = Animator.StringToHash(animationPrefix + "StraightAttack");
+        UpAttack = Animator.StringToHash(animationPrefix + "UpAttack");
+        DownAttack = Animator.StringToHash(animationPrefix + "DownAttack");
+        Jab1Animation = Animator.StringToHash(animationPrefix + "Jab1");
+        Jab2Animation = Animator.StringToHash(animationPrefix + "Jab2");
+        Jab3Animation = Animator.StringToHash(animationPrefix + "Jab3");
+        OverheadAnimation = Animator.StringToHash(animationPrefix + "Overhead");
+        Throw = Animator.StringToHash(animationPrefix + "Throw");
+        ThrowHeavy = Animator.StringToHash(animationPrefix + "ThrowHeavy");
 
         // Special Abilities
-        ZiplineForward = Animator.StringToHash(name + "ZiplineForward");
-        ZiplineBackward = Animator.StringToHash(name + "ZiplineBackward");
+        ZiplineForward = Animator.StringToHash(animationPrefix + "ZiplineForward");
+        ZiplineBackward = Animator.StringToHash(animationPrefix + "ZiplineBackward");
         //ZiplineIdle = Animator.StringToHash("ZiplineForward"); 
         ZipAttackForward = Animator.StringToHash("ZipAttackForward");
         ZipAttackBackward = Animator.StringToHash("ZipAttackBackward");
