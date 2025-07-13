@@ -27,6 +27,10 @@ public class PlayerStateManager : MonoBehaviour
         currentState = new PlayerStateIdle(this);
     }
 
+    /// <summary>
+    /// Switches manager's state
+    /// </summary>
+    /// <param name="newState">Pass in "new PlayerStateRunning(stateManager)"</param>
     public void SwitchState(PlayerBaseState newState)
     {
         currentState?.OnExit();
@@ -61,7 +65,7 @@ public class PlayerStateManager : MonoBehaviour
     // default behaviour is Jump, can be overridden
     void DoStateJump()
     {
-
+        currentState.Jump();
     }
 
     void DoStateBlock(bool newState)

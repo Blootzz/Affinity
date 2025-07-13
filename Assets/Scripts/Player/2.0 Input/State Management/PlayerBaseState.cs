@@ -12,14 +12,16 @@ public abstract class PlayerBaseState
 
     public virtual void OnEnter()
     {
-
     }
     public virtual void OnExit()
     {
-
     }
     
     public virtual void HorizontalAxis(float xInput)
+    {
+    }
+
+    public virtual void Jump()
     {
     }
 }

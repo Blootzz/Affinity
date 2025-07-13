@@ -9,4 +9,9 @@ public class PlayerStateIdle : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateRunning(stateManager, xInput));
     }
+
+    public override void Jump()
+    {
+        stateManager.SwitchState(new PlayerStateJumping(stateManager));
+    }
 }

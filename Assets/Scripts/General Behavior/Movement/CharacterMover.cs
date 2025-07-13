@@ -22,6 +22,7 @@ public class CharacterMover : MonoBehaviour
     }
 
     /// <summary>
+    /// Every FixedUpdate, adds <paramref name="newVelocity"/> to position in rb.MovePosition
     /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF 
     /// </summary>
     /// <param name="newVelocity"></param>
