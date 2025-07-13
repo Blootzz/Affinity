@@ -9,12 +9,12 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void OnEnter()
     {
-        animator.SetBool("isBlocking", true);
+        stateManager.playerAnimationManager.AnimatorSetBool("isBlocking", true);
     }
 
     public override void OnExit()
     {
-        animator.SetBool("isBlocking", false);
+        stateManager.playerAnimationManager.AnimatorSetBool("isBlocking", false);
     }
 
     public override void HorizontalAxis(float xInput)

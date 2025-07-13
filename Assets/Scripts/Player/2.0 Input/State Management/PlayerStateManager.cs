@@ -6,7 +6,7 @@ public class PlayerStateManager : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerBaseState currentState;
     [SerializeField] private string currentStateName;
-    [HideInInspector] public Animator animator;
+    [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public CharacterMover characterMover;
 
     [Header("Basic Movement Settings")]
@@ -16,7 +16,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        playerAnimationManager = GetComponent<PlayerAnimationManager>();
         characterMover = GetComponent<CharacterMover>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         playerInput.onActionTriggered += OnActionTriggered;
