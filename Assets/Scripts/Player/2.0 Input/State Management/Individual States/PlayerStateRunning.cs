@@ -21,7 +21,7 @@ public class PlayerStateRunning : PlayerBaseState
             stateManager.faceRight = !stateManager.faceRight;
     }
 
-    public override void Jump()
+    public override void JumpStart()
     {
         stateManager.SwitchState(new PlayerStateJumping(stateManager));
     }

@@ -21,7 +21,10 @@ public abstract class PlayerBaseState
     {
     }
 
-    public virtual void Jump()
+    public virtual void JumpStart()
+    {
+    }
+    public virtual void JumpCancel()
     {
     }
 }

@@ -9,7 +9,7 @@ public class PlayerStateJumping : PlayerBaseState
 
     public override void OnEnter()
     {
-        stateManager.characterJumper.Jump();
+        stateManager.characterJumper.BeginJumpAscent();
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUFalling);
         // Plays AnselmFalling or AnselmFallingUnarmed animation
         // both have transitions into their extended falling versions
@@ -25,5 +25,10 @@ public class PlayerStateJumping : PlayerBaseState
         stateManager.characterMover.SetHorizontalVelocity(xInput);
         if (stateManager.characterMover.FlipResult(stateManager.faceRight))
             stateManager.faceRight = !stateManager.faceRight;
+    }
+
+    public override void JumpCancel()
+    {
+        stateManager.characterJumper.BeginDescending();
     }
 }

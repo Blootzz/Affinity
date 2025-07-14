@@ -50,7 +50,13 @@ public class PlayerStateManager : MonoBehaviour
         if (context.action.name.Equals("HorizontalAxis"))
             DoStateHorizontal(context.ReadValue<float>());
         if (context.action.name.Equals("Jump"))
-            DoStateJump();
+        {
+            if (context.started)
+                DoStateJumpStart();
+            if (context.canceled)
+                DoStateJumpCancel();
+        }
+        
         if (context.action.name.Equals("Block"))
         {
             // either start blocking or release
@@ -69,9 +75,13 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // default behaviour is Jump, can be overridden
-    void DoStateJump()
+    void DoStateJumpStart()
     {
-        currentState.Jump();
+        currentState.JumpStart();
+    }
+    void DoStateJumpCancel()
+    {
+        currentState.JumpCancel();
     }
 
     void DoStateBlock(bool newState)

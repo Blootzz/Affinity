@@ -956,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c65710b6cb29e046b84bb1d3d7a3ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpHeight: 20
 --- !u!1001 &5657717883751818383
 PrefabInstance:
   m_ObjectHideFlags: 0
