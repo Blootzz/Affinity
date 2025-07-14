@@ -60,8 +60,9 @@ public class PlayerAnimationManager : MonoBehaviour
     public int ZiplineApproach { get; private set; }
 
     // Armed or Unarmed version of animation will keep track of which of the two animations to play (Idle means armed Idle)
-    public int AorUIdle { get; private set; }
-    public int AorUPant { get; private set; }
+    public int DynamicIdle { get; private set; } // changes idle to pant depending on how much health
+    int AorUIdle { get; set; }
+    int AorUPant { get; set; }
     public int AorURun { get; private set; }
     public int AorUStunned { get; private set; }
     public int AorUFalling { get; private set; }
@@ -72,7 +73,6 @@ public class PlayerAnimationManager : MonoBehaviour
     public int AorULedgeJump { get; private set; }
     public int AorUWallSlide { get; private set; }
     public int AorUCrouch { get; private set; }
-    public int DynamicIdle { get; private set; } // changes idle to pant depending on how much health
 
     #endregion
 

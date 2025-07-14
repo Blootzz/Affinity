@@ -9,11 +9,13 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
+    GroundCheck groundCheck;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
     [Tooltip("This gets fed to CharacterMover every time the PlayerStateRunning calls its HorizontalAxis method")]
     public float runSpeed = 6f;
+    float lastSetXInput = 0; // used to track input when Idle state is called but a new Input Action hasn't fired yet
 
     private void Awake()
     {
@@ -21,7 +23,20 @@ public class PlayerStateManager : MonoBehaviour
         characterMover = GetComponent<CharacterMover>();
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
+        groundCheck = GetComponentInChildren<GroundCheck>();
+    }
+
+    // Event Subscription
+    private void OnEnable()
+    {
         playerInput.onActionTriggered += OnActionTriggered;
+        groundCheck.OnGroundedChanged += DoStateGroundedChange;
+    }
+    // Event Unsubscription
+    private void OnDisable()
+    {
+        playerInput.onActionTriggered -= OnActionTriggered;
+        groundCheck.OnGroundedChanged -= DoStateGroundedChange;
     }
 
     private void Start()
@@ -71,7 +86,12 @@ public class PlayerStateManager : MonoBehaviour
 
     void DoStateHorizontal(float xInput)
     {
-        currentState.HorizontalAxis(xInput);
+        lastSetXInput = xInput;
+        currentState.HorizontalAxis();
+    }
+    public float GetLastSetXInput()
+    {
+        return lastSetXInput;
     }
 
     // default behaviour is Jump, can be overridden
@@ -92,5 +112,10 @@ public class PlayerStateManager : MonoBehaviour
     void DoStateParry()
     {
 
+    }
+
+    void DoStateGroundedChange(bool isGrounded)
+    {
+        currentState.ProcessGroundCheckEvent(isGrounded);
     }
 }

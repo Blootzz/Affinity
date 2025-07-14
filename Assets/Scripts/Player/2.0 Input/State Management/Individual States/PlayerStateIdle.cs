@@ -5,9 +5,20 @@ public class PlayerStateIdle : PlayerBaseState
     public PlayerStateIdle(PlayerStateManager newStateManager) : base(newStateManager)
     { }
 
-    public override void HorizontalAxis(float xInput)
+    public override void OnEnter()
     {
-        stateManager.SwitchState(new PlayerStateRunning(stateManager, xInput));
+        if (stateManager.GetLastSetXInput() != 0)
+        {
+            stateManager.SwitchState(new PlayerStateRunning(stateManager));
+            return; // exit this state
+        }
+
+        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.DynamicIdle);
+    }
+
+    public override void HorizontalAxis()
+    {
+        stateManager.SwitchState(new PlayerStateRunning(stateManager));
     }
 
     public override void JumpStart()

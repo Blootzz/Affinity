@@ -17,7 +17,7 @@ public abstract class PlayerBaseState
     {
     }
     
-    public virtual void HorizontalAxis(float xInput)
+    public virtual void HorizontalAxis()
     {
     }
 
@@ -25,6 +25,10 @@ public abstract class PlayerBaseState
     {
     }
     public virtual void JumpCancel()
+    {
+    }
+
+    public virtual void ProcessGroundCheckEvent(bool isGrounded)
     {
     }
 }

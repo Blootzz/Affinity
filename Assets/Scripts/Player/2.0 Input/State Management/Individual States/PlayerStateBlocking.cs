@@ -17,7 +17,7 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.playerAnimationManager.AnimatorSetBool("isBlocking", false);
     }
 
-    public override void HorizontalAxis(float xInput)
+    public override void HorizontalAxis()
     {
         Debug.Log("implement directional block here");
     }
