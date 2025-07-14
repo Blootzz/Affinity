@@ -31,4 +31,10 @@ public class PlayerStateJumping : PlayerBaseState
     {
         stateManager.characterJumper.BeginDescending();
     }
+
+    public override void JumpStart()
+    {
+        Debug.Log("TESTING Jump while in jump state");
+        OnEnter();
+    }
 }
