@@ -18,4 +18,12 @@ public class PlayerStateJumping : PlayerBaseState
     {
 
     }
+
+    public override void HorizontalAxis(float xInput)
+    {
+        stateManager.characterMover.SetSpeed(stateManager.runSpeed);
+        stateManager.characterMover.SetHorizontalVelocity(xInput);
+        if (stateManager.characterMover.FlipResult(stateManager.faceRight))
+            stateManager.faceRight = !stateManager.faceRight;
+    }
 }

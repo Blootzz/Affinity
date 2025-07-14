@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterMover : MonoBehaviour
 {
     Rigidbody2D rb;
-    [SerializeField] Vector3 currentVelocity = Vector3.zero;
+    [SerializeField] float currentHorVelocity = 0;
     [SerializeField] float speed = 0;
 
     private void Awake()
@@ -11,10 +11,11 @@ public class CharacterMover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
-        rb.MovePosition(transform.position + currentVelocity * speed * Time.fixedDeltaTime);
-    }
+    //// Do not use this if relying on Unity's physics system to handle gravity, collisions, etc
+    //private void FixedUpdate()
+    //{
+    //    rb.MovePosition(transform.position + currentVelocity * speed * Time.fixedDeltaTime);
+    //}
 
     public void SetSpeed(float newSpeed)
     {
@@ -22,13 +23,14 @@ public class CharacterMover : MonoBehaviour
     }
 
     /// <summary>
-    /// Every FixedUpdate, adds <paramref name="newVelocity"/> to position in rb.MovePosition
+    /// Sets rb.linearVelocity to <paramref name="newHorVelocity"/>
     /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF 
     /// </summary>
-    /// <param name="newVelocity"></param>
-    public void SetVelocity(Vector2 newVelocity)
+    /// <param name="newHorVelocity"></param>
+    public void SetHorizontalVelocity(float newHorVelocity)
     {
-        currentVelocity = newVelocity;
+        currentHorVelocity = newHorVelocity * speed;
+        rb.linearVelocityX = currentHorVelocity;
     }
 
     /// <summary>
@@ -37,7 +39,7 @@ public class CharacterMover : MonoBehaviour
     /// <returns>true if sprite flip was performed</returns>
     public bool FlipResult(bool wasFacingRight)
     {
-        if ((currentVelocity.x > 0 && !wasFacingRight) || (currentVelocity.x < 0 && wasFacingRight))
+        if ((currentHorVelocity > 0 && !wasFacingRight) || (currentHorVelocity < 0 && wasFacingRight))
         {
             transform.Rotate(Vector3.up * 180);
             return true;

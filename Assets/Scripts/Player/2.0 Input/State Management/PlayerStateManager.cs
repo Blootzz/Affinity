@@ -43,6 +43,10 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnActionTriggered(InputAction.CallbackContext context)
     {
+        // ignore performed flag
+        if (context.performed)
+            return;
+
         if (context.action.name.Equals("HorizontalAxis"))
             DoStateHorizontal(context.ReadValue<float>());
         if (context.action.name.Equals("Jump"))

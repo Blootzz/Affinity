@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterJumper : MonoBehaviour
 {
     Rigidbody2D rb;
+    [SerializeField] float jumpHeight = 10;
 
     private void Awake()
     {
@@ -11,8 +12,7 @@ public class CharacterJumper : MonoBehaviour
 
     public void Jump()
     {
-        print("setting rb.linearVelocityY = 200");
-        rb.linearVelocityY = 200;
+        rb.linearVelocityY = jumpHeight;
     }
 
 }
