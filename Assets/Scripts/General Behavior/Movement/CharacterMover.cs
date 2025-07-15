@@ -33,17 +33,17 @@ public class CharacterMover : MonoBehaviour
         rb.linearVelocityX = currentHorVelocity;
     }
 
-    /// <summary>
-    /// To be used after SetVelocity. Compares CharacterMover currentVelocity to passed in faceRight
-    /// </summary>
-    /// <returns>true if sprite flip was performed</returns>
-    public bool FlipResult(bool wasFacingRight)
-    {
-        if ((currentHorVelocity > 0 && !wasFacingRight) || (currentHorVelocity < 0 && wasFacingRight))
-        {
-            transform.Rotate(Vector3.up * 180);
-            return true;
-        }
-        return false;
-    }
+    ///// <summary>
+    ///// To be used after SetVelocity. Compares CharacterMover currentVelocity to passed in faceRight
+    ///// </summary>
+    ///// <returns>true if sprite flip was performed</returns>
+    //public bool FlipResult(bool wasFacingRight)
+    //{
+    //    if ((currentHorVelocity > 0 && !wasFacingRight) || (currentHorVelocity < 0 && wasFacingRight))
+    //    {
+    //        transform.Rotate(Vector3.up * 180);
+    //        return true;
+    //    }
+    //    return false;
+    //}
 }

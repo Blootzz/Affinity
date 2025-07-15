@@ -118,4 +118,18 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState.ProcessGroundCheckEvent(isGrounded);
     }
+
+    public void FlipIfNecessary()
+    {
+        if (lastSetXInput > 0 && !faceRight)
+            Flip();
+        else if (lastSetXInput < 0 && faceRight)
+            Flip();
+    }
+    void Flip()
+    {
+        faceRight = !faceRight;
+        transform.Rotate(Vector3.up * 180);
+    }
+
 }

@@ -5,11 +5,11 @@ public class PlayerStateRunning : PlayerBaseState
     // needs a special constructor because HorizontalAxis can't get called by OnEnter
     public PlayerStateRunning(PlayerStateManager newStateManager) : base(newStateManager)
     {
-        HorizontalAxis();
     }
 
     public override void OnEnter()
     {
+        HorizontalAxis();
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorURun);
     }
 
@@ -25,8 +25,10 @@ public class PlayerStateRunning : PlayerBaseState
             return;
         }
 
-        if (stateManager.characterMover.FlipResult(stateManager.faceRight))
-            stateManager.faceRight = !stateManager.faceRight;
+        stateManager.FlipIfNecessary();
+
+        //if (stateManager.characterMover.FlipResult(stateManager.faceRight))
+        //    stateManager.faceRight = !stateManager.faceRight;
     }
 
     public override void JumpStart()

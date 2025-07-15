@@ -17,8 +17,9 @@ public class PlayerStateFalling : PlayerBaseState
     {
         stateManager.characterMover.SetSpeed(stateManager.runSpeed);
         stateManager.characterMover.SetHorizontalVelocity(stateManager.GetLastSetXInput());
-        if (stateManager.characterMover.FlipResult(stateManager.faceRight))
-            stateManager.faceRight = !stateManager.faceRight;
+        //if (stateManager.characterMover.FlipResult(stateManager.faceRight))
+        //    stateManager.faceRight = !stateManager.faceRight;
+        stateManager.FlipIfNecessary();
     }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)
