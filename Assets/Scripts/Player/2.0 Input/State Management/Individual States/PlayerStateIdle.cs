@@ -25,4 +25,9 @@ public class PlayerStateIdle : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateJumping(stateManager));
     }
+
+    public override void BlockStart()
+    {
+        stateManager.SwitchState(new PlayerStateBlocking(stateManager));
+    }
 }

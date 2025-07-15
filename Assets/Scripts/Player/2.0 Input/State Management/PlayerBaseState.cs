@@ -31,4 +31,15 @@ public abstract class PlayerBaseState
     public virtual void ProcessGroundCheckEvent(bool isGrounded)
     {
     }
+
+    public virtual void BlockStart()
+    {
+    }
+    public virtual void BlockCancel()
+    {
+    }
+
+    public virtual void Parry()
+    {
+    }
 }

@@ -67,9 +67,9 @@ public class PlayerStateManager : MonoBehaviour
         if (context.action.name.Equals("Jump"))
         {
             if (context.started)
-                DoStateJumpStart();
+                DoStateJump(true);
             if (context.canceled)
-                DoStateJumpCancel();
+                DoStateJump(false);
         }
         
         if (context.action.name.Equals("Block"))
@@ -81,7 +81,10 @@ public class PlayerStateManager : MonoBehaviour
                 DoStateBlock(false);
         }
         if (context.action.name.Equals("Parry"))
-            DoStateParry();
+        {
+            if (context.started)
+                DoStateParry();
+        }
     }
 
     void DoStateHorizontal(float xInput)
@@ -94,24 +97,25 @@ public class PlayerStateManager : MonoBehaviour
         return lastSetXInput;
     }
 
-    // default behaviour is Jump, can be overridden
-    void DoStateJumpStart()
+    void DoStateJump(bool started)
     {
-        currentState.JumpStart();
-    }
-    void DoStateJumpCancel()
-    {
-        currentState.JumpCancel();
+        if (started)
+            currentState.JumpStart();
+        else
+            currentState.JumpCancel();
     }
 
-    void DoStateBlock(bool newState)
+    void DoStateBlock(bool started)
     {
-
+        if (started)
+            currentState.BlockStart();
+        else
+            currentState.BlockCancel();
     }
 
     void DoStateParry()
     {
-
+        currentState.Parry();
     }
 
     void DoStateGroundedChange(bool isGrounded)

@@ -19,4 +19,14 @@ public class PlayerStateBlocking : PlayerBaseState
     {
         Debug.Log("implement directional block here");
     }
+
+    public override void BlockCancel()
+    {
+        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+    }
+
+    public override void Parry()
+    {
+        stateManager.SwitchState(new PlayerStateParrying(stateManager));
+    }
 }
