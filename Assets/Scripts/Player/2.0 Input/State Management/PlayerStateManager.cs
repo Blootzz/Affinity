@@ -10,6 +10,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
     GroundCheck groundCheck;
+    BlockParryManager blockParryManager;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -24,19 +25,22 @@ public class PlayerStateManager : MonoBehaviour
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
+        blockParryManager = GetComponentInChildren<BlockParryManager>();
     }
 
     // Event Subscription
     private void OnEnable()
     {
         playerInput.onActionTriggered += OnActionTriggered;
-        groundCheck.OnGroundedChanged += DoStateGroundedChange;
+        groundCheck.OnGroundedChanged += OnStateGroundedChange;
+        blockParryManager.BlockerHitEvent += OnBlockerHit;
     }
     // Event Unsubscription
     private void OnDisable()
     {
         playerInput.onActionTriggered -= OnActionTriggered;
-        groundCheck.OnGroundedChanged -= DoStateGroundedChange;
+        groundCheck.OnGroundedChanged -= OnStateGroundedChange;
+        blockParryManager.BlockerHitEvent -= OnBlockerHit;
     }
 
     private void Start()
@@ -118,7 +122,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState.Parry();
     }
 
-    void DoStateGroundedChange(bool isGrounded)
+    void OnStateGroundedChange(bool isGrounded)
     {
         currentState.ProcessGroundCheckEvent(isGrounded);
     }
@@ -134,6 +138,11 @@ public class PlayerStateManager : MonoBehaviour
     {
         faceRight = !faceRight;
         transform.Rotate(Vector3.up * 180);
+    }
+
+    void OnBlockerHit(EnemyHitbox enemyHitbox)
+    {
+        currentState.ProcessBlockerHit(enemyHitbox);
     }
 
 }

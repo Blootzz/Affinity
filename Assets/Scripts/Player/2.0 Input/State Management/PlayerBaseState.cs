@@ -42,4 +42,7 @@ public abstract class PlayerBaseState
     public virtual void Parry()
     {
     }
+    public virtual void ProcessBlockerHit(EnemyHitbox enemyHitbox)
+    {
+    }
 }

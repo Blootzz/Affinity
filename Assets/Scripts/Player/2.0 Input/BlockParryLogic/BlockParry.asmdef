@@ -1,3 +1,16 @@
 {
-	"name": "BlockParry"
+    "name": "BlockParry",
+    "rootNamespace": "",
+    "references": [
+        "GUID:119e1d06239231e44868237acd2f2f9e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

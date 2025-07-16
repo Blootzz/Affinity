@@ -2,15 +2,20 @@ using UnityEngine;
 
 public class BlockParryCollider : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    BlockParryManager blockParryManager;
+
+    private void Awake()
     {
-        
+        blockParryManager = transform.parent.GetComponent<BlockParryManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // only process EnemyHitboxes
+        if (collision.gameObject.TryGetComponent(out EnemyHitbox enemyHitbox))
+        {
+            blockParryManager.FireBlockerHitEvent(enemyHitbox);
+        }
+
     }
 }

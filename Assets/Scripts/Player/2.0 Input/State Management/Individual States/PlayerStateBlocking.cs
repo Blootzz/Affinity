@@ -29,4 +29,9 @@ public class PlayerStateBlocking : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateParrying(stateManager));
     }
+
+    public override void ProcessBlockerHit(EnemyHitbox enemyHitbox)
+    {
+        Debug.Log("evaluate block result here");
+    }
 }
