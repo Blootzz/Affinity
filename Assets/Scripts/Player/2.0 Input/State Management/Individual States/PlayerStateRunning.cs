@@ -44,4 +44,10 @@ public class PlayerStateRunning : PlayerBaseState
             Debug.LogWarning("Running state just received isGrounded is now true???\n" +
                 "This is probably due to being spawned in airbourne with no state");
     }
+
+    public override void BlockStart()
+    {
+        stateManager.characterMover.SetHorizontalVelocity(0);
+        stateManager.SwitchState(new PlayerStateBlocking(stateManager));
+    }
 }
