@@ -266,11 +266,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6481224392111830353, guid: 1de6ef90753352d498ac9a7e894af7bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.82
+      value: -1.736
       objectReference: {fileID: 0}
     - target: {fileID: 6481224392111830353, guid: 1de6ef90753352d498ac9a7e894af7bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.68
+      value: -1.921
       objectReference: {fileID: 0}
     - target: {fileID: 6481224392111830353, guid: 1de6ef90753352d498ac9a7e894af7bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1096,7 +1096,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.1, y: 1.1}
+    oldSize: {x: 0.725, y: 1.2}
     newSize: {x: 0.725, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

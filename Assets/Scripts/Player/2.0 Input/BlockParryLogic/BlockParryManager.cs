@@ -4,7 +4,7 @@ using System;
 public class BlockParryManager : MonoBehaviour
 {
     public event Action BlockerHitEvent;
-    bool isParryWindowOpen = false; // modified by animation
+    [SerializeField] bool isParryWindowOpen = false; // modified by animation
     EnemyHitbox incomingEnemyHitbox;
 
     public void FireBlockerHitEvent(EnemyHitbox enemyHitbox)

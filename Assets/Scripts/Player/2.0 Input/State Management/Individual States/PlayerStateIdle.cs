@@ -7,6 +7,11 @@ public class PlayerStateIdle : PlayerBaseState
 
     public override void OnEnter()
     {
+        if (stateManager.GetLastBlockInput())
+        {
+            stateManager.SwitchState(new PlayerStateBlocking(stateManager));
+            return;
+        }
         if (stateManager.GetLastSetXInput() != 0)
         {
             stateManager.SwitchState(new PlayerStateRunning(stateManager));
