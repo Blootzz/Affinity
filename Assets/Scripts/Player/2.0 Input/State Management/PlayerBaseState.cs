@@ -45,4 +45,8 @@ public abstract class PlayerBaseState
     public virtual void ProcessBlockerHit(EnemyHitbox enemyHitbox, bool isParryWindowOpen)
     {
     }
+
+    public virtual void EndStateByAnimation()
+    {
+    }
 }

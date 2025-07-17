@@ -9,8 +9,8 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public PlayerAnimationManager playerAnimationManager;
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
+    [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
     GroundCheck groundCheck;
-    BlockParryManager blockParryManager;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -145,4 +145,9 @@ public class PlayerStateManager : MonoBehaviour
         currentState.ProcessBlockerHit(enemyHitbox, isParryWindowOpen);
     }
 
+    // called by animations that end their state
+    void _EndStateByAnimation()
+    {
+        currentState.EndStateByAnimation();
+    }
 }

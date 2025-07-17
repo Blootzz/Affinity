@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8d4e42c8588e54b88d97c796db170e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isParryWindowOpen: 0
 --- !u!223 &1751218398 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 1161608376481169887, guid: 0afbd2e61b04d284ba60413e55031e31, type: 3}
@@ -1025,6 +1026,7 @@ MonoBehaviour:
   playerAnimationManager: {fileID: 0}
   characterMover: {fileID: 0}
   characterJumper: {fileID: 0}
+  blockParryManager: {fileID: 0}
   faceRight: 1
   runSpeed: 8
 --- !u!114 &3105599406997228913
@@ -1094,7 +1096,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 0.725, y: 1.2}
+    oldSize: {x: 1.1, y: 1.1}
     newSize: {x: 0.725, y: 1.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
