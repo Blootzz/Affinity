@@ -3,12 +3,24 @@ using System;
 
 public class BlockParryManager : MonoBehaviour
 {
-    public event Action<EnemyHitbox, bool> BlockerHitEvent;
-    [SerializeField] bool isParryWindowOpen = false; // modified by animation
+    public event Action BlockerHitEvent;
+    bool isParryWindowOpen = false; // modified by animation
+    EnemyHitbox incomingEnemyHitbox;
 
     public void FireBlockerHitEvent(EnemyHitbox enemyHitbox)
     {
-        BlockerHitEvent?.Invoke(enemyHitbox, isParryWindowOpen);
+        incomingEnemyHitbox = enemyHitbox;
+        BlockerHitEvent?.Invoke();
+    }
+
+    public bool GetIsParryWindowOpen()
+    {
+        return isParryWindowOpen;
+    }
+
+    public EnemyHitbox GetIncomingEnemyHitbox()
+    {
+        return incomingEnemyHitbox;
     }
 
     public void ClearIsParryWindowOpen()

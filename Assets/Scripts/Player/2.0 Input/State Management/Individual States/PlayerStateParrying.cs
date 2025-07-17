@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerStateParrying : PlayerBaseState
 {
+    bool wasParrySuccessful = false;
+
     public PlayerStateParrying(PlayerStateManager newStateManager) : base(newStateManager)
     {
     }
@@ -9,16 +11,22 @@ public class PlayerStateParrying : PlayerBaseState
     public override void OnEnter()
     {
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Parry);
+        wasParrySuccessful = false; // setting this to false just in case it was somehow left as true
     }
     public override void OnExit()
     {
         // in case player is hit out of parry animation or something crazy happens
+        if (wasParrySuccessful == false)
+            Debug.Log("Deduct Poise Here");
+
         stateManager.blockParryManager.ClearIsParryWindowOpen();
     }
 
-    public override void ProcessBlockerHit(EnemyHitbox enemyHitbox, bool isParryWindowOpen)
+    public override void ProcessBlockerHit()
     {
+        // reference stateManager.blockParryManager
         Debug.Log("evaluate parry result here");
+        // set wasParrySuccessful = true when a successful parry is performed
     }
 
     public override void EndStateByAnimation()
