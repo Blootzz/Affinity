@@ -140,9 +140,9 @@ public class PlayerStateManager : MonoBehaviour
         transform.Rotate(Vector3.up * 180);
     }
 
-    void OnBlockerHit(EnemyHitbox enemyHitbox)
+    void OnBlockerHit(EnemyHitbox enemyHitbox, bool isParryWindowOpen)
     {
-        currentState.ProcessBlockerHit(enemyHitbox);
+        currentState.ProcessBlockerHit(enemyHitbox, isParryWindowOpen);
     }
 
 }

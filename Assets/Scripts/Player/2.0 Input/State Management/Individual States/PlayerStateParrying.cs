@@ -11,4 +11,8 @@ public class PlayerStateParrying : PlayerBaseState
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Parry);
     }
 
+    public override void ProcessBlockerHit(EnemyHitbox enemyHitbox, bool isParryWindowOpen)
+    {
+        Debug.Log("evaluate parry result here");
+    }
 }
