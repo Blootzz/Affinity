@@ -33,6 +33,7 @@ public class PlayerStateBlocking : PlayerBaseState
     public override void ProcessBlockerHit()
     {
         // reference stateManager.blockParryManager
+        // reference BlockParryCollider.CreateVisualEffect
         Debug.Log("evaluate block result here");
     }
 }

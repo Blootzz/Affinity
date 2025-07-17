@@ -17,11 +17,10 @@ public class BlockParryCollider : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out EnemyHitbox enemyHitbox))
         {
             blockParryManager.FireBlockerHitEvent(enemyHitbox);
-            CreateVisualEffect();
         }
     }
 
-    void CreateVisualEffect()
+    public void CreateVisualEffect()
     {
         //Vector2 angleVector = new Vector2(collision.gameObject.transform.position.x - localPos.x, collision.gameObject.transform.position.y - localPos.y);
         //float angleDeg = 180 / Mathf.PI * Mathf.Atan(angleVector.y / angleVector.x);
