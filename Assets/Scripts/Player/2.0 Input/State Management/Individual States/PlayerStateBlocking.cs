@@ -29,6 +29,13 @@ public class PlayerStateBlocking : PlayerBaseState
         if (stateManager.GetLastSetYInput() > 0)
             isInputHoldingUp = true;
 
+        // handle animations
+        if (isInputHoldingUp)
+            stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.BlockUp);
+        else
+            stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
+        
+        // handle blockers
         // if isInputHoldingUp == false, enable lower, disable upper
         stateManager.blockParryManager.SetEnableBlockers(!isInputHoldingUp, isInputHoldingUp);
     }
