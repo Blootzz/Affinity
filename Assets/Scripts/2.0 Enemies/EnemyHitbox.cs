@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHitbox
+public class EnemyHitbox : MonoBehaviour
 {
     public float damage;
     public float blockStunTime;
@@ -8,12 +8,4 @@ public class EnemyHitbox
     public bool mustBlockUp;
     public bool mustBlockDown;
 
-    //public void SetData(float setDamage, float setBlockStunTime, float setBlockKnockbackVelocity, bool setMustBlockUp, bool setMustBlockDown)
-    //{
-    //    damage = setDamage;
-    //    blockStunTime = setBlockStunTime;
-    //    blockKnockbackVelocity = setBlockKnockbackVelocity;
-    //    mustBlockUp = setMustBlockUp;
-    //    mustBlockDown = setMustBlockDown;
-    //}
 }
