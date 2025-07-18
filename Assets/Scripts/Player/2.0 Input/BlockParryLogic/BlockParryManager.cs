@@ -36,12 +36,15 @@ public class BlockParryManager : MonoBehaviour
         isParryWindowOpen = false;
     }
 
-    public void EnableBlockerLower(bool enableMePlz)
+    /// <summary>
+    /// Used to control enabled state of lower and upper block colliders by GameObject.SetActive
+    /// </summary>
+    /// <param name="enableLower"></param>
+    /// <param name="enableUpper"></param>
+    public void SetEnableBlockers(bool enableLower, bool enableUpper)
     {
-        lowerCollider.enabled = enableMePlz;
-    }
-    public void EnableBlockerUpper(bool enableMePlz)
-    {
-        upperCollider.enabled = enableMePlz;
+        print("Setting blockers to: " + enableLower + " and " + enableUpper);
+        lowerCollider.gameObject.SetActive(enableLower);
+        upperCollider.gameObject.SetActive(enableUpper);
     }
 }

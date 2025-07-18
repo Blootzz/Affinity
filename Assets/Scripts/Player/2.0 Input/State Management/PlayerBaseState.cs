@@ -20,6 +20,9 @@ public abstract class PlayerBaseState
     public virtual void HorizontalAxis()
     {
     }
+    public virtual void VerticalAxis()
+    {
+    }
 
     public virtual void JumpStart()
     {

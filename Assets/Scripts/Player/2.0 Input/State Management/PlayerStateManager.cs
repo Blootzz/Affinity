@@ -17,6 +17,7 @@ public class PlayerStateManager : MonoBehaviour
     [Tooltip("This gets fed to CharacterMover every time the PlayerStateRunning calls its HorizontalAxis method")]
     public float runSpeed = 6f;
     float lastSetXInput = 0; // used to track input when Idle state is called but a new Input Action hasn't fired yet
+    float lastSetYInput = 0;
     bool lastSetBlockInput = false;
 
     private void Awake()
@@ -69,6 +70,8 @@ public class PlayerStateManager : MonoBehaviour
 
         if (context.action.name.Equals("HorizontalAxis"))
             DoStateHorizontal(context.ReadValue<float>());
+        if (context.action.name.Equals("VerticalAxis"))
+            DoStateVertical(context.ReadValue<float>());
         if (context.action.name.Equals("Jump"))
         {
             if (context.started)
@@ -92,6 +95,7 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
+    #region Horizontal Control
     void DoStateHorizontal(float xInput)
     {
         lastSetXInput = xInput;
@@ -101,6 +105,19 @@ public class PlayerStateManager : MonoBehaviour
     {
         return lastSetXInput;
     }
+    #endregion
+
+    #region Vertical Control
+    void DoStateVertical(float yInput)
+    {
+        lastSetYInput = yInput;
+        currentState.VerticalAxis();
+    }
+    public float GetLastSetYInput()
+    {
+        return lastSetYInput;
+    }
+    #endregion
 
     void DoStateJump(bool started)
     {

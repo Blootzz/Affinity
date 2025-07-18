@@ -8,16 +8,29 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void OnEnter()
     {
+        VerticalAxis(); // read vertical axis to determine which blocker to enable
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
     }
 
     public override void OnExit()
     {
+        stateManager.blockParryManager.SetEnableBlockers(false, false);
     }
 
     public override void HorizontalAxis()
     {
-        Debug.Log("implement directional block here");
+        stateManager.FlipIfNecessary();
+    }
+
+    public override void VerticalAxis()
+    {
+        bool isInputHoldingUp = false;
+
+        if (stateManager.GetLastSetYInput() > 0)
+            isInputHoldingUp = true;
+
+        // if isInputHoldingUp == false, enable lower, disable upper
+        stateManager.blockParryManager.SetEnableBlockers(!isInputHoldingUp, isInputHoldingUp);
     }
 
     public override void BlockCancel()
