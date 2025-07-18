@@ -17,7 +17,7 @@ public class TestFlyingEnemyHitbox : MonoBehaviour
     {
         if (Input.GetKeyDown(TestKey))
         {
-            print("Moving Hitbox");
+            print("TEST: Moving Hitbox");
             transform.position = StartPosition;
             rb.linearVelocity = Velocity;
         }
