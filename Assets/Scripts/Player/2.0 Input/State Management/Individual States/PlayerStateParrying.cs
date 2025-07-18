@@ -24,9 +24,22 @@ public class PlayerStateParrying : PlayerBaseState
 
     public override void ProcessBlockerHit()
     {
-        // reference stateManager.blockParryManager
-        Debug.Log("evaluate parry result here");
+        if (stateManager.blockParryManager.GetIsParryWindowOpen())
+        {
+            Debug.Log("Successful parry");
+            stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, true);
+            wasParrySuccessful = true;
+        }
+        else
+            Debug.Log("Failed Parry");
         // set wasParrySuccessful = true when a successful parry is performed
+    }
+
+    public override void Parry()
+    {
+        // restart to chain successful parries
+        if (wasParrySuccessful)
+            OnEnter();
     }
 
     public override void EndStateByAnimation()

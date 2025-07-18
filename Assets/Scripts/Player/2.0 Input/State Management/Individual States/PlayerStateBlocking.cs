@@ -8,8 +8,8 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void OnEnter()
     {
-        VerticalAxis(); // read vertical axis to determine which blocker to enable
-        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
+        // read vertical axis to determine which blocker to enable and what animations to play
+        VerticalAxis();
     }
 
     public override void OnExit()
@@ -31,9 +31,13 @@ public class PlayerStateBlocking : PlayerBaseState
 
         // handle animations
         if (isInputHoldingUp)
+        {
             stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.BlockUp);
+        }
         else
+        {
             stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
+        }
         
         // handle blockers
         // if isInputHoldingUp == false, enable lower, disable upper
@@ -53,7 +57,7 @@ public class PlayerStateBlocking : PlayerBaseState
     public override void ProcessBlockerHit()
     {
         // reference stateManager.blockParryManager
-        // reference BlockParryCollider.CreateVisualEffect
+        stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         Debug.Log("evaluate block result here");
     }
 }

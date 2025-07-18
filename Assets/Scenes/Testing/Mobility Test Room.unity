@@ -326,8 +326,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5fbe8d62de9564e834818bc3198d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockParticles: {fileID: 8937237880489707825, guid: 1982fd6a9ecb2444eb5f70254d850922, type: 3}
-  blockWaveEffect: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
+--- !u!4 &416611625 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4850848980040429242, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &416611628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -383,6 +386,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &523268757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 523268758}
+  m_Layer: 3
+  m_Name: EffectSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &523268758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523268757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.09, y: 0.43, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1658172823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &535326149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -980,6 +1014,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1479484245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479484246}
+  m_Layer: 3
+  m_Name: EffectSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479484246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479484245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06, y: 0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 416611625}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658172818 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2125880926362771986, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
@@ -997,8 +1062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5fbe8d62de9564e834818bc3198d10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockParticles: {fileID: 8937237880489707825, guid: 1982fd6a9ecb2444eb5f70254d850922, type: 3}
-  blockWaveEffect: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
+--- !u!4 &1658172823 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1111277858001715208, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1658172826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1131,9 +1199,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2125880926362771986, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2125880926362771986, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: parryEffect
+      value: 
+      objectReference: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
     - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: lowerCollider
       value: 
@@ -1142,6 +1218,14 @@ PrefabInstance:
       propertyPath: upperCollider
       value: 
       objectReference: {fileID: 416611624}
+    - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: blockParticles
+      value: 
+      objectReference: {fileID: 8937237880489707825, guid: 1982fd6a9ecb2444eb5f70254d850922, type: 3}
+    - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: blockWaveEffect
+      value: 
+      objectReference: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
     - target: {fileID: 4850848980040429242, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.35
@@ -1152,6 +1236,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5691713958803928363, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6465418364089832019, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6565395407021599308, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
@@ -1191,6 +1279,10 @@ PrefabInstance:
       value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6975781458012068834, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6975781458012068834, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1222,7 +1314,13 @@ PrefabInstance:
     - {fileID: 7241652780641827601, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
     - {fileID: 5691713958803928363, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1111277858001715208, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 523268758}
+    - targetCorrespondingSourceObject: {fileID: 4850848980040429242, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1479484246}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2125880926362771986, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: -1
