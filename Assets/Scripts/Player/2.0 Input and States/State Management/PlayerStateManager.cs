@@ -3,14 +3,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    private PlayerInput playerInput;
-    private PlayerBaseState currentState;
+    PlayerInput playerInput;
+    PlayerBaseState currentState;
     [SerializeField] private string currentStateName;
-    [HideInInspector] public PlayerAnimationManager playerAnimationManager;
+    [HideInInspector] public PlayerAnimationManager playerAnimationManager; // accessed by each state to play animations
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
     [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
     GroundCheck groundCheck;
+    Health playerHealth;
+    Poise playerPoise;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -28,6 +30,8 @@ public class PlayerStateManager : MonoBehaviour
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
         blockParryManager = GetComponentInChildren<BlockParryManager>();
+        playerHealth = GetComponent<Health>();
+        playerPoise = GetComponent<Poise>();
     }
 
     // Event Subscription
@@ -36,6 +40,8 @@ public class PlayerStateManager : MonoBehaviour
         playerInput.onActionTriggered += OnActionTriggered;
         groundCheck.OnGroundedChanged += OnStateGroundedChange;
         blockParryManager.BlockerHitEvent += OnBlockerHit;
+        playerHealth.DeathEvent += OnDeath;
+        playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
     }
     // Event Unsubscription
     private void OnDisable()
@@ -43,6 +49,8 @@ public class PlayerStateManager : MonoBehaviour
         playerInput.onActionTriggered -= OnActionTriggered;
         groundCheck.OnGroundedChanged -= OnStateGroundedChange;
         blockParryManager.BlockerHitEvent -= OnBlockerHit;
+        playerHealth.DeathEvent -= OnDeath;
+        playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
     }
 
     private void Start()
@@ -171,6 +179,15 @@ public class PlayerStateManager : MonoBehaviour
     void OnBlockerHit()
     {
         currentState.ProcessBlockerHit();
+    }
+
+    void OnDeath()
+    {
+        currentState.Die();
+    }
+    void OnPoiseDepleted()
+    {
+        currentState.PoiseDepleted();
     }
 
     // called by animations that end their state

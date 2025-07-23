@@ -52,4 +52,13 @@ public abstract class PlayerBaseState
     public virtual void EndStateByAnimation()
     {
     }
+
+    public virtual void Die()
+    {
+        Debug.Log("Implement Death Here");
+    }
+    public virtual void PoiseDepleted()
+    {
+        Debug.Log("Implement PoiseDepleted Here");
+    }
 }
