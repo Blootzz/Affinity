@@ -1,10 +1,10 @@
 using UnityEngine;
 using System;
 
-public class Health
+public class Health : MonoBehaviour
 {
     public float health { get; private set; } = 100;
-    public event Action DeathEvent;
+    public event Action DeathEvent; // subscribed to by PlayerStateManager
 
     /// <summary>
     /// Deducts the positive damage number from health and runs death check

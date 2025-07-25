@@ -15,7 +15,7 @@ public class PlayerStateFalling : PlayerBaseState
 
     public override void HorizontalAxis()
     {
-        stateManager.characterMover.SetSpeed(stateManager.runSpeed);
+        stateManager.characterMover.SetMoveSpeed(stateManager.runSpeed);
         stateManager.characterMover.SetHorizontalVelocity(stateManager.GetLastSetXInput());
         //if (stateManager.characterMover.FlipResult(stateManager.faceRight))
         //    stateManager.faceRight = !stateManager.faceRight;

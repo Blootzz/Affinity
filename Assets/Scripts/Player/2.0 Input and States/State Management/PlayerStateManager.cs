@@ -9,10 +9,11 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public PlayerAnimationManager playerAnimationManager; // accessed by each state to play animations
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
+    [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
     GroundCheck groundCheck;
-    Health playerHealth;
-    Poise playerPoise;
+    [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
+    [HideInInspector] public Poise playerPoise;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -29,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
+        hurtboxManager = GetComponent<HurtboxManager>();
         blockParryManager = GetComponentInChildren<BlockParryManager>();
         playerHealth = GetComponent<Health>();
         playerPoise = GetComponent<Poise>();
@@ -39,15 +41,18 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered += OnActionTriggered;
         groundCheck.OnGroundedChanged += OnStateGroundedChange;
+        hurtboxManager.HurtEvent += OnPlayerHurboxHit;
         blockParryManager.BlockerHitEvent += OnBlockerHit;
         playerHealth.DeathEvent += OnDeath;
         playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
     }
+
     // Event Unsubscription
     private void OnDisable()
     {
         playerInput.onActionTriggered -= OnActionTriggered;
         groundCheck.OnGroundedChanged -= OnStateGroundedChange;
+        hurtboxManager.HurtEvent -= OnPlayerHurboxHit;
         blockParryManager.BlockerHitEvent -= OnBlockerHit;
         playerHealth.DeathEvent -= OnDeath;
         playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
@@ -176,6 +181,10 @@ public class PlayerStateManager : MonoBehaviour
         transform.Rotate(Vector3.up * 180);
     }
 
+    void OnPlayerHurboxHit()
+    {
+        SwitchState(new PlayerStateHurt(this));
+    }
     void OnBlockerHit()
     {
         currentState.ProcessBlockerHit();

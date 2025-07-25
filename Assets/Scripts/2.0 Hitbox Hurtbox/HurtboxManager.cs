@@ -1,0 +1,22 @@
+using UnityEngine;
+using System;
+
+public class HurtboxManager : MonoBehaviour
+{
+    public event Action HurtEvent;
+    EnemyHitbox incomingHitbox;
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EnemyHitbox enemyHBox))
+        {
+            incomingHitbox = enemyHBox;
+            HurtEvent?.Invoke();
+        }
+    }
+
+    public EnemyHitbox GetIncomingHitbox()
+    {
+        return incomingHitbox;
+    }
+}

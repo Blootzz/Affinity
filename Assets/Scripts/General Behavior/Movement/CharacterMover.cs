@@ -17,20 +17,30 @@ public class CharacterMover : MonoBehaviour
     //    rb.MovePosition(transform.position + currentVelocity * speed * Time.fixedDeltaTime);
     //}
 
-    public void SetSpeed(float newSpeed)
+    public void SetMoveSpeed(float newMoveSpeed)
     {
-        speed = newSpeed;
+        speed = newMoveSpeed;
     }
 
     /// <summary>
-    /// Sets rb.linearVelocity to <paramref name="newHorVelocity"/>
-    /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF 
+    /// Sets rb.linearVelocity to <paramref name="newHorVelocity"/> * speed. 
+    /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF
     /// </summary>
     /// <param name="newHorVelocity"></param>
     public void SetHorizontalVelocity(float newHorVelocity)
     {
         currentHorVelocity = newHorVelocity * speed;
         rb.linearVelocityX = currentHorVelocity;
+    }
+
+    /// <summary>
+    /// Similar to rb.AddForce but does not take mass into account. 
+    /// </summary>
+    /// <param name="force"></param>
+    public void SetVelocity(Vector2 velocity)
+    {
+        currentHorVelocity = velocity.x;
+        rb.linearVelocity = velocity;
     }
 
 }

@@ -16,7 +16,7 @@ public class PlayerStateRunning : PlayerBaseState
     public override void HorizontalAxis()
     {
         // pass in speed/velocity
-        stateManager.characterMover.SetSpeed(stateManager.runSpeed);
+        stateManager.characterMover.SetMoveSpeed(stateManager.runSpeed);
         stateManager.characterMover.SetHorizontalVelocity(stateManager.GetLastSetXInput());
 
         if (stateManager.GetLastSetXInput() == 0)
