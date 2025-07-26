@@ -1,7 +1,9 @@
 {
-    "name": "HealthAndPoise",
+    "name": "UIHealthPoiseBars",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:d802762268643c8408ade3315f2094f7"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

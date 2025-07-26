@@ -209,10 +209,10 @@ public abstract class Player : MonoBehaviour
     int DynamicIdle;
 
     // UI Stuff
-    //[HideInInspector]
-    public HealthBar healthBar;
-    //[HideInInspector]
-    public StaminaBar staminaBar;
+    ////[HideInInspector]
+    //public HealthBar healthBar;
+    ////[HideInInspector]
+    //public StaminaBar staminaBar;
 
     // Particles
     bool landingDustEnabled = true;
@@ -253,7 +253,7 @@ public abstract class Player : MonoBehaviour
     {
         // Stamina regen
         AddStamina(staminaRegenRate);
-        staminaBar.SetStaminaSlider(stamina);
+        //staminaBar.SetStaminaSlider(stamina);
 
         if (!controlsDisabled)
         {
@@ -868,14 +868,14 @@ public abstract class Player : MonoBehaviour
     {
         health = newHealth;
         //Change UI
-        healthBar.SetHealthSlider(health);
+        //healthBar.SetHealthSlider(health);
     }
 
     void AddHealth(float addThis) // pass in negative number to subtract health
     {
         health += addThis;
         //Change UI
-        healthBar.SetHealthSlider(health);
+        //healthBar.SetHealthSlider(health);
 
         //Health based logic
         if (health <= 0)
