@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class PlayerStateHurt : PlayerBaseState
 {
+    PhysicsMaterialManager physicsMaterialManager;
+
     public PlayerStateHurt(PlayerStateManager newStateManager) : base(newStateManager)
     {
     }
@@ -17,8 +20,22 @@ public class PlayerStateHurt : PlayerBaseState
         // do knockback
         stateManager.characterMover.SetVelocity(stateManager.hurtboxManager.GetIncomingHitbox().GetKnockback());
 
+        // set physics material
+        physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();
+        physicsMaterialManager.SetRbPlayerDamaged();
+
         // process damage, possibly causing death
         stateManager.playerHealth.DeductHealth(stateManager.hurtboxManager.GetIncomingHitbox().GetDamage());
     }
 
+    public override void EndStateByAnimation()
+    {
+        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+    }
+
+    public override void OnExit()
+    {
+        stateManager.characterMover.SetHorizontalVelocity(0);
+        physicsMaterialManager.SetRbZeroFrictionBounce();
+    }
 }
