@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerStateBlocking : PlayerBaseState
 {
+    bool isBlockingUp = false;
+
     public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
     {
     }
@@ -33,10 +35,12 @@ public class PlayerStateBlocking : PlayerBaseState
         if (isInputHoldingUp)
         {
             stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.BlockUp);
+            isBlockingUp = true;
         }
         else
         {
             stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
+            isBlockingUp = false;
         }
         
         // handle blockers
@@ -56,8 +60,26 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void ProcessBlockerHit()
     {
+        if (isBlockingUp && stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockDown())
+        {
+            BlockSuccessful();
+            return;
+        }
+        if (!isBlockingUp && stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockUp())
+        {
+            BlockSuccessful();
+            return;
+        }
+
+        // if hitbox block direction is not specified
+        BlockSuccessful();
+    }
+
+    void BlockSuccessful()
+    {
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
-        Debug.Log("evaluate block result here");
+        stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it
+
     }
 }
