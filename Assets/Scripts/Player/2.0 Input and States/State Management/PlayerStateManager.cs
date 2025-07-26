@@ -11,7 +11,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public CharacterJumper characterJumper;
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
-    GroundCheck groundCheck;
+    [HideInInspector] public GroundCheck groundCheck; // accessed by Idle
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
 
