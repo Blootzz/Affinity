@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStateBlocking : PlayerBaseState
 {
-    bool isBlockingUp = false;
+    protected bool isBlockingUp = false;
     bool persistBlockerUponExit = false;
 
     public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
@@ -79,12 +79,21 @@ public class PlayerStateBlocking : PlayerBaseState
         BlockSuccessful();
     }
 
+    /// <summary>
+    /// When not overridden, deducts poise, creates block effect, disables hitbox
+    /// </summary>
     public virtual void BlockSuccessful()
     {
-        Debug.Log("Blocker calling Block Successful");
+        // deduct Poise
+        stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it
 
+    }
+
+    public override void JumpStart()
+    {
+        stateManager.SwitchState(new PlayerStateJumping(stateManager));
     }
 }

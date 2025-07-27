@@ -3,7 +3,7 @@ using System;
 
 public class BlockParryManager : MonoBehaviour
 {
-    public event Action BlockerHitEvent;
+    public event Action BlockerHitEvent; // Listened to by PlayerStateManager
     [SerializeField] bool isParryWindowOpen = false; // modified by animation
     EnemyHitbox incomingEnemyHitbox;
     [SerializeField] BlockParryCollider lowerCollider;
