@@ -215,6 +215,11 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.Play(animationHash);
     }
 
+    public void PlayAnimationFromStart(int animationHash)
+    {
+        animator.Play(animationHash, -1, 0);
+    }
+
     /// <summary>
     /// Simply calls animator.SetBool so that the animator can be kept private
     /// </summary>

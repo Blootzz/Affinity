@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerStateBlocking : PlayerBaseState
 {
     bool isBlockingUp = false;
+    bool persistBlockerUponExit = false;
 
     public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
     {
@@ -12,11 +13,13 @@ public class PlayerStateBlocking : PlayerBaseState
     {
         // read vertical axis to determine which blocker to enable and what animations to play
         VerticalAxis();
+        persistBlockerUponExit = false; // ensure false, probably not necessary
     }
 
     public override void OnExit()
     {
-        stateManager.blockParryManager.SetEnableBlockers(false, false);
+        if (!persistBlockerUponExit)
+            stateManager.blockParryManager.SetEnableBlockers(false, false);
     }
 
     public override void HorizontalAxis()
@@ -55,6 +58,7 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void Parry()
     {
+        persistBlockerUponExit = true;
         stateManager.SwitchState(new PlayerStateParrying(stateManager));
     }
 
@@ -75,8 +79,9 @@ public class PlayerStateBlocking : PlayerBaseState
         BlockSuccessful();
     }
 
-    void BlockSuccessful()
+    public virtual void BlockSuccessful()
     {
+        Debug.Log("Blocker calling Block Successful");
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it

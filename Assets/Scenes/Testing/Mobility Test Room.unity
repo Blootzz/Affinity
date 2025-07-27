@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: orthographic size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7174289608978598033, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 131063
+      objectReference: {fileID: 0}
     - target: {fileID: 7174289608978598034, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_Name
       value: Main Camera

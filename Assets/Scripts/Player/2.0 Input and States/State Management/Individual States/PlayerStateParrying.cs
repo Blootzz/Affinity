@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStateParrying : PlayerBaseState
+public class PlayerStateParrying : PlayerStateBlocking
 {
     bool wasParrySuccessful = false;
 
@@ -10,7 +10,8 @@ public class PlayerStateParrying : PlayerBaseState
 
     public override void OnEnter()
     {
-        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Parry);
+        // restart animation so that parry window re-opens in animation
+        stateManager.playerAnimationManager.PlayAnimationFromStart(stateManager.playerAnimationManager.Parry);
         wasParrySuccessful = false; // setting this to false just in case it was somehow left as true
     }
     public override void OnExit()
@@ -22,17 +23,20 @@ public class PlayerStateParrying : PlayerBaseState
         stateManager.blockParryManager.ClearIsParryWindowOpen();
     }
 
-    public override void ProcessBlockerHit()
+    /// <summary>
+    /// Called by ProcessBlockerHit in PlayerStateBlocking
+    /// </summary>
+    public override void BlockSuccessful()
     {
         if (stateManager.blockParryManager.GetIsParryWindowOpen())
         {
-            Debug.Log("Successful parry");
             stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, true);
             wasParrySuccessful = true;
+            stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it
         }
-        else
-            Debug.Log("Failed Parry");
-        // set wasParrySuccessful = true when a successful parry is performed
+        //else
+        //    Debug.Log("Failed Parry");
+
     }
 
     public override void Parry()
@@ -46,4 +50,15 @@ public class PlayerStateParrying : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateIdle(stateManager));
     }
+
+    public override void HorizontalAxis()
+    {
+    }// do nothing
+
+    public override void VerticalAxis()
+    {
+    }// do nothing
+    public override void BlockCancel()
+    {
+    }// do nothing
 }
