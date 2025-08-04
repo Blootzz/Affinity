@@ -42,7 +42,7 @@ public abstract class PlayerBaseState
     {
     }
 
-    public virtual void Parry()
+    public virtual void Attack()
     {
     }
     public virtual void ProcessBlockerHit()

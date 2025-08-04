@@ -43,7 +43,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Parry",
+                    "name": "Attack",
                     "type": "Button",
                     "id": "55152c7b-e8e4-4232-84f9-8698a5da6473",
                     "expectedControlType": "",
@@ -148,7 +148,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Parry",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

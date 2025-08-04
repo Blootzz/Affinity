@@ -14,6 +14,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public GroundCheck groundCheck; // accessed by Idle
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
+    public PlayerHitbox playerHitbox;
 
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
@@ -101,10 +102,10 @@ public class PlayerStateManager : MonoBehaviour
             else if (context.canceled)
                 DoStateBlock(false);
         }
-        if (context.action.name.Equals("Parry"))
+        if (context.action.name.Equals("Attack"))
         {
             if (context.started)
-                DoStateParry();
+                DoStateAttack();
         }
     }
 
@@ -158,9 +159,9 @@ public class PlayerStateManager : MonoBehaviour
         return lastSetBlockInput;
     }
 
-    void DoStateParry()
+    void DoStateAttack()
     {
-        currentState.Parry();
+        currentState.Attack();
     }
 
     void OnStateGroundedChange(bool isGrounded)

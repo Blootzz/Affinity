@@ -56,7 +56,7 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.SwitchState(new PlayerStateIdle(stateManager));
     }
 
-    public override void Parry()
+    public override void Attack()
     {
         persistBlockerUponExit = true;
         stateManager.SwitchState(new PlayerStateParrying(stateManager));

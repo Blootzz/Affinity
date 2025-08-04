@@ -18,14 +18,14 @@ public class PlayerStateHurt : PlayerBaseState
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUStunned);
 
         // do knockback
-        stateManager.characterMover.SetVelocity(stateManager.hurtboxManager.GetIncomingHitbox().GetKnockback());
+        stateManager.characterMover.SetVelocity(stateManager.hurtboxManager.GetIncomingEnemyHitbox().GetKnockback());
 
         // set physics material
         physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();
         physicsMaterialManager.SetRbPlayerDamaged();
 
         // process damage, possibly causing death
-        stateManager.playerHealth.DeductHealth(stateManager.hurtboxManager.GetIncomingHitbox().GetDamage());
+        stateManager.playerHealth.DeductHealth(stateManager.hurtboxManager.GetIncomingEnemyHitbox().GetDamage());
     }
 
     public override void EndStateByAnimation()

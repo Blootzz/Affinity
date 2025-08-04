@@ -40,4 +40,9 @@ public class PlayerStateIdle : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateBlocking(stateManager));
     }
+
+    public override void Attack()
+    {
+        stateManager.SwitchState(new PlayerStateAttacking(stateManager));
+    }
 }

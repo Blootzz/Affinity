@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class EnemyHitbox : MonoBehaviour
+public class EnemyHitbox : BaseHitbox
 {
-    [SerializeField] float damage;
     [Tooltip("Only enter positive x value since it will be flipped by attackFaceRight")]
     [SerializeField] Vector2 damageKnockback;
     [SerializeField] bool attackFaceRight;
@@ -11,7 +10,6 @@ public class EnemyHitbox : MonoBehaviour
     [SerializeField] bool mustBlockUp;
     [SerializeField] bool mustBlockDown;
 
-    public float GetDamage() => damage;
     /// <summary>
     /// Adjusts which way the knockback vector should be applied depending on assigned attack direction
     /// </summary>

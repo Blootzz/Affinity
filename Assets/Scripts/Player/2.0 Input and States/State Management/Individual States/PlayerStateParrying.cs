@@ -45,7 +45,7 @@ public class PlayerStateParrying : PlayerStateBlocking
 
     }
 
-    public override void Parry()
+    public override void Attack()
     {
         // restart to chain successful parries
         if (wasParrySuccessful)
