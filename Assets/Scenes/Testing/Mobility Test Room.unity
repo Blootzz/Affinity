@@ -840,6 +840,8 @@ GameObject:
   - component: {fileID: 722047632}
   - component: {fileID: 722047634}
   - component: {fileID: 722047633}
+  - component: {fileID: 722047635}
+  - component: {fileID: 722047636}
   m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
@@ -926,7 +928,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7568628, g: 0.19215688, b: 0.19215688, a: 1}
+  m_Color: {r: 0.7568628, g: 0.19215688, b: 0.19215688, a: 0.59607846}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -936,6 +938,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &722047635
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722047631}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
+--- !u!114 &722047636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722047631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb4e5e6dd311d54db13cb5ab951776e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &731537273
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1099,7 @@ GameObject:
   - component: {fileID: 827570885}
   - component: {fileID: 827570884}
   - component: {fileID: 827570883}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Test Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1343,7 +1393,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1369,6 +1419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 904830902}
   - component: {fileID: 904830903}
+  - component: {fileID: 904830904}
   m_Layer: 6
   m_Name: Hitboxes
   m_TagString: Untagged
@@ -1419,6 +1470,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &904830904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904830901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abb4e5e6dd311d54db13cb5ab951776e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &938633272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2420,7 +2483,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408107232}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -2527,6 +2590,8 @@ MonoBehaviour:
   hurtboxManager: {fileID: 0}
   animator: {fileID: 0}
   currentStateName: 
+  Idle: 0
+  Attack: 0
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3123508338191111425, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4103175110211939138, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Material

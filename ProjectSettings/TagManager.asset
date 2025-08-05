@@ -22,8 +22,8 @@ TagManager:
   - Hitbox Hurtbox
   - Physics Colliders
   - Detection Zone
-  - 
-  - 
+  - Ground
+  - GroundCheck
   - 
   - 
   - 

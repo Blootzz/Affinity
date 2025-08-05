@@ -12,6 +12,21 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] string currentStateName;
     GameObject playerObj;
 
+    [InspectorButton(nameof(OnButtonClicked1))]
+    public bool Idle;
+    private void OnButtonClicked1()
+    {
+        Time.timeScale = 1;
+        SwitchState(new EnemyStateIdle(this));
+    }
+    [InspectorButton(nameof(OnButtonClicked2))]
+    public bool Attack;
+    private void OnButtonClicked2()
+    {
+        Time.timeScale = .25f;
+        SwitchState(new EnemyStateAttack1(this));
+    }
+
     void Awake()
     {
         health = GetComponent<Health>();

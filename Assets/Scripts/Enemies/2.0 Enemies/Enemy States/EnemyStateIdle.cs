@@ -9,7 +9,7 @@ public class EnemyStateIdle : EnemyBaseState
     }
     public override void OnEnter()
     {
-
+        stateManager.animator.Play("Idle");
     }
     public override void OnExit()
     {

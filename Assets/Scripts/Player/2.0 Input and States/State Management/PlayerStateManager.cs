@@ -24,6 +24,10 @@ public class PlayerStateManager : MonoBehaviour
     float lastSetYInput = 0;
     bool lastSetBlockInput = false;
 
+    [InspectorButton(nameof(OnButtonClicked))]
+    public bool EnableBlock;
+    private void OnButtonClicked() { DoStateBlock(true); }
+    
     private void Awake()
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>();

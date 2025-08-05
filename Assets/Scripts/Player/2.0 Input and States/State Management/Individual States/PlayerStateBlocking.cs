@@ -64,14 +64,20 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void ProcessBlockerHit()
     {
-        if (isBlockingUp && stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockDown())
+        if (stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockUp())
         {
-            BlockSuccessful();
+            if (isBlockingUp)
+                BlockSuccessful();
+            else
+                BlockFailed();
             return;
         }
-        if (!isBlockingUp && stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockUp())
+        if (stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockDown())
         {
-            BlockSuccessful();
+            if (isBlockingUp)
+                BlockFailed();
+            else
+                BlockSuccessful();
             return;
         }
 
@@ -90,6 +96,13 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it
 
+    }
+    /// <summary>
+    /// Called when player attempts to block but failed to block in the necessary vertical direction
+    /// </summary>
+    public virtual void BlockFailed()
+    {
+        Debug.Log("block failed");
     }
 
     public override void JumpStart()
