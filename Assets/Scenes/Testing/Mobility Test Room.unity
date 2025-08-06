@@ -848,7 +848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &722047632
 Transform:
   m_ObjectHideFlags: 0
@@ -876,13 +876,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729f2da09e65fa9449170daefb933044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  damageKnockback: {x: 0, y: 0}
+  damage: 35
+  damageKnockback: {x: 4, y: 8}
   attackFaceRight: 0
   blockStunTime: 0
   blockKnockbackVelocity: 0
   mustBlockUp: 0
   mustBlockDown: 0
+  defaultActiveColor:
+    serializedVersion: 2
+    rgba: 2553360831
+  blockedInactiveColor:
+    serializedVersion: 2
+    rgba: 2162615969
 --- !u!212 &722047634
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -928,7 +934,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7568628, g: 0.19215688, b: 0.19215688, a: 0.59607846}
+  m_Color: {r: 0.75, g: 0.19041449, b: 0.19041449, a: 0.59607846}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1770,6 +1776,12 @@ MonoBehaviour:
   blockKnockbackVelocity: 0
   mustBlockUp: 0
   mustBlockDown: 0
+  defaultActiveColor:
+    serializedVersion: 2
+    rgba: 1011567360
+  blockedInactiveColor:
+    serializedVersion: 2
+    rgba: 844766900
 --- !u!212 &1170301233
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2934,6 +2946,10 @@ PrefabInstance:
       propertyPath: blockWaveEffect
       value: 
       objectReference: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
+    - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: blockedHitboxColor.rgba
+      value: 2162615969
+      objectReference: {fileID: 0}
     - target: {fileID: 4850848980040429242, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.35

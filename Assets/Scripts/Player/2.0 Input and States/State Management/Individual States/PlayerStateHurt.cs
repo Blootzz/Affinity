@@ -17,15 +17,19 @@ public class PlayerStateHurt : PlayerBaseState
         // animation
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUStunned);
 
+        EnemyHitbox enemyHitbox = stateManager.hurtboxManager.GetIncomingEnemyHitbox();
         // do knockback
-        stateManager.characterMover.SetVelocity(stateManager.hurtboxManager.GetIncomingEnemyHitbox().GetKnockback());
+        stateManager.characterMover.SetVelocity(enemyHitbox.GetKnockback());
 
+        // process damage, possibly causing death
+        stateManager.playerHealth.DeductHealth(enemyHitbox.GetDamage());
+
+        // disable hitbox to prevent double hits
+        enemyHitbox.SetColliderEnabledAndColor(false);
+        
         // set physics material
         physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();
         physicsMaterialManager.SetRbPlayerDamaged();
-
-        // process damage, possibly causing death
-        stateManager.playerHealth.DeductHealth(stateManager.hurtboxManager.GetIncomingEnemyHitbox().GetDamage());
     }
 
     public override void EndStateByAnimation()

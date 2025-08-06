@@ -9,6 +9,8 @@ public class EnemyHitbox : BaseHitbox
     [SerializeField] float blockKnockbackVelocity;
     [SerializeField] bool mustBlockUp;
     [SerializeField] bool mustBlockDown;
+    [SerializeField] Color32 defaultActiveColor = new Color32(191, 49, 49, 152); // red
+    [SerializeField] Color32 blockedInactiveColor = new Color32(161, 230, 230, 128); // teal
 
     /// <summary>
     /// Adjusts which way the knockback vector should be applied depending on assigned attack direction
@@ -22,4 +24,16 @@ public class EnemyHitbox : BaseHitbox
     public float GetBlockKnockbackVelocity() => blockKnockbackVelocity;
     public bool GetMustBlockUp() => mustBlockUp;
     public bool GetMustBlockDown() => mustBlockDown;
+
+    public void SetColliderEnabledAndColor(bool colliderActive)
+    {
+        gameObject.GetComponent<Collider2D>().enabled = colliderActive;
+
+        // change color
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (colliderActive)
+            sr.color = defaultActiveColor;
+        else
+            sr.color = blockedInactiveColor;
+    }
 }

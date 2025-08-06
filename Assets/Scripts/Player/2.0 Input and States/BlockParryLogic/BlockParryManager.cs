@@ -75,4 +75,13 @@ public class BlockParryManager : MonoBehaviour
         //Instantiate(blockWaveEffect, Vector3.zero, Quaternion.Euler(new Vector3(0, 0/*thePlayer.faceRight? 0:180*/, 0 /*angleDeg*/)), this.transform);
 
     }
+
+    /// <summary>
+    /// Animator manipulates hitbox GameObject.SetActive(t/f). Trying to manipulate that doesn't work.
+    /// This just disables collider. Also changes hitbox color
+    /// </summary>
+    public void DisableHitboxCollider()
+    {
+        GetIncomingEnemyHitbox().SetColliderEnabledAndColor(false);
+    }
 }

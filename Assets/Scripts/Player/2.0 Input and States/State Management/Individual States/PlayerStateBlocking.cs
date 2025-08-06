@@ -94,8 +94,7 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
-        stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false); // disable hitbox until enemy re-enables it
-
+        stateManager.blockParryManager.DisableHitboxCollider();
     }
     /// <summary>
     /// Called when player attempts to block but failed to block in the necessary vertical direction
