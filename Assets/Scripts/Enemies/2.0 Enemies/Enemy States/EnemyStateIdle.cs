@@ -9,9 +9,9 @@ public class EnemyStateIdle : EnemyBaseState
     }
     public override void OnEnter()
     {
-        stateManager.animator.Play("Idle");
-    }
-    public override void OnExit()
-    {
+        if (AnimatorHasClip(stateManager.animator, "Idle"))
+            stateManager.animator.Play("Idle");
+        else
+            Debug.LogError("Does not contain animation \"Idle\"");
     }
 }

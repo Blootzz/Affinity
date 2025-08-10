@@ -1,11 +1,15 @@
 using UnityEngine;
 
-public abstract class EnemyBaseState
+public abstract class EnemyBaseState : ScriptableObject
 {
     protected EnemyStateManager stateManager;
 
     // Constructor sets stateManager
     public EnemyBaseState(EnemyStateManager newStateManager)
+    {
+        this.stateManager = newStateManager;
+    }
+    public void SetStateManager(EnemyStateManager newStateManager)
     {
         this.stateManager = newStateManager;
     }
@@ -17,5 +21,20 @@ public abstract class EnemyBaseState
     }
     public virtual void EndStateByAnimation()
     {
+    }
+    public virtual void OnPlayerEnteredAttackZone()
+    {
+    }
+
+    // chatgpt code lmao
+    protected bool AnimatorHasClip(Animator animator, string clipName)
+    {
+        RuntimeAnimatorController rac = animator.runtimeAnimatorController;
+        foreach (var clip in rac.animationClips)
+        {
+            if (clip.name == clipName)
+                return true;
+        }
+        return false;
     }
 }

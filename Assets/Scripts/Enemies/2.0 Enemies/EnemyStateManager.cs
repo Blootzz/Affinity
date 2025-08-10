@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyStateManager : MonoBehaviour
 {
+    [SerializeField] EnemyBaseState startingState;
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
@@ -38,7 +39,10 @@ public class EnemyStateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = new EnemyStateIdle(this);
+        //currentState = new EnemyStateIdle(this);
+        //currentState = startingState;
+        //currentState.OnEnter();
+        SwitchState(startingState);
     }
 
     private void OnEnable()
@@ -71,16 +75,18 @@ public class EnemyStateManager : MonoBehaviour
 
     public void SwitchState(EnemyBaseState newState)
     {
-        currentState?.OnExit();
+        if (currentState != null)
+            currentState.OnExit();
         currentState = newState;
         currentStateName = newState.GetType().Name;
+        currentState.SetStateManager(this);
         currentState.OnEnter();
     }
 
     void OnPlayerEnteredAttackZone(GameObject pObj)
     {
         playerObj = pObj;
-        SwitchState(new EnemyStateAttack1(this));
+        currentState.OnPlayerEnteredAttackZone();
     }
 
     public void ANIM_EndStateByAnimation()

@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class EnemyStateAttack1 : EnemyBaseState
+public class EnemyStateAttack3 : EnemyBaseState
 {
     
-    public EnemyStateAttack1(EnemyStateManager newStateManager) : base(newStateManager)
+    public EnemyStateAttack3(EnemyStateManager newStateManager) : base(newStateManager)
     {
         this.stateManager = newStateManager;
     }
     public override void OnEnter()
     {
-        if (AnimatorHasClip(stateManager.animator, "Attack1"))
-            stateManager.animator.Play("Attack1");
+        if (AnimatorHasClip(stateManager.animator, "Attack3"))
+            stateManager.animator.Play("Attack3");
         else
-            Debug.LogError("Does not contain animation \"Attack1\"");
+            Debug.LogError("Does not contain animation \"Attack3\"");
     }
     public override void OnExit()
     {
