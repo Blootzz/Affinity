@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyStateAttack2 : EnemyBaseState
+public class EnemyStateAttack2 : EnemyStateAttackBase
 {
     
     public EnemyStateAttack2(EnemyStateManager newStateManager) : base(newStateManager)
@@ -9,6 +9,7 @@ public class EnemyStateAttack2 : EnemyBaseState
     }
     public override void OnEnter()
     {
+        base.OnEnter();
         if (AnimatorHasClip(stateManager.animator, "Attack2"))
             stateManager.animator.Play("Attack2");
         else
