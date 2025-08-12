@@ -1,14 +1,15 @@
 using UnityEngine;
+using System;
 
 public class EnemyStateManager : MonoBehaviour
 {
-    [SerializeField] EnemyBaseState startingState;
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public Animator animator;
     [HideInInspector] DetectZoneByTag attackDetectZone;
-    
+
+    [SerializeField] string startingScriptName;
     EnemyBaseState currentState;
     [SerializeField] string currentStateName;
     GameObject playerObj;
@@ -42,7 +43,7 @@ public class EnemyStateManager : MonoBehaviour
         //currentState = new EnemyStateIdle(this);
         //currentState = startingState;
         //currentState.OnEnter();
-        SwitchState(startingState);
+        //SwitchState(startingState);
     }
 
     private void OnEnable()

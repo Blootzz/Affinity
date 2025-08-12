@@ -12,6 +12,7 @@ public class EnemyStateAttackBase : EnemyBaseState
     /// </summary>
     public override void OnEnter()
     {
+        Debug.Log("Starting new enemy attack");
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>(true).EnableAllColliders();
     }
 }

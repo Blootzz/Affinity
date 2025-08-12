@@ -15,7 +15,7 @@ public class HammerStateAttack2 : EnemyStateAttack2
         if (attackRepeatCounter < attackRepeatLimit)
         {
             attackRepeatCounter++;
-            stateManager.animator.Play("Attack2", -1, 0);
+            stateManager.SwitchState(new EnemyStateAttack2(stateManager));
         }
         else
             stateManager.SwitchState(new EnemyStateAttack3(stateManager));

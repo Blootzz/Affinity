@@ -11,7 +11,7 @@ public class EnemyStateAttack3 : EnemyStateAttackBase
     {
         base.OnEnter();
         if (AnimatorHasClip(stateManager.animator, "Attack3"))
-            stateManager.animator.Play("Attack3");
+            stateManager.animator.Play("Attack3", -1, 0);
         else
             Debug.LogError("Does not contain animation \"Attack3\"");
     }

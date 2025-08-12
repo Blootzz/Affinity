@@ -2919,6 +2919,7 @@ GameObject:
   - component: {fileID: 1408107239}
   - component: {fileID: 1408107240}
   - component: {fileID: 1408107241}
+  - component: {fileID: 1408107242}
   m_Layer: 7
   m_Name: Hammer Soldier
   m_TagString: Untagged
@@ -3132,14 +3133,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748da88896c995b468d3e1278a1f525a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingState: {fileID: 11400000, guid: ad670eab3d10bbe4f904f8d6d442eded, type: 2}
   health: {fileID: 0}
   poise: {fileID: 0}
   hurtboxManager: {fileID: 0}
   animator: {fileID: 0}
+  startingScriptName: 
   currentStateName: 
   Idle: 0
   Attack: 0
+--- !u!114 &1408107242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb3b96414ecfaf45982c0cc576b51dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3860,6 +3873,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7836422519003684475, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Points.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836422519003684475, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Points.Array.data[0].x
       value: 0
       objectReference: {fileID: 0}
@@ -3874,6 +3891,14 @@ PrefabInstance:
     - target: {fileID: 7836422519003684475, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Points.Array.data[1].y
       value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836422519003684475, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Points.Array.data[2].x
+      value: -0.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836422519003684475, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Points.Array.data[2].y
+      value: -0.32
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7241652780641827601, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}

@@ -192,6 +192,9 @@ public class PlayerStateManager : MonoBehaviour
     }
     void OnBlockerHit()
     {
+        // temporarily disable hurtbox to prevent player getting hit on same frame
+        hurtboxManager.DisableOneFrame();
+
         currentState.ProcessBlockerHit();
     }
 
