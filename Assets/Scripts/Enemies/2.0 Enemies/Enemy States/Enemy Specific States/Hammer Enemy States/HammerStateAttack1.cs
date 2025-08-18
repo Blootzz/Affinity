@@ -9,6 +9,6 @@ public class HammerStateAttack1 : EnemyStateAttack1
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new HammerStateAttack2(stateManager));
+        stateManager.SwitchState(new HammerStateAttack2(stateManager, 0));
     }
 }
