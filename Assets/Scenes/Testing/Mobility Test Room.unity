@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2699995
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1246,7 +1246,7 @@ Transform:
   m_GameObject: {fileID: 722047631}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.69, y: 2.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 904830901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6325c21bc8f7f614ea424e2cd9a49f69, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ba0fe00505caf14baa428301d46cbb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &938633272
@@ -2271,7 +2271,7 @@ GameObject:
   - component: {fileID: 1170301232}
   - component: {fileID: 1170301231}
   m_Layer: 0
-  m_Name: Enemy Hitbox
+  m_Name: TEST Enemy Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestKey: 116
-  Velocity: {x: -1, y: 0}
+  Velocity: {x: -100, y: 0}
   StartPosition: {x: 0, y: 0}
 --- !u!114 &1170301232
 MonoBehaviour:
@@ -3220,7 +3220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10.23999, y: -12.17}
+  m_AnchoredPosition: {x: -10.23999, y: -12.170013}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1496809535
@@ -3346,7 +3346,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658172818}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -3520,7 +3520,7 @@ Transform:
   m_GameObject: {fileID: 2055175718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.21, y: 2.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

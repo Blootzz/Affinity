@@ -82,6 +82,6 @@ public class BlockParryManager : MonoBehaviour
     /// </summary>
     public void DisableHitboxCollider()
     {
-        GetIncomingEnemyHitbox().SetColliderEnabledAndColor(false);
+        GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
     }
 }

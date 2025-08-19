@@ -25,7 +25,7 @@ public class PlayerStateHurt : PlayerBaseState
         stateManager.playerHealth.DeductHealth(enemyHitbox.GetDamage());
 
         // disable hitbox to prevent double hits
-        enemyHitbox.SetColliderEnabledAndColor(false);
+        enemyHitbox.RelayHitboxLandedToManager();
         
         // set physics material
         physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();

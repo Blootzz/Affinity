@@ -9,8 +9,8 @@ public class EnemyHitbox : BaseHitbox
     [SerializeField] float blockKnockbackVelocity;
     [SerializeField] bool mustBlockUp;
     [SerializeField] bool mustBlockDown;
-    [SerializeField] Color32 defaultActiveColor = new Color32(191, 49, 49, 152); // red
-    [SerializeField] Color32 blockedInactiveColor = new Color32(161, 230, 230, 128); // teal
+    public Color32 defaultActiveColor = new Color32(191, 49, 49, 152); // red
+    public Color32 blockedInactiveColor = new Color32(161, 230, 230, 128); // teal
 
     /// <summary>
     /// Adjusts which way the knockback vector should be applied depending on assigned attack direction
@@ -35,5 +35,14 @@ public class EnemyHitbox : BaseHitbox
             sr.color = defaultActiveColor;
         else
             sr.color = blockedInactiveColor;
+    }
+
+    public void RelayHitboxLandedToManager()
+    {
+        // disable all hitboxes
+        if (transform.parent.TryGetComponent<EnemyHitboxManager>(out EnemyHitboxManager enemyHitboxManager))
+            enemyHitboxManager.SetEnableAllHitboxes(false);
+        else
+            Debug.LogWarning(name + " does not have a parent EnemyHitboxManager");
     }
 }
