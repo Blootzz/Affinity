@@ -3404,7 +3404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1679871406}
   m_Layer: 0
-  m_Name: Container Hammer Soldier
+  m_Name: Enemy Container Hammer Soldier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
