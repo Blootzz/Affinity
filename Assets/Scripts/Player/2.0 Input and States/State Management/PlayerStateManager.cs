@@ -16,6 +16,9 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     public PlayerHitbox playerHitbox;
 
+    bool flagHurtboxHit = false;
+    bool flagBlockerHit = false;
+
     [Header("Basic Movement Settings")]
     public bool faceRight = true;
     [Tooltip("This gets fed to CharacterMover every time the PlayerStateRunning calls its HorizontalAxis method")]
@@ -27,7 +30,7 @@ public class PlayerStateManager : MonoBehaviour
     [InspectorButton(nameof(OnButtonClicked))]
     public bool EnableBlock;
     private void OnButtonClicked() { DoStateBlock(true); }
-    
+
     private void Awake()
     {
         playerAnimationManager = GetComponent<PlayerAnimationManager>();
@@ -46,8 +49,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered += OnActionTriggered;
         groundCheck.OnGroundedChanged += OnStateGroundedChange;
-        hurtboxManager.HurtEvent += OnPlayerHurboxHit;
-        blockParryManager.BlockerHitEvent += OnBlockerHit;
+        hurtboxManager.HurtEvent += FlagOnPlayerHurtboxHit;
+        blockParryManager.BlockerHitEvent += FlagOnBlockerHit;
         playerHealth.DeathEvent += OnDeath;
         playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
     }
@@ -57,8 +60,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered -= OnActionTriggered;
         groundCheck.OnGroundedChanged -= OnStateGroundedChange;
-        hurtboxManager.HurtEvent -= OnPlayerHurboxHit;
-        blockParryManager.BlockerHitEvent -= OnBlockerHit;
+        hurtboxManager.HurtEvent -= FlagOnPlayerHurtboxHit;
+        blockParryManager.BlockerHitEvent -= FlagOnBlockerHit;
         playerHealth.DeathEvent -= OnDeath;
         playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
     }
@@ -66,6 +69,26 @@ public class PlayerStateManager : MonoBehaviour
     private void Start()
     {
         currentState = new PlayerStateIdle(this);
+    }
+
+    // Used to process hurtbox and hitbox in order AFTER previous physics calculations have been done
+    private void FixedUpdate()
+    {
+        if (flagBlockerHit || flagHurtboxHit)
+        {
+            print("flagBlockerHit: " + flagBlockerHit);
+            print("flagHurtboxHit: " + flagHurtboxHit);
+        }
+        if (flagBlockerHit)
+        {
+            OnBlockerHit();
+            flagBlockerHit = false;
+        }
+        else if (flagHurtboxHit)
+        {
+            OnPlayerHurtboxHit();
+            flagHurtboxHit = false;
+        }
     }
 
     /// <summary>
@@ -186,10 +209,13 @@ public class PlayerStateManager : MonoBehaviour
         transform.Rotate(Vector3.up * 180);
     }
 
-    void OnPlayerHurboxHit()
+    void FlagOnPlayerHurtboxHit() => flagHurtboxHit = true;
+    void OnPlayerHurtboxHit()
     {
         SwitchState(new PlayerStateHurt(this));
     }
+
+    void FlagOnBlockerHit() => flagBlockerHit = true;
     void OnBlockerHit()
     {
         // temporarily disable hurtbox to prevent player getting hit on same frame

@@ -12,7 +12,7 @@ public class PlayerStateHurt : PlayerBaseState
     public override void OnEnter()
     {
         // invulnerability
-        Debug.Log("Implement invulnerability here");
+        stateManager.hurtboxManager.SetInvulnerability(true);
         
         // animation
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUStunned);
@@ -41,5 +41,6 @@ public class PlayerStateHurt : PlayerBaseState
     {
         stateManager.characterMover.SetHorizontalVelocity(0);
         physicsMaterialManager.SetRbZeroFrictionBounce();
+        stateManager.hurtboxManager.SetInvulnerability(false);
     }
 }

@@ -6,6 +6,7 @@ public class HurtboxManager : MonoBehaviour
     public event Action HurtEvent;
     GameObject incomingHitbox;
     bool temporaryDisable = false; // used to prevent double on same frame when blocker was hit first
+    bool invulnerabilityOn = false;
 
     // default for enemies
     [SerializeField] bool canBeHitByPlayer = true;
@@ -14,6 +15,8 @@ public class HurtboxManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (temporaryDisable)
+            return;
+        if (invulnerabilityOn)
             return;
 
         if (collision.gameObject.GetComponent<BaseHitbox>())
@@ -51,5 +54,10 @@ public class HurtboxManager : MonoBehaviour
     private void LateUpdate()
     {
         temporaryDisable = false;
+    }
+
+    public void SetInvulnerability(bool newInvulnerability)
+    {
+        invulnerabilityOn = newInvulnerability;
     }
 }
