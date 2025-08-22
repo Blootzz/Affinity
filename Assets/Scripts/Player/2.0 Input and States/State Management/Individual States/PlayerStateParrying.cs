@@ -38,7 +38,7 @@ public class PlayerStateParrying : PlayerStateBlocking
             stateManager.playerPoise.AddPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
 
             // disable hitbox until enemy re-enables it
-            stateManager.blockParryManager.GetIncomingEnemyHitbox().gameObject.SetActive(false);
+            stateManager.blockParryManager.DisableHitboxCollider();
         }
         //else
         //    Debug.Log("Failed Parry");

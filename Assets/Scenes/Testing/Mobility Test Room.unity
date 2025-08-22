@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TestKey: 116
-  Velocity: {x: -100, y: 0}
+  Velocity: {x: -6, y: 0}
   StartPosition: {x: 0, y: 0}
 --- !u!114 &1170301232
 MonoBehaviour:
