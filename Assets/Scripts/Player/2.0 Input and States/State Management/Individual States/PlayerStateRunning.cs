@@ -17,7 +17,7 @@ public class PlayerStateRunning : PlayerBaseState
     {
         // pass in speed/velocity
         stateManager.characterMover.SetMoveSpeed(stateManager.runSpeed);
-        stateManager.characterMover.SetHorizontalVelocity(stateManager.GetLastSetXInput());
+        stateManager.characterMover.SetHorizontalMovementVelocity(stateManager.GetLastSetXInput());
 
         if (stateManager.GetLastSetXInput() == 0)
         {
@@ -47,7 +47,7 @@ public class PlayerStateRunning : PlayerBaseState
 
     public override void BlockStart()
     {
-        stateManager.characterMover.SetHorizontalVelocity(0);
+        stateManager.characterMover.SetHorizontalMovementVelocity(0);
         stateManager.SwitchState(new PlayerStateBlocking(stateManager));
     }
 }

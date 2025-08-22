@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStateBlocking : PlayerBaseState
 {
     protected bool isBlockingUp = false;
-    bool persistBlockerUponExit = false;
+    bool persistBlockerUponExit = false; // used if entering a new state that utilizes the blockers
 
     public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
     {
@@ -27,6 +27,9 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.FlipIfNecessary();
     }
 
+    /// <summary>
+    /// changes which blocker/animation activates. DOES NOT TAKE PLAYER OUT OF BLOCK STATE
+    /// </summary>
     public override void VerticalAxis()
     {
         bool isInputHoldingUp = false;
@@ -51,11 +54,17 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.blockParryManager.SetEnableBlockers(!isInputHoldingUp, isInputHoldingUp);
     }
 
+    /// <summary>
+    /// Switches state to idle when block button is released
+    /// </summary>
     public override void BlockCancel()
     {
         stateManager.SwitchState(new PlayerStateIdle(stateManager));
     }
 
+    /// <summary>
+    /// Switch state to Parry, persistBlockerUponExit = true;
+    /// </summary>
     public override void Attack()
     {
         persistBlockerUponExit = true;

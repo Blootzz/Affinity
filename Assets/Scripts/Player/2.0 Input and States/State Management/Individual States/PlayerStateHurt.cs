@@ -39,7 +39,7 @@ public class PlayerStateHurt : PlayerBaseState
 
     public override void OnExit()
     {
-        stateManager.characterMover.SetHorizontalVelocity(0);
+        stateManager.characterMover.SetHorizontalMovementVelocity(0);
         physicsMaterialManager.SetRbZeroFrictionBounce();
         stateManager.hurtboxManager.SetInvulnerability(false);
     }

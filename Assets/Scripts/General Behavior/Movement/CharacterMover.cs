@@ -27,7 +27,7 @@ public class CharacterMover : MonoBehaviour
     /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF
     /// </summary>
     /// <param name="newHorVelocity"></param>
-    public void SetHorizontalVelocity(float newHorVelocity)
+    public void SetHorizontalMovementVelocity(float newHorVelocity)
     {
         currentHorVelocity = newHorVelocity * speed;
         rb.linearVelocityX = currentHorVelocity;
@@ -41,6 +41,11 @@ public class CharacterMover : MonoBehaviour
     {
         currentHorVelocity = velocity.x;
         rb.linearVelocity = velocity;
+    }
+    public void SetVelocityX(float newVelocityX)
+    {
+        currentHorVelocity = newVelocityX;
+        rb.linearVelocityX = currentHorVelocity;
     }
 
 }
