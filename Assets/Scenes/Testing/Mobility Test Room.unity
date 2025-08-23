@@ -1660,7 +1660,7 @@ Transform:
   m_LocalScale: {x: 2.9274, y: 1.8288, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1408107233}
+  m_Father: {fileID: 1679871406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &867536262
 SpriteRenderer:
@@ -2920,6 +2920,7 @@ GameObject:
   - component: {fileID: 1408107240}
   - component: {fileID: 1408107241}
   - component: {fileID: 1408107242}
+  - component: {fileID: 1408107243}
   m_Layer: 7
   m_Name: Hammer Soldier
   m_TagString: Untagged
@@ -2943,7 +2944,6 @@ Transform:
   - {fileID: 1240881131}
   - {fileID: 904830902}
   - {fileID: 1253262981}
-  - {fileID: 867536261}
   m_Father: {fileID: 1679871406}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1408107234
@@ -3137,6 +3137,7 @@ MonoBehaviour:
   poise: {fileID: 0}
   hurtboxManager: {fileID: 0}
   animator: {fileID: 0}
+  attackDetectZone: {fileID: 867536263}
   startingScriptName: 
   currentStateName: 
   Idle: 0
@@ -3151,6 +3152,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efb3b96414ecfaf45982c0cc576b51dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1408107243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7e64a80e9bc5e44961192c8e02b171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1479484245
@@ -3424,6 +3437,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1408107233}
+  - {fileID: 867536261}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!223 &1751218398 stripped

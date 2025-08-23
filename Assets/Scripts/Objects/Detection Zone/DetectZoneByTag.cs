@@ -10,7 +10,7 @@ public class DetectZoneByTag : MonoBehaviour
     {
         if (collision.CompareTag(searchForThisTag))
         {
-            TargetFoundEvent(collision.gameObject);
+            TargetFoundEvent?.Invoke(collision.gameObject);
         }
     }
 }

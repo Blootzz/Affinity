@@ -7,7 +7,7 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public Animator animator;
-    [HideInInspector] DetectZoneByTag attackDetectZone;
+    [SerializeField] DetectZoneByTag attackDetectZone;
 
     [SerializeField] string startingScriptName;
     EnemyBaseState currentState;
@@ -35,7 +35,8 @@ public class EnemyStateManager : MonoBehaviour
         poise = GetComponent<Poise>();
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         animator = GetComponent<Animator>();
-        attackDetectZone = GetComponentInChildren<DetectZoneByTag>();
+        if (attackDetectZone == null)
+            Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
     }
 
     private void Start()
@@ -88,6 +89,15 @@ public class EnemyStateManager : MonoBehaviour
     {
         playerObj = pObj;
         currentState.OnPlayerEnteredAttackZone();
+    }
+
+    /// <summary>
+    /// Calls SlideTowardPlayer, passes player transform
+    /// </summary>
+    /// <param name="strength"> used as 3rd Lerp parameter</param>
+    public void ApproachPlayer(float strength)
+    {
+        GetComponent<SlideTowardPlayer>().BeginSlide(playerObj.transform, strength);
     }
 
     public void ANIM_EndStateByAnimation()
