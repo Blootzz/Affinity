@@ -8,4 +8,8 @@ public class HammerStateAttack3 : EnemyStateAttack3
         this.stateManager = newStateManager;
     }
 
+    public override void BeginLerpToPlayerByAnimation()
+    {
+        stateManager.ApproachPlayer(0.3f);
+    }
 }

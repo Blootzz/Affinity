@@ -21,4 +21,9 @@ public class HammerStateAttack2 : EnemyStateAttack2
         else
             stateManager.SwitchState(new HammerStateAttack3(stateManager));
     }
+
+    public override void BeginLerpToPlayerByAnimation()
+    {
+        stateManager.ApproachPlayer(0.3f);
+    }
 }

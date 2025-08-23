@@ -99,6 +99,18 @@ public class EnemyStateManager : MonoBehaviour
     {
         GetComponent<SlideTowardPlayer>().BeginSlide(playerObj.transform, strength);
     }
+    public void StopApproachingPlayer()
+    {
+        GetComponent<SlideTowardPlayer>().EndSlide();
+    }
+    public void ANIM_ApproachPlayer()
+    {
+        currentState.BeginLerpToPlayerByAnimation();
+    }
+    public void ANIM_StopApproachingPlayer()
+    {
+        currentState.EndLerpToPlayerByAnimation();
+    }
 
     public void ANIM_EndStateByAnimation()
     {

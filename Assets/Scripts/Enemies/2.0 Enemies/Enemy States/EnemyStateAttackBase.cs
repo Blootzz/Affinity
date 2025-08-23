@@ -14,4 +14,5 @@ public class EnemyStateAttackBase : EnemyBaseState
     {
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
     }
+
 }

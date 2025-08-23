@@ -22,6 +22,10 @@ public class SlideTowardPlayer : MonoBehaviour
 
         slidingActive = true;
     }
+    public void EndSlide()
+    {
+        slidingActive = false;
+    }
 
     void Update()
     {
@@ -35,6 +39,5 @@ public class SlideTowardPlayer : MonoBehaviour
         targetPos.y = transform.position.y; // maintain same height
         rb.MovePosition(targetPos);
 
-        print("IMPLEMENT END TO SLIDE HERE");
     }
 }

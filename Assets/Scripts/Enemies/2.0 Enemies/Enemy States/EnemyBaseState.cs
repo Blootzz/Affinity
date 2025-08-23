@@ -37,4 +37,12 @@ public abstract class EnemyBaseState
         }
         return false;
     }
+
+    public virtual void BeginLerpToPlayerByAnimation()
+    { // implement on individual attack so that strength can be custom per each attack
+    }
+    public virtual void EndLerpToPlayerByAnimation()
+    {
+        stateManager.StopApproachingPlayer();
+    }
 }
