@@ -21,6 +21,6 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        DeathEvent();
+        DeathEvent?.Invoke();
     }
 }

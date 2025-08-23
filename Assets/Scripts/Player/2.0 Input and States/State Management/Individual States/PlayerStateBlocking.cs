@@ -104,6 +104,9 @@ public class PlayerStateBlocking : PlayerBaseState
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         stateManager.blockParryManager.DisableHitboxCollider();
+
+        // switch to block slide state
+        stateManager.SwitchState(new PlayerStateBlockSlide(stateManager));
     }
     /// <summary>
     /// Called when player attempts to block but failed to block in the necessary vertical direction

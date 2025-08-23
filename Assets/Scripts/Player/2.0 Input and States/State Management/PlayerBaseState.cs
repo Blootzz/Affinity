@@ -61,4 +61,8 @@ public abstract class PlayerBaseState
     {
         Debug.Log("Implement PoiseDepleted Here");
     }
+
+    public virtual void HorVelocityHitZero()
+    {
+    }
 }

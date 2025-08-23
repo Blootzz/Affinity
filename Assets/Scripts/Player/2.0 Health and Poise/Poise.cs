@@ -36,6 +36,6 @@ public class Poise : MonoBehaviour
 
     void PoiseDepleted()
     {
-        PoiseDepletedEvent();
+        PoiseDepletedEvent?.Invoke();
     }
 }

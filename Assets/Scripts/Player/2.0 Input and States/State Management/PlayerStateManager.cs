@@ -53,6 +53,7 @@ public class PlayerStateManager : MonoBehaviour
         blockParryManager.BlockerHitEvent += FlagOnBlockerHit;
         playerHealth.DeathEvent += OnDeath;
         playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
+        characterMover.HorVelocityHitZeroEvent += OnHorVelocityHitZero;
     }
 
     // Event Unsubscription
@@ -64,6 +65,7 @@ public class PlayerStateManager : MonoBehaviour
         blockParryManager.BlockerHitEvent -= FlagOnBlockerHit;
         playerHealth.DeathEvent -= OnDeath;
         playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
+        characterMover.HorVelocityHitZeroEvent -= OnHorVelocityHitZero;
     }
 
     private void Start()
@@ -231,6 +233,11 @@ public class PlayerStateManager : MonoBehaviour
     void OnPoiseDepleted()
     {
         currentState.PoiseDepleted();
+    }
+
+    void OnHorVelocityHitZero()
+    {
+        currentState.HorVelocityHitZero();
     }
 
     // called by animations that end their state

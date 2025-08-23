@@ -48,8 +48,8 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
         // zero velocity
         stateManager.characterMover.SetVelocity(Vector2.zero);
 
+        // GetKnockback already accounts for which direction the knockback should face
         float horizontalSlideVelocity = stateManager.blockParryManager.GetIncomingEnemyHitbox().GetKnockback().x;
-        horizontalSlideVelocity *= stateManager.faceRight ? -1 : 1; // if facing right, knockback should push left
 
         stateManager.characterMover.SetVelocityX(horizontalSlideVelocity);
     }
@@ -62,5 +62,11 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
         else
             Debug.LogWarning("Running state just received isGrounded is now true???\n" +
                 "This is probably due to being spawned in airbourne with no state");
+    }
+
+    // stateManager is listening to CharacterMover for Event then calls this
+    public override void HorVelocityHitZero()
+    {
+        stateManager.SwitchState(new PlayerStateIdle(stateManager));
     }
 }

@@ -1,14 +1,29 @@
 using UnityEngine;
+using System;
 
 public class CharacterMover : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float currentHorVelocity = 0;
     [SerializeField] float speed = 0;
+    bool isMoving = false;
+
+    public event Action HorVelocityHitZeroEvent;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        if (Math.Abs(rb.linearVelocityX) > 0.001f)
+            isMoving = true;
+        else if (Math.Abs(rb.linearVelocityX) < 0.001f && isMoving)
+        {
+            HorVelocityHitZeroEvent?.Invoke();
+            isMoving = false;
+        }
     }
 
     //// Do not use this if relying on Unity's physics system to handle gravity, collisions, etc
