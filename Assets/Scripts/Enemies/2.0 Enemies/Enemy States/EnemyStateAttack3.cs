@@ -17,6 +17,7 @@ public class EnemyStateAttack3 : EnemyStateAttackBase
     }
     public override void OnExit()
     {
+        base.OnExit(); // ends slide towards player if not already taken care of
     }
 
     public override void EndStateByAnimation()

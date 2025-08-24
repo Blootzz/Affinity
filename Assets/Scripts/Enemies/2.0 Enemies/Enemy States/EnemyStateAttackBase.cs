@@ -15,4 +15,15 @@ public class EnemyStateAttackBase : EnemyBaseState
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
     }
 
+    /// <summary>
+    /// Ends SlideTowardPlayer if necessary
+    /// </summary>
+    public override void OnExit()
+    {
+        base.OnExit(); // does nothing as of writing this
+
+        if (stateManager.GetComponent<SlideTowardPlayer>() != null)
+            EndLerpToPlayerByAnimation();
+    }
+
 }

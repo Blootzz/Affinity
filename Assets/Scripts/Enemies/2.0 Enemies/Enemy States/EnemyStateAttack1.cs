@@ -17,6 +17,7 @@ public class EnemyStateAttack1 : EnemyStateAttackBase
     }
     public override void OnExit()
     {
+        base.OnExit();
     }
 
     public override void EndStateByAnimation()
