@@ -8,8 +8,14 @@ public class HammerStateAttack3 : EnemyStateAttack3
         this.stateManager = newStateManager;
     }
 
-    public override void BeginLerpToPlayerByAnimation()
+    // can't lerp while animation manipulates transform. Causes unexpected behaviour where animation can't finish
+    //public override void BeginLerpToPlayerByAnimation()
+    //{
+    //    stateManager.ApproachPlayer(1f);
+    //}
+
+    public override void EndStateByAnimation()
     {
-        stateManager.ApproachPlayer(0.3f);
+        stateManager.SwitchState(new HammerStateIdle(stateManager));
     }
 }

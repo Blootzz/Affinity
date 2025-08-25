@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public abstract class EnemyBaseState
 {
@@ -44,5 +45,9 @@ public abstract class EnemyBaseState
     public virtual void EndLerpToPlayerByAnimation()
     {
         stateManager.StopApproachingPlayer();
+    }
+
+    public virtual void OnStateUtilityTimerEnd()
+    {
     }
 }

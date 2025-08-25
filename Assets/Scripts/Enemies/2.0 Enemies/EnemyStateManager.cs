@@ -13,6 +13,7 @@ public class EnemyStateManager : MonoBehaviour
     EnemyBaseState currentState;
     [SerializeField] string currentStateName;
     GameObject playerObj;
+    public bool isAggro = false;
 
     [InspectorButton(nameof(OnButtonClicked1))]
     public bool Idle;
@@ -89,6 +90,7 @@ public class EnemyStateManager : MonoBehaviour
     {
         playerObj = pObj;
         currentState.OnPlayerEnteredAttackZone();
+        isAggro = true;
     }
 
     /// <summary>
@@ -115,5 +117,10 @@ public class EnemyStateManager : MonoBehaviour
     public void ANIM_EndStateByAnimation()
     {
         currentState.EndStateByAnimation();
+    }
+
+    public void BeginStateUtilityTimer(float seconds)
+    {
+        print("start new coroutine here that calls currentState.OnStateUtilityTimerEnd()");
     }
 }

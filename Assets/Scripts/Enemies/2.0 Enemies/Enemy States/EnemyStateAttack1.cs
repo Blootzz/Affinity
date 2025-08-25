@@ -7,6 +7,11 @@ public class EnemyStateAttack1 : EnemyStateAttackBase
     {
         this.stateManager = newStateManager;
     }
+
+    /// <summary>
+    /// Base.OnEnter() clears hitboxes
+    /// This OnEnter() plays "Attack1" animation if found
+    /// </summary>
     public override void OnEnter()
     {
         base.OnEnter();
