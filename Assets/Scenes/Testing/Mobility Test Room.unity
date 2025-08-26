@@ -2276,7 +2276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1170301231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2921,6 +2921,8 @@ GameObject:
   - component: {fileID: 1408107241}
   - component: {fileID: 1408107242}
   - component: {fileID: 1408107243}
+  - component: {fileID: 1408107244}
+  - component: {fileID: 1408107245}
   m_Layer: 7
   m_Name: Hammer Soldier
   m_TagString: Untagged
@@ -3138,8 +3140,12 @@ MonoBehaviour:
   hurtboxManager: {fileID: 0}
   animator: {fileID: 0}
   attackDetectZone: {fileID: 867536263}
+  characterMover: {fileID: 0}
+  facePlayer: {fileID: 0}
   startingScriptName: 
   currentStateName: 
+  isAggro: 0
+  walkSpeed: 1
   Idle: 0
   Attack: 0
 --- !u!114 &1408107242
@@ -3167,6 +3173,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseLerpMultiplier: 2
+--- !u!114 &1408107244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748e3649059744e4d86e1af80a0d52b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHorVelocity: 0
+  speed: 0
+--- !u!114 &1408107245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21daf17c25d3d1440a5d4c6cc7c9f110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDetectZone: {fileID: 867536263}
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0

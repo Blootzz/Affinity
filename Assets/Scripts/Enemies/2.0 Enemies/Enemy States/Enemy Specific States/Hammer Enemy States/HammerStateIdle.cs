@@ -31,17 +31,15 @@ public class HammerStateIdle : EnemyStateIdle
             if (random < 0.3f)
                 DoRandomAttack();
             else
-                DoRandomAttack()
+                stateManager.SwitchState(new HammerStateWalk(stateManager));
         }
         else
         {
             // do nothing, wait to be aggro'd
         }
-
-
     }
 
-    public void DoRandomAttack()
+    void DoRandomAttack()
     {
         int randInt = Random.Range(1, 4); // generates int 1-3
 

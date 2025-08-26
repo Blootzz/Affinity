@@ -13,6 +13,8 @@ public class EnemyStateAttackBase : EnemyBaseState
     public override void OnEnter()
     {
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
+        stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
+        stateManager.facePlayer.SetManualControllerOn(false);
     }
 
     /// <summary>
@@ -24,6 +26,13 @@ public class EnemyStateAttackBase : EnemyBaseState
 
         if (stateManager.GetComponent<SlideTowardPlayer>() != null)
             EndLerpToPlayerByAnimation();
+
+        stateManager.facePlayer.SetManualControllerOn(true);
+        EnemyCheckFlipAtEndOfAttack();
     }
 
+    public virtual void EnemyCheckFlipAtEndOfAttack()
+    {
+        stateManager.facePlayer.OneTimeCheck();
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -8,12 +9,16 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public Animator animator;
     [SerializeField] DetectZoneByTag attackDetectZone;
+    [HideInInspector] public CharacterMover characterMover;
+    [HideInInspector] public FacePlayer facePlayer;
 
     [SerializeField] string startingScriptName;
     EnemyBaseState currentState;
     [SerializeField] string currentStateName;
     GameObject playerObj;
     public bool isAggro = false;
+
+    public float walkSpeed;
 
     [InspectorButton(nameof(OnButtonClicked1))]
     public bool Idle;
@@ -38,6 +43,10 @@ public class EnemyStateManager : MonoBehaviour
         animator = GetComponent<Animator>();
         if (attackDetectZone == null)
             Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
+        if (TryGetComponent(out CharacterMover cm))
+            characterMover = cm;
+        if (TryGetComponent(out FacePlayer fPlayer))
+            facePlayer = fPlayer;
     }
 
     private void Start()
@@ -119,8 +128,26 @@ public class EnemyStateManager : MonoBehaviour
         currentState.EndStateByAnimation();
     }
 
+    bool isTimerBusy = false;
     public void BeginStateUtilityTimer(float seconds)
     {
-        print("start new coroutine here that calls currentState.OnStateUtilityTimerEnd()");
+        if (isTimerBusy)
+        {
+            Debug.LogWarning("Attempting to use Enemy State timer while already in use");
+            return;
+        }
+
+        isTimerBusy = true;
+        StartCoroutine(Timer(seconds));
+    }
+    IEnumerator Timer(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        OnStateUtilityTimerEnd();
+    }
+    void OnStateUtilityTimerEnd()
+    {
+        isTimerBusy = false;
+        currentState.OnStateUtilityTimerEnd();
     }
 }

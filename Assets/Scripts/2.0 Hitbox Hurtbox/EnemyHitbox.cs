@@ -25,6 +25,11 @@ public class EnemyHitbox : BaseHitbox
     public bool GetMustBlockUp() => mustBlockUp;
     public bool GetMustBlockDown() => mustBlockDown;
 
+    public void SetAttackFaceRight(bool faceRight)
+    {
+        attackFaceRight = faceRight;
+    }
+
     public void SetColliderEnabledAndColor(bool colliderActive)
     {
         gameObject.GetComponent<Collider2D>().enabled = colliderActive;
@@ -51,4 +56,5 @@ public class EnemyHitbox : BaseHitbox
         else
             Debug.LogWarning(name + " does not have a parent EnemyHitboxManager to disable all hitboxes");
     }
+
 }
