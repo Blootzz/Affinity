@@ -20,6 +20,8 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
     {
         base.OnExit();
         physicsMaterialManager.SetRbZeroFrictionBounce();
+        // zero velocity
+        stateManager.characterMover.SetVelocity(Vector2.zero);
     }
     
     public override void BlockCancel()

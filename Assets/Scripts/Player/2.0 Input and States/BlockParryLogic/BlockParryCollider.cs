@@ -16,7 +16,6 @@ public class BlockParryCollider : MonoBehaviour
         // only process EnemyHitboxes
         if (collision.gameObject.TryGetComponent(out EnemyHitbox enemyHitbox))
         {
-            print("BlockCollider");
             blockParryManager.FireBlockerHitEvent(enemyHitbox, effectSpawnPoint.transform.position);
         }
     }

@@ -21,7 +21,6 @@ public class HurtboxManager : MonoBehaviour
 
         if (collision.gameObject.GetComponent<BaseHitbox>())
         {
-            print("Hurtbox collision");
             incomingHitbox = collision.gameObject;
 
             if (canBeHitByPlayer && incomingHitbox.GetComponent<PlayerHitbox>())
