@@ -3524,6 +3524,7 @@ MonoBehaviour:
   zeroFrictionBounce: {fileID: 6200000, guid: 8b5872a49053dfe40966ad6a6379599f, type: 2}
   playerDamaged: {fileID: 6200000, guid: 82fae8029706bdc4d9d53ae97670e2dd, type: 2}
   playerBlockSlide: {fileID: 6200000, guid: 825ea4844d43f46458110fc660d57445, type: 2}
+  highFriction: {fileID: 0}
 --- !u!4 &1870489587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}

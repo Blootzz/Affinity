@@ -4,7 +4,7 @@ using System;
 public class BlockParryManager : MonoBehaviour
 {
     public event Action BlockerHitEvent; // Listened to by PlayerStateManager
-    [SerializeField] bool isParryWindowOpen = false; // modified by animation
+    [SerializeField] bool isParryWindowOpen = false; // no longer modified directly by animation, but set by ANIM events
     EnemyHitbox incomingEnemyHitbox;
     [SerializeField] BlockParryCollider lowerCollider;
     [SerializeField] BlockParryCollider upperCollider;
@@ -33,6 +33,10 @@ public class BlockParryManager : MonoBehaviour
     public bool GetIsParryWindowOpen()
     {
         return isParryWindowOpen;
+    }
+    public void SetIsParryWindowOpen(bool open)
+    {
+        isParryWindowOpen = open;
     }
 
     public EnemyHitbox GetIncomingEnemyHitbox()
@@ -87,4 +91,5 @@ public class BlockParryManager : MonoBehaviour
     {
         GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
     }
+
 }

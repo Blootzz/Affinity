@@ -246,4 +246,22 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState.EndStateByAnimation();
     }
+
+
+    /// <summary>
+    /// Blockers will be left open by previous block state
+    /// </summary>
+    public void ANIM_ParryWindowOpened()
+    {
+        blockParryManager.SetIsParryWindowOpen(true);
+    }
+
+    /// <summary>
+    /// Necessary to disable blockers so that blockers don't save player from getting hit in PlayerStateManager.FixedUpdate()
+    /// </summary>
+    public void ANIM_ParryWindowClosed()
+    {
+        blockParryManager.SetEnableBlockers(false, false);
+        blockParryManager.SetIsParryWindowOpen(false);
+    }
 }
