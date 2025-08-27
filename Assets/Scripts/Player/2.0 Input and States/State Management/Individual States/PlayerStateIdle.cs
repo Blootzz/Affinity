@@ -24,6 +24,13 @@ public class PlayerStateIdle : PlayerBaseState
         }
 
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.DynamicIdle);
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbHighFriction();
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
     }
 
     public override void HorizontalAxis()

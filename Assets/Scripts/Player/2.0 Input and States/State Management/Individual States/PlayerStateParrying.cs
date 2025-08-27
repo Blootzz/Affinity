@@ -13,6 +13,8 @@ public class PlayerStateParrying : PlayerStateBlocking
         // restart animation so that parry window re-opens in animation
         stateManager.playerAnimationManager.PlayAnimationFromStart(stateManager.playerAnimationManager.Parry);
         wasParrySuccessful = false; // setting this to false just in case it was somehow left as true
+
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbHighFriction();
     }
     public override void OnExit()
     {
@@ -22,6 +24,8 @@ public class PlayerStateParrying : PlayerStateBlocking
 
         stateManager.blockParryManager.ClearIsParryWindowOpen();
         stateManager.blockParryManager.SetEnableBlockers(false, false);
+
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
     }
 
     /// <summary>

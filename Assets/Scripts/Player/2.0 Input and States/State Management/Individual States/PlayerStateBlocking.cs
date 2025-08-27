@@ -14,12 +14,15 @@ public class PlayerStateBlocking : PlayerBaseState
         // read vertical axis to determine which blocker to enable and what animations to play
         VerticalAxis();
         persistBlockerUponExit = false; // ensure false, probably not necessary
+
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbHighFriction();
     }
 
     public override void OnExit()
     {
         if (!persistBlockerUponExit)
             stateManager.blockParryManager.SetEnableBlockers(false, false);
+        stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
     }
 
     public override void HorizontalAxis()

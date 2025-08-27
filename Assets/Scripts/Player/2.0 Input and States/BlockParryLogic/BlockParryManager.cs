@@ -40,6 +40,9 @@ public class BlockParryManager : MonoBehaviour
         return incomingEnemyHitbox;
     }
 
+    /// <summary>
+    /// usually modified by animation, but this is a manual option in case parry animation is disrupted
+    /// </summary>
     public void ClearIsParryWindowOpen()
     {
         isParryWindowOpen = false;
