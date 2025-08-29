@@ -41,11 +41,14 @@ public class PlayerStateParrying : PlayerStateBlocking
             // add hitbox damage to poise
             stateManager.playerPoise.AddPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
 
+            // apply block slide to enemy
+            stateManager.blockParryManager.ExecuteEnemyBlockslide();
+
             // disable hitbox until enemy re-enables it
             stateManager.blockParryManager.DisableHitboxCollider();
         }
         //else
-        //    Debug.Log("Failed Parry");
+        //    Debug.Log("Failed Parry"); // colliders disappear upon
 
     }
 

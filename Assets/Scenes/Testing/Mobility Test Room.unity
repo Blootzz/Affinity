@@ -2923,6 +2923,7 @@ GameObject:
   - component: {fileID: 1408107243}
   - component: {fileID: 1408107244}
   - component: {fileID: 1408107245}
+  - component: {fileID: 1408107246}
   m_Layer: 7
   m_Name: Hammer Soldier
   m_TagString: Untagged
@@ -3200,6 +3201,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackDetectZone: {fileID: 867536263}
+--- !u!114 &1408107246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c95690607e848542bc24c1d40016907, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitboxManager: {fileID: 904830905}
+  slideStrength: 5
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0

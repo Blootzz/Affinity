@@ -1,7 +1,10 @@
 using UnityEngine;
+using System;
 
 public class EnemyHitboxManager : MonoBehaviour
 {
+    public event Action<EnemyHitbox> HitboxParriedEvent;
+
     /// <summary>
     /// Iterates through all children and disables Collider2D
     /// </summary>
@@ -31,5 +34,10 @@ public class EnemyHitboxManager : MonoBehaviour
         {
             child.GetComponent<EnemyHitbox>().SetAttackFaceRight(faceRight);
         }
+    }
+
+    public void ChildHitboxParried(EnemyHitbox parriedHitbox)
+    {
+        HitboxParriedEvent?.Invoke(parriedHitbox);
     }
 }
