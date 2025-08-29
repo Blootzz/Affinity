@@ -3214,7 +3214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxManager: {fileID: 904830905}
-  slideStrength: 5
+  slideStrength: 1
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0
