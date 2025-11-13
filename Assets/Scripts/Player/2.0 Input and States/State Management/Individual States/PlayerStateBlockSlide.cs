@@ -45,7 +45,7 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
 
     void ApplySlideVelocity()
     {
-        physicsMaterialManager.SetRbPlayerBlockSlide();
+        physicsMaterialManager.SetRbBlockSlide();
 
         // zero velocity
         stateManager.characterMover.SetVelocity(Vector2.zero);

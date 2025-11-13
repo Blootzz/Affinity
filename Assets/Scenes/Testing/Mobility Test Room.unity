@@ -2924,6 +2924,7 @@ GameObject:
   - component: {fileID: 1408107244}
   - component: {fileID: 1408107245}
   - component: {fileID: 1408107246}
+  - component: {fileID: 1408107247}
   m_Layer: 7
   m_Name: Hammer Soldier
   m_TagString: Untagged
@@ -3214,7 +3215,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitboxManager: {fileID: 904830905}
-  slideStrength: 1
+  slideSpeed: 1
+  slideDistanceMultiplier: 1
+--- !u!114 &1408107247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1408107232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68338d09e22f6d4096c087aeb351b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zeroFrictionBounce: {fileID: 6200000, guid: 8b5872a49053dfe40966ad6a6379599f, type: 2}
+  damaged: {fileID: 0}
+  blockSlide: {fileID: 6200000, guid: 71263276d066c6246bb84501c7312bb9, type: 2}
+  highFriction: {fileID: 0}
 --- !u!1 &1479484245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3537,9 +3555,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zeroFrictionBounce: {fileID: 6200000, guid: 8b5872a49053dfe40966ad6a6379599f, type: 2}
-  playerDamaged: {fileID: 6200000, guid: 82fae8029706bdc4d9d53ae97670e2dd, type: 2}
-  playerBlockSlide: {fileID: 6200000, guid: 825ea4844d43f46458110fc660d57445, type: 2}
-  highFriction: {fileID: 0}
+  damaged: {fileID: 6200000, guid: 82fae8029706bdc4d9d53ae97670e2dd, type: 2}
+  blockSlide: {fileID: 6200000, guid: 825ea4844d43f46458110fc660d57445, type: 2}
+  highFriction: {fileID: 6200000, guid: f15ea5022a7dc354bba572a919383245, type: 2}
 --- !u!4 &1870489587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}

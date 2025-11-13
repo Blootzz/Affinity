@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class SlideTowardPlayer : MonoBehaviour
 {
+    [Header("Can also be used for enemy block slide")]
     Rigidbody2D rb;
     Transform playerTransform;
     Vector2 resultTargetPos;
@@ -9,7 +11,10 @@ public class SlideTowardPlayer : MonoBehaviour
     float lerpStrength;
     [SerializeField] float baseLerpMultiplier = 1;
 
+    Vector2 fixedTargetPos;
+
     bool slidingActive = false;
+    bool slideByTransform = false;
 
     void Awake()
     {
@@ -21,10 +26,24 @@ public class SlideTowardPlayer : MonoBehaviour
     public void BeginSlide(Transform pTransform, float strength)
     {
         playerTransform = pTransform;
+        slideByTransform = true;
+
         lerpStrength = strength;
 
         slidingActive = true;
     }
+    public void BeginSlide(float distance, bool moveRight, float strength)
+    {
+        fixedTargetPos = new Vector2(
+            transform.position.x + (distance * (moveRight ? -1 : 1)),
+            transform.position.y);
+        slideByTransform = false;
+
+        lerpStrength = strength;
+
+        slidingActive = true;
+    }
+
     public void EndSlide()
     {
         slidingActive = false;
@@ -36,13 +55,18 @@ public class SlideTowardPlayer : MonoBehaviour
         if (!slidingActive)
             return;
 
-        // lerp from here to player by lerpStrength
-        targetXPos = Mathf.Lerp(transform.position.x, playerTransform.position.x,lerpStrength * Time.fixedDeltaTime * baseLerpMultiplier);
-        //print("lerp strength: " + (lerpStrength * Time.fixedDeltaTime * baseLerpMultiplier));
+        if (slideByTransform)
+        {
+            // lerp from here to player by lerpStrength
+            targetXPos = Mathf.Lerp(transform.position.x, playerTransform.position.x, lerpStrength * Time.fixedDeltaTime * baseLerpMultiplier);
+            //print("lerp strength: " + (lerpStrength * Time.fixedDeltaTime * baseLerpMultiplier));
 
-        // bundle into Vector2 targetPos
-        resultTargetPos.x = targetXPos;
-        resultTargetPos.y = transform.position.y; // maintain same height
+            // bundle into Vector2 targetPos
+            resultTargetPos.x = targetXPos;
+            resultTargetPos.y = transform.position.y; // maintain same height
+        }
+        else // only lerping to fixed position, not a specific transform
+            resultTargetPos = fixedTargetPos;
 
         rb.MovePosition(resultTargetPos);
 

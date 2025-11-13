@@ -29,7 +29,7 @@ public class PlayerStateHurt : PlayerBaseState
         
         // set physics material
         physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();
-        physicsMaterialManager.SetRbPlayerDamaged();
+        physicsMaterialManager.SetRbDamaged();
     }
 
     public override void EndStateByAnimation()

@@ -3,8 +3,8 @@ using UnityEngine;
 public class PhysicsMaterialManager : MonoBehaviour
 {
     [SerializeField] PhysicsMaterial2D zeroFrictionBounce;
-    [SerializeField] PhysicsMaterial2D playerDamaged;
-    [SerializeField] PhysicsMaterial2D playerBlockSlide;
+    [SerializeField] PhysicsMaterial2D damaged;
+    [SerializeField] PhysicsMaterial2D blockSlide;
     [SerializeField] PhysicsMaterial2D highFriction;
 
     Rigidbody2D rb;
@@ -19,14 +19,14 @@ public class PhysicsMaterialManager : MonoBehaviour
         rb.sharedMaterial = zeroFrictionBounce;
     }
 
-    public void SetRbPlayerDamaged()
+    public void SetRbDamaged()
     {
-        rb.sharedMaterial = playerDamaged;
+        rb.sharedMaterial = damaged;
     }
 
-    public void SetRbPlayerBlockSlide()
+    public void SetRbBlockSlide()
     {
-        rb.sharedMaterial = playerBlockSlide;
+        rb.sharedMaterial = blockSlide;
     }
 
     public void SetRbHighFriction()
