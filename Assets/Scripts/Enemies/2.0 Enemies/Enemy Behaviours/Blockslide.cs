@@ -43,6 +43,7 @@ public class Blockslide : MonoBehaviour
     void SlideBackwards()
     {
         characterMover.SetRbType(RigidbodyType2D.Dynamic);
-        slideTowardPlayer.BeginSlide(slideDistance, facePlayer.GetFaceRight(), slideSpeed);
+        //slideTowardPlayer.BeginSlide(slideDistance, facePlayer.GetFaceRight(), slideSpeed);
+        slideTowardPlayer.BeginSlide(10, facePlayer.GetFaceRight());
     }
 }

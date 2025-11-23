@@ -32,16 +32,22 @@ public class SlideTowardPlayer : MonoBehaviour
 
         slidingActive = true;
     }
-    public void BeginSlide(float distance, bool moveRight, float strength)
+    public void BeginSlide(float distance, bool faceRight, float strength)
     {
         fixedTargetPos = new Vector2(
-            transform.position.x + (distance * (moveRight ? -1 : 1)),
+            transform.position.x + (distance * (faceRight ? -1 : 1)),
             transform.position.y);
         slideByTransform = false;
 
         lerpStrength = strength;
 
         slidingActive = true;
+    }
+    public void BeginSlide(float forceMagnitude, bool faceRight)
+    {
+        EndSlide(); // set slidingActive to false so that can sliding toward player can be interrupted
+        print("Adding force of: "+ new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
+        rb.AddForce(new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
     }
 
     public void EndSlide()
@@ -54,6 +60,8 @@ public class SlideTowardPlayer : MonoBehaviour
     {
         if (!slidingActive)
             return;
+
+        print("Sliding fixed update");
 
         if (slideByTransform)
         {
