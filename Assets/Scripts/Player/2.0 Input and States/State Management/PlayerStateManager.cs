@@ -76,8 +76,8 @@ public class PlayerStateManager : MonoBehaviour
     // Used to process hurtbox and hitbox in order AFTER previous physics calculations have been done
     private void FixedUpdate()
     {
-        if (flagBlockerHit || flagHurtboxHit)
-            print("blocker: "+flagBlockerHit+" | hurtbox: "+flagHurtboxHit);
+        //if (flagBlockerHit || flagHurtboxHit)
+        //    print("blocker: "+flagBlockerHit+" | hurtbox: "+flagHurtboxHit);
 
         if (flagBlockerHit)
         {
