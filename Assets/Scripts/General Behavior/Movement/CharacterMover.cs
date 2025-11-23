@@ -63,4 +63,10 @@ public class CharacterMover : MonoBehaviour
         rb.linearVelocityX = currentHorVelocity;
     }
 
+    public void SetRbType(RigidbodyType2D newType)
+    {
+        rb.bodyType = newType;
+        print("Switching RB type");
+    }
+
 }

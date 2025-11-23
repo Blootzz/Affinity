@@ -36,14 +36,13 @@ public class Blockslide : MonoBehaviour
         SlideBackwards();
     }
 
+    /// <summary>
+    /// Sets enemy rb to dynamic so that root motion is disabled and the enemy is physically knocked back
+    /// The end of the attack animation will set rb to kinematic in EnemyStateAttackBase.cs
+    /// </summary>
     void SlideBackwards()
     {
-        // this is not going to work when enemy overrides the velocity by entering a new state
-        //print("Figure out a new way to manage enemy velocity");
-        //characterMover.SetMoveSpeed(slideSpeed);
-        //characterMover.SetHorizontalMovementVelocity(facePlayer.GetFaceRight() ? -1 : 1);
-        //print("Kinematic rb not affected by friction. Use different approach with SlideTowardPlayer");
-
+        characterMover.SetRbType(RigidbodyType2D.Dynamic);
         slideTowardPlayer.BeginSlide(slideDistance, facePlayer.GetFaceRight(), slideSpeed);
     }
 }

@@ -150,10 +150,4 @@ public class EnemyStateManager : MonoBehaviour
         isTimerBusy = false;
         currentState.OnStateUtilityTimerEnd();
     }
-
-    public void SetRbType(RigidbodyType2D newType)
-    {
-        GetComponent<Rigidbody2D>().bodyType = newType;
-        print("Switching RB type");
-    }
 }
