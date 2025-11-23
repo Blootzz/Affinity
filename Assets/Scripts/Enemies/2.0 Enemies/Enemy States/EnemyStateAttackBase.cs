@@ -9,12 +9,15 @@ public class EnemyStateAttackBase : EnemyBaseState
 
     /// <summary>
     /// Base: Enables all colliders for this enemy
+    /// and sets rb to kinematic
     /// </summary>
     public override void OnEnter()
     {
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
         stateManager.facePlayer.SetManualControllerOn(false);
+
+        stateManager.SetRbType(RigidbodyType2D.Kinematic);
     }
 
     /// <summary>
@@ -29,6 +32,8 @@ public class EnemyStateAttackBase : EnemyBaseState
 
         stateManager.facePlayer.SetManualControllerOn(true);
         EnemyCheckFlipAtEndOfAttack();
+
+        stateManager.SetRbType(RigidbodyType2D.Dynamic);
     }
 
     public virtual void EnemyCheckFlipAtEndOfAttack()
