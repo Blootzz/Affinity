@@ -64,7 +64,7 @@ public class SlideTowardPlayer : MonoBehaviour
         if (!slidingActive)
             return;
 
-        print("Sliding fixed update");
+        //print("Sliding fixed update");
 
         if (slideByTransform)
         {

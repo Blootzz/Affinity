@@ -66,7 +66,7 @@ public class CharacterMover : MonoBehaviour
     public void SetRbType(RigidbodyType2D newType)
     {
         rb.bodyType = newType;
-        print("Switching RB type to: "+newType.ToString());
+        //print("Switching RB type to: "+newType.ToString());
     }
 
 }
