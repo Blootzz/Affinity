@@ -188,6 +188,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597999, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
+      propertyPath: IgnoreTimeScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174289608978597999, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: BlendUpdateMethod
       value: 0
       objectReference: {fileID: 0}
@@ -4143,7 +4147,11 @@ PrefabInstance:
       objectReference: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
     - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: SloMoDurationUnscaled
-      value: 0.5
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: SloMoInitialTimeScale
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4764852865097353806, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: blockedHitboxColor.rgba
