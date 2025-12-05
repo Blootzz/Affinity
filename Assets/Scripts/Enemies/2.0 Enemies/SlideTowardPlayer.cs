@@ -43,12 +43,15 @@ public class SlideTowardPlayer : MonoBehaviour
 
         slidingActive = true;
     }
-    public void BeginSlide(float forceMagnitude, bool faceRight)
-    {
-        EndSlide(); // set slidingActive to false so that can sliding toward player can be interrupted
-        print("Adding force of: "+ new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
-        rb.AddForce(new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
-    }
+    // force isn't working and not sure why, just keep using velocity
+    //public void BeginSlide(float forceMagnitude, bool faceRight)
+    //{
+    //    EndSlide(); // set slidingActive to false so that can sliding toward player can be interrupted
+    //    print("Adding force of: "+ new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
+    //    rb.AddForce(new Vector2(forceMagnitude * (faceRight ? -1 : 1), 10));
+
+    //    slideByForce = true;
+    //}
 
     public void EndSlide()
     {

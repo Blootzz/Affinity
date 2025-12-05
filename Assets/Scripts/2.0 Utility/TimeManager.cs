@@ -6,8 +6,13 @@ public class TimeManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-    public void SetTimeSlow()
+    public void SetTimeQuarter()
     {
         Time.timeScale = 0.25f;
+    }
+
+    public void SetTimeScale(float timeScale)
+    {
+        Time.timeScale = timeScale;
     }
 }

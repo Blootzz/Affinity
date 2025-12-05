@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class BlockParryManager : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class BlockParryManager : MonoBehaviour
     [SerializeField] GameObject parryEffect;
 
     Vector2 visualEffectSpawnPosition;
+
+    [Header("Parry SloMo")]
+    [SerializeField] TimeManager timeManager;
+    [SerializeField] bool SloMoEnabled = false;
+    [SerializeField] float SloMoDurationUnscaled = 1f;
+    [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.25f;
 
     private void Awake()
     {
@@ -63,6 +70,21 @@ public class BlockParryManager : MonoBehaviour
         upperCollider.gameObject.SetActive(enableUpper);
     }
 
+
+    /// <summary>
+    /// Animator manipulates hitbox GameObject.SetActive(t/f). Trying to manipulate that doesn't work.
+    /// This just disables collider. Also changes hitbox color
+    /// </summary>
+    public void DisableHitboxCollider()
+    {
+        GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
+    }
+
+    public void ExecuteEnemyBlockslide()
+    {
+        GetIncomingEnemyHitbox().ParentEnemyBlockslide();
+    }
+
     /// <summary>
     /// Spawn parry or block effect at BlockParryCollider spawn point
     /// </summary>
@@ -83,18 +105,15 @@ public class BlockParryManager : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Animator manipulates hitbox GameObject.SetActive(t/f). Trying to manipulate that doesn't work.
-    /// This just disables collider. Also changes hitbox color
-    /// </summary>
-    public void DisableHitboxCollider()
+    public void StartSloMo()
     {
-        GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
+        timeManager.SetTimeScale(SloMoInitialTimeScale);
+        StartCoroutine(IncrementTimeScale());
     }
-
-    public void ExecuteEnemyBlockslide()
+    IEnumerator IncrementTimeScale()
     {
-        GetIncomingEnemyHitbox().ParentEnemyBlockslide();
+        yield return new WaitForSecondsRealtime(SloMoDurationUnscaled);
+        timeManager.SetTimeScale(1);
     }
 
 }

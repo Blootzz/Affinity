@@ -2,7 +2,8 @@
     "name": "BlockParry",
     "rootNamespace": "",
     "references": [
-        "GUID:119e1d06239231e44868237acd2f2f9e"
+        "GUID:119e1d06239231e44868237acd2f2f9e",
+        "GUID:755819b2572318244bd2e6142ccd41f8"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

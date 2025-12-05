@@ -37,6 +37,7 @@ public class PlayerStateParrying : PlayerStateBlocking
         {
             wasParrySuccessful = true;
             stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, true);
+            stateManager.blockParryManager.StartSloMo();
 
             // add hitbox damage to poise
             stateManager.playerPoise.AddPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
