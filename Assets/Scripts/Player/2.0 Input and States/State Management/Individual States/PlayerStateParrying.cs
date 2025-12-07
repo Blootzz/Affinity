@@ -20,7 +20,9 @@ public class PlayerStateParrying : PlayerStateBlocking
     {
         // in case player is hit out of parry animation or something crazy happens
         if (wasParrySuccessful == false)
-            Debug.Log("Deduct Poise Here");
+        {
+            stateManager.playerPoise.DeductMissedParryPenalty();
+        }
 
         stateManager.blockParryManager.ClearIsParryWindowOpen();
         stateManager.blockParryManager.SetEnableBlockers(false, false);

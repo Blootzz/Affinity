@@ -78,7 +78,7 @@ public class EnemyStateManager : MonoBehaviour
     }
     void OnDeath()
     {
-        Destroy(this.transform.parent.gameObject);
+        Destroy(this.transform.gameObject);
     }
     void OnPoiseDepleted()
     {

@@ -4,6 +4,8 @@ using System;
 public class Poise : MonoBehaviour
 {
     [SerializeField] float maxPoise = 100;
+    [SerializeField] float parryPoisePenalty = 20;
+
     public float poise { get; private set; }
     public event Action PoiseDepletedEvent; // subscribed to by PlayerStateManager
     public event Action<float> PoiseChangedEvent; // subscribed to by PoiseBar
@@ -19,6 +21,15 @@ public class Poise : MonoBehaviour
     public void DeductPoise(float poiseDamage)
     {
         poise -= poiseDamage;
+        PoiseChangedEvent(poise);
+
+        if (poise <= 0)
+            PoiseDepleted();
+    }
+
+    public void DeductMissedParryPenalty()
+    {
+        poise -= parryPoisePenalty;
         PoiseChangedEvent(poise);
 
         if (poise <= 0)
