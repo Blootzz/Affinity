@@ -27,6 +27,9 @@ public class PlayerStateManager : MonoBehaviour
     float lastSetYInput = 0;
     bool lastSetBlockInput = false;
 
+    [Header("State Logic Modifiers")]
+    public bool isInvincible = false;
+
     [InspectorButton(nameof(OnButtonClicked))]
     public bool EnableBlock;
     private void OnButtonClicked() { DoStateBlock(true); }
@@ -76,6 +79,11 @@ public class PlayerStateManager : MonoBehaviour
     // Used to process hurtbox and hitbox in order AFTER previous physics calculations have been done
     private void FixedUpdate()
     {
+        EvaluateIncomingAttack();
+    }
+
+    void EvaluateIncomingAttack()
+    {
         //if (flagBlockerHit || flagHurtboxHit)
         //    print("blocker: "+flagBlockerHit+" | hurtbox: "+flagHurtboxHit);
 
@@ -89,6 +97,9 @@ public class PlayerStateManager : MonoBehaviour
         }
         else if (flagHurtboxHit)
         {
+            if (isInvincible)
+                return;
+
             OnPlayerHurtboxHit();
             flagHurtboxHit = false;
         }
