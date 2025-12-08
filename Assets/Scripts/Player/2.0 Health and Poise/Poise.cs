@@ -4,7 +4,7 @@ using System;
 public class Poise : MonoBehaviour
 {
     [SerializeField] float maxPoise = 100;
-    [SerializeField] float parryPoisePenalty = 20;
+    [SerializeField] float missedParryPoisePenalty = 20;
 
     public float poise { get; private set; }
     public event Action PoiseDepletedEvent; // subscribed to by PlayerStateManager
@@ -27,13 +27,20 @@ public class Poise : MonoBehaviour
             PoiseDepleted();
     }
 
-    public void DeductMissedParryPenalty()
+    /// <summary>
+    /// Used by player when player attempts to parry but doesn't parry anything
+    /// </summary>
+    public void PlayerDeductMissedParryPenalty()
     {
-        poise -= parryPoisePenalty;
-        PoiseChangedEvent(poise);
+        DeductPoise(missedParryPoisePenalty);
+    }
 
-        if (poise <= 0)
-            PoiseDepleted();
+    /// <summary>
+    /// Used by enemy when one of its attacks is parried
+    /// </summary>
+    public void EnemyDeductPoiseFromPlayerParry(float parryPoiseDamage)
+    {
+        DeductPoise(parryPoiseDamage);
     }
 
     public void AddPoise(float poiseAdded)

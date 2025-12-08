@@ -83,6 +83,7 @@ public class EnemyStateManager : MonoBehaviour
     void OnPoiseDepleted()
     {
         print("implement enemy poise depleted here");
+        SwitchState(new EnemyStatePoiseBreak(this));
     }
 
     public void SwitchState(EnemyBaseState newState)

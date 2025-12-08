@@ -1,0 +1,42 @@
+using UnityEngine;
+using System;
+
+public class EnemyStatePoiseBreak : EnemyBaseState
+{
+    public EnemyStatePoiseBreak(EnemyStateManager newStateManager) : base(newStateManager)
+    {
+        base.OnEnter();
+        if (AnimatorHasClip(stateManager.animator, "PoiseBreak"))
+            stateManager.animator.Play("PoiseBreak", -1, 0);
+        else
+            Debug.LogError("Does not contain animation \"PoiseBreak\"");
+    }
+
+    public override void OnEnter()
+    {
+        base.OnEnter();
+        stateManager.facePlayer.SetManualControllerOn(true);
+        StartFlashing();
+    }
+    public override void OnExit()
+    {
+        base.OnExit();
+        stateManager.facePlayer.SetManualControllerOn(false);
+        StopFlashing();
+    }
+
+    public override void EndStateByAnimation()
+    {
+        base.EndStateByAnimation();
+        stateManager.SwitchState(new EnemyStateIdle(stateManager));
+    }
+
+    void StartFlashing()
+    {
+        stateManager.GetComponent<ColorFlash>().StartRepeatingBlueFlash(); 
+    }
+    void StopFlashing()
+    {
+        stateManager.GetComponent<ColorFlash>().EndFlash();
+    }
+}

@@ -23,14 +23,14 @@ public class Blockslide : MonoBehaviour
 
     void OnEnable()
     {
-        hitboxManager.HitboxParriedEvent += OnHitboxParried;
+        hitboxManager.HitboxParriedEvent += OnHitboxParriedSlideBack;
     }
     void OnDisable()
     {
-        hitboxManager.HitboxParriedEvent -= OnHitboxParried;
+        hitboxManager.HitboxParriedEvent -= OnHitboxParriedSlideBack;
     }
 
-    public void OnHitboxParried(EnemyHitbox enHitbox)
+    public void OnHitboxParriedSlideBack(EnemyHitbox enHitbox)
     {
         slideDistance = enHitbox.GetDamage() / 20 * slideDistanceMultiplier;
         SlideBackwards();

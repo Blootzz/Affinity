@@ -57,7 +57,7 @@ public class EnemyHitbox : BaseHitbox
             Debug.LogWarning(name + " does not have a parent EnemyHitboxManager to disable all hitboxes");
     }
 
-    public void ParentEnemyBlockslide()
+    public void GetParried()
     {
         if (transform.parent.TryGetComponent<EnemyHitboxManager>(out EnemyHitboxManager enemyHitboxManager))
             enemyHitboxManager.ChildHitboxParried(this);

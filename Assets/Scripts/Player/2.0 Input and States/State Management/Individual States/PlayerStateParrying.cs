@@ -21,7 +21,7 @@ public class PlayerStateParrying : PlayerStateBlocking
         // in case player is hit out of parry animation or something crazy happens
         if (wasParrySuccessful == false)
         {
-            stateManager.playerPoise.DeductMissedParryPenalty();
+            stateManager.playerPoise.PlayerDeductMissedParryPenalty();
         }
 
         stateManager.blockParryManager.ClearIsParryWindowOpen();
@@ -45,7 +45,8 @@ public class PlayerStateParrying : PlayerStateBlocking
             stateManager.playerPoise.AddPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
 
             // apply block slide to enemy
-            stateManager.blockParryManager.ExecuteEnemyBlockslide();
+            //stateManager.blockParryManager.ExecuteEnemyBlockslide();
+            stateManager.blockParryManager.GetIncomingEnemyHitbox().GetParried();
 
             // disable hitbox until enemy re-enables it
             stateManager.blockParryManager.DisableHitboxCollider();

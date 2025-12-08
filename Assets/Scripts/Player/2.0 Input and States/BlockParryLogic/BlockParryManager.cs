@@ -80,9 +80,9 @@ public class BlockParryManager : MonoBehaviour
         GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
     }
 
-    public void ExecuteEnemyBlockslide()
+    public void ParryEnemy()
     {
-        GetIncomingEnemyHitbox().ParentEnemyBlockslide();
+        GetIncomingEnemyHitbox().GetParried();
     }
 
     /// <summary>

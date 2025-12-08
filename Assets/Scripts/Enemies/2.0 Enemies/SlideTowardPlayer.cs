@@ -18,6 +18,7 @@ public class SlideTowardPlayer : MonoBehaviour
 
     void Awake()
     {
+        print("Something in this script is causing enemy to freeze in air after being parried");
         rb = GetComponent<Rigidbody2D>();
         if (GetComponent<Animator>().applyRootMotion == false)
             Debug.LogWarning("Animator.applyRootMotion must be true or it will override any change in position. 2 hours lost to this quirk");
