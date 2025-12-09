@@ -17,6 +17,9 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] string currentStateName;
     GameObject playerObj;
     public bool isAggro = false;
+    bool isPoiseBroken = false;
+    [Tooltip("Multiplies incoming damage when enemy is in Poise Break state")]
+    [SerializeField] float poiseBreakDamageMultiplier = 5;
 
     public float walkSpeed;
 
@@ -72,9 +75,24 @@ public class EnemyStateManager : MonoBehaviour
         attackDetectZone.TargetFoundEvent -= OnPlayerEnteredAttackZone;
     }
 
+    /// <summary>
+    /// Deducts health by (incoming hitbox damage) x poiseBreakDamageMultiplier if applicable
+    /// </summary>
     void OnHurtboxHit()
     {
-        health.DeductHealth(hurtboxManager.GetIncomingPlayerHitbox().GetDamage());
+        float damageMultiplier = 1;
+        if (isPoiseBroken)
+        {
+            damageMultiplier = poiseBreakDamageMultiplier;
+            if (damageMultiplier == 0)
+                Debug.LogWarning("damageMultiplier = 0. Will not apply any damage on this hit");
+        }
+
+        health.DeductHealth(hurtboxManager.GetIncomingPlayerHitbox().GetDamage() * damageMultiplier);
+        
+        // putting this after health.DeductHealth just in case health logic needs to happen before state switch
+        if (isPoiseBroken)
+            SwitchState(new EnemyStateIdle(this));
     }
     void OnDeath()
     {
@@ -151,4 +169,7 @@ public class EnemyStateManager : MonoBehaviour
         isTimerBusy = false;
         currentState.OnStateUtilityTimerEnd();
     }
+
+    public void SetIsPoiseBroken(bool newValue) => isPoiseBroken = newValue;
+    public bool GetIsPoiseBroken() => isPoiseBroken;
 }

@@ -17,12 +17,16 @@ public class EnemyStatePoiseBreak : EnemyBaseState
         base.OnEnter();
         stateManager.facePlayer.SetManualControllerOn(true);
         StartFlashing();
+
+        stateManager.SetIsPoiseBroken(true);
     }
     public override void OnExit()
     {
         base.OnExit();
         stateManager.facePlayer.SetManualControllerOn(false);
         StopFlashing();
+
+        stateManager.SetIsPoiseBroken(false);
     }
 
     public override void EndStateByAnimation()

@@ -28,7 +28,7 @@ public class HurtboxManager : MonoBehaviour
                 HurtEvent?.Invoke();
                 return;
             }
-            if (canBeHitByEnemy && incomingHitbox.GetComponent<EnemyHitbox>())
+            else if (canBeHitByEnemy && incomingHitbox.GetComponent<EnemyHitbox>())
             {
                 HurtEvent?.Invoke();
                 return;
