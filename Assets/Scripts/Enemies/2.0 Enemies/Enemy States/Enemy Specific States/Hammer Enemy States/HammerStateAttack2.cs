@@ -1,29 +1,37 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Enemy/Hammer Soldier/Attack2")]
 public class HammerStateAttack2 : EnemyStateAttack2
 {
     int attackRepeatLimit = 1;
-    int attackRepeatCounter = 0;
 
-    public HammerStateAttack2(EnemyStateManager newStateManager, int startingAttackCount) : base(newStateManager)
+
+    float lerpToPlayerStrength = 0.3f;
+
+    //public HammerStateAttack2(EnemyStateManager newStateManager, int startingAttackCount) : base(newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
+
+    public override void OnEnter()
     {
-        this.stateManager = newStateManager;
-        attackRepeatCounter = startingAttackCount;
+        base.OnEnter();
+        //attackRepeatCounter = startingAttackCount; // don't need this if ScOb data is preserved
     }
 
     public override void EndStateByAnimation()
     {
-        if (attackRepeatCounter < attackRepeatLimit)
+        if (stateManager.repeatStateCounter < attackRepeatLimit)
         {
-            attackRepeatCounter++;
-            stateManager.SwitchState(new HammerStateAttack2(stateManager, attackRepeatCounter));
+            stateManager.repeatStateCounter++;
+            stateManager.SwitchState(stateManager.stateAttack2);
         }
         else
-            stateManager.SwitchState(new HammerStateAttack3(stateManager));
+            stateManager.SwitchState(stateManager.stateAttack3);
     }
 
     public override void BeginLerpToPlayerByAnimation()
     {
-        stateManager.ApproachPlayer(0.3f);
+        stateManager.ApproachPlayer(lerpToPlayerStrength);
     }
 }

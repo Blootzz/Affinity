@@ -3,10 +3,10 @@ using UnityEngine;
 public class EnemyStateIdle : EnemyBaseState
 {
     
-    public EnemyStateIdle(EnemyStateManager newStateManager) : base(newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    //public EnemyStateIdle(EnemyStateManager newStateManager) : base(newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
 
     /// <summary>
     /// Plays "Idle" animation if found

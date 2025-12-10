@@ -4,10 +4,22 @@ using System.Collections;
 
 public class EnemyStateManager : MonoBehaviour
 {
-    [Header("Specific State References")]
+    [Header("Specific States by Condition")]
     public EnemyBaseState starterState;
     public EnemyBaseState stateOnExitingPoiseBreak;
 
+    [Header("Standard States")]
+    public EnemyStateIdle stateIdle;
+    public EnemyStateWalk stateWalk;
+    public EnemyStateAttack1 stateAttack1;
+    public EnemyStateAttack2 stateAttack2;
+    public EnemyStateAttack3 stateAttack3;
+    public EnemyStatePoiseBreak statePoiseBreak;
+    [SerializeField] string currentStateName;
+
+    EnemyBaseState currentState;
+
+    [Header("Object References")]
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
@@ -15,31 +27,30 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] DetectZoneByTag attackDetectZone;
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public FacePlayer facePlayer;
-
-    [SerializeField] string startingScriptName;
-    EnemyBaseState currentState;
-    [SerializeField] string currentStateName;
     GameObject playerObj;
+
+    // Scriptable objects need this to access/hold data that changes in runtime
+    [Header("Flags and Data")]
     public bool isAggro = false;
-    bool isPoiseBroken = false;
+    public bool isPoiseBroken = false;
     [Tooltip("Multiplies incoming damage when enemy is in Poise Break state")]
     [SerializeField] float poiseBreakDamageMultiplier = 5;
-
-    public float walkSpeed;
+    [Tooltip("Used by classes such as HammerStateAttack2 to keep track of repetitions")]
+    public int repeatStateCounter = 0;
 
     [InspectorButton(nameof(OnButtonClicked1))]
     public bool Idle;
     private void OnButtonClicked1()
     {
         Time.timeScale = 1;
-        SwitchState(new EnemyStateIdle(this));
+        SwitchState(stateIdle);
     }
     [InspectorButton(nameof(OnButtonClicked2))]
     public bool Attack;
     private void OnButtonClicked2()
     {
         Time.timeScale = .25f;
-        SwitchState(new EnemyStateAttack1(this));
+        SwitchState(stateAttack1);
     }
 
     void Awake()
@@ -93,7 +104,7 @@ public class EnemyStateManager : MonoBehaviour
         
         // putting this after health.DeductHealth just in case health logic needs to happen before state switch
         if (isPoiseBroken)
-            SwitchState(new EnemyStateIdle(this));
+            SwitchState(stateIdle);
     }
     void OnDeath()
     {
@@ -101,7 +112,7 @@ public class EnemyStateManager : MonoBehaviour
     }
     void OnPoiseDepleted()
     {
-        SwitchState(new EnemyStatePoiseBreak(this));
+        SwitchState(statePoiseBreak);
     }
 
     public void SwitchState(EnemyBaseState newState)

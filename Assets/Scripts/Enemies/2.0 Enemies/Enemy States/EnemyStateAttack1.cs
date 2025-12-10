@@ -3,10 +3,10 @@ using UnityEngine;
 public class EnemyStateAttack1 : EnemyStateAttackBase
 {
     
-    public EnemyStateAttack1(EnemyStateManager newStateManager) : base(newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    //public EnemyStateAttack1(EnemyStateManager newStateManager) : base(newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
 
     /// <summary>
     /// Base.OnEnter() clears hitboxes
@@ -27,6 +27,6 @@ public class EnemyStateAttack1 : EnemyStateAttackBase
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new EnemyStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.stateIdle);
     }
 }

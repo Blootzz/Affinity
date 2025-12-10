@@ -1,11 +1,14 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Enemy/Hammer Soldier/Walk")]
 public class HammerStateWalk : EnemyStateWalk
 {
-    public HammerStateWalk(EnemyStateManager newStateManager) : base(newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    public float walkSpeed;
+
+    //public HammerStateWalk(EnemyStateManager newStateManager) : base(newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
 
     public override void OnEnter()
     {
@@ -22,14 +25,14 @@ public class HammerStateWalk : EnemyStateWalk
     public override void OnStateUtilityTimerEnd()
     {
         if (Random.value > 0.5f)
-            stateManager.SwitchState(new HammerStateAttack1(stateManager));
+            stateManager.SwitchState(stateManager.stateAttack1);
         else
             ShuffleRandomly();
     }
 
     void ShuffleRandomly()
     {
-        stateManager.characterMover.SetMoveSpeed(stateManager.walkSpeed);
+        stateManager.characterMover.SetMoveSpeed(walkSpeed);
 
         // set direction as +/- 1
         stateManager.characterMover.SetHorizontalMovementVelocity((Random.value > 0.5f)? 1 : -1);

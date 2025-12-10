@@ -3,10 +3,10 @@ using UnityEngine;
 public class EnemyStateAttack3 : EnemyStateAttackBase
 {
     
-    public EnemyStateAttack3(EnemyStateManager newStateManager) : base(newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    //public EnemyStateAttack3(EnemyStateManager newStateManager) : base(newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
     public override void OnEnter()
     {
         base.OnEnter();
@@ -22,6 +22,6 @@ public class EnemyStateAttack3 : EnemyStateAttackBase
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new EnemyStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.stateIdle);
     }
 }

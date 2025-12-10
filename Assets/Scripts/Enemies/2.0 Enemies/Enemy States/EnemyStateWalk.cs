@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class EnemyStateWalk : EnemyBaseState
 {
-    public EnemyStateWalk(EnemyStateManager newStateManager) : base(newStateManager)
+    //public EnemyStateWalk(EnemyStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
+    public override void OnEnter()
     {
         base.OnEnter();
         if (AnimatorHasClip(stateManager.animator, "Walk"))

@@ -6,10 +6,10 @@ public abstract class EnemyBaseState : ScriptableObject
     protected EnemyStateManager stateManager;
 
     // Constructor sets stateManager
-    public EnemyBaseState(EnemyStateManager newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    //public EnemyBaseState(EnemyStateManager newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
     public void SetStateManager(EnemyStateManager newStateManager)
     {
         this.stateManager = newStateManager;
