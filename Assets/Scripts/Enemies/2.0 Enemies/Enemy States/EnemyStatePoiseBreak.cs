@@ -32,6 +32,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void EndStateByAnimation()
     {
         base.EndStateByAnimation();
+        Debug.Log("Switching from poise break to Idle. isAggro: "+stateManager.isAggro);
         stateManager.SwitchState(new EnemyStateIdle(stateManager));
     }
 

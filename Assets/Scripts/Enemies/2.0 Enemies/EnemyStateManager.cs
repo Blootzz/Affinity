@@ -4,6 +4,10 @@ using System.Collections;
 
 public class EnemyStateManager : MonoBehaviour
 {
+    [Header("Specific State References")]
+    [SerializeField] EnemyBaseState starterState;
+    [SerializeField] EnemyBaseState stateOnExitingPoiseBreak;
+
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
@@ -54,10 +58,7 @@ public class EnemyStateManager : MonoBehaviour
 
     private void Start()
     {
-        //currentState = new EnemyStateIdle(this);
-        //currentState = startingState;
-        //currentState.OnEnter();
-        //SwitchState(startingState);
+        SwitchState(starterState);
     }
 
     private void OnEnable()

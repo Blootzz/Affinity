@@ -25,6 +25,8 @@ public class HammerStateIdle : EnemyStateIdle
     // 30% chance to skip shuffle state and go straight into attacking
     public override void DoNextAction()
     {
+        Debug.Log("Check isAggro in Idle: "+stateManager.isAggro);
+
         if (stateManager.isAggro)
         {
             float random = Random.value;
