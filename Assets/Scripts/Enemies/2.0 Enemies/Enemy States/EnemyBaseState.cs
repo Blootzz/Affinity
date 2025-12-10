@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public abstract class EnemyBaseState
+public abstract class EnemyBaseState : ScriptableObject
 {
     protected EnemyStateManager stateManager;
 

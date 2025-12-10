@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+[CreateAssetMenu(menuName = "States/Enemy/Hammer Soldier/Idle")]
 public class HammerStateIdle : EnemyStateIdle
 {
     public HammerStateIdle(EnemyStateManager newStateManager) : base(newStateManager)

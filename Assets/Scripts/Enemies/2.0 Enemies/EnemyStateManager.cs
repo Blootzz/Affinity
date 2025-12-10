@@ -5,8 +5,8 @@ using System.Collections;
 public class EnemyStateManager : MonoBehaviour
 {
     [Header("Specific State References")]
-    [SerializeField] EnemyBaseState starterState;
-    [SerializeField] EnemyBaseState stateOnExitingPoiseBreak;
+    public EnemyBaseState starterState;
+    public EnemyBaseState stateOnExitingPoiseBreak;
 
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;

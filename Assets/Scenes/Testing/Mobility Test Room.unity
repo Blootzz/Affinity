@@ -3829,6 +3829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 748da88896c995b468d3e1278a1f525a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  starterState: {fileID: 11400000, guid: 11c341067fd534145afe2e026e84ac18, type: 2}
+  stateOnExitingPoiseBreak: {fileID: 0}
   health: {fileID: 0}
   poise: {fileID: 0}
   hurtboxManager: {fileID: 0}
