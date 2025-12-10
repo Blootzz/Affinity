@@ -3606,7 +3606,6 @@ GameObject:
   - component: {fileID: 1408107239}
   - component: {fileID: 1408107240}
   - component: {fileID: 1408107241}
-  - component: {fileID: 1408107242}
   - component: {fileID: 1408107243}
   - component: {fileID: 1408107244}
   - component: {fileID: 1408107245}
@@ -3830,7 +3829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starterState: {fileID: 11400000, guid: 11c341067fd534145afe2e026e84ac18, type: 2}
-  stateOnExitingPoiseBreak: {fileID: 0}
+  stateOnExitingPoiseBreak: {fileID: 11400000, guid: 11c341067fd534145afe2e026e84ac18, type: 2}
   health: {fileID: 0}
   poise: {fileID: 0}
   hurtboxManager: {fileID: 0}
@@ -3845,18 +3844,6 @@ MonoBehaviour:
   walkSpeed: 1
   Idle: 0
   Attack: 0
---- !u!114 &1408107242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408107232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efb3b96414ecfaf45982c0cc576b51dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1408107243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4728,7 +4715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: isInvincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: playerHitbox

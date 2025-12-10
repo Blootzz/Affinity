@@ -101,7 +101,6 @@ public class EnemyStateManager : MonoBehaviour
     }
     void OnPoiseDepleted()
     {
-        print("implement enemy poise depleted here");
         SwitchState(new EnemyStatePoiseBreak(this));
     }
 
@@ -171,6 +170,9 @@ public class EnemyStateManager : MonoBehaviour
         currentState.OnStateUtilityTimerEnd();
     }
 
+    /// <summary>
+    /// tracked in EnemyStateManager to determine how to process incoming hits for poise break vulnerability
+    /// </summary>
+    /// <param name="newValue"></param>
     public void SetIsPoiseBroken(bool newValue) => isPoiseBroken = newValue;
-    public bool GetIsPoiseBroken() => isPoiseBroken;
 }

@@ -18,7 +18,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
         stateManager.facePlayer.SetManualControllerOn(true);
         StartFlashing();
 
-        stateManager.SetIsPoiseBroken(true);
+        stateManager.SetIsPoiseBroken(true); // logic used for player attack damage bonus
     }
     public override void OnExit()
     {
@@ -32,7 +32,6 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void EndStateByAnimation()
     {
         base.EndStateByAnimation();
-        Debug.Log("Switching from poise break to Idle. isAggro: "+stateManager.isAggro);
         stateManager.SwitchState(stateManager.stateOnExitingPoiseBreak);
     }
 
