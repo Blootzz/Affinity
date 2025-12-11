@@ -11,6 +11,7 @@ public class LensZoomEffect : MonoBehaviour
     float startingLensOrthoSize;
 
     CinemachineCamera cineCam;
+    Animator animator;
 
     [InspectorButton(nameof(OnButtonClicked))]
     public bool zoom;
@@ -21,7 +22,13 @@ public class LensZoomEffect : MonoBehaviour
     private void Start()
     {
         cineCam = GetComponent<CinemachineCamera>();
+        animator = GetComponent<Animator>();
         startingLensOrthoSize = cineCam.Lens.OrthographicSize;
+    }
+
+    public void BeginParryZoomAnimation()
+    {
+        animator.Play("Parry Zoom", -1, 0);
     }
 
     private void Update()

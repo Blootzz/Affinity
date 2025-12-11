@@ -22,10 +22,17 @@ public class BlockParryManager : MonoBehaviour
     [SerializeField] float SloMoDurationUnscaled = 1f;
     [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.25f;
 
+    LensZoomEffect lensZoomEffect;
+
     private void Awake()
     {
         if (lowerCollider == null || upperCollider == null)
             Debug.LogError("Please drag and drop lower and upper collider references into BlockParryManager");
+    }
+
+    private void Start()
+    {
+        lensZoomEffect = FindFirstObjectByType<LensZoomEffect>();
     }
 
     public void FireBlockerHitEvent(EnemyHitbox enemyHitbox, Vector2 blockerEffectWorldPosition)
@@ -116,4 +123,8 @@ public class BlockParryManager : MonoBehaviour
         timeManager.SetTimeScale(1);
     }
 
+    public void StartZoomEffect()
+    {
+        lensZoomEffect.BeginParryZoomAnimation();
+    }
 }
