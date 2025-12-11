@@ -20,9 +20,9 @@ public class TimeManager : MonoBehaviour
         Time.fixedDeltaTime = initialFixedDeltaTime / Time.timeScale;
     }
 
-    public void SetTimeScale(float timeScale)
+    public void SetFixedTimeScale(float timeScale)
     {
-        Time.timeScale = timeScale;
+        //Time.timeScale = timeScale;
         Time.fixedDeltaTime = initialFixedDeltaTime / timeScale;
     }
 }

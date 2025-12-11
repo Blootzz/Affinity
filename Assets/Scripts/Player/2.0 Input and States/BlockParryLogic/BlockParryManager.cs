@@ -114,13 +114,14 @@ public class BlockParryManager : MonoBehaviour
 
     public void StartSloMo()
     {
-        timeManager.SetTimeScale(SloMoInitialTimeScale);
+        print("Something is wrong with fixedTimeScale");
+        timeManager.SetFixedTimeScale(SloMoInitialTimeScale);
         StartCoroutine(IncrementTimeScale());
     }
     IEnumerator IncrementTimeScale()
     {
         yield return new WaitForSecondsRealtime(SloMoDurationUnscaled);
-        timeManager.SetTimeScale(1);
+        timeManager.SetFixedTimeScale(1);
     }
 
     public void StartZoomEffect()
