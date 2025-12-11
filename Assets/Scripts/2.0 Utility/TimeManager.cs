@@ -17,12 +17,16 @@ public class TimeManager : MonoBehaviour
     public void SetTimeQuarter()
     {
         Time.timeScale = 0.25f;
-        Time.fixedDeltaTime = initialFixedDeltaTime / Time.timeScale;
+        Time.fixedDeltaTime = initialFixedDeltaTime * .25f;
     }
 
-    public void SetFixedTimeScale(float timeScale)
+    /// <summary>
+    /// changes Time.timeScale and fixedDeltaTime
+    /// </summary>
+    /// <param name="timeScale"></param>
+    public void SetTimeScale(float timeScale)
     {
-        //Time.timeScale = timeScale;
-        Time.fixedDeltaTime = initialFixedDeltaTime / timeScale;
+        Time.timeScale = timeScale;
+        Time.fixedDeltaTime = initialFixedDeltaTime * timeScale;
     }
 }

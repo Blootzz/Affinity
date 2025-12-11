@@ -39,7 +39,6 @@ public class ColorFlash : MonoBehaviour
         // infinite loop until coroutine is cancelled
         while (true)
         {
-            print("Doing blue while loop");
             spriteRenderer.material.SetInt("_flashToggle", 1);
             yield return new WaitForSeconds(repeatingFlashInterval);
             spriteRenderer.material.SetInt("_flashToggle", 0);

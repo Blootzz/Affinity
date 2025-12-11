@@ -18,9 +18,8 @@ public class BlockParryManager : MonoBehaviour
 
     [Header("Parry SloMo")]
     [SerializeField] TimeManager timeManager;
-    [SerializeField] bool SloMoEnabled = false;
     [SerializeField] float SloMoDurationUnscaled = 1f;
-    [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.25f;
+    [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.05f;
 
     LensZoomEffect lensZoomEffect;
 
@@ -114,14 +113,13 @@ public class BlockParryManager : MonoBehaviour
 
     public void StartSloMo()
     {
-        print("Something is wrong with fixedTimeScale");
-        timeManager.SetFixedTimeScale(SloMoInitialTimeScale);
+        timeManager.SetTimeScale(SloMoInitialTimeScale);
         StartCoroutine(IncrementTimeScale());
     }
     IEnumerator IncrementTimeScale()
     {
         yield return new WaitForSecondsRealtime(SloMoDurationUnscaled);
-        timeManager.SetFixedTimeScale(1);
+        timeManager.SetTimeScale(1);
     }
 
     public void StartZoomEffect()

@@ -39,7 +39,10 @@ public class PlayerStateRunning : PlayerBaseState
     public override void ProcessGroundCheckEvent(bool isGrounded)
     {
         if (isGrounded == false)
+        {
+            Debug.Log("switching from running to falling");
             stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        }
         else
             Debug.LogWarning("Running state just received isGrounded is now true???\n" +
                 "This is probably due to being spawned in airbourne with no state");
