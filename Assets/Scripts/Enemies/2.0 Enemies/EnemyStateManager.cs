@@ -27,6 +27,7 @@ public class EnemyStateManager : MonoBehaviour
     [SerializeField] DetectZoneByTag attackDetectZone;
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public FacePlayer facePlayer;
+    [HideInInspector] public ColorFlash colorFlasher;
     GameObject playerObj;
 
     // Scriptable objects need this to access/hold data that changes in runtime
@@ -59,6 +60,7 @@ public class EnemyStateManager : MonoBehaviour
         poise = GetComponent<Poise>();
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         animator = GetComponent<Animator>();
+        colorFlasher = GetComponent<ColorFlash>();
         if (attackDetectZone == null)
             Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
         if (TryGetComponent(out CharacterMover cm))
@@ -101,7 +103,8 @@ public class EnemyStateManager : MonoBehaviour
         }
 
         health.DeductHealth(hurtboxManager.GetIncomingPlayerHitbox().GetDamage() * damageMultiplier);
-        
+        colorFlasher.StartSingleWhiteFlash();
+
         // putting this after health.DeductHealth just in case health logic needs to happen before state switch
         if (isPoiseBroken)
             SwitchState(stateIdle);

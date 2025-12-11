@@ -7,6 +7,8 @@ public class ColorFlash : MonoBehaviour
     [SerializeField] float singleFlashSeconds = 0.2f;
     [SerializeField] float repeatingFlashInterval = 0.2f;
 
+    Coroutine cancellableCoroutine;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -27,7 +29,7 @@ public class ColorFlash : MonoBehaviour
 
     public void StartRepeatingBlueFlash()
     {
-        StartCoroutine(RepeatingBlueFlash());
+        cancellableCoroutine = StartCoroutine(RepeatingBlueFlash());
     }
     IEnumerator RepeatingBlueFlash()
     {
@@ -37,6 +39,7 @@ public class ColorFlash : MonoBehaviour
         // infinite loop until coroutine is cancelled
         while (true)
         {
+            print("Doing blue while loop");
             spriteRenderer.material.SetInt("_flashToggle", 1);
             yield return new WaitForSeconds(repeatingFlashInterval);
             spriteRenderer.material.SetInt("_flashToggle", 0);
@@ -44,8 +47,8 @@ public class ColorFlash : MonoBehaviour
         }
     }
 
-    public void EndFlash()
+    public void EndBlueFlash()
     {
-        StopAllCoroutines();
+        StopCoroutine(cancellableCoroutine);
     }
 }

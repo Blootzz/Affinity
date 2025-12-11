@@ -38,10 +38,10 @@ public class EnemyStatePoiseBreak : EnemyBaseState
 
     void StartFlashing()
     {
-        stateManager.GetComponent<ColorFlash>().StartRepeatingBlueFlash(); 
+        stateManager.colorFlasher.StartRepeatingBlueFlash(); 
     }
     void StopFlashing()
     {
-        stateManager.GetComponent<ColorFlash>().EndFlash();
+        stateManager.colorFlasher.EndBlueFlash();
     }
 }
