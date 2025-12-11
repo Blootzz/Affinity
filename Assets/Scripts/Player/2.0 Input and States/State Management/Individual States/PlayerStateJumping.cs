@@ -19,7 +19,7 @@ public class PlayerStateJumping : PlayerStateFalling
 
     public override void JumpStart()
     {
-        Debug.Log("TESTING Jump while in jump state");
-        OnEnter();
+        //Debug.Log("TESTING Jump while in jump state");
+        //OnEnter();
     }
 }
