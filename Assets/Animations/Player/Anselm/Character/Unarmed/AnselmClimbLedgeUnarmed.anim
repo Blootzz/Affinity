@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AnselmClimbLedgeUnarmed
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -18,23 +18,19 @@ AnimationClip:
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
-  - curve:
+  - serializedVersion: 2
+    curve:
     - time: 0
-      value: {fileID: 8455798743829003184, guid: c3b8146432e3d0a4f9a445ede4e37d66,
-        type: 3}
+      value: {fileID: 8455798743829003184, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
     - time: 0.2
-      value: {fileID: -8593680721275710718, guid: c3b8146432e3d0a4f9a445ede4e37d66,
-        type: 3}
+      value: {fileID: -8593680721275710718, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
     - time: 0.4
-      value: {fileID: 8939380849842099109, guid: c3b8146432e3d0a4f9a445ede4e37d66,
-        type: 3}
-    - time: 0.6
-      value: {fileID: -8804985241855759929, guid: 65036d763a3d7934aa910e84e79d5e19,
-        type: 3}
+      value: {fileID: 8939380849842099109, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
+    flags: 2
   m_SampleRate: 5
   m_WrapMode: 0
   m_Bounds:
@@ -49,17 +45,18 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 8455798743829003184, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
     - {fileID: -8593680721275710718, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
     - {fileID: 8939380849842099109, guid: c3b8146432e3d0a4f9a445ede4e37d66, type: 3}
-    - {fileID: -8804985241855759929, guid: 65036d763a3d7934aa910e84e79d5e19, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 0.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -80,7 +77,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6
-    functionName: _CompleteLedgeGetup
+    functionName: ANIM_EndStateByAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
