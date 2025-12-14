@@ -108,11 +108,9 @@ public class PlayerStateBlocking : PlayerBaseState
 
         // deduct Poise, SWITCHES TO POISEDEPLETED if applicable
         stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
-        // reference stateManager.blockParryManager
-        stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
-        stateManager.blockParryManager.StartCameraShakeEffect();
-        stateManager.blockParryManager.DisableHitboxCollider();
 
+        // notify blockParryManager of successful block
+        stateManager.blockParryManager.OnSuccessfulBlock(stateManager.faceRight);
     }
     /// <summary>
     /// Called when player attempts to block but failed to block in the necessary vertical direction

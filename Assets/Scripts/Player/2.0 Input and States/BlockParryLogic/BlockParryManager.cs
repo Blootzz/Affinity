@@ -5,35 +5,21 @@ using System.Collections;
 public class BlockParryManager : MonoBehaviour
 {
     public event Action BlockerHitEvent; // Listened to by PlayerStateManager
+
+    public event Action<bool> SuccessfulBlockEvent;
+    public event Action<bool> SuccessfulParryEvent;
+
     [SerializeField] bool isParryWindowOpen = false; // no longer modified directly by animation, but set by ANIM events
     EnemyHitbox incomingEnemyHitbox;
     [SerializeField] BlockParryCollider lowerCollider;
     [SerializeField] BlockParryCollider upperCollider;
 
-    [SerializeField] ParticleSystem blockParticles;
-    [SerializeField] GameObject blockWaveEffect;
-    [SerializeField] GameObject parryEffect;
-
-    Vector2 visualEffectSpawnPosition;
-
-    [Header("Parry SloMo")]
-    [SerializeField] TimeManager timeManager;
-    [SerializeField] float SloMoDurationUnscaled = 1f;
-    [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.05f;
-
-    LensZoomEffect lensZoomEffect;
-    CamShake camShake;
+    public Vector2 visualEffectSpawnPosition { get;  private set; }
 
     private void Awake()
     {
         if (lowerCollider == null || upperCollider == null)
             Debug.LogError("Please drag and drop lower and upper collider references into BlockParryManager");
-    }
-
-    private void Start()
-    {
-        lensZoomEffect = FindFirstObjectByType<LensZoomEffect>();
-        camShake = FindFirstObjectByType<CamShake>();
     }
 
     public void FireBlockerHitEvent(EnemyHitbox enemyHitbox, Vector2 blockerEffectWorldPosition)
@@ -93,43 +79,24 @@ public class BlockParryManager : MonoBehaviour
         GetIncomingEnemyHitbox().GetParried();
     }
 
-    /// <summary>
-    /// Spawn parry or block effect at BlockParryCollider spawn point
-    /// </summary>
-    /// <param name="faceRight"></param>
-    /// <param name="parryInsteadOfBlock"></param>
-    public void CreateVisualEffect(bool faceRight, bool parryInsteadOfBlock)
+    
+
+    public void OnSuccessfulBlock(bool faceRight)
     {
-        // instantiate effect based off blocker's spawn position, rotate with faceRight
-        if (parryInsteadOfBlock)
-            Instantiate(parryEffect, visualEffectSpawnPosition, Quaternion.Euler(new Vector3(0, faceRight? 0:180, 0)));
-        else
-            Instantiate(blockWaveEffect, visualEffectSpawnPosition, Quaternion.Euler(new Vector3(0, faceRight? 0:180, 0)));
+        SuccessfulBlockEvent?.Invoke(faceRight);
 
-        //Vector2 angleVector = new Vector2(collision.gameObject.transform.position.x - localPos.x, collision.gameObject.transform.position.y - localPos.y);
-        //float angleDeg = 180 / Mathf.PI * Mathf.Atan(angleVector.y / angleVector.x);
-
-        //Instantiate(blockWaveEffect, Vector3.zero, Quaternion.Euler(new Vector3(0, 0/*thePlayer.faceRight? 0:180*/, 0 /*angleDeg*/)), this.transform);
-
+        DisableHitboxCollider();
     }
 
-    public void StartSloMo()
+    public void OnSuccessfulParry(bool faceRight)
     {
-        timeManager.SetTimeScale(SloMoInitialTimeScale);
-        StartCoroutine(IncrementTimeScale());
-    }
-    IEnumerator IncrementTimeScale()
-    {
-        yield return new WaitForSecondsRealtime(SloMoDurationUnscaled);
-        timeManager.SetTimeScale(1);
-    }
+        SuccessfulParryEvent?.Invoke(faceRight);
 
-    public void StartZoomEffect()
-    {
-        lensZoomEffect.BeginParryZoomAnimation();
-    }
-    public void StartCameraShakeEffect()
-    {
-        camShake.BeginCameraShake(incomingEnemyHitbox.GetDamage());
+        // disable hitbox until enemy re-enables it
+        DisableHitboxCollider();
+
+        // apply block slide to enemy
+        //stateManager.blockParryManager.ExecuteEnemyBlockslide();
+        GetIncomingEnemyHitbox().GetParried();
     }
 }

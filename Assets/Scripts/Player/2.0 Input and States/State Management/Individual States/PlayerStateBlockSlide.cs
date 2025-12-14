@@ -15,6 +15,9 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
         
         physicsMaterialManager = stateManager.GetComponent<PhysicsMaterialManager>();
         ApplySlideVelocity();
+
+        // dust effect
+
     }
     public override void OnExit()
     {

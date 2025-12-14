@@ -18,13 +18,11 @@ public class LockWorldPosition : MonoBehaviour
 
         // assign locked world position
         fixedWorldPos = transform.position;
-        Debug.LogWarning("Starting pos: "+transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        print("Updating pos to: " + fixedWorldPos);
         transform.position = fixedWorldPos;
     }
 }

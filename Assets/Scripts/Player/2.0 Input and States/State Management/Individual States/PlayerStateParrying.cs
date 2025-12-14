@@ -38,19 +38,12 @@ public class PlayerStateParrying : PlayerStateBlocking
         if (stateManager.blockParryManager.GetIsParryWindowOpen())
         {
             wasParrySuccessful = true;
-            stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, true);
-            stateManager.blockParryManager.StartSloMo();
-            stateManager.blockParryManager.StartZoomEffect();
 
             // add hitbox damage to poise
             stateManager.playerPoise.AddPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
 
-            // apply block slide to enemy
-            //stateManager.blockParryManager.ExecuteEnemyBlockslide();
-            stateManager.blockParryManager.GetIncomingEnemyHitbox().GetParried();
-
-            // disable hitbox until enemy re-enables it
-            stateManager.blockParryManager.DisableHitboxCollider();
+            // notify blockParryManager that a parry just took place
+            stateManager.blockParryManager.OnSuccessfulParry(stateManager.faceRight);
         }
         //else
         //    Debug.Log("Failed Parry"); // colliders disappear upon
