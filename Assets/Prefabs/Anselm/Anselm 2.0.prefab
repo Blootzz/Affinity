@@ -206,7 +206,7 @@ MonoBehaviour:
   parryEffect: {fileID: 7446094422799944474, guid: d2b2044765b4dcf4fa47fbef3d5cd2fa, type: 3}
   blockSlideDust: {fileID: 2863436147616074900}
   timeManager: {fileID: 0}
-  SloMoDurationUnscaled: 1
+  SloMoDurationUnscaled: 0.4
   SloMoInitialTimeScale: 0.05
 --- !u!1 &826527193436979594
 GameObject:
@@ -777,7 +777,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145662035572713175}
   - component: {fileID: 366598358036547613}
-  - component: {fileID: 1474518266224543242}
+  - component: {fileID: 7633573529585519577}
   - component: {fileID: 4024451280685862296}
   m_Layer: 11
   m_Name: LedgeGrabCheck
@@ -813,14 +813,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4004e6bc60da0b44f97497f1793b1ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1474518266224543242
-CircleCollider2D:
+--- !u!61 &7633573529585519577
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132395601239636132}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -843,12 +843,22 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.19, y: 1}
-  m_Radius: 0.37495387
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!50 &4024451280685862296
 Rigidbody2D:
   serializedVersion: 5

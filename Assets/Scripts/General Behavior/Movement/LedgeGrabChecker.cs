@@ -5,13 +5,28 @@ public class LedgeGrabChecker : MonoBehaviour
 {
     public event Action LedgeGrabEvent;
 
-    BoxCollider2D detectZone;
+    [Header("Reference Point Transforms")]
+    Transform InnerPoint;
+    Transform TopPoint;
+    Transform TargetPoint;
 
-    private void Awake()
+    private void OnEnable()
     {
-        detectZone = GetComponent<BoxCollider2D>();
+        
     }
 
+    private void FixedUpdate()
+    {
+        if (EvaluateLedgeGrab())
+        {
+            print("Ledge found");
+        }
+    }
 
+    bool EvaluateLedgeGrab()
+    {
+        print("Evaluate ledge grab here");
+        return true;
+    }
 
 }//LedgeGrab
