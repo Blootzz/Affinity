@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 221879649}
   - component: {fileID: 221879651}
   - component: {fileID: 221879650}
+  - component: {fileID: 221879652}
   m_Layer: 9
   m_Name: Big Floor (2)
   m_TagString: Untagged
@@ -432,6 +433,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &221879652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221879648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00f22350223170c4cb22f7df7780f07b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deleteButton: 102
 --- !u!1 &240228622
 GameObject:
   m_ObjectHideFlags: 0
@@ -4318,6 +4332,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
   m_PrefabInstance: {fileID: 3105599406997228888}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1870489601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870489538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56f76f4ce7268e47bc723bc16c25c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1967453140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1161608374469354540, guid: 0afbd2e61b04d284ba60413e55031e31, type: 3}
@@ -4925,6 +4951,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 826527193436979594, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: 12
       addedObject: {fileID: 1870489572}
+    - targetCorrespondingSourceObject: {fileID: 826527193436979594, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1870489601}
     - targetCorrespondingSourceObject: {fileID: 580407205875797555, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: -1
       addedObject: {fileID: 320197202}

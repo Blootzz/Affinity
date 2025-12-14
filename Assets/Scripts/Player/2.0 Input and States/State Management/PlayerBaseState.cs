@@ -38,6 +38,18 @@ public abstract class PlayerBaseState
         else
             stateManager.SwitchState(new PlayerStateFalling(stateManager));
     }
+    public virtual void ProcessWallCheckEvent(bool isInWall)
+    {
+        if (isInWall)
+        {
+            //Debug.Log("Wall check entering");
+        }
+        else
+        {
+            //Debug.Log("Wall check exiting");
+            HorizontalAxis();
+        }
+    }
 
     public virtual void BlockStart()
     {

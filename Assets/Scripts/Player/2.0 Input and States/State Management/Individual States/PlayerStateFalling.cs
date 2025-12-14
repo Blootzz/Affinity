@@ -22,9 +22,4 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.FlipIfNecessary();
     }
 
-//    public override void ProcessGroundCheckEvent(bool isGrounded)
-//    {
-//        //if (isGrounded)
-//        //    stateManager.SwitchState(new PlayerStateIdle(stateManager));
-//    }
 }

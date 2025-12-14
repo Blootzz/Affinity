@@ -22,4 +22,11 @@ public class PlayerStateJumping : PlayerStateFalling
         //Debug.Log("TESTING Jump while in jump state");
         //OnEnter();
     }
+
+    public override void ProcessGroundCheckEvent(bool isGrounded)
+    {
+        if (isGrounded)
+            stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        //else do nothing, just keep jump state running
+    }
 }

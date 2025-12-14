@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
     [HideInInspector] public GroundCheck groundCheck; // accessed by Idle
+    [HideInInspector] public WallCheck2 wallCheck;
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
     public PlayerHitbox playerHitbox;
@@ -41,6 +42,7 @@ public class PlayerStateManager : MonoBehaviour
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
+        wallCheck = GetComponent<WallCheck2>();
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         blockParryManager = GetComponentInChildren<BlockParryManager>();
         playerHealth = GetComponent<Health>();
@@ -52,6 +54,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered += OnActionTriggered;
         groundCheck.OnGroundedChanged += OnStateGroundedChange;
+        wallCheck.OnWallCollisionChanged += OnWallCheckChange;
         hurtboxManager.HurtEvent += FlagOnPlayerHurtboxHit;
         blockParryManager.BlockerHitEvent += FlagOnBlockerHit;
         playerHealth.DeathEvent += OnDeath;
@@ -64,6 +67,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered -= OnActionTriggered;
         groundCheck.OnGroundedChanged -= OnStateGroundedChange;
+        wallCheck.OnWallCollisionChanged -= OnWallCheckChange;
         hurtboxManager.HurtEvent -= FlagOnPlayerHurtboxHit;
         blockParryManager.BlockerHitEvent -= FlagOnBlockerHit;
         playerHealth.DeathEvent -= OnDeath;
@@ -208,6 +212,11 @@ public class PlayerStateManager : MonoBehaviour
     void OnStateGroundedChange(bool isGrounded)
     {
         currentState.ProcessGroundCheckEvent(isGrounded);
+    }
+
+    void OnWallCheckChange(bool isInWall)
+    {
+        currentState.ProcessWallCheckEvent(isInWall);
     }
 
     public void FlipIfNecessary()
