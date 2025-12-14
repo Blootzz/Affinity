@@ -159,6 +159,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 403622079, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1074992593, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -238,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 7174289608978598034, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7174289608978598035, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1074992593, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
@@ -3143,9 +3151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490cd5104ae7fc74198582572978dc2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAmplitude: 3
-  startingFrequency: 0.1
-  taperSeconds: 0.5
+  baseAmplitude: 3
+  damageMultiplierWeight: 1
+  baseFrequency: 0.1
+  baseTaperSeconds: 0.5
   fadeResolution: 4
 --- !u!1 &1178256047
 GameObject:

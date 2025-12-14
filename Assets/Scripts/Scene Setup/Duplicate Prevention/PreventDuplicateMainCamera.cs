@@ -6,7 +6,7 @@ public class PreventDuplicateMainCamera : MonoBehaviour
 {
     void Awake()
     {
-        int numMainCameras = FindObjectsOfType<PreventDuplicateMainCamera>().Length;
+        int numMainCameras = FindObjectsByType<PreventDuplicateMainCamera>(FindObjectsSortMode.None).Length;
 
         if (numMainCameras != 1)
         {
