@@ -33,6 +33,10 @@ public abstract class PlayerBaseState
 
     public virtual void ProcessGroundCheckEvent(bool isGrounded)
     {
+        if (isGrounded)
+            stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        else
+            stateManager.SwitchState(new PlayerStateFalling(stateManager));
     }
 
     public virtual void BlockStart()

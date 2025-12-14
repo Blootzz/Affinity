@@ -59,11 +59,7 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
     // for if BlockSlide sends player off edge
     public override void ProcessGroundCheckEvent(bool isGrounded)
     {
-        if (isGrounded == false)
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
-        else
-            Debug.LogWarning("Running state just received isGrounded is now true???\n" +
-                "This is probably due to being spawned in airbourne with no state");
+        //base.ProcessGroundCheckEvent(isGrounded);
     }
 
     // stateManager is listening to CharacterMover for Event then calls this
