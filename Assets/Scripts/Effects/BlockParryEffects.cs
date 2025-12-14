@@ -7,6 +7,7 @@ public class BlockParryEffects : MonoBehaviour
 
     [SerializeField] GameObject blockWaveEffect;
     [SerializeField] GameObject parryEffect;
+    [SerializeField] GameObject blockSlideDust;
 
     [Header("Parry SloMo")]
     [SerializeField] TimeManager timeManager;
@@ -42,6 +43,7 @@ public class BlockParryEffects : MonoBehaviour
     {
         CreateVisualEffect(faceRight, false);
         StartCameraShakeEffect();
+        EnableBlockSlideDust();
     }
     
     void ParryEffects(bool faceRight)
@@ -91,5 +93,10 @@ public class BlockParryEffects : MonoBehaviour
     public void StartCameraShakeEffect()
     {
         camShake.BeginCameraShake(bpManager.GetIncomingEnemyHitbox().GetDamage());
+    }
+
+    void EnableBlockSlideDust()
+    {
+        blockSlideDust.SetActive(true);
     }
 }
