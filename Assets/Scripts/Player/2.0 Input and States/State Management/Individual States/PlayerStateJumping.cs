@@ -10,6 +10,7 @@ public class PlayerStateJumping : PlayerStateFalling
     {
         base.OnEnter(); // plays falling animation
         stateManager.characterJumper.BeginJumpAscent();
+        stateManager.groundCheck.GetComponent<JumpLandDustFXManager>().EnableJumpDust();
     }
 
     public override void JumpCancel()
