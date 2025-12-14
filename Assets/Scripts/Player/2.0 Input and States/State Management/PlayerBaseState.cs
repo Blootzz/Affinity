@@ -73,10 +73,6 @@ public abstract class PlayerBaseState
     {
         Debug.Log("Implement Death Here");
     }
-    public virtual void PoiseDepleted()
-    {
-        Debug.Log("Implement PoiseDepleted Here");
-    }
 
     public virtual void HorVelocityHitZero()
     {

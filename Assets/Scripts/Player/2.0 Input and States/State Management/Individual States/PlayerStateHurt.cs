@@ -43,4 +43,9 @@ public class PlayerStateHurt : PlayerBaseState
         physicsMaterialManager.SetRbZeroFrictionBounce();
         stateManager.hurtboxManager.SetInvulnerability(false);
     }
+
+    public override void ProcessGroundCheckEvent(bool isGrounded)
+    {
+        // do nothing
+    }
 }

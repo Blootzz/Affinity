@@ -20,6 +20,7 @@ public class PlayerAnimationManager : MonoBehaviour
     int LedgeJump;
     int WallSlide;
     int Crouch;
+    int PoiseDepleted;
     // Unarmed
     int IdleUnarmed;
     int PantUnarmed;
@@ -33,6 +34,7 @@ public class PlayerAnimationManager : MonoBehaviour
     int LedgeJumpUnarmed;
     int WallSlideUnarmed;
     int CrouchUnarmed;
+    int PoiseDepletedUnarmed;
 
     // Combat
     public int Block { get; private set; }
@@ -73,6 +75,7 @@ public class PlayerAnimationManager : MonoBehaviour
     public int AorULedgeJump { get; private set; }
     public int AorUWallSlide { get; private set; }
     public int AorUCrouch { get; private set; }
+    public int AorUPoiseDepleted { get; private set; }
 
     #endregion
 
@@ -98,6 +101,7 @@ public class PlayerAnimationManager : MonoBehaviour
         LedgeJump = Animator.StringToHash(animationPrefix + "LedgeJump");
         WallSlide = Animator.StringToHash(animationPrefix + "WallSlide");
         Crouch = Animator.StringToHash(animationPrefix + "Crouch");
+        PoiseDepleted = Animator.StringToHash(animationPrefix + "PoiseDepleted"); 
 
         // Unarmed
         IdleUnarmed = Animator.StringToHash(animationPrefix + "IdleUnarmed");
@@ -112,6 +116,7 @@ public class PlayerAnimationManager : MonoBehaviour
         LedgeJumpUnarmed = Animator.StringToHash(animationPrefix + "LedgeJumpUnarmed");
         WallSlideUnarmed = Animator.StringToHash(animationPrefix + "WallSlideUnarmed");
         CrouchUnarmed = Animator.StringToHash(animationPrefix + "CrouchUnarmed");
+        PoiseDepletedUnarmed = Animator.StringToHash(animationPrefix + "PoiseDepletedUnarmed"); 
 
         // attacks
         Block = Animator.StringToHash(animationPrefix + "Block");
@@ -157,6 +162,7 @@ public class PlayerAnimationManager : MonoBehaviour
         AorULedgeJump = LedgeJump;
         AorUWallSlide = WallSlide;
         AorUCrouch = Crouch;
+        AorUPoiseDepleted = PoiseDepleted;
 
         DynamicIdle = Idle;
     }
@@ -179,6 +185,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUClimbLedge = ClimbLedge;
             AorULedgeJump = LedgeJump;
             AorUCrouch = Crouch;
+            AorUPoiseDepleted = PoiseDepleted;
         }
         else
         {
@@ -194,6 +201,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUClimbLedge = ClimbLedgeUnarmed;
             AorULedgeJump = LedgeJumpUnarmed;
             AorUCrouch = CrouchUnarmed;
+            AorUPoiseDepleted = PoiseDepletedUnarmed;
         }
 
         if (DynamicIdle == Pant || DynamicIdle == PantUnarmed)

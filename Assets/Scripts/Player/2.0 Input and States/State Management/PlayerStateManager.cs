@@ -253,7 +253,7 @@ public class PlayerStateManager : MonoBehaviour
     }
     void OnPoiseDepleted()
     {
-        currentState.PoiseDepleted();
+        SwitchState(new PlayerStatePoiseDepleted(this));
     }
 
     void OnHorVelocityHitZero()
