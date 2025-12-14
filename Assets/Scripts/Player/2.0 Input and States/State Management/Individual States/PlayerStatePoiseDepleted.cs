@@ -18,7 +18,7 @@ public class PlayerStatePoiseDepleted : PlayerStateHurt
         // poise damage already accounted for in PlayerStateBlocking
 
         // disable hitbox to prevent double hits
-        EnemyHitbox enemyHitbox = stateManager.hurtboxManager.GetIncomingEnemyHitbox();
+        EnemyHitbox enemyHitbox = stateManager.blockParryManager.GetIncomingEnemyHitbox();
         enemyHitbox.RelayHitboxLandedToManager();
         
         // no physics material change
