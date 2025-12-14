@@ -106,6 +106,7 @@ public class PlayerStateBlocking : PlayerBaseState
         stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
+        stateManager.blockParryManager.StartCameraShakeEffect();
         stateManager.blockParryManager.DisableHitboxCollider();
 
         // switch to block slide state

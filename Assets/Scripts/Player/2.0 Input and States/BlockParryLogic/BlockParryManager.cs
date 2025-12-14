@@ -22,6 +22,7 @@ public class BlockParryManager : MonoBehaviour
     [SerializeField][Range(0, 1)] float SloMoInitialTimeScale = 0.05f;
 
     LensZoomEffect lensZoomEffect;
+    CamShake camShake;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class BlockParryManager : MonoBehaviour
     private void Start()
     {
         lensZoomEffect = FindFirstObjectByType<LensZoomEffect>();
+        camShake = FindFirstObjectByType<CamShake>();
     }
 
     public void FireBlockerHitEvent(EnemyHitbox enemyHitbox, Vector2 blockerEffectWorldPosition)
@@ -125,5 +127,9 @@ public class BlockParryManager : MonoBehaviour
     public void StartZoomEffect()
     {
         lensZoomEffect.BeginParryZoomAnimation();
+    }
+    public void StartCameraShakeEffect()
+    {
+        camShake.BeginCameraShake(incomingEnemyHitbox.GetDamage());
     }
 }
