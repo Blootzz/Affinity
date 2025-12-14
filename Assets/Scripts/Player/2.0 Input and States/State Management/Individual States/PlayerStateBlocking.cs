@@ -99,18 +99,20 @@ public class PlayerStateBlocking : PlayerBaseState
 
     /// <summary>
     /// When not overridden, deducts poise, creates block effect, disables hitbox
+    /// Switches state to BlockSlide then deducts Poise, which switches state to PoiseDepleted if applicable
     /// </summary>
     public virtual void BlockSuccessful()
     {
-        // deduct Poise
+        // switch to block slide state
+        stateManager.SwitchState(new PlayerStateBlockSlide(stateManager));
+
+        // deduct Poise, SWITCHES TO POISEDEPLETED if applicable
         stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
         // reference stateManager.blockParryManager
         stateManager.blockParryManager.CreateVisualEffect(stateManager.faceRight, false);
         stateManager.blockParryManager.StartCameraShakeEffect();
         stateManager.blockParryManager.DisableHitboxCollider();
 
-        // switch to block slide state
-        stateManager.SwitchState(new PlayerStateBlockSlide(stateManager));
     }
     /// <summary>
     /// Called when player attempts to block but failed to block in the necessary vertical direction

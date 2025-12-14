@@ -28,7 +28,13 @@ public class PlayerStatePoiseDepleted : PlayerStateHurt
     }
 
     // same EndStateByAnimation() -> switches to idle
-    // OnExit same as PlayerStateHurt
+
+    public override void OnExit()
+    {
+        // do not mess with physicsMaterial like in PlayerStateHurt
+        stateManager.characterMover.SetHorizontalMovementVelocity(0);
+        stateManager.hurtboxManager.SetInvulnerability(false);
+    }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)
     {
