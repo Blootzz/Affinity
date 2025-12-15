@@ -15,6 +15,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public WallCheck2 wallCheck;
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
+    [SerializeField] GameObject ledgeGrabChecker;
     public PlayerHitbox playerHitbox;
 
     bool flagHurtboxHit = false;
@@ -152,6 +153,14 @@ public class PlayerStateManager : MonoBehaviour
             if (context.started)
                 DoStateAttack();
         }
+
+        if (context.action.name.Equals("Interact"))
+        {
+            if (context.started)
+                DoStateInteract(true);
+            else if (context.canceled)
+                DoStateInteract(false);
+        }
     }
 
     #region Horizontal Control
@@ -207,6 +216,18 @@ public class PlayerStateManager : MonoBehaviour
     void DoStateAttack()
     {
         currentState.Attack();
+    }
+
+    void DoStateInteract(bool started)
+    {
+        if (started)
+            currentState.InteractStart();
+        else
+            currentState.InteractCancel();
+    }
+    public void EnableLedgeGrabCheck(bool active)
+    {
+        ledgeGrabChecker.SetActive(active);
     }
 
     void OnStateGroundedChange(bool isGrounded)

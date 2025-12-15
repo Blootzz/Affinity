@@ -22,4 +22,17 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.FlipIfNecessary();
     }
 
+    public override void InteractStart()
+    {
+        base.InteractStart();
+
+        // enable LedgeGrab Check
+        stateManager.EnableLedgeGrabCheck(true);
+    }
+    public override void InteractCancel()
+    {
+        base.InteractCancel();
+
+        stateManager.EnableLedgeGrabCheck(false);
+    }
 }

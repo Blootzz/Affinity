@@ -77,4 +77,11 @@ public abstract class PlayerBaseState
     public virtual void HorVelocityHitZero()
     {
     }
+
+    public virtual void InteractStart()
+    {
+    }
+    public virtual void InteractCancel()
+    {
+    }
 }
