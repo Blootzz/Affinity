@@ -17,7 +17,6 @@ public class LedgeGrabChecker : MonoBehaviour
     {
         if (TryEvaluateLedgeGrab(out Vector2 cornerPosition))
         {
-            print("Corner found at: " + cornerPosition);
             LedgeGrabEvent?.Invoke(cornerPosition);
         }
     }

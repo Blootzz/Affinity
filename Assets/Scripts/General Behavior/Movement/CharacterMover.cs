@@ -69,4 +69,9 @@ public class CharacterMover : MonoBehaviour
         //print("Switching RB type to: "+newType.ToString());
     }
 
+    public void SetPosition(Vector2 newPos)
+    {
+        rb.MovePosition(newPos);
+    }
+
 }

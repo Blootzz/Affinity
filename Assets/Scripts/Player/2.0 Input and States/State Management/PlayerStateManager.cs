@@ -15,7 +15,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public WallCheck2 wallCheck;
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
-    [SerializeField] GameObject ledgeGrabChecker;
+    [SerializeField] GameObject ledgeGrabChecker; // set in editor
     public PlayerHitbox playerHitbox;
 
     bool flagHurtboxHit = false;
@@ -28,13 +28,17 @@ public class PlayerStateManager : MonoBehaviour
     float lastSetXInput = 0; // used to track input when Idle state is called but a new Input Action hasn't fired yet
     float lastSetYInput = 0;
     bool lastSetBlockInput = false;
+    bool lastInteractInput = false;
 
     [Header("State Logic Modifiers")]
     public bool isInvincible = false;
 
-    [InspectorButton(nameof(OnButtonClicked))]
-    public bool EnableBlock;
-    private void OnButtonClicked() { DoStateBlock(true); }
+    [Header("State Data")]
+    public Vector2 ledgeGrabPos;
+
+    //[InspectorButton(nameof(OnButtonClicked))]
+    //public bool EnableBlock;
+    //private void OnButtonClicked() { DoStateBlock(true); }
 
     private void Awake()
     {
@@ -61,6 +65,7 @@ public class PlayerStateManager : MonoBehaviour
         playerHealth.DeathEvent += OnDeath;
         playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
         characterMover.HorVelocityHitZeroEvent += OnHorVelocityHitZero;
+        ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent += OnLedgeGrabFound;
     }
 
     // Event Unsubscription
@@ -74,6 +79,7 @@ public class PlayerStateManager : MonoBehaviour
         playerHealth.DeathEvent -= OnDeath;
         playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
         characterMover.HorVelocityHitZeroEvent -= OnHorVelocityHitZero;
+        ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent -= OnLedgeGrabFound;
     }
 
     private void Start()
@@ -221,13 +227,29 @@ public class PlayerStateManager : MonoBehaviour
     void DoStateInteract(bool started)
     {
         if (started)
+        {
+            lastInteractInput = true;
             currentState.InteractStart();
+        }
         else
+        {
+            lastInteractInput = false;
             currentState.InteractCancel();
+        }
     }
     public void EnableLedgeGrabCheck(bool active)
     {
         ledgeGrabChecker.SetActive(active);
+    }
+    public bool GetLastInteractInput()
+    {
+        return lastInteractInput;
+    }
+
+    void OnLedgeGrabFound(Vector2 ledgePos)
+    {
+        ledgeGrabPos = ledgePos;
+        SwitchState(new PlayerStateLedgeHang(this));
     }
 
     void OnStateGroundedChange(bool isGrounded)
