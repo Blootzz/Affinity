@@ -42,10 +42,10 @@ public class PlayerStateLedgeHang : PlayerBaseState
             return;
         }
 
-        // if player presses forward from ledge, do a getup animation and end the state by animation
+        // if player presses forward from ledge, enter ledge climb state
         if (stateManager.faceRight && stateManager.GetLastSetXInput() > 0 || stateManager.faceRight! && stateManager.GetLastSetXInput() < 0)
         {
-            stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUClimbLedge);
+            stateManager.SwitchState(new PlayerStateLedgeClimb(stateManager));
             return;
         }
 
