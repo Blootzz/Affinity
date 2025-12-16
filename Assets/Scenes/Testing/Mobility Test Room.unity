@@ -4720,7 +4720,7 @@ PrefabInstance:
       objectReference: {fileID: 673993498}
     - target: {fileID: 5870091685347591184, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7633573529585519577, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_IsTrigger
