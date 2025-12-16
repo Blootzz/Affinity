@@ -27,21 +27,7 @@ public class PlayerStateFalling : PlayerBaseState
 
     public override void InteractStart()
     {
-        base.InteractStart();
-
-        // enable LedgeGrab Check
-        stateManager.EnableLedgeGrabCheck(true);
-    }
-    public override void InteractCancel()
-    {
-        base.InteractCancel();
-
-        stateManager.EnableLedgeGrabCheck(false);
+        stateManager.SwitchState(new PlayerStateReaching(stateManager));
     }
 
-    public override void OnExit()
-    {
-        base.OnExit();
-        InteractCancel();
-    }
 }
