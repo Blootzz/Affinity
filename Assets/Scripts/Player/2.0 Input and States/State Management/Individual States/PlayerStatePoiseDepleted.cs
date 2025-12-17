@@ -34,6 +34,9 @@ public class PlayerStatePoiseDepleted : PlayerStateHurt
         // do not mess with physicsMaterial like in PlayerStateHurt
         stateManager.characterMover.SetHorizontalMovementVelocity(0);
         stateManager.hurtboxManager.SetInvulnerability(false);
+
+        // give player some pitty poise
+        stateManager.playerPoise.AddPoise(20);
     }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)
