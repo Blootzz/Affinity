@@ -296,6 +296,11 @@ public class PlayerStateManager : MonoBehaviour
     }
     void OnPoiseDepleted()
     {
+        if (playerPoise.poise < 0)
+        {
+            Debug.LogError("poise depleted again. fix this bug");
+            return;
+        }
         SwitchState(new PlayerStatePoiseDepleted(this));
     }
 

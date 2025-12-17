@@ -17,7 +17,7 @@ public class PlayerStateLedgeHang : PlayerBaseState
         // adjust offset depending on facing right or left
         Vector2 adjustedOffset = new Vector2(positionOffset.x * (stateManager.faceRight ? 1 : -1), positionOffset.y);
         // assign offset to player
-        stateManager.characterMover.SetPosition(stateManager.ledgeGrabPos + adjustedOffset);
+        stateManager.characterMover.SetRBPosition(stateManager.ledgeGrabPos + adjustedOffset);
 
         // animation sets playerHitbox.SetActive to true
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUHanging);
@@ -43,7 +43,7 @@ public class PlayerStateLedgeHang : PlayerBaseState
         }
 
         // if player presses forward from ledge, enter ledge climb state
-        if (stateManager.faceRight && stateManager.GetLastSetXInput() > 0 || stateManager.faceRight! && stateManager.GetLastSetXInput() < 0)
+        if (stateManager.faceRight && stateManager.GetLastSetXInput() > 0 || !stateManager.faceRight && stateManager.GetLastSetXInput() < 0)
         {
             stateManager.SwitchState(new PlayerStateLedgeClimb(stateManager));
             return;

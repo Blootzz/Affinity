@@ -69,9 +69,14 @@ public class CharacterMover : MonoBehaviour
         //print("Switching RB type to: "+newType.ToString());
     }
 
-    public void SetPosition(Vector2 newPos)
+    /// <summary>
+    /// Not using MovePosition, just rb.transform.position = <param name="newPos"></param>
+    /// This forces the rigidbody to the position
+    /// Good for teleporting regardless of physics
+    /// </summary>
+    public void SetRBPosition(Vector2 newPos)
     {
-        rb.MovePosition(newPos);
+        rb.transform.position = newPos;
     }
 
 }

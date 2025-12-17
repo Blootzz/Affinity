@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: c3b8146432e3d0a4f9a445ede4e37d66
+guid: fd637b8b8e89f454391319835c18a44c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8455798743829003184
-    second: AnselmLedgeStandUnarmed_0
+      213: -8804985241855759929
+    second: AnselmIdleUnarmed_0
   - first:
-      213: -8593680721275710718
-    second: AnselmLedgeStandUnarmed_1
+      213: 909019266693319692
+    second: AnselmIdleUnarmed_1
   - first:
-      213: 8939380849842099109
-    second: AnselmLedgeStandUnarmed_2
-  - first:
-      213: -5945310488769778013
-    second: AnselmLedgeStandUnarmed_3
+      213: 8326091605978692635
+    second: AnselmIdleUnarmed_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,89 +106,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AnselmLedgeStandUnarmed_0
+      name: AnselmIdleUnarmed_0
       rect:
         serializedVersion: 2
-        x: 38
-        y: 17
-        width: 27
-        height: 44
-      alignment: 9
-      pivot: {x: 0.5925926, y: 0.45454547}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0bb3f122828095570800000000000000
-      internalID: 8455798743829003184
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnselmLedgeStandUnarmed_1
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 30
-        width: 31
-        height: 40
-      alignment: 9
-      pivot: {x: 0.2580645, y: 0.175}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2031d3f4aec1db880800000000000000
-      internalID: -8593680721275710718
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnselmLedgeStandUnarmed_2
-      rect:
-        serializedVersion: 2
-        x: 209
-        y: 36
-        width: 31
-        height: 41
-      alignment: 9
-      pivot: {x: 0.032258064, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5a394c2258f0f0c70800000000000000
-      internalID: 8939380849842099109
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AnselmLedgeStandUnarmed_3
-      rect:
-        serializedVersion: 2
-        x: 240
+        x: 0
         y: 0
-        width: 80
-        height: 77
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 29
+        height: 48
+      alignment: 9
+      pivot: {x: 0.1724138, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ae297d2c930e7da0800000000000000
-      internalID: -5945310488769778013
+      spriteID: 7c961a6c2986ec580800000000000000
+      internalID: -8804985241855759929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnselmIdleUnarmed_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 0
+        width: 29
+        height: 48
+      alignment: 9
+      pivot: {x: 0.1724138, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0ccd35f43c7d9c00800000000000000
+      internalID: 909019266693319692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AnselmIdleUnarmed_2
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 29
+        height: 48
+      alignment: 9
+      pivot: {x: 0.1724138, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1cb8bdb3383c8370800000000000000
+      internalID: 8326091605978692635
       vertices: []
       indices: 
       edges: []
@@ -210,10 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      AnselmLedgeStandUnarmed_0: 8455798743829003184
-      AnselmLedgeStandUnarmed_1: -8593680721275710718
-      AnselmLedgeStandUnarmed_2: 8939380849842099109
-      AnselmLedgeStandUnarmed_3: -5945310488769778013
+      AnselmIdleUnarmed_0: -8804985241855759929
+      AnselmIdleUnarmed_1: 909019266693319692
+      AnselmIdleUnarmed_2: 8326091605978692635
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
