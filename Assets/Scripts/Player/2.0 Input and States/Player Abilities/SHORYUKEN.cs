@@ -14,16 +14,22 @@ public class SHORYUKEN : MonoBehaviour
 
     char[] inputTracker = new char[4]; // records inputs as N,E,S,W regardless of if they are the right inputs
     int targetIndex = 0; // determines what index of the array should be filled
+    float xInput = 0;
+    float yInput = 0;
 
     Rigidbody2D rb;
     int Shoryuken; // animation
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        playerInput = GetComponent<PlayerInput>();
+    }
+
     void Start()
     {
         // initially filled with Z chars
         ClearInputs();
-        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     void OnEnable()
@@ -39,23 +45,28 @@ public class SHORYUKEN : MonoBehaviour
     /// Listens to cardinal directions.
     /// Listening to attack event is ONLY done in state manager to avoid event sequence ambiguity
     /// </summary>
-    /// <param name="context"></param>
     void ShoryuOnActionTriggered(InputAction.CallbackContext context)
     {
-        // only process positive inputs
-        if (!context.started)
+        // only process horizontal or vertical inputs, storying them into inputX and inputY
+        if (context.action.name.Equals("HorizontalAxis"))
+        {
+            ProcessHorizontalInput(context.ReadValue<float>());
+            xInput = context.ReadValue<float>();
+        }
+        else if (context.action.name.Equals("VerticalAxis"))
+        {
+            yInput = context.ReadValue<float>();
+            ProcessVerticalInput(context.ReadValue<float>());
+        }
+        else
             return;
 
-        if (context.action.name.Equals("HorizontalAxis"))
-            ProcessHorizontalInput(context.ReadValue<float>());
-        if (context.action.name.Equals("VerticalAxis"))
-            ProcessVerticalInput(context.ReadValue<float>());
+        ProcessDirectionalInput();
     }
 
     /// <summary>
-    /// Uses <code>FillArray() to pass in cardinal direction char</code>
+    /// Uses <code>FillArray()</code>to pass in cardinal direction char
     /// </summary>
-    /// <param name="input"></param>
     void ProcessHorizontalInput(float input)
     {
         if (input > 0)
@@ -71,9 +82,63 @@ public class SHORYUKEN : MonoBehaviour
             FillArray('S');
     }
 
-    void ProcessDirectionalInput(float xInput, float yInput)
+    /// <summary>
+    /// uses fighting game annotation for char of numbered positions (same as number pad on keyboard)
+    /// 
+    /// 789
+    /// 456
+    /// 123
+    /// 
+    /// </summary>
+    void ProcessDirectionalInput()
     {
-        
+        // angle is 0 on right, 90 top, +/- 180 left, -90 bottom
+        float angle = Mathf.Atan2(yInput, xInput) * Mathf.Rad2Deg;
+        print("Angle: " + angle);
+
+        // section circle into 8ths (45 degrees), offest by 22.5 degrees
+        // -157.5, -112.5, -67.5, -22.5, 22.5, 67.5, 112.5, 157.5 through -157.5
+        // CCW border of input zone will be inclusive
+        if (angle <= -157.5 || angle > 157.5)
+        {
+            FillArray('4'); // west direction
+            return;
+        }
+        if (angle <= -112.5)
+        {
+            FillArray('1'); // southwest direction
+            return;
+        }
+        if (angle <= -67.5)
+        {
+            FillArray('2'); // South
+            return;
+        }
+        if (angle <= -22.5)
+        {
+            FillArray('3'); // southeast
+            return;
+        }
+        if (angle <= 22.5)
+        {
+            FillArray('6'); // east
+            return;
+        }
+        if (angle <= 67.5)
+        {
+            FillArray('9'); // northeast
+            return;
+        }
+        if (angle <= 112.5)
+        {
+            FillArray('8'); // North
+            return;
+        }
+        if (angle <= 157.5)
+        {
+            FillArray('7'); // northwest
+            return;
+        }
     }
 
     void FillArray(char inputDirection) // adds one char to the array
@@ -104,9 +169,9 @@ public class SHORYUKEN : MonoBehaviour
 
     public bool CheckShoryu()
     {
-        if (inputTracker[0] == 'E' && inputTracker[1] == 'S' && inputTracker[2] == 'E')
+        if (inputTracker[0] == '6' && inputTracker[1] == '2' && inputTracker[2] == '3') // rightward
             return true;
-        if (inputTracker[0] == 'W' && inputTracker[1] == 'S' && inputTracker[2] == 'W')
+        if (inputTracker[0] == '4' && inputTracker[1] == '2' && inputTracker[2] == '1') // leftward
             return true;
         return false;
     }
