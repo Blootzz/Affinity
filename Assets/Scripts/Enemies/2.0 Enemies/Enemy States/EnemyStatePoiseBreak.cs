@@ -16,7 +16,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
             stateManager.animator.Play("PoiseBreak", -1, 0);
         else
             Debug.LogError("Does not contain animation \"PoiseBreak\"");
-        stateManager.facePlayer.SetManualControllerOn(true);
+        stateManager.facePlayer.SetEnableAutomaticFlip(true);
         StartFlashing();
 
         stateManager.SetIsPoiseBroken(true); // logic used for player attack damage bonus
@@ -24,7 +24,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void OnExit()
     {
         base.OnExit();
-        stateManager.facePlayer.SetManualControllerOn(false);
+        stateManager.facePlayer.SetEnableAutomaticFlip(false);
         StopFlashing();
 
         stateManager.SetIsPoiseBroken(false);

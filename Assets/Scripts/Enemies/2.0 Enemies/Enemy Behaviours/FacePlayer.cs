@@ -2,28 +2,31 @@ using UnityEngine;
 
 public class FacePlayer : MonoBehaviour
 {
-    [SerializeField] DetectZoneByTag attackDetectZone;
+    //[SerializeField] DetectZoneByTag attackDetectZone;
     Transform playerTransform;
     bool playerIsRightOfEnemy = false;
     bool faceRight = false;
     bool isTrackingPlayer = false;
 
-    bool manualControllerEnabled = true; // used by enemy states so enemy doesn't have perfect aim
+    bool enableAutomaticFlip = true; // used by enemy states so enemy doesn't have perfect aim
 
     void Awake()
     {
     }
 
-    void OnEnable()
-    {
-        attackDetectZone.TargetFoundEvent += OnPlayerEnteredAttackZone;
-    }
-    void OnDisable()
-    {
-        attackDetectZone.TargetFoundEvent -= OnPlayerEnteredAttackZone;
-    }
+    //void OnEnable()
+    //{
+    //    attackDetectZone.TargetFoundEvent += OnPlayerEnteredAttackZone;
+    //}
+    //void OnDisable()
+    //{
+    //    attackDetectZone.TargetFoundEvent -= OnPlayerEnteredAttackZone;
+    //}
 
-    void OnPlayerEnteredAttackZone(GameObject pObj)
+    /// <summary>
+    /// Called before state swtich so that FacePlayer data is accurate before switching states
+    /// </summary>
+    public void OnPlayerEnteredAttackZone(GameObject pObj)
     {
         playerTransform = pObj.transform;
         isTrackingPlayer = true;
@@ -38,7 +41,7 @@ public class FacePlayer : MonoBehaviour
     {
         if (isTrackingPlayer == false)
             return;
-        if (!manualControllerEnabled)
+        if (!enableAutomaticFlip)
             return;
 
         if (playerTransform.position.x > transform.position.x)
@@ -56,14 +59,19 @@ public class FacePlayer : MonoBehaviour
         transform.Rotate(Vector3.up * 180);
     }
 
-    public void SetManualControllerOn(bool manController)
+    public void SetEnableAutomaticFlip(bool canFlip)
     {
-        manualControllerEnabled = manController;
+        enableAutomaticFlip = canFlip;
     }
 
     public void OneTimeCheck()
     {
         PerFrameLogic();
+        print("isTrackingPlayer: " + isTrackingPlayer);
+        print("enableAutomaticFlip: " + enableAutomaticFlip);
+        print("playerIsRightOfEnemy: " + playerIsRightOfEnemy);
+        print("playerIsRightOfEnemy: " + playerIsRightOfEnemy);
+        print("faceRight: " + faceRight);
     }
 
     public bool GetFaceRight()

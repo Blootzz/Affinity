@@ -15,7 +15,9 @@ public class EnemyStateAttackBase : EnemyBaseState
     {
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
         stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
-        stateManager.facePlayer.SetManualControllerOn(false);
+
+        stateManager.facePlayer.OneTimeCheck();
+        stateManager.facePlayer.SetEnableAutomaticFlip(false);
 
         stateManager.characterMover.SetRbType(RigidbodyType2D.Kinematic);
     }
@@ -30,7 +32,7 @@ public class EnemyStateAttackBase : EnemyBaseState
         if (stateManager.GetComponent<SlideTowardPlayer>() != null)
             EndLerpToPlayerByAnimation();
 
-        stateManager.facePlayer.SetManualControllerOn(true);
+        stateManager.facePlayer.SetEnableAutomaticFlip(true);
         EnemyCheckFlipAtEndOfAttack();
 
         stateManager.characterMover.SetRbType(RigidbodyType2D.Dynamic);

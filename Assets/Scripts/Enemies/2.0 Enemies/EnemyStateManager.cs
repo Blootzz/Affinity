@@ -131,6 +131,8 @@ public class EnemyStateManager : MonoBehaviour
     void OnPlayerEnteredAttackZone(GameObject pObj)
     {
         playerObj = pObj;
+        // update FacePlayer data before any state change
+        facePlayer.OnPlayerEnteredAttackZone(pObj);
         currentState.OnPlayerEnteredAttackZone();
         isAggro = true;
     }
