@@ -193,13 +193,13 @@ public class Anselm : Player
     {
         if (vert == 0) //--------------------------------- Vertically Neutral Attacks ---------------------------------
         {
-            if (GetComponent<SHORYUKEN>().CheckShoryu()) // checks if last directional movements are the shoryuken inputs
-                GetComponent<SHORYUKEN>().DoShoryu();
-            else
-            {
-                SetUpAttack(straightAttackDamage, straightAttackStunTime, straightAttackKnockbackMultiplier, straightAttackKnockback);
-                animator.Play(StraightAttack);
-            }
+            //if (GetComponent<SHORYUKEN>().CheckShoryu()) // checks if last directional movements are the shoryuken inputs
+            //    GetComponent<SHORYUKEN>().DoShoryu();
+            //else
+            //{
+            //    SetUpAttack(straightAttackDamage, straightAttackStunTime, straightAttackKnockbackMultiplier, straightAttackKnockback);
+            //    animator.Play(StraightAttack);
+            //}
         } // Vertically neutral attacks
         else //--------------------------------- Up & Down Attacks ---------------------------------
         {

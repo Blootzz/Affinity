@@ -32,7 +32,8 @@ public class PlayerStateFalling : PlayerBaseState
 
     public override void JumpStart()
     {
-        stateManager.doubleJump.TryDoubleJump();
+        if (stateManager.characterJumper.CheckIfDoubleJumpIsPossible())
+            stateManager.SwitchState(new PlayerStateDoubleJumping(stateManager));
     }
 
 }

@@ -20,9 +20,6 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
 
-    [Header("Abilities")]
-    [HideInInspector] public DoubleJump doubleJump;
-
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
 
@@ -58,7 +55,6 @@ public class PlayerStateManager : MonoBehaviour
         playerHealth = GetComponent<Health>();
         playerPoise = GetComponent<Poise>();
         colorFlasher = GetComponent<ColorFlash>();
-        doubleJump = GetComponent<DoubleJump>();
     }
 
     // Event Subscription
@@ -262,10 +258,8 @@ public class PlayerStateManager : MonoBehaviour
     void OnStateGroundedChange(bool isGrounded)
     {
         currentState.ProcessGroundCheckEvent(isGrounded);
-
-        // reset double jump ability
-        if (doubleJump != null && isGrounded)
-            doubleJump.ResetDoubleJump();
+        if (isGrounded)
+            characterJumper.ResetDoubleJump();
     }
 
     void OnWallCheckChange(bool isInWall)

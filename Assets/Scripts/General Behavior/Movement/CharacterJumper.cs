@@ -47,4 +47,32 @@ public class CharacterJumper : MonoBehaviour
         rb.gravityScale = descentGravity;
     }
 
+    #region Double Jump
+    [Header("Double Jump")]
+    [SerializeField] bool isDoubleJumpAbilityEnabled = true; // editor setting
+    [SerializeField] public float doubleJumpVelocity;
+
+    private bool canDoubleJump = true; // logic
+
+    public bool CheckIfDoubleJumpIsPossible()
+    {
+        if (canDoubleJump && isDoubleJumpAbilityEnabled)
+        {
+            canDoubleJump = false;
+            return true;
+        }
+        return false;
+    }
+
+    public void BeginDoubleJumpAscent()
+    {
+        rb.linearVelocityY = doubleJumpVelocity;
+        rb.gravityScale = ascentGravity;
+    }
+
+    public void ResetDoubleJump()
+    {
+        canDoubleJump = true;
+    }
+    #endregion
 }
