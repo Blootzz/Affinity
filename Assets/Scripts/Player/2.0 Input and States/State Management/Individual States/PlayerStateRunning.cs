@@ -53,4 +53,8 @@ public class PlayerStateRunning : PlayerBaseState
         stateManager.characterMover.SetHorizontalMovementVelocity(0);
         stateManager.SwitchState(new PlayerStateBlocking(stateManager));
     }
+    public override void SHORYUKEN()
+    {
+        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+    }
 }

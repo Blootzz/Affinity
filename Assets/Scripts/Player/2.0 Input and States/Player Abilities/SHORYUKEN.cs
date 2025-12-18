@@ -10,7 +10,7 @@ public class SHORYUKEN : MonoBehaviour
     [SerializeField] float commandInputTiming = 0.15f;
 
     PlayerInput playerInput;
-    public event Action EventTriggerSHORYUKEN; // listened to in PlayerStateManager
+    //public event Action EventTriggerSHORYUKEN; // listened to in PlayerStateManager
 
     char[] answerKeyRight = { '6', '2', '3' };
     char[] answerKeyLeft = { '4', '2', '1' };
@@ -182,20 +182,19 @@ public class SHORYUKEN : MonoBehaviour
         //foreach (char entry in inputTracker)
         //    print(entry + " ");
 
-
-        print("Check Shoryu: "+CheckShoryu());
-
     }
 
-    // must be able to forgive intermediate misinputs to make inputs feasible on stick
+    /// <summary>
+    /// Called by State Manager directly so that it can decide whether to call regular attack or shoryuken
+    /// 
+    /// Must be able to forgive intermediate misinputs to make inputs feasible on stick
+    /// To solve this, the outer for loop iterates through all inputs
+    /// The inner loop iterates through the correct command inputs (answerKey)
+    /// If there is a match, the inner loop never iterates the preceeding answerKey indexes
+    /// </summary>
+    /// <returns></returns>
     public bool CheckShoryu()
     {
-        //if (inputTracker[0] == '6' && inputTracker[1] == '2' && inputTracker[2] == '3') // rightward
-        //    return true;
-        //if (inputTracker[0] == '4' && inputTracker[1] == '2' && inputTracker[2] == '1') // leftward
-        //    return true;
-        //return false;
-
         // directions must be separated so that it doesn't allow mixing and matching answer keys to interpret command input
 
         // left facing
@@ -211,6 +210,7 @@ public class SHORYUKEN : MonoBehaviour
                     numMatches++;
                     if (numMatches == numMatchesRequired)
                     {
+                        ClearInputs();
                         return true;
                     }
                     else // found a match, but not done
@@ -249,14 +249,6 @@ public class SHORYUKEN : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Call this when the Shoryuken state and animation actually go off
-    /// </summary>
-    public void OnExecutionClearInputs()
-    {
-        ClearInputs();
-    }
-
     void ClearInputs()
     {
         targetIndex = 0;
@@ -271,7 +263,7 @@ public class SHORYUKEN : MonoBehaviour
 public class PlayerStateSHORYUKEN : PlayerStateAttacking
 {
     [SerializeField] float shoryuDamage = 30;
-    [SerializeField] Vector2 shoryuSpeed = new Vector2(2, 12);
+    [SerializeField] Vector2 shoryuVelocity = new Vector2(2, 12);
 
     public PlayerStateSHORYUKEN(PlayerStateManager newStateManager) : base(newStateManager)
     {
@@ -283,17 +275,21 @@ public class PlayerStateSHORYUKEN : PlayerStateAttacking
 
         // animation sets playerHitbox.SetActive to true
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUSHORYUKEN);
-        stateManager.shoryukenChecker.OnExecutionClearInputs();
         DoShoryu();
     }
 
     void DoShoryu()
     {
-        stateManager.characterMover.SetVelocity(shoryuSpeed);
+        stateManager.characterMover.SetVelocity(new Vector2(shoryuVelocity.x * (stateManager.faceRight ? 1: -1), shoryuVelocity.y));
     }
 
     public override void EndStateByAnimation()
     {
         stateManager.SwitchState(new PlayerStateFalling(stateManager));
+    }
+
+    public override void ProcessGroundCheckEvent(bool isGrounded)
+    {
+        // ignore
     }
 }

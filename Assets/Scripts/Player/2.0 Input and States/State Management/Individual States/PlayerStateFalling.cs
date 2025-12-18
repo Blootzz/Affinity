@@ -36,4 +36,9 @@ public class PlayerStateFalling : PlayerBaseState
             stateManager.SwitchState(new PlayerStateDoubleJumping(stateManager));
     }
 
+    public override void SHORYUKEN()
+    {
+        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+    }
+
 }

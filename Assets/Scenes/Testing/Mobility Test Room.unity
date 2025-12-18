@@ -4318,6 +4318,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2762676935490463460, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5104496145526908873, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: timeManager
       value: 
@@ -4334,7 +4338,9 @@ PrefabInstance:
       propertyPath: maxPoise
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1055984150344014243, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+    - {fileID: 6395423303830159007, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

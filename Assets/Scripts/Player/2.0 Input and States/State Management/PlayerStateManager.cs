@@ -226,7 +226,10 @@ public class PlayerStateManager : MonoBehaviour
 
     void DoStateAttack()
     {
-        currentState.Attack();
+        if (shoryukenChecker.CheckShoryu())
+            currentState.SHORYUKEN();
+        else
+            currentState.Attack();
     }
 
     void DoStateInteract(bool started)

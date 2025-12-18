@@ -52,4 +52,9 @@ public class PlayerStateIdle : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateAttacking(stateManager));
     }
+
+    public override void SHORYUKEN()
+    {
+        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+    }
 }

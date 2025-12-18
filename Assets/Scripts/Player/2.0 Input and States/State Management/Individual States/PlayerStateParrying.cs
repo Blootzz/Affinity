@@ -105,4 +105,10 @@ public class PlayerStateParrying : PlayerStateBlocking
             stateManager.playerPoise.PlayerDeductMissedParryPenalty();
         }
     }
+
+    public override void SHORYUKEN()
+    {
+        if (wasParrySuccessful)
+            stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+    }
 }
