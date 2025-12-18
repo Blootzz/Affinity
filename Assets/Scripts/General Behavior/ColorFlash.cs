@@ -49,5 +49,6 @@ public class ColorFlash : MonoBehaviour
     public void EndBlueFlash()
     {
         StopCoroutine(cancellableCoroutine);
+        spriteRenderer.material.SetInt("_flashToggle", 0);
     }
 }

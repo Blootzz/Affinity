@@ -18,11 +18,6 @@ public class PlayerStateParrying : PlayerStateBlocking
     }
     public override void OnExit()
     {
-        // in case player is hit out of parry animation or something crazy happens
-        if (wasParrySuccessful == false)
-        {
-            stateManager.playerPoise.PlayerDeductMissedParryPenalty();
-        }
 
         stateManager.blockParryManager.ClearIsParryWindowOpen();
         stateManager.blockParryManager.SetEnableBlockers(false, false);
@@ -103,5 +98,11 @@ public class PlayerStateParrying : PlayerStateBlocking
     public override void EndStateByAnimation()
     {
         stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        // DO NOT PUT IN OnExit - RESULTS IN RECURSIVE BEHAVIOR because PlayerDeductMissedParryPenalty() calls SwitchState
+        // in case player is hit out of parry animation or something crazy happens
+        if (wasParrySuccessful == false)
+        {
+            stateManager.playerPoise.PlayerDeductMissedParryPenalty();
+        }
     }
 }

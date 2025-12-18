@@ -3,9 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
-    PlayerInput playerInput;
+    public PlayerHitbox playerHitbox;
     PlayerBaseState currentState;
     [SerializeField] private string currentStateName;
+    [SerializeField] GameObject ledgeGrabChecker; // set in editor
+
+    PlayerInput playerInput;
     [HideInInspector] public PlayerAnimationManager playerAnimationManager; // accessed by each state to play animations
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public CharacterJumper characterJumper;
@@ -15,8 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public WallCheck2 wallCheck;
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
-    [SerializeField] GameObject ledgeGrabChecker; // set in editor
-    public PlayerHitbox playerHitbox;
+    [HideInInspector] public ColorFlash colorFlasher;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -52,6 +54,7 @@ public class PlayerStateManager : MonoBehaviour
         blockParryManager = GetComponentInChildren<BlockParryManager>();
         playerHealth = GetComponent<Health>();
         playerPoise = GetComponent<Poise>();
+        colorFlasher = GetComponent<ColorFlash>();
     }
 
     // Event Subscription
@@ -296,7 +299,7 @@ public class PlayerStateManager : MonoBehaviour
     }
     void OnPoiseDepleted()
     {
-        if (playerPoise.poise < 0)
+        if (currentStateName.Equals("PlayerStatePoiseDepleted"))
         {
             Debug.LogError("poise depleted again. fix this bug");
             return;
