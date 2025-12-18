@@ -6,12 +6,14 @@ using System;
 
 public class SHORYUKEN : MonoBehaviour
 {
-    [SerializeField]
-    float commandInputTiming = 0.15f; // how long player can wait to add to command input
+    [Tooltip("how long player can wait to add to command input")]
+    [SerializeField] float commandInputTiming = 0.15f;
 
     PlayerInput playerInput;
     public event Action EventTriggerSHORYUKEN; // listened to in PlayerStateManager
 
+    char[] answerKeyRight = { '6', '2', '3' };
+    char[] answerKeyLeft = { '4', '2', '1' };
     char[] inputTracker = new char[4]; // records inputs as N,E,S,W regardless of if they are the right inputs
     int targetIndex = 0; // determines what index of the array should be filled
     float xInput = 0;
@@ -47,16 +49,20 @@ public class SHORYUKEN : MonoBehaviour
     /// </summary>
     void ShoryuOnActionTriggered(InputAction.CallbackContext context)
     {
+        // must take in started and cancelled input so it can zero out
+        if (!context.started && !context.canceled)
+            return;
+
         // only process horizontal or vertical inputs, storying them into inputX and inputY
         if (context.action.name.Equals("HorizontalAxis"))
         {
-            ProcessHorizontalInput(context.ReadValue<float>());
+            //ProcessHorizontalInput(context.ReadValue<float>());
             xInput = context.ReadValue<float>();
         }
         else if (context.action.name.Equals("VerticalAxis"))
         {
             yInput = context.ReadValue<float>();
-            ProcessVerticalInput(context.ReadValue<float>());
+            //ProcessVerticalInput(context.ReadValue<float>());
         }
         else
             return;
@@ -92,9 +98,13 @@ public class SHORYUKEN : MonoBehaviour
     /// </summary>
     void ProcessDirectionalInput()
     {
+        // don't do anything if neutral
+        if (xInput == 0 && yInput == 0)
+            return;
+
         // angle is 0 on right, 90 top, +/- 180 left, -90 bottom
         float angle = Mathf.Atan2(yInput, xInput) * Mathf.Rad2Deg;
-        print("Angle: " + angle);
+        //print("angle: " + angle);
 
         // section circle into 8ths (45 degrees), offest by 22.5 degrees
         // -157.5, -112.5, -67.5, -22.5, 22.5, 67.5, 112.5, 157.5 through -157.5
@@ -143,10 +153,12 @@ public class SHORYUKEN : MonoBehaviour
 
     void FillArray(char inputDirection) // adds one char to the array
     {
-        // prevent duplicate direction inputs to allow controllers to work
+        // prevent duplicate direction inputs to allow controllers to work. An analog stick may pass in a new value every frame if it's moving
+        if (targetIndex > 0 && inputDirection == inputTracker[targetIndex-1])
+            return;
 
         CancelInvoke();
-        Invoke(nameof(ClearInputs), commandInputTiming);
+        Invoke(nameof(ClearInputs), /*commandInputTiming*/3);
 
         // fill 0-4 position with input
         inputTracker[targetIndex] = inputDirection;
@@ -165,14 +177,75 @@ public class SHORYUKEN : MonoBehaviour
         {// targetIndex is either 0, 1, or 2.
             targetIndex++;
         }
+        
+        //print("inputTracker");
+        //foreach (char entry in inputTracker)
+        //    print(entry + " ");
+
+
+        print("Check Shoryu: "+CheckShoryu());
+
     }
 
+    // must be able to forgive intermediate misinputs to make inputs feasible on stick
     public bool CheckShoryu()
     {
-        if (inputTracker[0] == '6' && inputTracker[1] == '2' && inputTracker[2] == '3') // rightward
-            return true;
-        if (inputTracker[0] == '4' && inputTracker[1] == '2' && inputTracker[2] == '1') // leftward
-            return true;
+        //if (inputTracker[0] == '6' && inputTracker[1] == '2' && inputTracker[2] == '3') // rightward
+        //    return true;
+        //if (inputTracker[0] == '4' && inputTracker[1] == '2' && inputTracker[2] == '1') // leftward
+        //    return true;
+        //return false;
+
+        // directions must be separated so that it doesn't allow mixing and matching answer keys to interpret command input
+
+        // left facing
+        int numMatchesRequired = answerKeyLeft.Length;
+        int numMatches = 0;
+        int iAnswerProgress = -1; // index to start with when parsing answerKey. Start here on next inputTracker (outer) loop. Updates when a match is found
+        for (int iInput = 0; iInput < inputTracker.Length; iInput++)
+        {
+            for (int iKey = iAnswerProgress + 1; iKey < answerKeyLeft.Length; iKey++)
+            {
+                if (inputTracker[iInput] == answerKeyLeft[iKey])
+                {
+                    numMatches++;
+                    if (numMatches == numMatchesRequired)
+                    {
+                        return true;
+                    }
+                    else // found a match, but not done
+                    {
+                        iAnswerProgress = iKey;
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        // right facing
+        numMatchesRequired = answerKeyRight.Length;
+        numMatches = 0;
+        iAnswerProgress = -1; // index to start with when parsing answerKey. Start here on next inputTracker (outer) loop. Updates when a match is found
+        for (int iInput = 0; iInput < inputTracker.Length; iInput++)
+        {
+            for (int iKey = iAnswerProgress + 1; iKey < answerKeyRight.Length; iKey++)
+            {
+                if (inputTracker[iInput] == answerKeyRight[iKey])
+                {
+                    numMatches++;
+                    if (numMatches == numMatchesRequired)
+                        return true;
+                    else // found a match, but not done
+                    {
+                        iAnswerProgress = iKey;
+                        break;
+                    }
+                }
+            }
+
+        }
+
         return false;
     }
 
