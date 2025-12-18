@@ -30,4 +30,9 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.SwitchState(new PlayerStateReaching(stateManager));
     }
 
+    public override void JumpStart()
+    {
+        stateManager.doubleJump.TryDoubleJump();
+    }
+
 }

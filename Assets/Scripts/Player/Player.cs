@@ -21,7 +21,7 @@ public abstract class Player : MonoBehaviour
     GameObject tileMap;
     Hitbox1Script hitbox1;
     [HideInInspector]
-    public WallJumpCheck wallJumpCheck;
+    //public WallJumpCheck wallJumpCheck;
     //Stopwatch stopWatch;
 
     //// References to prefabs so player can drag in all of these items when placed in an empty room
@@ -382,23 +382,23 @@ public abstract class Player : MonoBehaviour
                         if (Input.GetKey(GameMaster.GM.controlManager.ledgeGrabKey) && !ledgeGrabCooldown)
                         {
                             animator.Play(AorUReach);
-                            ledgeGrabActive = true;
-                            wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                            //ledgeGrabActive = true;
+                            //wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
                         }
                         else if (!throwing) // tried animatorState.shortNameHash ==
                         {
                             ledgeGrabActive = false;
-                            if (isFalling)
-                                wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                            //if (isFalling)
+                            //    wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                         }
 
                         // Check if apex has been reached
                         if (!isFalling && rb.linearVelocity.y < 0) // Begin falling
                         {
                             isFalling = true;
-                            if (!ledgeGrabActive) // prevent ledge grab and wall slide from competing with each other, giving priority to ledge grab to avoid going into kinematic mode
-                                wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                            //if (!ledgeGrabActive) // prevent ledge grab and wall slide from competing with each other, giving priority to ledge grab to avoid going into kinematic mode
+                            //    wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = true;
                         }
 
                     }// !attacking
@@ -833,8 +833,8 @@ public abstract class Player : MonoBehaviour
 
     public void DisableWallJumpBox()
     {
-        wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        wallJumpCheck.isWallSliding = false;
+        //wallJumpCheck.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        //wallJumpCheck.isWallSliding = false;
         if(!onLedge)
             rb.isKinematic = false;
         ResetIsIgnoringHorInput();
