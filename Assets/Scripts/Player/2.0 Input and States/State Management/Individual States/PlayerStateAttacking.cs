@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class PlayerStateAttacking : PlayerBaseState
 {
+    [SerializeField] float attackDamage = 20;
+
     public PlayerStateAttacking(PlayerStateManager newStateManager) : base(newStateManager)
     {
     }
 
     public override void OnEnter()
     {
+        stateManager.playerHitbox.SetDamage(attackDamage);
         // animation sets playerHitbox.SetActive to true
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.StraightAttack);
     }

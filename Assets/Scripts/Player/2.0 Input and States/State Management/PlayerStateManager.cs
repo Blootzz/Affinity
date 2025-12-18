@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
+    [HideInInspector] public SHORYUKEN shoryukenChecker;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -55,6 +56,7 @@ public class PlayerStateManager : MonoBehaviour
         playerHealth = GetComponent<Health>();
         playerPoise = GetComponent<Poise>();
         colorFlasher = GetComponent<ColorFlash>();
+        shoryukenChecker = GetComponent<SHORYUKEN>();
     }
 
     // Event Subscription
@@ -312,6 +314,11 @@ public class PlayerStateManager : MonoBehaviour
     void OnHorVelocityHitZero()
     {
         currentState.HorVelocityHitZero();
+    }
+
+    void OnShoryukenEvent()
+    {
+        currentState.SHORYUKEN();
     }
 
     // called by animations that end their state

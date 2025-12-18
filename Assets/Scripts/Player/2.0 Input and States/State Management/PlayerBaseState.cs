@@ -84,4 +84,7 @@ public abstract class PlayerBaseState
     public virtual void InteractCancel()
     {
     }
+    public virtual void SHORYUKEN()
+    {
+    }
 }

@@ -1,106 +1,161 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using System;
 
-//public class SHORYUKEN : MonoBehaviour
-//{
-//    char[] inputTracker = new char[4]; // records inputs as N,E,S,W regardless of if they are the right inputs
-//    int targetIndex = 0; // determines what index of the array should be filled
-//    [SerializeField]
-//    float commandInputTiming = 0.15f; // how long player can wait to add to command input
-//    [SerializeField]
-//    Vector2 shoryuSpeed = new Vector2(2, 12);
-//    float shoryuDamage = 25f;
-//    float shoryuKnockbackMultiplier = 5f;
-//    Vector2 shoryuKnockbackAngle = new Vector2(1, 3);
+public class SHORYUKEN : MonoBehaviour
+{
+    [SerializeField]
+    float commandInputTiming = 0.15f; // how long player can wait to add to command input
 
-//    Rigidbody2D rb;
-//    Animator animator;
-//    int Shoryuken; // animation
+    PlayerInput playerInput;
+    public event Action EventTriggerSHORYUKEN; // listened to in PlayerStateManager
 
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        // initially filled with Z chars
-//        ClearInputs();
-//        rb = gameObject.GetComponent<Rigidbody2D>();
-//        animator = gameObject.GetComponent<Animator>();
-//        Shoryuken = Animator.StringToHash("SHORYUKEN");
-//    }
+    char[] inputTracker = new char[4]; // records inputs as N,E,S,W regardless of if they are the right inputs
+    int targetIndex = 0; // determines what index of the array should be filled
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        if (Input.GetKeyDown(GameMaster.GM.controlManager.upKey))
-//        {
-//            FillArray('N');
-//        }
-//        if (Input.GetKeyDown(GameMaster.GM.controlManager.rightKey))
-//        {
-//            FillArray('E');
-//        }
-//        if (Input.GetKeyDown(GameMaster.GM.controlManager.downKey))
-//        {
-//            FillArray('S');
-//        }
-//        if (Input.GetKeyDown(GameMaster.GM.controlManager.leftKey))
-//        {
-//            FillArray('W');
-//        }
-//    }
+    Rigidbody2D rb;
+    int Shoryuken; // animation
 
-//    void FillArray(char inputDirection) // adds one char to the array
-//    {
-//        CancelInvoke();
-//        Invoke(nameof(ClearInputs), commandInputTiming);
+    // Start is called before the first frame update
+    void Start()
+    {
+        // initially filled with Z chars
+        ClearInputs();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
 
-//        // fill 0-4 position with input
-//        inputTracker[targetIndex] = inputDirection;
+    void OnEnable()
+    {
+        playerInput.onActionTriggered += ShoryuOnActionTriggered;
+    }
+    private void OnDisable()
+    {
+        playerInput.onActionTriggered -= ShoryuOnActionTriggered;
+    }
+
+    /// <summary>
+    /// Listens to cardinal directions.
+    /// Listening to attack event is ONLY done in state manager to avoid event sequence ambiguity
+    /// </summary>
+    /// <param name="context"></param>
+    void ShoryuOnActionTriggered(InputAction.CallbackContext context)
+    {
+        // only process positive inputs
+        if (!context.started)
+            return;
+
+        if (context.action.name.Equals("HorizontalAxis"))
+            ProcessHorizontalInput(context.ReadValue<float>());
+        if (context.action.name.Equals("VerticalAxis"))
+            ProcessVerticalInput(context.ReadValue<float>());
+    }
+
+    /// <summary>
+    /// Uses <code>FillArray() to pass in cardinal direction char</code>
+    /// </summary>
+    /// <param name="input"></param>
+    void ProcessHorizontalInput(float input)
+    {
+        if (input > 0)
+            FillArray('E'); // east
+        else
+            FillArray('W'); // west
+    }
+    void ProcessVerticalInput(float input)
+    {
+        if (input > 0)
+            FillArray('N'); // north
+        else
+            FillArray('S');
+    }
+
+    void ProcessDirectionalInput(float xInput, float yInput)
+    {
         
-//        if (targetIndex == inputTracker.Length-1) // last position was just filled
-//        {
-//            // move everything in array back, overwriting the data in inputTracker[0]
-//            for (int i = 0; i < inputTracker.Length - 1; i++) // stops at second to last index
-//            {
-//                inputTracker[i] = inputTracker[i + 1];
-//            }// this leaves the last index unchanged, but that value will never be compared
+    }
 
-//            // targetIndex is not incremented and never will be as it has reached its max value
-//        }
-//        else
-//        {// targetIndex is either 0, 1, or 2.
-//            targetIndex++;
-//        }
-//    }
+    void FillArray(char inputDirection) // adds one char to the array
+    {
+        // prevent duplicate direction inputs to allow controllers to work
 
-//    public bool CheckShoryu()
-//    {
-//        if (inputTracker[0] == 'E' && inputTracker[1] == 'S' && inputTracker[2] == 'E')
-//            return true;
-//        if (inputTracker[0] == 'W' && inputTracker[1] == 'S' && inputTracker[2] == 'W')
-//            return true;
-//        return false;
-//    }
+        CancelInvoke();
+        Invoke(nameof(ClearInputs), commandInputTiming);
 
-//    public void DoShoryu()
-//    {
-//        Player thePlayer = GetComponent<Player>();
-//        ClearInputs();
+        // fill 0-4 position with input
+        inputTracker[targetIndex] = inputDirection;
 
-//        thePlayer.attacking = true;
-//        rb.isKinematic = true;
-//        rb.linearVelocity = new Vector2(thePlayer.faceRight ? shoryuSpeed.x : -shoryuSpeed.x, shoryuSpeed.y);
+        if (targetIndex == inputTracker.Length - 1) // last position was just filled
+        {
+            // move everything in array back, overwriting the data in inputTracker[0]
+            for (int i = 0; i < inputTracker.Length - 1; i++) // stops at second to last index
+            {
+                inputTracker[i] = inputTracker[i + 1];
+            }// this leaves the last index unchanged, but that value will never be compared
 
-//        thePlayer.SetUpAttack(shoryuDamage, 0.2f, shoryuKnockbackMultiplier, shoryuKnockbackAngle);
-//        animator.Play(Shoryuken);
-//    }
+            // targetIndex is not incremented and never will be as it has reached its max value
+        }
+        else
+        {// targetIndex is either 0, 1, or 2.
+            targetIndex++;
+        }
+    }
 
-//    void ClearInputs()
-//    {
-//        targetIndex = 0;
-//        for (int i = 0; i < inputTracker.Length; i++)
-//        {
-//            inputTracker[i] = 'Z';
-//        }
-//    }
-//}
+    public bool CheckShoryu()
+    {
+        if (inputTracker[0] == 'E' && inputTracker[1] == 'S' && inputTracker[2] == 'E')
+            return true;
+        if (inputTracker[0] == 'W' && inputTracker[1] == 'S' && inputTracker[2] == 'W')
+            return true;
+        return false;
+    }
+
+    /// <summary>
+    /// Call this when the Shoryuken state and animation actually go off
+    /// </summary>
+    public void OnExecutionClearInputs()
+    {
+        ClearInputs();
+    }
+
+    void ClearInputs()
+    {
+        targetIndex = 0;
+        for (int i = 0; i < inputTracker.Length; i++)
+        {
+            inputTracker[i] = 'Z';
+        }
+    }
+
+}
+
+public class PlayerStateSHORYUKEN : PlayerStateAttacking
+{
+    [SerializeField] float shoryuDamage = 30;
+    [SerializeField] Vector2 shoryuSpeed = new Vector2(2, 12);
+
+    public PlayerStateSHORYUKEN(PlayerStateManager newStateManager) : base(newStateManager)
+    {
+    }
+
+    public override void OnEnter()
+    {
+        stateManager.playerHitbox.SetDamage(shoryuDamage);
+
+        // animation sets playerHitbox.SetActive to true
+        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUSHORYUKEN);
+        stateManager.shoryukenChecker.OnExecutionClearInputs();
+        DoShoryu();
+    }
+
+    void DoShoryu()
+    {
+        stateManager.characterMover.SetVelocity(shoryuSpeed);
+    }
+
+    public override void EndStateByAnimation()
+    {
+        stateManager.SwitchState(new PlayerStateFalling(stateManager));
+    }
+}

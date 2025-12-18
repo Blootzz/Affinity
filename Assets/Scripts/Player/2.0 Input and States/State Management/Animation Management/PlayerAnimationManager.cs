@@ -21,6 +21,7 @@ public class PlayerAnimationManager : MonoBehaviour
     int WallSlide;
     int Crouch;
     int PoiseDepleted;
+    int SHORYUKEN;
     // Unarmed
     int IdleUnarmed;
     int PantUnarmed;
@@ -35,6 +36,7 @@ public class PlayerAnimationManager : MonoBehaviour
     int WallSlideUnarmed;
     int CrouchUnarmed;
     int PoiseDepletedUnarmed;
+    int SHORYUKENUnarmed;
 
     // Combat
     public int Block { get; private set; }
@@ -76,6 +78,7 @@ public class PlayerAnimationManager : MonoBehaviour
     public int AorUWallSlide { get; private set; }
     public int AorUCrouch { get; private set; }
     public int AorUPoiseDepleted { get; private set; }
+    public int AorUSHORYUKEN { get; private set; }
 
     #endregion
 
@@ -89,7 +92,6 @@ public class PlayerAnimationManager : MonoBehaviour
     {
         // Regular
         Idle = Animator.StringToHash(animationPrefix + "Idle");
-        //Walk = Animator.StringToHash(animationPrefix + "Walk");
         Pant = Animator.StringToHash(animationPrefix + "Pant");
         Run = Animator.StringToHash(animationPrefix + "Run");
         Stunned = Animator.StringToHash(animationPrefix + "Stunned");
@@ -101,7 +103,8 @@ public class PlayerAnimationManager : MonoBehaviour
         LedgeJump = Animator.StringToHash(animationPrefix + "LedgeJump");
         WallSlide = Animator.StringToHash(animationPrefix + "WallSlide");
         Crouch = Animator.StringToHash(animationPrefix + "Crouch");
-        PoiseDepleted = Animator.StringToHash(animationPrefix + "PoiseDepleted"); 
+        PoiseDepleted = Animator.StringToHash(animationPrefix + "PoiseDepleted");
+        SHORYUKEN = Animator.StringToHash("SHORYUKEN");
 
         // Unarmed
         IdleUnarmed = Animator.StringToHash(animationPrefix + "IdleUnarmed");
@@ -117,6 +120,7 @@ public class PlayerAnimationManager : MonoBehaviour
         WallSlideUnarmed = Animator.StringToHash(animationPrefix + "WallSlideUnarmed");
         CrouchUnarmed = Animator.StringToHash(animationPrefix + "CrouchUnarmed");
         PoiseDepletedUnarmed = Animator.StringToHash(animationPrefix + "PoiseDepletedUnarmed"); 
+        SHORYUKENUnarmed = Animator.StringToHash("SHORYUKENUnarmed");
 
         // attacks
         Block = Animator.StringToHash(animationPrefix + "Block");
@@ -163,6 +167,7 @@ public class PlayerAnimationManager : MonoBehaviour
         AorUWallSlide = WallSlide;
         AorUCrouch = Crouch;
         AorUPoiseDepleted = PoiseDepleted;
+        AorUSHORYUKEN = SHORYUKEN;
 
         DynamicIdle = Idle;
     }
@@ -186,6 +191,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorULedgeJump = LedgeJump;
             AorUCrouch = Crouch;
             AorUPoiseDepleted = PoiseDepleted;
+            AorUSHORYUKEN = SHORYUKEN;
         }
         else
         {
@@ -202,6 +208,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorULedgeJump = LedgeJumpUnarmed;
             AorUCrouch = CrouchUnarmed;
             AorUPoiseDepleted = PoiseDepletedUnarmed;
+            AorUSHORYUKEN = SHORYUKENUnarmed;
         }
 
         if (DynamicIdle == Pant || DynamicIdle == PantUnarmed)
