@@ -48,4 +48,5 @@ public abstract class PlayerBaseState
     
     public virtual void WallCheckEntered() { }
     public virtual void WallCheckExited() { }
+    public virtual void FallingApexReached() { }
 }

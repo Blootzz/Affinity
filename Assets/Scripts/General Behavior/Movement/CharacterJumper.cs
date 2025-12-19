@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class CharacterJumper : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class CharacterJumper : MonoBehaviour
     [SerializeField] float ascentGravity = 8;
     [SerializeField] float descentGravity = 3;
     [SerializeField] float shortHopVelocityDivisor = 4;
+
+    public event Action HitApexEvent; // listened to in PlayerStateManager for Falling state to evaluate wall slide
 
     private void Awake()
     {
@@ -17,7 +20,10 @@ public class CharacterJumper : MonoBehaviour
     private void FixedUpdate()
     {
         if (rb.linearVelocityY < 0)
+        {
             ApplyDescendingGravity();
+            HitApexEvent?.Invoke();
+        }
     }
 
     /// <summary>
@@ -81,9 +87,13 @@ public class CharacterJumper : MonoBehaviour
     [Tooltip("post-Flip direction to push player for wall jump")]
     [SerializeField] Vector2 wallJumpVelocity;
 
-    public void BeginWallJumpAscent()
+    /// <summary>
+    /// Called by wall jump after flipping to face the correct direction
+    /// </summary>
+    public void BeginWallJumpAscent(bool faceRight)
     {
-        rb.linearVelocity = wallJumpVelocity;
+        rb.linearVelocityX = wallJumpVelocity.x * (faceRight ? 1 : -1);
+        rb.linearVelocityY = wallJumpVelocity.y;
         rb.gravityScale = ascentGravity;
     }
     #endregion

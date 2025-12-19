@@ -71,6 +71,7 @@ public class PlayerStateManager : MonoBehaviour
         playerPoise.PoiseDepletedEvent += OnPoiseDepleted;
         characterMover.HorVelocityHitZeroEvent += OnHorVelocityHitZero;
         ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent += OnLedgeGrabFound;
+        characterJumper.HitApexEvent += OnFallingApexReached;
     }
 
     // Event Unsubscription
@@ -85,6 +86,7 @@ public class PlayerStateManager : MonoBehaviour
         playerPoise.PoiseDepletedEvent -= OnPoiseDepleted;
         characterMover.HorVelocityHitZeroEvent -= OnHorVelocityHitZero;
         ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent -= OnLedgeGrabFound;
+        characterJumper.HitApexEvent -= OnFallingApexReached;
     }
 
     private void Start()
@@ -273,6 +275,11 @@ public class PlayerStateManager : MonoBehaviour
             currentState.WallCheckEntered();
         else
             currentState.WallCheckExited();
+    }
+
+    void OnFallingApexReached()
+    {
+        currentState.FallingApexReached();
     }
 
     public void FlipIfNecessary()
