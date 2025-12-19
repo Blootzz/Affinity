@@ -18,10 +18,11 @@ public class PlayerAnimationManager : MonoBehaviour
     int Hanging;
     int ClimbLedge;
     int LedgeJump;
-    int WallSlide;
     int Crouch;
     int PoiseDepleted;
     int SHORYUKEN;
+    int WallSlide;
+    int WallJump;
     // Unarmed
     int IdleUnarmed;
     int PantUnarmed;
@@ -33,10 +34,11 @@ public class PlayerAnimationManager : MonoBehaviour
     int HangingUnarmed;
     int ClimbLedgeUnarmed;
     int LedgeJumpUnarmed;
-    int WallSlideUnarmed;
     int CrouchUnarmed;
     int PoiseDepletedUnarmed;
     int SHORYUKENUnarmed;
+    int WallSlideUnarmed;
+    int WallJumpUnarmed;
 
     // Combat
     public int Block { get; private set; }
@@ -46,13 +48,7 @@ public class PlayerAnimationManager : MonoBehaviour
     public int QuickThrow { get; private set; }
     public int StraightAttack { get; private set; }
     public int UpAttack { get; private set; }
-    public int DownAttack { get; private set; }
-    public int Jab1Animation { get; private set; }
-    public int Jab2Animation { get; private set; }
-    public int Jab3Animation { get; private set; }
-    public int OverheadAnimation { get; private set; }
     public int Throw { get; private set; }
-    public int ThrowHeavy { get; private set; }
 
     // Special Abilities
     // Zipline (used in Rope.cs)
@@ -75,10 +71,11 @@ public class PlayerAnimationManager : MonoBehaviour
     public int AorUHanging { get; private set; }
     public int AorUClimbLedge { get; private set; }
     public int AorULedgeJump { get; private set; }
-    public int AorUWallSlide { get; private set; }
     public int AorUCrouch { get; private set; }
     public int AorUPoiseDepleted { get; private set; }
     public int AorUSHORYUKEN { get; private set; }
+    public int AorUWallSlide { get; private set; }
+    public int AorUWallJump { get; private set; }
 
     #endregion
 
@@ -101,10 +98,11 @@ public class PlayerAnimationManager : MonoBehaviour
         Hanging = Animator.StringToHash(animationPrefix + "Hanging");
         ClimbLedge = Animator.StringToHash(animationPrefix + "ClimbLedge");
         LedgeJump = Animator.StringToHash(animationPrefix + "LedgeJump");
-        WallSlide = Animator.StringToHash(animationPrefix + "WallSlide");
         Crouch = Animator.StringToHash(animationPrefix + "Crouch");
         PoiseDepleted = Animator.StringToHash(animationPrefix + "PoiseDepleted");
         SHORYUKEN = Animator.StringToHash("SHORYUKEN");
+        WallSlide = Animator.StringToHash(animationPrefix + "WallSlide");
+        WallJump = Animator.StringToHash(animationPrefix + "WallJump");
 
         // Unarmed
         IdleUnarmed = Animator.StringToHash(animationPrefix + "IdleUnarmed");
@@ -117,10 +115,11 @@ public class PlayerAnimationManager : MonoBehaviour
         HangingUnarmed = Animator.StringToHash(animationPrefix + "HangingUnarmed");
         ClimbLedgeUnarmed = Animator.StringToHash(animationPrefix + "ClimbLedgeUnarmed");
         LedgeJumpUnarmed = Animator.StringToHash(animationPrefix + "LedgeJumpUnarmed");
-        WallSlideUnarmed = Animator.StringToHash(animationPrefix + "WallSlideUnarmed");
         CrouchUnarmed = Animator.StringToHash(animationPrefix + "CrouchUnarmed");
         PoiseDepletedUnarmed = Animator.StringToHash(animationPrefix + "PoiseDepletedUnarmed"); 
         SHORYUKENUnarmed = Animator.StringToHash("SHORYUKENUnarmed");
+        WallSlideUnarmed = Animator.StringToHash(animationPrefix + "WallSlideUnarmed");
+        WallJumpUnarmed = Animator.StringToHash(animationPrefix + "WallJumpUnarmed");
 
         // attacks
         Block = Animator.StringToHash(animationPrefix + "Block");
@@ -130,13 +129,7 @@ public class PlayerAnimationManager : MonoBehaviour
         QuickThrow = Animator.StringToHash(animationPrefix + "QuickThrow");
         StraightAttack = Animator.StringToHash(animationPrefix + "StraightAttack");
         UpAttack = Animator.StringToHash(animationPrefix + "UpAttack");
-        DownAttack = Animator.StringToHash(animationPrefix + "DownAttack");
-        Jab1Animation = Animator.StringToHash(animationPrefix + "Jab1");
-        Jab2Animation = Animator.StringToHash(animationPrefix + "Jab2");
-        Jab3Animation = Animator.StringToHash(animationPrefix + "Jab3");
-        OverheadAnimation = Animator.StringToHash(animationPrefix + "Overhead");
         Throw = Animator.StringToHash(animationPrefix + "Throw");
-        ThrowHeavy = Animator.StringToHash(animationPrefix + "ThrowHeavy");
 
         // Special Abilities
         ZiplineForward = Animator.StringToHash(animationPrefix + "ZiplineForward");
@@ -164,10 +157,11 @@ public class PlayerAnimationManager : MonoBehaviour
         AorUHanging = Hanging;
         AorUClimbLedge = ClimbLedge;
         AorULedgeJump = LedgeJump;
-        AorUWallSlide = WallSlide;
         AorUCrouch = Crouch;
         AorUPoiseDepleted = PoiseDepleted;
         AorUSHORYUKEN = SHORYUKEN;
+        AorUWallSlide = WallSlide;
+        AorUWallJump = WallJump;
 
         DynamicIdle = Idle;
     }
@@ -193,6 +187,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUPoiseDepleted = PoiseDepleted;
             AorUSHORYUKEN = SHORYUKEN;
             AorUWallSlide = WallSlide;
+            AorUWallJump = WallJump;
         }
         else
         {
@@ -211,6 +206,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUPoiseDepleted = PoiseDepletedUnarmed;
             AorUSHORYUKEN = SHORYUKENUnarmed;
             AorUWallSlide = WallSlideUnarmed;
+            AorUWallJump = WallJumpUnarmed;
         }
 
         if (DynamicIdle == Pant || DynamicIdle == PantUnarmed)
