@@ -71,7 +71,7 @@ public class PlayerStateWallJumping : PlayerBaseState
     public override void OnEnter()
     {
         stateManager.ForceFlip();
-        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUFalling);
+        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorUWallJump);
         stateManager.characterJumper.BeginWallJumpAscent();
     }
 

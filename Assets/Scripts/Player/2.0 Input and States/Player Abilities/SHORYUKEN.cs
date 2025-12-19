@@ -12,8 +12,8 @@ public class SHORYUKEN : MonoBehaviour
     PlayerInput playerInput;
     //public event Action EventTriggerSHORYUKEN; // listened to in PlayerStateManager
 
-    char[] answerKeyRight = { '6', '2', '3' };
-    char[] answerKeyLeft = { '4', '2', '1' };
+    readonly char[] answerKeyRight = { '6', '2', '3' };
+    readonly char[] answerKeyLeft = { '4', '2', '1' };
     char[] inputTracker = new char[4]; // records inputs as N,E,S,W regardless of if they are the right inputs
     int targetIndex = 0; // determines what index of the array should be filled
     float xInput = 0;
@@ -73,20 +73,20 @@ public class SHORYUKEN : MonoBehaviour
     /// <summary>
     /// Uses <code>FillArray()</code>to pass in cardinal direction char
     /// </summary>
-    void ProcessHorizontalInput(float input)
-    {
-        if (input > 0)
-            FillArray('E'); // east
-        else
-            FillArray('W'); // west
-    }
-    void ProcessVerticalInput(float input)
-    {
-        if (input > 0)
-            FillArray('N'); // north
-        else
-            FillArray('S');
-    }
+    //void ProcessHorizontalInput(float input)
+    //{
+    //    if (input > 0)
+    //        FillArray('E'); // east
+    //    else
+    //        FillArray('W'); // west
+    //}
+    //void ProcessVerticalInput(float input)
+    //{
+    //    if (input > 0)
+    //        FillArray('N'); // north
+    //    else
+    //        FillArray('S');
+    //}
 
     /// <summary>
     /// uses fighting game annotation for char of numbered positions (same as number pad on keyboard)
@@ -158,7 +158,7 @@ public class SHORYUKEN : MonoBehaviour
             return;
 
         CancelInvoke();
-        Invoke(nameof(ClearInputs), /*commandInputTiming*/3);
+        Invoke(nameof(ClearInputs), commandInputTiming);
 
         // fill 0-4 position with input
         inputTracker[targetIndex] = inputDirection;
