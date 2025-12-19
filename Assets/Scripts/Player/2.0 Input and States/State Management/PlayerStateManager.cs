@@ -50,7 +50,7 @@ public class PlayerStateManager : MonoBehaviour
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
-        wallCheck = GetComponent<WallCheck2>();
+        wallCheck = GetComponentInChildren<WallCheck2>();
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         blockParryManager = GetComponentInChildren<BlockParryManager>();
         playerHealth = GetComponent<Health>();
