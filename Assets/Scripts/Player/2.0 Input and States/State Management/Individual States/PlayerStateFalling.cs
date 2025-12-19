@@ -49,7 +49,9 @@ public class PlayerStateFalling : PlayerBaseState
     public override void FallingApexReached()
     {
         if (stateManager.wallCheck.GetIsInWall())
+        {
             stateManager.SwitchState(new PlayerStateWallSlide(stateManager));
+        }
     }
 
 }

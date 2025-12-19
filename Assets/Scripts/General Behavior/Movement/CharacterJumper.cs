@@ -10,6 +10,7 @@ public class CharacterJumper : MonoBehaviour
     [SerializeField] float shortHopVelocityDivisor = 4;
 
     public event Action HitApexEvent; // listened to in PlayerStateManager for Falling state to evaluate wall slide
+    bool wasPreviousVelocityNegative = false;
 
     private void Awake()
     {
@@ -22,8 +23,15 @@ public class CharacterJumper : MonoBehaviour
         if (rb.linearVelocityY < 0)
         {
             ApplyDescendingGravity();
-            HitApexEvent?.Invoke();
+
+            // only fire event once on apex, not every FixedUpdate
+            if (!wasPreviousVelocityNegative)
+                HitApexEvent?.Invoke();
+
+            wasPreviousVelocityNegative = true;
         }
+        else
+            wasPreviousVelocityNegative = false;
     }
 
     /// <summary>

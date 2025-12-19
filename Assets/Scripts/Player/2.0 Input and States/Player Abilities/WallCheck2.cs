@@ -60,7 +60,11 @@ public class PlayerStateWallSlide : PlayerBaseState
     {
         // player is still "facing" wall
         if (stateManager.GetLastSetXInput() < 0 && stateManager.faceRight || stateManager.GetLastSetXInput() > 0 && !stateManager.faceRight)
+        {
+            // flip to prevent falling state immediately recognize wall slide again
+            stateManager.ForceFlip();
             stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        }
     }
 
     /// <summary>
