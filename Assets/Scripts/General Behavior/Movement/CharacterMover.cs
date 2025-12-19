@@ -5,7 +5,7 @@ public class CharacterMover : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField] float currentHorVelocity = 0;
-    [SerializeField] float speed = 0;
+    [SerializeField] float characterSpeed = 0;
     bool isMoving = false;
 
     public event Action HorVelocityHitZeroEvent;
@@ -34,17 +34,16 @@ public class CharacterMover : MonoBehaviour
 
     public void SetMoveSpeed(float newMoveSpeed)
     {
-        speed = newMoveSpeed;
+        characterSpeed = newMoveSpeed;
     }
 
     /// <summary>
-    /// Sets rb.linearVelocity to <paramref name="newHorVelocity"/> * speed. 
-    /// DOES NOT ASSUME ANYTHING IS NORMALIZED, DO THAT YOURSELF
+    /// Sets rb.linearVelocityX to <paramref name="newHorVelocity"/> * characterSpeed. 
+    /// If you don't want to involve characterSpeed, use SetVelocityX
     /// </summary>
-    /// <param name="newHorVelocity"></param>
     public void SetHorizontalMovementVelocity(float newHorVelocity)
     {
-        currentHorVelocity = newHorVelocity * speed;
+        currentHorVelocity = newHorVelocity * characterSpeed;
         rb.linearVelocityX = currentHorVelocity;
     }
 
@@ -57,6 +56,11 @@ public class CharacterMover : MonoBehaviour
         currentHorVelocity = velocity.x;
         rb.linearVelocity = velocity;
     }
+
+    /// <summary>
+    /// Directly sets rb.linearVelocityX to <paramref name="newVelocityX"/>
+    /// bypasses characterSpeed
+    /// </summary>
     public void SetVelocityX(float newVelocityX)
     {
         currentHorVelocity = newVelocityX;

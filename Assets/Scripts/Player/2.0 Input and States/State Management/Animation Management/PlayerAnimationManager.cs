@@ -192,6 +192,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUCrouch = Crouch;
             AorUPoiseDepleted = PoiseDepleted;
             AorUSHORYUKEN = SHORYUKEN;
+            AorUWallSlide = WallSlide;
         }
         else
         {
@@ -209,6 +210,7 @@ public class PlayerAnimationManager : MonoBehaviour
             AorUCrouch = CrouchUnarmed;
             AorUPoiseDepleted = PoiseDepletedUnarmed;
             AorUSHORYUKEN = SHORYUKENUnarmed;
+            AorUWallSlide = WallSlideUnarmed;
         }
 
         if (DynamicIdle == Pant || DynamicIdle == PantUnarmed)

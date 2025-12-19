@@ -75,4 +75,16 @@ public class CharacterJumper : MonoBehaviour
         canDoubleJump = true;
     }
     #endregion
+
+    #region Wall Jump
+    [Header("Wall Jump")]
+    [Tooltip("post-Flip direction to push player for wall jump")]
+    [SerializeField] Vector2 wallJumpVelocity;
+
+    public void BeginWallJumpAscent()
+    {
+        rb.linearVelocity = wallJumpVelocity;
+        rb.gravityScale = ascentGravity;
+    }
+    #endregion
 }

@@ -41,4 +41,9 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
     }
 
+    public override void WallCheckEntered()
+    {
+        stateManager.SwitchState(new PlayerStateWallSlide(stateManager));
+    }
+
 }

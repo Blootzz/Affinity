@@ -29,6 +29,7 @@ public class PlayerStateJumping : PlayerStateFalling
 
     public override void JumpStart()
     {
+        // if jump is pressed while in Jump state, defer to Fall state double jump check
         base.JumpStart(); // double jump
     }
 

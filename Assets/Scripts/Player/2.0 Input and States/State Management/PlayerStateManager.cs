@@ -269,7 +269,10 @@ public class PlayerStateManager : MonoBehaviour
 
     void OnWallCheckChange(bool isInWall)
     {
-        currentState.ProcessWallCheckEvent(isInWall);
+        if (isInWall)
+            currentState.WallCheckEntered();
+        else
+            currentState.WallCheckExited();
     }
 
     public void FlipIfNecessary()
@@ -283,6 +286,13 @@ public class PlayerStateManager : MonoBehaviour
     {
         faceRight = !faceRight;
         transform.Rotate(Vector3.up * 180);
+    }
+    /// <summary>
+    /// Forcibly flips the player. Useful for Wall Jump
+    /// </summary>
+    public void ForceFlip()
+    {
+        Flip();
     }
 
     void FlagOnPlayerHurtboxHit() => flagHurtboxHit = true;
