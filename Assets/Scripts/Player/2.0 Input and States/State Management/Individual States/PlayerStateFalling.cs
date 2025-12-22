@@ -12,8 +12,8 @@ public class PlayerStateFalling : PlayerBaseState
         // Plays AnselmFalling or AnselmFallingUnarmed animation
         // both have transitions into their extended falling versions
         HorizontalAxis();
-        if (stateManager.GetLastInteractInput())
-            InteractStart();
+        if (stateManager.GetLastLedgeGrabInput())
+            LedgeGrabStarted();
     }
 
     public override void HorizontalAxis()
@@ -25,7 +25,7 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.FlipIfNecessary();
     }
 
-    public override void InteractStart()
+    public override void LedgeGrabStarted()
     {
         stateManager.SwitchState(new PlayerStateReaching(stateManager));
     }

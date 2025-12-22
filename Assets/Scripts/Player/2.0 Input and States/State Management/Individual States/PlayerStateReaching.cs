@@ -21,7 +21,7 @@ public class PlayerStateReaching : PlayerStateFalling
         stateManager.EnableLedgeGrabCheck(false);
     }
 
-    public override void InteractCancel()
+    public override void LedgeGrabCanceled()
     {
         stateManager.SwitchState(new PlayerStateFalling(stateManager));
     }

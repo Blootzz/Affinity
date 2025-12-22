@@ -79,11 +79,11 @@ public class PlayerStateWallSlide : PlayerBaseState
     /// <summary>
     /// Make sure player can grab ledge if they just started sliding
     /// </summary>
-    public override void InteractStart()
+    public override void LedgeGrabStarted()
     {
         stateManager.EnableLedgeGrabCheck(true);
     }
-    public override void InteractCancel()
+    public override void LedgeGrabCanceled()
     {
         stateManager.EnableLedgeGrabCheck(false);
     }

@@ -42,11 +42,12 @@ public abstract class PlayerBaseState
 
     public virtual void HorVelocityHitZero() { }
 
-    public virtual void InteractStart() { }
-    public virtual void InteractCancel() { }
+    public virtual void LedgeGrabStarted() { }
+    public virtual void LedgeGrabCanceled() { }
     public virtual void SHORYUKEN() { }
     
     public virtual void WallCheckEntered() { }
     public virtual void WallCheckExited() { }
     public virtual void FallingApexReached() { }
+    public virtual void OpenGuitar() { }
 }

@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -31,7 +32,7 @@ public class PlayerStateManager : MonoBehaviour
     float lastSetXInput = 0; // used to track input when Idle state is called but a new Input Action hasn't fired yet
     float lastSetYInput = 0;
     bool lastSetBlockInput = false;
-    bool lastInteractInput = false;
+    bool lastLedgeGrabInput = false;
 
     [Header("State Logic Modifiers")]
     public bool isInvincible = false;
@@ -141,6 +142,16 @@ public class PlayerStateManager : MonoBehaviour
         if (context.performed)
             return;
 
+        string currentMapName = playerInput.currentActionMap.name;
+
+        if (currentMapName.Equals("Basic"))
+            DoInputsBasicMap(context);
+        else if (currentMapName.Equals("Guitar"))
+            DoInputsGuitarMap(context);
+
+    }
+    void DoInputsBasicMap(InputAction.CallbackContext context)
+    {
         if (context.action.name.Equals("HorizontalAxis"))
             DoStateHorizontal(context.ReadValue<float>());
         if (context.action.name.Equals("VerticalAxis"))
@@ -167,13 +178,42 @@ public class PlayerStateManager : MonoBehaviour
                 DoStateAttack();
         }
 
-        if (context.action.name.Equals("Interact"))
+        if (context.action.name.Equals("LedgeGrab"))
         {
             if (context.started)
-                DoStateInteract(true);
+                DoStateLedgeGrab(true);
             else if (context.canceled)
-                DoStateInteract(false);
+                DoStateLedgeGrab(false);
         }
+
+        if (context.action.name.Equals("Guitar"))
+        {
+            if (context.started)
+                DoStateGuitar();
+        }
+    }
+    void DoInputsGuitarMap(InputAction.CallbackContext context)
+    {
+        //if (context.action.name.Equals("1st"))
+        //    guitarController.PlayNote(1);
+        //if (context.action.name.Equals("2nd"))
+        //    guitarController.PlayNote(2);
+        //if (context.action.name.Equals("3rd"))
+        //    guitarController.PlayNote(3);
+        //if (context.action.name.Equals("4th"))
+        //    guitarController.PlayNote(4);
+        //if (context.action.name.Equals("5th"))
+        //    guitarController.PlayNote(5);
+        //if (context.action.name.Equals("6th"))
+        //    guitarController.PlayNote(6);
+        //if (context.action.name.Equals("7th"))
+        //    guitarController.PlayNote(7);
+        //if (context.action.name.Equals("8th"))
+        //    guitarController.PlayNote(8);
+        //if (context.action.name.Equals("9th"))
+        //    guitarController.PlayNote(9);
+        //if (context.action.name.Equals("10th"))
+        //    guitarController.PlayNote(10);
     }
 
     #region Horizontal Control
@@ -234,32 +274,37 @@ public class PlayerStateManager : MonoBehaviour
             currentState.Attack();
     }
 
-    void DoStateInteract(bool started)
+    void DoStateLedgeGrab(bool started)
     {
         if (started)
         {
-            lastInteractInput = true;
-            currentState.InteractStart();
+            lastLedgeGrabInput = true;
+            currentState.LedgeGrabStarted();
         }
         else
         {
-            lastInteractInput = false;
-            currentState.InteractCancel();
+            lastLedgeGrabInput = false;
+            currentState.LedgeGrabCanceled();
         }
     }
     public void EnableLedgeGrabCheck(bool active)
     {
         ledgeGrabChecker.SetActive(active);
     }
-    public bool GetLastInteractInput()
+    public bool GetLastLedgeGrabInput()
     {
-        return lastInteractInput;
+        return lastLedgeGrabInput;
     }
 
     void OnLedgeGrabFound(Vector2 ledgePos)
     {
         ledgeGrabPos = ledgePos;
         SwitchState(new PlayerStateLedgeHang(this));
+    }
+
+    void DoStateGuitar()
+    {
+        currentState.OpenGuitar();
     }
 
     void OnStateGroundedChange(bool isGrounded)
@@ -336,9 +381,9 @@ public class PlayerStateManager : MonoBehaviour
         currentState.HorVelocityHitZero();
     }
 
-    void OnShoryukenEvent()
+    public void SwitchActionMap(string newMap)
     {
-        currentState.SHORYUKEN();
+        playerInput.SwitchCurrentActionMap(newMap);
     }
 
     // called by animations that end their state
