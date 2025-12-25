@@ -233,6 +233,11 @@ public class PlayerAnimationManager : MonoBehaviour
         animator.Play(animationHash, -1, 0);
     }
 
+    public void PlayAnimationFromString(string animationName)
+    {
+        animator.Play(animationName);
+    }
+
     /// <summary>
     /// Simply calls animator.SetBool so that the animator can be kept private
     /// </summary>

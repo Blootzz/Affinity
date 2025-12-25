@@ -8,6 +8,7 @@ public class PlayerStateGuitar : PlayerBaseState
 
     public override void OnEnter()
     {
+        stateManager.playerAnimationManager.PlayAnimationFromString("GuitarBaseLayer");
         stateManager.SwitchActionMap("Guitar");
     }
 
