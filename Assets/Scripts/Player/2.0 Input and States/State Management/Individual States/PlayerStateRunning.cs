@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerStateRunning : PlayerBaseState
+public class PlayerStateRunning : PlayerStateIdle
 {
     // needs a special constructor because HorizontalAxis can't get called by OnEnter
     public PlayerStateRunning(PlayerStateManager newStateManager) : base(newStateManager)
@@ -11,6 +11,12 @@ public class PlayerStateRunning : PlayerBaseState
     {
         HorizontalAxis();
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorURun);
+    }
+
+    public override void OnExit()
+    {
+        base.OnExit();
+        stateManager.characterMover.SetHorizontalMovementVelocity(0);
     }
 
     public override void HorizontalAxis()
@@ -50,11 +56,7 @@ public class PlayerStateRunning : PlayerBaseState
 
     public override void BlockStart()
     {
+        base.BlockStart();
         stateManager.characterMover.SetHorizontalMovementVelocity(0);
-        stateManager.SwitchState(new PlayerStateBlocking(stateManager));
-    }
-    public override void SHORYUKEN()
-    {
-        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
     }
 }

@@ -57,4 +57,9 @@ public class PlayerStateIdle : PlayerBaseState
     {
         stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
     }
+
+    public override void OpenGuitar()
+    {
+        stateManager.SwitchState(new PlayerStateGuitar(stateManager));
+    }
 }
