@@ -383,7 +383,9 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SwitchActionMap(string newMap)
     {
-        playerInput.SwitchCurrentActionMap(newMap);
+        print("Switching action map from " + playerInput.currentActionMap.name + " to " + newMap);
+        print("currentActionMap == null: " + playerInput.currentActionMap == null);
+        playerInput.SwitchCurrentActionMap(/*newMap*/playerInput.actions.FindActionMap("Guitar").name);
     }
 
     // called by animations that end their state
