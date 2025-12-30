@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/LedgeHang")]
 public class PlayerStateLedgeHang : PlayerBaseState
 {
     [Tooltip("Sum of this offset and the ledge position equals good player position while facing right")]

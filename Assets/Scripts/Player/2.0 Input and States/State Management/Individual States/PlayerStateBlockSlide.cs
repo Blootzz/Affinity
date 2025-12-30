@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/BlockSlide")]
 public class PlayerStateBlockSlide : PlayerStateBlocking
 {
     PhysicsMaterialManager physicsMaterialManager;

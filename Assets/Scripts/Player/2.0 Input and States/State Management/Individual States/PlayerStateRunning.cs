@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Running")]
 public class PlayerStateRunning : PlayerStateIdle
 {
     // needs a special constructor because HorizontalAxis can't get called by OnEnter

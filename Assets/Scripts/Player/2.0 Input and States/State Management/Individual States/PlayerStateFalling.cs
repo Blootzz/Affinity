@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Falling")]
 public class PlayerStateFalling : PlayerBaseState
 {
     //public PlayerStateFalling(PlayerStateManager newStateManager) : base(newStateManager)

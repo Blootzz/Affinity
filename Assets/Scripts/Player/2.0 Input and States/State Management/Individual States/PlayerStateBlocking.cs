@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Blocking")]
 public class PlayerStateBlocking : PlayerBaseState
 {
     protected bool isBlockingUp = false;

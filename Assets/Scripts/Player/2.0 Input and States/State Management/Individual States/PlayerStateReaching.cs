@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Reaching")]
 public class PlayerStateReaching : PlayerStateFalling
 {
     //public PlayerStateReaching(PlayerStateManager newStateManager) : base(newStateManager)

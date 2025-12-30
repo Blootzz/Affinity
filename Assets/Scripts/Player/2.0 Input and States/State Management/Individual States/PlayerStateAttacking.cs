@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Attacking")]
 public class PlayerStateAttacking : PlayerBaseState
 {
     [SerializeField] float attackDamage = 20;

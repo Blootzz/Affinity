@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Jumping")]
 public class PlayerStateJumping : PlayerStateFalling
 {
     //public PlayerStateJumping(PlayerStateManager newStateManager) : base(newStateManager)
@@ -41,6 +42,7 @@ public class PlayerStateJumping : PlayerStateFalling
     }
 }
 
+[CreateAssetMenu(menuName = "States/Player/DoubleJumping")]
 public class PlayerStateDoubleJumping : PlayerStateJumping // inherits from PlayerStateFalling too
 {
     //public PlayerStateDoubleJumping(PlayerStateManager newStateManager) : base(newStateManager)

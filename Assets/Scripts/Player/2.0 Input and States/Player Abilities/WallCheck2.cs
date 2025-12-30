@@ -22,6 +22,7 @@ public class WallCheck2 : MonoBehaviour
     public bool GetIsInWall() => IsInWall;
 }
 
+[CreateAssetMenu(menuName = "States/Player/WallSlide")]
 public class PlayerStateWallSlide : PlayerBaseState
 {
     [SerializeField] float slideDownVelocityY = -2;
@@ -103,6 +104,7 @@ public class PlayerStateWallSlide : PlayerBaseState
 
 }
 
+[CreateAssetMenu(menuName = "States/Player/WallJumping")]
 public class PlayerStateWallJumping : PlayerBaseState
 {
     //public PlayerStateWallJumping(PlayerStateManager stateManager) : base(stateManager)

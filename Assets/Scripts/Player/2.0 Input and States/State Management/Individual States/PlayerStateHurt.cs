@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+[CreateAssetMenu(menuName = "States/Player/Hurt")]
 public class PlayerStateHurt : PlayerBaseState
 {
     PhysicsMaterialManager physicsMaterialManager;

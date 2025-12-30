@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/LedgeClimb")]
 public class PlayerStateLedgeClimb : PlayerBaseState
 {
     // used to address ledge climb animation dropping the player at exactly the ledge when the animation ends farther

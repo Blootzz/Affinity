@@ -260,6 +260,7 @@ public class SHORYUKEN : MonoBehaviour
 
 }
 
+[CreateAssetMenu(menuName = "States/Player/SHORYUKEN")]
 public class PlayerStateSHORYUKEN : PlayerStateAttacking
 {
     [SerializeField] float shoryuDamage = 30;

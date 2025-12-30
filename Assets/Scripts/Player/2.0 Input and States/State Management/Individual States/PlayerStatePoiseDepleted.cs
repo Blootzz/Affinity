@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+[CreateAssetMenu(menuName = "States/Player/PoiseDepleted")]
 public class PlayerStatePoiseDepleted : PlayerStateHurt
 {
 

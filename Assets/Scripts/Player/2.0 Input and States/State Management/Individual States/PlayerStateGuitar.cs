@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Player/Guitar")]
 public class PlayerStateGuitar : PlayerBaseState
 {
     //public PlayerStateGuitar(PlayerStateManager newStateManager) : base(newStateManager)
