@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Player/Blocking")]
+[CreateAssetMenu(menuName = "States/Player/Parrying")]
 public class PlayerStateParrying : PlayerStateBlocking
 {
     bool wasParrySuccessful = false;
