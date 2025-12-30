@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public abstract class PlayerBaseState
+public abstract class PlayerBaseState : ScriptableObject
 {
     protected PlayerStateManager stateManager;
 
-    // Constructor sets stateManager
-    public PlayerBaseState(PlayerStateManager newStateManager)
-    {
-        this.stateManager = newStateManager;
-    }
+    //// Constructor sets stateManager
+    //public PlayerBaseState(PlayerStateManager newStateManager)
+    //{
+    //    this.stateManager = newStateManager;
+    //}
 
     public virtual void OnEnter() { }
     public virtual void OnExit() { }
@@ -22,9 +22,9 @@ public abstract class PlayerBaseState
     public virtual void ProcessGroundCheckEvent(bool isGrounded)
     {
         if (isGrounded)
-            stateManager.SwitchState(new PlayerStateIdle(stateManager));
+            stateManager.SwitchState(stateManager.playerStateIdle);
         else
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
     public virtual void BlockStart() { }

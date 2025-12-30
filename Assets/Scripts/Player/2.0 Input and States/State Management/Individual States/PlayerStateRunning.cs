@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerStateRunning : PlayerStateIdle
 {
     // needs a special constructor because HorizontalAxis can't get called by OnEnter
-    public PlayerStateRunning(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateRunning(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -27,7 +27,7 @@ public class PlayerStateRunning : PlayerStateIdle
 
         if (stateManager.GetLastSetXInput() == 0)
         {
-            stateManager.SwitchState(new PlayerStateIdle(stateManager));
+            stateManager.SwitchState(stateManager.playerStateIdle);
             return;
         }
 
@@ -39,7 +39,7 @@ public class PlayerStateRunning : PlayerStateIdle
 
     public override void JumpStart()
     {
-        stateManager.SwitchState(new PlayerStateJumping(stateManager));
+        stateManager.SwitchState(stateManager.playerStateJumping);
     }
 
     //public override void ProcessGroundCheckEvent(bool isGrounded)

@@ -4,9 +4,9 @@ public class PlayerStateAttacking : PlayerBaseState
 {
     [SerializeField] float attackDamage = 20;
 
-    public PlayerStateAttacking(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateAttacking(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -28,6 +28,6 @@ public class PlayerStateAttacking : PlayerBaseState
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 }

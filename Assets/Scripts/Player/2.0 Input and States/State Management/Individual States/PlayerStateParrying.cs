@@ -4,9 +4,9 @@ public class PlayerStateParrying : PlayerStateBlocking
 {
     bool wasParrySuccessful = false;
 
-    public PlayerStateParrying(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateParrying(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -97,7 +97,7 @@ public class PlayerStateParrying : PlayerStateBlocking
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
         // DO NOT PUT IN OnExit - RESULTS IN RECURSIVE BEHAVIOR because PlayerDeductMissedParryPenalty() calls SwitchState
         // in case player is hit out of parry animation or something crazy happens
         if (wasParrySuccessful == false)
@@ -109,6 +109,6 @@ public class PlayerStateParrying : PlayerStateBlocking
     public override void SHORYUKEN()
     {
         if (wasParrySuccessful)
-            stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+            stateManager.SwitchState(stateManager.playerStateSHORYUKEN);
     }
 }

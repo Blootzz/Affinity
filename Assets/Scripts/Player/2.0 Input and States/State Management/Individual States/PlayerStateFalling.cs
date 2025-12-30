@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerStateFalling : PlayerBaseState
 {
-    public PlayerStateFalling(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateFalling(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -27,30 +27,30 @@ public class PlayerStateFalling : PlayerBaseState
 
     public override void LedgeGrabStarted()
     {
-        stateManager.SwitchState(new PlayerStateReaching(stateManager));
+        stateManager.SwitchState(stateManager.playerStateReaching);
     }
 
     public override void JumpStart()
     {
         if (stateManager.characterJumper.CheckIfDoubleJumpIsPossible())
-            stateManager.SwitchState(new PlayerStateDoubleJumping(stateManager));
+            stateManager.SwitchState(stateManager.playerStateDoubleJumping);
     }
 
     public override void SHORYUKEN()
     {
-        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+        stateManager.SwitchState(stateManager.playerStateSHORYUKEN);
     }
 
     public override void WallCheckEntered()
     {
-        stateManager.SwitchState(new PlayerStateWallSlide(stateManager));
+        stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void FallingApexReached()
     {
         if (stateManager.wallCheck.GetIsInWall())
         {
-            stateManager.SwitchState(new PlayerStateWallSlide(stateManager));
+            stateManager.SwitchState(stateManager.playerStateWallSlide);
         }
     }
 

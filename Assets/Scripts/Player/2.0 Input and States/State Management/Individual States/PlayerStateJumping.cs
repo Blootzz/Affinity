@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerStateJumping : PlayerStateFalling
 {
-    public PlayerStateJumping(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateJumping(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -36,16 +36,16 @@ public class PlayerStateJumping : PlayerStateFalling
     public override void ProcessGroundCheckEvent(bool isGrounded)
     {
         if (isGrounded)
-            stateManager.SwitchState(new PlayerStateIdle(stateManager));
+            stateManager.SwitchState(stateManager.playerStateIdle);
         //else do nothing, just keep jump state running
     }
 }
 
 public class PlayerStateDoubleJumping : PlayerStateJumping // inherits from PlayerStateFalling too
 {
-    public PlayerStateDoubleJumping(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateDoubleJumping(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {

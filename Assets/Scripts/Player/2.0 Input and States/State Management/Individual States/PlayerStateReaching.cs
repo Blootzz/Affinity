@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerStateReaching : PlayerStateFalling
 {
-    public PlayerStateReaching(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateReaching(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -23,7 +23,7 @@ public class PlayerStateReaching : PlayerStateFalling
 
     public override void LedgeGrabCanceled()
     {
-        stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
 }

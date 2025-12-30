@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerStateGuitar : PlayerBaseState
 {
-    public PlayerStateGuitar(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateGuitar(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {

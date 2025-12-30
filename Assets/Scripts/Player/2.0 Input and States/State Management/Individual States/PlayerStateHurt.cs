@@ -5,9 +5,9 @@ public class PlayerStateHurt : PlayerBaseState
 {
     PhysicsMaterialManager physicsMaterialManager;
 
-    public PlayerStateHurt(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateHurt(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -34,7 +34,7 @@ public class PlayerStateHurt : PlayerBaseState
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 
     public override void OnExit()

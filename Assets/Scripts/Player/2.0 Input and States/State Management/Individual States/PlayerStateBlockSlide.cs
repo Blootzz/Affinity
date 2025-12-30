@@ -4,9 +4,9 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
 {
     PhysicsMaterialManager physicsMaterialManager;
 
-    public PlayerStateBlockSlide(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateBlockSlide(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -68,6 +68,6 @@ public class PlayerStateBlockSlide : PlayerStateBlocking
     // stateManager is listening to CharacterMover for Event then calls this
     public override void HorVelocityHitZero()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 }

@@ -4,9 +4,9 @@ using System;
 public class PlayerStatePoiseDepleted : PlayerStateHurt
 {
 
-    public PlayerStatePoiseDepleted(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStatePoiseDepleted(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {

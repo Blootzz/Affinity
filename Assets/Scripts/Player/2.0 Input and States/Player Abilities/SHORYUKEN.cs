@@ -265,9 +265,9 @@ public class PlayerStateSHORYUKEN : PlayerStateAttacking
     [SerializeField] float shoryuDamage = 30;
     [SerializeField] Vector2 shoryuVelocity = new Vector2(2, 12);
 
-    public PlayerStateSHORYUKEN(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateSHORYUKEN(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -285,7 +285,7 @@ public class PlayerStateSHORYUKEN : PlayerStateAttacking
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)

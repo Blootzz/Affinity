@@ -9,6 +9,27 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private string currentStateName;
     [SerializeField] GameObject ledgeGrabChecker; // set in editor
 
+    [Header("States-Map Basic")]
+    public PlayerStateIdle playerStateIdle;
+    public PlayerStateAttacking playerStateAttacking;
+    public PlayerStateBlocking playerStateBlocking;
+    public PlayerStateBlockSlide playerStateBlockSlide;
+    public PlayerStateFalling playerStateFalling;
+    public PlayerStateHurt playerStateHurt;
+    public PlayerStateJumping playerStateJumping;
+    public PlayerStateDoubleJumping playerStateDoubleJumping;
+    public PlayerStateLedgeClimb playerStateLedgeClimb;
+    public PlayerStateLedgeHang playerStateLedgeHang;
+    public PlayerStateParrying playerStateParrying;
+    public PlayerStatePoiseDepleted playerStatePoiseDepleted;
+    public PlayerStateReaching playerStateReaching;
+    public PlayerStateRunning playerStateRunning;
+    public PlayerStateSHORYUKEN playerStateSHORYUKEN;
+    public PlayerStateWallJumping playerStateWallJumping;
+    public PlayerStateWallSlide playerStateWallSlide;
+    [Header("States-Map Guitar")]
+    public PlayerStateGuitar playerStateGuitar;
+
     PlayerInput playerInput;
     [HideInInspector] public PlayerAnimationManager playerAnimationManager; // accessed by each state to play animations
     [HideInInspector] public CharacterMover characterMover;
@@ -92,7 +113,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = new PlayerStateIdle(this);
+        currentState = playerStateIdle;
     }
 
     // Used to process hurtbox and hitbox in order AFTER previous physics calculations have been done
@@ -299,7 +320,7 @@ public class PlayerStateManager : MonoBehaviour
     void OnLedgeGrabFound(Vector2 ledgePos)
     {
         ledgeGrabPos = ledgePos;
-        SwitchState(new PlayerStateLedgeHang(this));
+        SwitchState(playerStateLedgeHang);
     }
 
     void DoStateGuitar()
@@ -350,7 +371,7 @@ public class PlayerStateManager : MonoBehaviour
     void FlagOnPlayerHurtboxHit() => flagHurtboxHit = true;
     void OnPlayerHurtboxHit()
     {
-        SwitchState(new PlayerStateHurt(this));
+        SwitchState(playerStateHurt);
     }
 
     void FlagOnBlockerHit() => flagBlockerHit = true;
@@ -373,7 +394,7 @@ public class PlayerStateManager : MonoBehaviour
             Debug.LogError("poise depleted again. fix this bug");
             return;
         }
-        SwitchState(new PlayerStatePoiseDepleted(this));
+        SwitchState(playerStatePoiseDepleted);
     }
 
     void OnHorVelocityHitZero()

@@ -5,9 +5,9 @@ public class PlayerStateBlocking : PlayerBaseState
     protected bool isBlockingUp = false;
     bool persistBlockerUponExit = false; // used if entering a new state that utilizes the blockers
 
-    public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -62,7 +62,7 @@ public class PlayerStateBlocking : PlayerBaseState
     /// </summary>
     public override void BlockCancel()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class PlayerStateBlocking : PlayerBaseState
     public override void Attack()
     {
         persistBlockerUponExit = true;
-        stateManager.SwitchState(new PlayerStateParrying(stateManager));
+        stateManager.SwitchState(stateManager.playerStateParrying);
     }
 
     public override void ProcessBlockerHit()
@@ -104,7 +104,7 @@ public class PlayerStateBlocking : PlayerBaseState
     public virtual void BlockSuccessful()
     {
         // switch to block slide state
-        stateManager.SwitchState(new PlayerStateBlockSlide(stateManager));
+        stateManager.SwitchState(stateManager.playerStateBlockSlide);
 
         // deduct Poise, SWITCHES TO POISEDEPLETED if applicable
         stateManager.playerPoise.DeductPoise(stateManager.blockParryManager.GetIncomingEnemyHitbox().GetDamage());
@@ -122,6 +122,6 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void JumpStart()
     {
-        stateManager.SwitchState(new PlayerStateJumping(stateManager));
+        stateManager.SwitchState(stateManager.playerStateJumping);
     }
 }

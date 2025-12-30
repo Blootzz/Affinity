@@ -5,9 +5,9 @@ public class PlayerStateLedgeClimb : PlayerBaseState
     // used to address ledge climb animation dropping the player at exactly the ledge when the animation ends farther
     Vector2 getupOffset = new Vector2(0.325f, 0);
 
-    public PlayerStateLedgeClimb(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateLedgeClimb(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -33,7 +33,7 @@ public class PlayerStateLedgeClimb : PlayerBaseState
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)

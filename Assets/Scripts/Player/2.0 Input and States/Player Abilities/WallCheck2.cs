@@ -25,9 +25,9 @@ public class WallCheck2 : MonoBehaviour
 public class PlayerStateWallSlide : PlayerBaseState
 {
     [SerializeField] float slideDownVelocityY = -2;
-    public PlayerStateWallSlide(PlayerStateManager stateManager) : base(stateManager)
-    {
-    }
+    //public PlayerStateWallSlide(PlayerStateManager stateManager) : base(stateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -63,7 +63,7 @@ public class PlayerStateWallSlide : PlayerBaseState
         {
             // flip to prevent falling state immediately recognize wall slide again
             stateManager.ForceFlip();
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
         }
     }
 
@@ -73,7 +73,7 @@ public class PlayerStateWallSlide : PlayerBaseState
     public override void VerticalAxis()
     {
         if (stateManager.GetLastSetYInput() < 0)
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
     /// <summary>
@@ -93,21 +93,21 @@ public class PlayerStateWallSlide : PlayerBaseState
     /// </summary>
     public override void WallCheckExited()
     {
-        stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
     public override void JumpStart()
     {
-        stateManager.SwitchState(new PlayerStateWallJumping(stateManager));
+        stateManager.SwitchState(stateManager.playerStateWallJumping);
     }
 
 }
 
 public class PlayerStateWallJumping : PlayerBaseState
 {
-    public PlayerStateWallJumping(PlayerStateManager stateManager) : base(stateManager)
-    {
-    }
+    //public PlayerStateWallJumping(PlayerStateManager stateManager) : base(stateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -123,12 +123,12 @@ public class PlayerStateWallJumping : PlayerBaseState
 
     public override void WallCheckEntered()
     {
-        stateManager.SwitchState(new PlayerStateWallSlide(stateManager));
+        stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateFalling(stateManager));
+        stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
 }

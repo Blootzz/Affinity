@@ -5,9 +5,9 @@ public class PlayerStateLedgeHang : PlayerBaseState
     [Tooltip("Sum of this offset and the ledge position equals good player position while facing right")]
     [SerializeField] Vector2 positionOffset = new Vector2(-.2755f, -0.851f);
 
-    public PlayerStateLedgeHang(PlayerStateManager newStateManager) : base(newStateManager)
-    {
-    }
+    //public PlayerStateLedgeHang(PlayerStateManager newStateManager) : base(newStateManager)
+    //{
+    //}
 
     public override void OnEnter()
     {
@@ -30,7 +30,7 @@ public class PlayerStateLedgeHang : PlayerBaseState
 
     public override void JumpStart()
     {
-        stateManager.SwitchState(new PlayerStateJumping(stateManager));
+        stateManager.SwitchState(stateManager.playerStateJumping);
     }
 
     public override void HorizontalAxis()
@@ -38,14 +38,14 @@ public class PlayerStateLedgeHang : PlayerBaseState
         // if player selects the direction away from the ledge, simply start falling
         if ((stateManager.faceRight && stateManager.GetLastSetXInput() < 0) || (!stateManager.faceRight && stateManager.GetLastSetXInput() > 0))
         {
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
             return;
         }
 
         // if player presses forward from ledge, enter ledge climb state
         if (stateManager.faceRight && stateManager.GetLastSetXInput() > 0 || !stateManager.faceRight && stateManager.GetLastSetXInput() < 0)
         {
-            stateManager.SwitchState(new PlayerStateLedgeClimb(stateManager));
+            stateManager.SwitchState(stateManager.playerStateLedgeClimb);
             return;
         }
 
@@ -56,14 +56,14 @@ public class PlayerStateLedgeHang : PlayerBaseState
         // if player presses down, simply start falling
         if (stateManager.GetLastSetYInput() < 0)
         {
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
             return;
         }
     }
 
     public override void EndStateByAnimation()
     {
-        stateManager.SwitchState(new PlayerStateIdle(stateManager));
+        stateManager.SwitchState(stateManager.playerStateIdle);
     }
 
     public override void ProcessGroundCheckEvent(bool isGrounded)

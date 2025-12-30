@@ -2,24 +2,24 @@ using UnityEngine;
 
 public class PlayerStateIdle : PlayerBaseState
 {
-    public PlayerStateIdle(PlayerStateManager newStateManager) : base(newStateManager)
-    { }
+    //public PlayerStateIdle(PlayerStateManager newStateManager) : base(newStateManager)
+    //{ }
 
     public override void OnEnter()
     {
         if (stateManager.groundCheck.IsGrounded == false)
         {
-            stateManager.SwitchState(new PlayerStateFalling(stateManager));
+            stateManager.SwitchState(stateManager.playerStateFalling);
             return;
         }
         if (stateManager.GetLastBlockInput())
         {
-            stateManager.SwitchState(new PlayerStateBlocking(stateManager));
+            stateManager.SwitchState(stateManager.playerStateBlocking);
             return;
         }
         if (stateManager.GetLastSetXInput() != 0)
         {
-            stateManager.SwitchState(new PlayerStateRunning(stateManager));
+            stateManager.SwitchState(stateManager.playerStateRunning);
             return; // exit this state
         }
 
@@ -35,31 +35,31 @@ public class PlayerStateIdle : PlayerBaseState
 
     public override void HorizontalAxis()
     {
-        stateManager.SwitchState(new PlayerStateRunning(stateManager));
+        stateManager.SwitchState(stateManager.playerStateRunning);
     }
 
     public override void JumpStart()
     {
-        stateManager.SwitchState(new PlayerStateJumping(stateManager));
+        stateManager.SwitchState(stateManager.playerStateJumping);
     }
 
     public override void BlockStart()
     {
-        stateManager.SwitchState(new PlayerStateBlocking(stateManager));
+        stateManager.SwitchState(stateManager.playerStateBlocking);
     }
 
     public override void Attack()
     {
-        stateManager.SwitchState(new PlayerStateAttacking(stateManager));
+        stateManager.SwitchState(stateManager.playerStateAttacking);
     }
 
     public override void SHORYUKEN()
     {
-        stateManager.SwitchState(new PlayerStateSHORYUKEN(stateManager));
+        stateManager.SwitchState(stateManager.playerStateSHORYUKEN);
     }
 
     public override void OpenGuitar()
     {
-        stateManager.SwitchState(new PlayerStateGuitar(stateManager));
+        stateManager.SwitchState(stateManager.playerStateGuitar);
     }
 }
