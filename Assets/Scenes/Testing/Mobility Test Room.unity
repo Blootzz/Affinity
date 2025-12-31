@@ -4383,6 +4383,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: bfd971e61d4820442abb8cb1c42399bb, type: 2}
     - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: playerStateWallSlide
+      value: 
+      objectReference: {fileID: 11400000, guid: f6d3e7c794a0c4f4ea8bbc3850649706, type: 2}
+    - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: playerStateBlockSlide
       value: 
       objectReference: {fileID: 11400000, guid: d501b9f70f75d524ea7dc26c974fcc43, type: 2}
@@ -4391,9 +4395,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 23fb5aa88674b3848a20e5e40468e805, type: 2}
     - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: playerStateWallJumping
+      value: 
+      objectReference: {fileID: 11400000, guid: 7dfd143bae3109040bebf70108097b09, type: 2}
+    - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: playerStateDoubleJumping
       value: 
-      objectReference: {fileID: 11400000, guid: 7fd68e2d38ff54f40aaf1b4ef6597894, type: 2}
+      objectReference: {fileID: 11400000, guid: 886b294c6a9d0a240884e2871fa70621, type: 2}
     - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: playerStatePoiseDepleted
       value: 
