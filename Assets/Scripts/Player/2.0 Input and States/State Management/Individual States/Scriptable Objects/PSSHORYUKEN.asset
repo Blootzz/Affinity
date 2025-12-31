@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: c7e7c1ff2dc4f3c4082d4db2be4e6ea1, type: 3}
   m_Name: PSSHORYUKEN
-  m_EditorClassIdentifier: PlayerActions::PlayerStateSHORYUKEN
+  m_EditorClassIdentifier: 
   attackDamage: 20
   shoryuDamage: 30
   shoryuVelocity: {x: 2, y: 12}
