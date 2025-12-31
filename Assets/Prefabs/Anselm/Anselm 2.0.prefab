@@ -909,7 +909,6 @@ GameObject:
   - component: {fileID: 8681892822519698550}
   - component: {fileID: 1027119001129329861}
   - component: {fileID: 5721325171774514104}
-  - component: {fileID: 8999472830267349159}
   m_Layer: 10
   m_Name: WallJumpCheck
   m_TagString: Untagged
@@ -1018,19 +1017,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8999472830267349159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2965423349643709483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56f76f4ce7268e47bc723bc16c25c66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsInWall: 0
 --- !u!1 &3123508338191111425
 GameObject:
   m_ObjectHideFlags: 0

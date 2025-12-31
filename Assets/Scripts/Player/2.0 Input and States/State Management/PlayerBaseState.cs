@@ -9,6 +9,10 @@ public abstract class PlayerBaseState : ScriptableObject
     //{
     //    this.stateManager = newStateManager;
     //}
+    public void SetStateManager(PlayerStateManager runningStateManager)
+    {
+        stateManager = runningStateManager;
+    }
 
     public virtual void OnEnter() { }
     public virtual void OnExit() { }

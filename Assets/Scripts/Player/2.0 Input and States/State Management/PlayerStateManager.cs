@@ -113,7 +113,7 @@ public class PlayerStateManager : MonoBehaviour
 
     private void Start()
     {
-        currentState = playerStateIdle;
+        SwitchState(playerStateIdle);
     }
 
     // Used to process hurtbox and hitbox in order AFTER previous physics calculations have been done
@@ -154,6 +154,7 @@ public class PlayerStateManager : MonoBehaviour
         currentState?.OnExit();
         currentState = newState;
         currentStateName = newState.GetType().Name;
+        currentState.SetStateManager(this);
         currentState.OnEnter();
     }
 
@@ -163,6 +164,8 @@ public class PlayerStateManager : MonoBehaviour
         if (context.performed)
             return;
 
+        print("PlayerInput: " + playerInput.name);
+        print("PlayerInput.currentActionMap: " + playerInput.currentActionMap.name);
         string currentMapName = playerInput.currentActionMap.name;
 
         if (currentMapName.Equals("Basic"))
@@ -405,8 +408,8 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchActionMap(string newMap)
     {
         print("Switching action map from " + playerInput.currentActionMap.name + " to " + newMap);
-        print("currentActionMap == null: " + playerInput.currentActionMap == null);
         playerInput.SwitchCurrentActionMap(/*newMap*/playerInput.actions.FindActionMap("Guitar").name);
+        print("playerInput.currentActionMap.name: " + playerInput.currentActionMap.name);
     }
 
     // called by animations that end their state
