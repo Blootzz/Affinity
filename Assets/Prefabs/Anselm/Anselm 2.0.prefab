@@ -231,9 +231,8 @@ GameObject:
   - component: {fileID: 4070908646914278104}
   - component: {fileID: 1340684265787861499}
   - component: {fileID: 3953930274470846655}
-  - component: {fileID: 1055984150344014243}
   - component: {fileID: 2762676935490463460}
-  - component: {fileID: 6607846769112341347}
+  - component: {fileID: 5921192051172641651}
   m_Layer: 7
   m_Name: Anselm 2.0
   m_TagString: Player
@@ -456,7 +455,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a325bcb80d64e45a7403ce588dda38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHitbox: {fileID: 5489764832886979080}
   currentStateName: 
+  ledgeGrabChecker: {fileID: 7345909978527448069}
+  playerStateIdle: {fileID: 11400000, guid: 55d31cc6fbaa2364382ab5ee683f1e55, type: 2}
+  playerStateAttacking: {fileID: 11400000, guid: 60acdf674f99d664d8648d03c2022fb5, type: 2}
+  playerStateBlocking: {fileID: 11400000, guid: 8ac754bae4d37f14daedc8785c2fefe4, type: 2}
+  playerStateBlockSlide: {fileID: 11400000, guid: d501b9f70f75d524ea7dc26c974fcc43, type: 2}
+  playerStateFalling: {fileID: 11400000, guid: 14df97f6c40ea594d93906582d75a152, type: 2}
+  playerStateHurt: {fileID: 11400000, guid: 622c1210ce800b04f9836022e008649d, type: 2}
+  playerStateJumping: {fileID: 11400000, guid: cbc3b324ed5e693468436024a900b189, type: 2}
+  playerStateDoubleJumping: {fileID: 11400000, guid: 886b294c6a9d0a240884e2871fa70621, type: 2}
+  playerStateLedgeClimb: {fileID: 11400000, guid: 23fb5aa88674b3848a20e5e40468e805, type: 2}
+  playerStateLedgeHang: {fileID: 11400000, guid: 598b6633368586843915a46e968fc332, type: 2}
+  playerStateParrying: {fileID: 11400000, guid: 3810d8f0bba3b84439e9fcf2fedc3d16, type: 2}
+  playerStatePoiseDepleted: {fileID: 11400000, guid: 2086fa7258c4d0249b65ff27f2097ed3, type: 2}
+  playerStateReaching: {fileID: 11400000, guid: a7c1fd46b62fba94b87fb77bf19c1ef5, type: 2}
+  playerStateRunning: {fileID: 11400000, guid: e1c29a2769e560d45a92b1d8626435b7, type: 2}
+  playerStateSHORYUKEN: {fileID: 11400000, guid: bfd971e61d4820442abb8cb1c42399bb, type: 2}
+  playerStateWallJumping: {fileID: 11400000, guid: 7dfd143bae3109040bebf70108097b09, type: 2}
+  playerStateWallSlide: {fileID: 11400000, guid: f6d3e7c794a0c4f4ea8bbc3850649706, type: 2}
+  playerStateGuitar: {fileID: 11400000, guid: b0a7d70ae6520e648b6fc4679f7ac402, type: 2}
   playerAnimationManager: {fileID: 0}
   characterMover: {fileID: 0}
   characterJumper: {fileID: 0}
@@ -466,8 +485,8 @@ MonoBehaviour:
   wallCheck: {fileID: 0}
   playerHealth: {fileID: 0}
   playerPoise: {fileID: 0}
-  ledgeGrabChecker: {fileID: 7345909978527448069}
-  playerHitbox: {fileID: 5489764832886979080}
+  colorFlasher: {fileID: 0}
+  shoryukenChecker: {fileID: 0}
   faceRight: 1
   runSpeed: 8
   isInvincible: 0
@@ -498,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHorVelocity: 0
-  speed: 0
+  characterSpeed: 0
 --- !u!114 &5709602089698193763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,6 +534,9 @@ MonoBehaviour:
   ascentGravity: 7
   descentGravity: 2.5
   shortHopVelocityDivisor: 5
+  isDoubleJumpAbilityEnabled: 1
+  doubleJumpVelocity: 15
+  wallJumpVelocity: {x: 10, y: 20}
 --- !u!114 &5766713921156640297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,35 +604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcb1293ced788a42b83e3a9e1883ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1055984150344014243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826527193436979594}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff958baa20980994fba4edb04e19cb25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canDoubleJump: 1
-  doubleJumpHeight: 15
 --- !u!114 &2762676935490463460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826527193436979594}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21869f37fc927ed4c972d3dba690ac70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commandInputTiming: 0.15
-  shoryuSpeed: {x: 2, y: 12}
---- !u!114 &6607846769112341347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -619,9 +613,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 826527193436979594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a56f76f4ce7268e47bc723bc16c25c66, type: 3}
+  m_Script: {fileID: 11500000, guid: 21869f37fc927ed4c972d3dba690ac70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commandInputTiming: 0.15
+--- !u!114 &5921192051172641651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826527193436979594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159ff0673fdc8964ab37e1685efaece6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singleFlashSeconds: 0.2
+  repeatingFlashInterval: 0.2
 --- !u!1 &2125880926362771986
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,14 +907,16 @@ GameObject:
   m_Component:
   - component: {fileID: 5639301652108206052}
   - component: {fileID: 8681892822519698550}
-  - component: {fileID: 6395423303830159007}
+  - component: {fileID: 1027119001129329861}
+  - component: {fileID: 5721325171774514104}
+  - component: {fileID: 8999472830267349159}
   m_Layer: 10
   m_Name: WallJumpCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5639301652108206052
 Transform:
   m_ObjectHideFlags: 0
@@ -928,7 +939,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965423349643709483}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -967,7 +978,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.030999988, y: 0.3268944}
   m_EdgeRadius: 0
---- !u!114 &6395423303830159007
+--- !u!114 &1027119001129329861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -976,15 +987,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 2965423349643709483}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc51af652a877a4bacbff012ab8d2ad, type: 3}
+  m_Script: {fileID: 11500000, guid: a56f76f4ce7268e47bc723bc16c25c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isWallSliding: 0
-  wallSlideSpeed: -3
-  wallJumpVelocity: {x: 5, y: 13}
-  wallJumpLagTime: 0.3
-  wallSlideStaminaPerFrame: 1
-  wallJumpStamina: 15
+  IsInWall: 0
+--- !u!50 &5721325171774514104
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965423349643709483}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8999472830267349159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965423349643709483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56f76f4ce7268e47bc723bc16c25c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInWall: 0
 --- !u!1 &3123508338191111425
 GameObject:
   m_ObjectHideFlags: 0
