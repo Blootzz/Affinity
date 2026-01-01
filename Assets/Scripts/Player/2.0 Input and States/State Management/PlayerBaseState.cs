@@ -54,4 +54,6 @@ public abstract class PlayerBaseState : ScriptableObject
     public virtual void WallCheckExited() { }
     public virtual void FallingApexReached() { }
     public virtual void OpenGuitar() { }
+    public virtual void PlayNote(int noteNum) { }
+    public virtual void ApplyChord(ChordType chordNum) { }
 }

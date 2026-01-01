@@ -42,6 +42,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
     [HideInInspector] public SHORYUKEN shoryukenChecker;
+    [HideInInspector] public GuitarController guitarController;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -79,6 +80,7 @@ public class PlayerStateManager : MonoBehaviour
         playerPoise = GetComponent<Poise>();
         colorFlasher = GetComponent<ColorFlash>();
         shoryukenChecker = GetComponent<SHORYUKEN>();
+        guitarController = GetComponentInChildren<GuitarController>();
     }
 
     // Event Subscription
@@ -158,15 +160,16 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnEnter();
     }
 
+    /// NEVER USE playerInput.currentActionMap BECAUSE IT MAY NOT GET UPDATED IN SEQUENCE WITH MAP CHANGES.
+    /// use context.action.actionMap instead
+    /// this is because any action that hasn't been canced gets cancelled and called with its old action map reference
     void OnActionTriggered(InputAction.CallbackContext context)
     {
         // ignore performed flag
         if (context.performed)
             return;
 
-        print("PlayerInput: " + playerInput.name);
-        print("PlayerInput.currentActionMap: " + playerInput.currentActionMap.name);
-        string currentMapName = playerInput.currentActionMap.name;
+        string currentMapName = context.action.actionMap.name;
 
         if (currentMapName.Equals("Basic"))
             DoInputsBasicMap(context);
@@ -218,26 +221,38 @@ public class PlayerStateManager : MonoBehaviour
     }
     void DoInputsGuitarMap(InputAction.CallbackContext context)
     {
-        //if (context.action.name.Equals("1st"))
-        //    guitarController.PlayNote(1);
-        //if (context.action.name.Equals("2nd"))
-        //    guitarController.PlayNote(2);
-        //if (context.action.name.Equals("3rd"))
-        //    guitarController.PlayNote(3);
-        //if (context.action.name.Equals("4th"))
-        //    guitarController.PlayNote(4);
-        //if (context.action.name.Equals("5th"))
-        //    guitarController.PlayNote(5);
-        //if (context.action.name.Equals("6th"))
-        //    guitarController.PlayNote(6);
-        //if (context.action.name.Equals("7th"))
-        //    guitarController.PlayNote(7);
-        //if (context.action.name.Equals("8th"))
-        //    guitarController.PlayNote(8);
-        //if (context.action.name.Equals("9th"))
-        //    guitarController.PlayNote(9);
-        //if (context.action.name.Equals("10th"))
-        //    guitarController.PlayNote(10);
+        // actions that can be either started or canceled
+        if (context.action.name.Equals("MajorChord"))
+            DoStateChord(ChordType.MajorChord);
+        if (context.action.name.Equals("MinorChord"))
+            DoStateChord(ChordType.MinorChord);
+        if (context.action.name.Equals("PowerChord"))
+            DoStateChord(ChordType.PowerChord);
+
+        // don't accept canceled note inputs
+        if (context.canceled)
+            return;
+
+        if (context.action.name.Equals("1st"))
+            DoStatePlayGuitarNote(1);
+        if (context.action.name.Equals("2nd"))
+            DoStatePlayGuitarNote(2);
+        if (context.action.name.Equals("3rd"))
+            DoStatePlayGuitarNote(3);
+        if (context.action.name.Equals("4th"))
+            DoStatePlayGuitarNote(4);
+        if (context.action.name.Equals("5th"))
+            DoStatePlayGuitarNote(5);
+        if (context.action.name.Equals("6th"))
+            DoStatePlayGuitarNote(6);
+        if (context.action.name.Equals("7th"))
+            DoStatePlayGuitarNote(7);
+        if (context.action.name.Equals("8th"))
+            DoStatePlayGuitarNote(8);
+        if (context.action.name.Equals("9th"))
+            DoStatePlayGuitarNote(9);
+        if (context.action.name.Equals("10th"))
+            DoStatePlayGuitarNote(10);
     }
 
     #region Horizontal Control
@@ -330,6 +345,18 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState.OpenGuitar();
     }
+    void DoStatePlayGuitarNote(int noteNum)
+    {
+        currentState.PlayNote(noteNum);
+    }
+    /// <summary>
+    /// Passes on int to guitarController
+    /// 0 = major, 1 = minor, 2 = power
+    /// </summary>
+    void DoStateChord(ChordType chordNum)
+    {
+        currentState.ApplyChord(chordNum);
+    }
 
     void OnStateGroundedChange(bool isGrounded)
     {
@@ -407,9 +434,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SwitchActionMap(string newMap)
     {
-        print("Switching action map from " + playerInput.currentActionMap.name + " to " + newMap);
-        playerInput.SwitchCurrentActionMap(/*newMap*/playerInput.actions.FindActionMap("Guitar").name);
-        print("playerInput.currentActionMap.name: " + playerInput.currentActionMap.name);
+        playerInput.SwitchCurrentActionMap(newMap);
     }
 
     // called by animations that end their state

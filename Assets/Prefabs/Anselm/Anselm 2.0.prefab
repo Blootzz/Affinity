@@ -112,6 +112,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canBeHitByPlayer: 0
   canBeHitByEnemy: 1
+--- !u!1 &490457001091837058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4862773099974078404}
+  - component: {fileID: 8998265802615454844}
+  m_Layer: 7
+  m_Name: GuitarController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4862773099974078404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490457001091837058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1408088537757730612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8998265802615454844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490457001091837058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee7871aa82d81245a44c13d7cbfd200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scales: []
+  scaleIndex: 0
+  allNotes: []
+  rootNoteIndex: 0
+  activeButtons:
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
+  - name: 
+    pluck: {fileID: 0}
+    major: {fileID: 0}
+    minor: {fileID: 0}
+    power: {fileID: 0}
 --- !u!1 &580407205875797555
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +360,7 @@ Transform:
   - {fileID: 7571501414535807504}
   - {fileID: 2312352394734008048}
   - {fileID: 2863436147616074905}
+  - {fileID: 4862773099974078404}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6465418364089832019

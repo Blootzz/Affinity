@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ChordType
+{
+    None,
+    MajorChord,
+    MinorChord,
+    PowerChord
+}
+
 public class GuitarController : MonoBehaviour
 {
-    KeyCode majorChord = KeyCode.M;
-    KeyCode minorChord = KeyCode.N;
-    KeyCode powerChord = KeyCode.P;
-
-    AudioSource audioSource;
 
     public Scale[] scales;
     public int scaleIndex = 0;
@@ -18,6 +21,10 @@ public class GuitarController : MonoBehaviour
     
     public Note[] activeButtons = new Note[10]; // assignment of Notes depending on scale
 
+    AudioSource audioSource;
+
+    ChordType activeChord = ChordType.None;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,19 +39,25 @@ public class GuitarController : MonoBehaviour
         if (noteToPlayIndex != -1)
         {
             // notes have already been assigned to a scale
-
-            // find what chord type to play and set clip
-            if (Input.GetKey(majorChord))
-                audioSource.clip = activeButtons[noteToPlayIndex].major;
-            else
-                if (Input.GetKey(minorChord))
+            switch (activeChord)
+            {
+                case ChordType.None:
+                    audioSource.clip = activeButtons[noteToPlayIndex].pluck;
+                    break;
+                case ChordType.MajorChord:
+                    audioSource.clip = activeButtons[noteToPlayIndex].major;
+                    break;
+                case ChordType.MinorChord:
                     audioSource.clip = activeButtons[noteToPlayIndex].minor;
-            else
-                if (Input.GetKey(powerChord))
+                    break;
+                case ChordType.PowerChord:
                     audioSource.clip = activeButtons[noteToPlayIndex].power;
-            else
-                audioSource.clip = activeButtons[noteToPlayIndex].pluck;
-
+                    break;
+                default:
+                    Debug.LogWarning("No appropriate chord type entered for ChordType: " +  activeChord);
+                    break;
+            }
+            
             // sustain
             // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
             if (Input.GetKey(KeyCode.Space))
@@ -95,4 +108,14 @@ public class GuitarController : MonoBehaviour
         }
     }
 
+
+
+    public void EnterNoteInput(int note)
+    {
+
+    }
+    public void ApplyChordModifier(ChordType chordType)
+    {
+        activeChord = chordType;
+    }
 }
