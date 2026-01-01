@@ -14,7 +14,7 @@ public class GuitarController : MonoBehaviour
 {
     public Scale[] scales;
     [Tooltip("Determines what scale to use")]
-    public int scaleIndex = 0;
+    public int indexSelectedScale = 0;
     public Note[] allNotes; // storage of all Note data
     [Tooltip("Determines the root of the scale. 0 = low E, 1 = F, 2 = F#")]
     public int rootIndexAllNotes = 0; // determines the root note on in allNotes (0=E, 1=F, 2=F#)
@@ -46,7 +46,7 @@ public class GuitarController : MonoBehaviour
         {
             // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
             // add runningAllNotesIndex to itself to cumulatively increment index
-            runningAllNotesIndex = scales[scaleIndex].spacings[i - 1] + runningAllNotesIndex;
+            runningAllNotesIndex = scales[indexSelectedScale].spacings[i - 1] + runningAllNotesIndex;
             notesInKey[i] = allNotes[runningAllNotesIndex];
         }
     }
