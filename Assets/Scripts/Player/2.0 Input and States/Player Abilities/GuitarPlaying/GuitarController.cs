@@ -13,12 +13,14 @@ public enum ChordType
 public class GuitarController : MonoBehaviour
 {
     public Scale[] scales;
+    [Tooltip("Determines what scale to use")]
     public int scaleIndex = 0;
     public Note[] allNotes; // storage of all Note data
-    public int rootNoteIndex = 0; // determines what note the scale is base on in allNotes (0=E, 1=F, 2=F#)
+    [Tooltip("Determines the root of the scale. 0 = low E, 1 = F, 2 = F#")]
+    public int rootIndexAllNotes = 0; // determines the root note on in allNotes (0=E, 1=F, 2=F#)
     // max rootNoteIndex should be 11
     
-    public Note[] activeButtons = new Note[10]; // assignment of Notes depending on scale
+    public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
     AudioSource audioSource;
 
@@ -33,79 +35,19 @@ public class GuitarController : MonoBehaviour
         AssignScale();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        int noteToPlayIndex = ReadAlphaNumberInput() - 1; // subtract 1 to make index
-        if (noteToPlayIndex != -1)
-        {
-            // notes have already been assigned to a scale
-            switch (activeChord)
-            {
-                case ChordType.None:
-                    audioSource.clip = activeButtons[noteToPlayIndex].pluck;
-                    break;
-                case ChordType.MajorChord:
-                    audioSource.clip = activeButtons[noteToPlayIndex].major;
-                    break;
-                case ChordType.MinorChord:
-                    audioSource.clip = activeButtons[noteToPlayIndex].minor;
-                    break;
-                case ChordType.PowerChord:
-                    audioSource.clip = activeButtons[noteToPlayIndex].power;
-                    break;
-                default:
-                    Debug.LogWarning("No appropriate chord type entered for ChordType: " +  activeChord);
-                    break;
-            }
-            
-            // sustain
-            // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
-            if (Input.GetKey(KeyCode.Space))
-                audioSource.PlayOneShot(audioSource.clip);
-            else
-                audioSource.Play();
-        }
-    }
-
-    int ReadAlphaNumberInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            return 1;
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            return 2;
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            return 3;
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            return 4;
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            return 5;
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            return 6;
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-            return 7;
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-            return 8;
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-            return 9;
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-            return 10;
-        return 0;
-    }
-
     void AssignScale()
     {
         // assign first button (Alpha1) to root note
-        int runningAllNotesIndex = rootNoteIndex;
-        activeButtons[0] = allNotes[runningAllNotesIndex];
+        int runningAllNotesIndex = rootIndexAllNotes;
+        notesInKey[0] = allNotes[runningAllNotesIndex];
 
-        // need to assign Note to all 9 remaining number keys
+        // need to assign Note to all 9 remaining number keys according to spacings
         for (int i=1; i<10; i++)
         {
             // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
             // add runningAllNotesIndex to itself to cumulatively increment index
             runningAllNotesIndex = scales[scaleIndex].spacings[i - 1] + runningAllNotesIndex;
-            activeButtons[i] = allNotes[runningAllNotesIndex];
+            notesInKey[i] = allNotes[runningAllNotesIndex];
         }
     }
 
@@ -130,16 +72,16 @@ public class GuitarController : MonoBehaviour
         switch (activeChord)
         {
             case ChordType.None:
-                audioSource.clip = activeButtons[activeNoteIndex].pluck;
+                audioSource.clip = notesInKey[activeNoteIndex].pluck;
                 break;
             case ChordType.MajorChord:
-                audioSource.clip = activeButtons[activeNoteIndex].major;
+                audioSource.clip = notesInKey[activeNoteIndex].major;
                 break;
             case ChordType.MinorChord:
-                audioSource.clip = activeButtons[activeNoteIndex].minor;
+                audioSource.clip = notesInKey[activeNoteIndex].minor;
                 break;
             case ChordType.PowerChord:
-                audioSource.clip = activeButtons[activeNoteIndex].power;
+                audioSource.clip = notesInKey[activeNoteIndex].power;
                 break;
             default:
                 Debug.LogWarning("No appropriate chord type entered for ChordType: " + activeChord);
@@ -148,7 +90,7 @@ public class GuitarController : MonoBehaviour
 
         // sustain
         // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
-        if (Input.GetKey(KeyCode.Space))
+        if (sustainEnabled)
             audioSource.PlayOneShot(audioSource.clip);
         else
             audioSource.Play();
