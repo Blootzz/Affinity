@@ -27,4 +27,9 @@ public class PlayerStateGuitar : PlayerBaseState
     {
         stateManager.guitarController.ApplyChordModifier(chordNum);
     }
+
+    public override void UseSustain(bool useSustain)
+    {
+        stateManager.guitarController.SetSustain(useSustain);
+    }
 }

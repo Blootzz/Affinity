@@ -56,4 +56,5 @@ public abstract class PlayerBaseState : ScriptableObject
     public virtual void OpenGuitar() { }
     public virtual void PlayNote(int noteNum) { }
     public virtual void ApplyChord(ChordType chordNum) { }
+    public virtual void UseSustain(bool useSustain) { }
 }

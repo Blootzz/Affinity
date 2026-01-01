@@ -12,7 +12,6 @@ public enum ChordType
 
 public class GuitarController : MonoBehaviour
 {
-
     public Scale[] scales;
     public int scaleIndex = 0;
     public Note[] allNotes; // storage of all Note data
@@ -23,7 +22,9 @@ public class GuitarController : MonoBehaviour
 
     AudioSource audioSource;
 
+    int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
+    bool sustainEnabled = false;
     
     // Start is called before the first frame update
     void Start()
@@ -109,13 +110,53 @@ public class GuitarController : MonoBehaviour
     }
 
 
-
+    /// <summary>
+    /// Turns note designation into an index
+    /// Plays the note according to activeChordType
+    /// </summary>
     public void EnterNoteInput(int note)
     {
-
+        activeNoteIndex = note - 1;
+        Play();
     }
     public void ApplyChordModifier(ChordType chordType)
     {
         activeChord = chordType;
+    }
+    void Play()
+    {
+        // notes have already been assigned to a scale
+        // activeNoteIndex has already been assigned in EnterNoteInput
+        switch (activeChord)
+        {
+            case ChordType.None:
+                audioSource.clip = activeButtons[activeNoteIndex].pluck;
+                break;
+            case ChordType.MajorChord:
+                audioSource.clip = activeButtons[activeNoteIndex].major;
+                break;
+            case ChordType.MinorChord:
+                audioSource.clip = activeButtons[activeNoteIndex].minor;
+                break;
+            case ChordType.PowerChord:
+                audioSource.clip = activeButtons[activeNoteIndex].power;
+                break;
+            default:
+                Debug.LogWarning("No appropriate chord type entered for ChordType: " + activeChord);
+                break;
+        }
+
+        // sustain
+        // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
+        if (Input.GetKey(KeyCode.Space))
+            audioSource.PlayOneShot(audioSource.clip);
+        else
+            audioSource.Play();
+
+    }
+
+    public void SetSustain(bool setValue)
+    {
+        sustainEnabled = setValue;
     }
 }

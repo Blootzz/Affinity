@@ -229,6 +229,9 @@ public class PlayerStateManager : MonoBehaviour
         if (context.action.name.Equals("PowerChord"))
             DoStateChord(ChordType.PowerChord);
 
+        if (context.action.name.Equals("Sustain"))
+            DoStateUseSustain(context.ReadValueAsButton());
+
         // don't accept canceled note inputs
         if (context.canceled)
             return;
@@ -357,6 +360,11 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState.ApplyChord(chordNum);
     }
+    void DoStateUseSustain(bool enabled)
+    {
+        currentState.UseSustain(enabled);
+    }
+
 
     void OnStateGroundedChange(bool isGrounded)
     {
