@@ -163,6 +163,13 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnEnter();
     }
 
+    // ================================================ Input ============================================
+    #region Input
+    public void SwitchActionMap(string newMap)
+    {
+        playerInput.SwitchCurrentActionMap(newMap);
+    }
+
     /// NEVER USE playerInput.currentActionMap BECAUSE IT MAY NOT GET UPDATED IN SEQUENCE WITH MAP CHANGES.
     /// use context.action.actionMap instead
     /// this is because any action that hasn't been canced gets cancelled and called with its old action map reference
@@ -183,15 +190,22 @@ public class PlayerStateManager : MonoBehaviour
     void DoInputsBasicMap(InputAction.CallbackContext context)
     {
         if (context.action.name.Equals("HorizontalAxis"))
+        {
             DoStateHorizontal(context.ReadValue<float>());
+            return;
+        }
         if (context.action.name.Equals("VerticalAxis"))
+        {
             DoStateVertical(context.ReadValue<float>());
+            return;
+        }
         if (context.action.name.Equals("Jump"))
         {
             if (context.started)
                 DoStateJump(true);
             if (context.canceled)
                 DoStateJump(false);
+            return;
         }
         
         if (context.action.name.Equals("Block"))
@@ -201,95 +215,165 @@ public class PlayerStateManager : MonoBehaviour
                 DoStateBlock(true);
             else if (context.canceled)
                 DoStateBlock(false);
+            return;
         }
         if (context.action.name.Equals("Attack"))
         {
             if (context.started)
                 DoStateAttack();
+            return;
         }
-
         if (context.action.name.Equals("LedgeGrab"))
         {
             if (context.started)
                 DoStateLedgeGrab(true);
             else if (context.canceled)
                 DoStateLedgeGrab(false);
+            return;
         }
-
         if (context.action.name.Equals("Guitar"))
         {
             if (context.started)
                 DoStateGuitar();
+            return;
+        }
+        if (context.action.name.Equals("Exit"))
+        {
+            if (context.started)
+                DoStateExit();
+            return;
         }
     }
     void DoInputsGuitarMap(InputAction.CallbackContext context)
     {
         // actions that can be either started or canceled
         if (context.action.name.Equals("MajorChord"))
+        {
             DoStateChord(ChordType.MajorChord);
+            return;
+        }
         if (context.action.name.Equals("MinorChord"))
+        {
             DoStateChord(ChordType.MinorChord);
+            return;
+        }
         if (context.action.name.Equals("PowerChord"))
+        {
             DoStateChord(ChordType.PowerChord);
+            return;
+        }
 
         if (context.action.name.Equals("Sustain"))
+        {
             DoStateUseSustain(context.ReadValueAsButton());
+            return;
+        }
 
-        // don't accept canceled note inputs
+        // ======================== don't accept canceled note inputs ============================
         if (context.canceled)
             return;
 
         if (context.action.name.Equals("1st"))
+        {
             DoStatePlayGuitarNote(1);
+            return;
+        }
         if (context.action.name.Equals("2nd"))
+        {
             DoStatePlayGuitarNote(2);
+            return;
+        }
         if (context.action.name.Equals("3rd"))
+        {
             DoStatePlayGuitarNote(3);
+            return;
+        }
         if (context.action.name.Equals("4th"))
+        {
             DoStatePlayGuitarNote(4);
+            return;
+        }
         if (context.action.name.Equals("5th"))
+        {
             DoStatePlayGuitarNote(5);
+            return;
+        }
         if (context.action.name.Equals("6th"))
+        {
             DoStatePlayGuitarNote(6);
+            return;
+        }
         if (context.action.name.Equals("7th"))
+        {
             DoStatePlayGuitarNote(7);
+            return;
+        }
         if (context.action.name.Equals("8th"))
+        {
             DoStatePlayGuitarNote(8);
+            return;
+        }
         if (context.action.name.Equals("9th"))
+        {
             DoStatePlayGuitarNote(9);
+            return;
+        }
         if (context.action.name.Equals("10th"))
+        {
             DoStatePlayGuitarNote(10);
+            return;
+        }
 
         if (context.action.name.Equals("IncrementGuitarSpriteUp"))
+        {
             DoStateGuitarIncrement(true);
+            return;
+        }
         if (context.action.name.Equals("IncrementGuitarSpriteDown"))
+        {
             DoStateGuitarIncrement(false);
-    }
-
-    #region Horizontal Control
-    void DoStateHorizontal(float xInput)
-    {
-        lastSetXInput = xInput;
-        currentState.HorizontalAxis();
-    }
-    public float GetLastSetXInput()
-    {
-        return lastSetXInput;
+            return;
+        }
+        if (context.action.name.Equals("Exit"))
+        {
+            DoStateExit();
+            return;
+        }
     }
     #endregion
 
-    #region Vertical Control
-    void DoStateVertical(float yInput)
+    // ============================== Getters =============================================
+    #region Getters
+    public float GetLastSetXInput()
     {
-        lastSetYInput = yInput;
-        currentState.VerticalAxis();
+        return lastSetXInput;
     }
     public float GetLastSetYInput()
     {
         return lastSetYInput;
     }
+    public bool GetLastBlockInput()
+    {
+        return lastSetBlockInput;
+    }
+    public bool GetLastLedgeGrabInput()
+    {
+        return lastLedgeGrabInput;
+    }
     #endregion
 
+    // ============================= DoState Methods ===============================
+    #region DoState Methods
+    void DoStateHorizontal(float xInput)
+    {
+        lastSetXInput = xInput;
+        currentState.HorizontalAxis();
+    }
+    void DoStateVertical(float yInput)
+    {
+        lastSetYInput = yInput;
+        currentState.VerticalAxis();
+    }
     void DoStateJump(bool started)
     {
         if (started)
@@ -310,10 +394,6 @@ public class PlayerStateManager : MonoBehaviour
             lastSetBlockInput = false;
             currentState.BlockCancel();
         }
-    }
-    public bool GetLastBlockInput()
-    {
-        return lastSetBlockInput;
     }
 
     void DoStateAttack()
@@ -336,14 +416,6 @@ public class PlayerStateManager : MonoBehaviour
             lastLedgeGrabInput = false;
             currentState.LedgeGrabCanceled();
         }
-    }
-    public void EnableLedgeGrabCheck(bool active)
-    {
-        ledgeGrabChecker.SetActive(active);
-    }
-    public bool GetLastLedgeGrabInput()
-    {
-        return lastLedgeGrabInput;
     }
 
     void OnLedgeGrabFound(Vector2 ledgePos)
@@ -377,7 +449,14 @@ public class PlayerStateManager : MonoBehaviour
         currentState.IncrementGuitarSprite(forward);
     }
 
+    void DoStateExit()
+    {
+        currentState.Exit();
+    }
+    #endregion
 
+    //========================================== Event Listeners ===================================
+    #region Event Listeners
     void OnStateGroundedChange(bool isGrounded)
     {
         currentState.ProcessGroundCheckEvent(isGrounded);
@@ -396,26 +475,6 @@ public class PlayerStateManager : MonoBehaviour
     void OnFallingApexReached()
     {
         currentState.FallingApexReached();
-    }
-
-    public void FlipIfNecessary()
-    {
-        if (lastSetXInput > 0 && !faceRight)
-            Flip();
-        else if (lastSetXInput < 0 && faceRight)
-            Flip();
-    }
-    void Flip()
-    {
-        faceRight = !faceRight;
-        transform.Rotate(Vector3.up * 180);
-    }
-    /// <summary>
-    /// Forcibly flips the player. Useful for Wall Jump
-    /// </summary>
-    public void ForceFlip()
-    {
-        Flip();
     }
 
     void FlagOnPlayerHurtboxHit() => flagHurtboxHit = true;
@@ -452,10 +511,36 @@ public class PlayerStateManager : MonoBehaviour
         currentState.HorVelocityHitZero();
     }
 
-    public void SwitchActionMap(string newMap)
+    #endregion
+
+    // ================================ Executive Methods ================================
+    #region Executive Methods
+    public void FlipIfNecessary()
     {
-        playerInput.SwitchCurrentActionMap(newMap);
+        if (lastSetXInput > 0 && !faceRight)
+            Flip();
+        else if (lastSetXInput < 0 && faceRight)
+            Flip();
     }
+    void Flip()
+    {
+        faceRight = !faceRight;
+        transform.Rotate(Vector3.up * 180);
+    }
+    /// <summary>
+    /// Forcibly flips the player. Useful for Wall Jump
+    /// </summary>
+    public void ForceFlip()
+    {
+        Flip();
+    }
+
+    public void EnableLedgeGrabCheck(bool active)
+    {
+        ledgeGrabChecker.SetActive(active);
+    }
+    #endregion
+
 
     // called by animations that end their state
     void ANIM_EndStateByAnimation()
