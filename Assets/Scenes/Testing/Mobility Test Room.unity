@@ -4984,6 +4984,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsInWall: 0
+  TargetLayerMask:
+    serializedVersion: 2
+    m_Bits: 640
 --- !u!61 &1987867850
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5205,6 +5208,10 @@ PrefabInstance:
     - target: {fileID: 826527193436979594, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Name
       value: Anselm 2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1027119001129329861, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: TargetLayerMask.m_Bits
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.x
