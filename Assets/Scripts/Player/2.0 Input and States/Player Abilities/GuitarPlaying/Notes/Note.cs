@@ -1,8 +1,8 @@
 using UnityEngine;
-[System.Serializable]
-public class Note
+
+[CreateAssetMenu(menuName ="Guitar/Note")]
+public class Note : ScriptableObject
 {
-    public string name;
     public AudioClip pluck;
     public AudioClip major;
     public AudioClip minor;
