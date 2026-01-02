@@ -8,10 +8,22 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
-  missingFiles:
-  - Assets/SuperTiled2Unity/import/Tests/Project3/tileset3.tsx
+  missingFiles: []
   errors:
-  - 'Missing tileset asset: tileset3.tsx'
+  - Errors detected in tileset 'tileset3.tsx'. Check the tileset inspector for more
+    details. Your map may be broken until these are fixed.
+  - Could not find tile 8. Make sure the tilesets were successfully imported.
+  - Could not find tile 8. Make sure the tilesets were successfully imported.
+  - Could not find tile 11. Make sure the tilesets were successfully imported.
+  - Could not find tile 8. Make sure the tilesets were successfully imported.
+  - Could not find tile 7. Make sure the tilesets were successfully imported.
+  - Could not find tile 9. Make sure the tilesets were successfully imported.
+  - Could not find tile 1. Make sure the tilesets were successfully imported.
+  - Could not find tile 3. Make sure the tilesets were successfully imported.
+  - Could not find tile 14. Make sure the tilesets were successfully imported.
+  - Could not find tile 2. Make sure the tilesets were successfully imported.
+  - Could not find tile 15. Make sure the tilesets were successfully imported.
+  - Could not find tile 13. Make sure the tilesets were successfully imported.
   warnings: []
   missingSortingLayers: []
   missingLayers: []

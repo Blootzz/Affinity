@@ -8,10 +8,9 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
-  missingFiles:
-  - Assets/SuperTiled2Unity/import/Tests/TestProject2/testTileset.tsx
+  missingFiles: []
   errors:
-  - 'Missing tileset asset: testTileset.tsx'
+  - 'Missing tileset asset: ../../../../../../Tiled Projects/First project/Test Tileset.tsx'
   warnings: []
   missingSortingLayers: []
   missingLayers: []
