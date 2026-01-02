@@ -39,7 +39,7 @@ public class GroundCheck : MonoBehaviour
             return;
         }
 
-        print("entered ground");
+        //print("entered ground");
 
         IsGrounded = true;
         OnGroundedChanged?.Invoke(IsGrounded);

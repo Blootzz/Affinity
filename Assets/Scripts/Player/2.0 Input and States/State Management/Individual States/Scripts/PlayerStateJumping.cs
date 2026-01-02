@@ -26,6 +26,10 @@ public class PlayerStateJumping : PlayerStateFalling
     public override void JumpCancel()
     {
         stateManager.characterJumper.BeginDescending();
+
+        // snap to wall slide similar to logic in FallingApexReached()
+        if (stateManager.wallJumpCheck.GetIsInWall() && stateManager.GetLastSetXInput() != 0)
+            stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void JumpStart()

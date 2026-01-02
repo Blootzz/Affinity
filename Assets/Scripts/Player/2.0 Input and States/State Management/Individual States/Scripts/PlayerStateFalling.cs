@@ -24,6 +24,10 @@ public class PlayerStateFalling : PlayerBaseState
         //if (stateManager.characterMover.FlipResult(stateManager.faceRight))
         //    stateManager.faceRight = !stateManager.faceRight;
         stateManager.FlipIfNecessary();
+
+        // enter wall slide if directly facing wall
+        // FallingApexReached logic: if WallCheck is in the wall and is holding in
+        FallingApexReached();
     }
 
     public override void LedgeGrabStarted()
@@ -45,16 +49,19 @@ public class PlayerStateFalling : PlayerBaseState
     public override void WallJumpCheckEntered()
     {
         // only if player is holding in towards wall
-        if (stateManager.GetLastSetXInput() != 0)
+        if (stateManager.characterMover.GetYVelocity() < 0 && stateManager.GetLastSetXInput() != 0)
             stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void FallingApexReached()
     {
         if (stateManager.wallJumpCheck.GetIsInWall() && stateManager.GetLastSetXInput() != 0)
-        {
             stateManager.SwitchState(stateManager.playerStateWallSlide);
-        }
+    }
+
+    public override void JumpCancel()
+    {
+        // check PlayerStateJumping if you're looking to debug this
     }
 
 }

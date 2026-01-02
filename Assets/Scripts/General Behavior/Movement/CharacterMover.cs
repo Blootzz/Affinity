@@ -83,4 +83,9 @@ public class CharacterMover : MonoBehaviour
         rb.transform.position = newPos;
     }
 
+    public float GetYVelocity()
+    {
+        return rb.linearVelocityY;
+    }
+
 }
