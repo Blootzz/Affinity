@@ -71,7 +71,7 @@ public class PlayerStateWallSlide : PlayerBaseState
     /// <summary>
     /// if the wall was an overhang and just ran out
     /// </summary>
-    public override void WallCheckExited()
+    public override void WallJumpCheckExited()
     {
         stateManager.SwitchState(stateManager.playerStateFalling);
     }

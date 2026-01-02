@@ -50,8 +50,13 @@ public abstract class PlayerBaseState : ScriptableObject
     public virtual void LedgeGrabCanceled() { }
     public virtual void SHORYUKEN() { }
     
-    public virtual void WallCheckEntered() { }
-    public virtual void WallCheckExited() { }
+    public virtual void WallJumpCheckEntered() { }
+    public virtual void WallJumpCheckExited() { }
+    // any time the falling wall check triggers an exit event, just check Horizontal axis
+    public virtual void FallingWallCheckChanged(bool enteredWall) {
+        if (!enteredWall)
+            HorizontalAxis();
+    }
     public virtual void FallingApexReached() { }
     public virtual void OpenGuitar() { }
     public virtual void PlayNote(int noteNum) { }

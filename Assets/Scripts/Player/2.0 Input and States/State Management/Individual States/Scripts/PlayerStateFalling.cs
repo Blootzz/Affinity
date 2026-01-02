@@ -42,14 +42,14 @@ public class PlayerStateFalling : PlayerBaseState
         stateManager.SwitchState(stateManager.playerStateSHORYUKEN);
     }
 
-    public override void WallCheckEntered()
+    public override void WallJumpCheckEntered()
     {
         stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void FallingApexReached()
     {
-        if (stateManager.wallCheck.GetIsInWall())
+        if (stateManager.wallJumpCheck.GetIsInWall())
         {
             stateManager.SwitchState(stateManager.playerStateWallSlide);
         }

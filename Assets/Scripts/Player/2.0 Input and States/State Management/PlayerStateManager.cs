@@ -9,9 +9,9 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] GameObject ledgeGrabChecker; // set in editor
     public GuitarController guitarController;
 
-    [Header("Current State")]
-    [SerializeField] private string currentStateName;
-    PlayerBaseState currentState;
+    [Header("Explicit Obj References")]
+    public WallCheck2 wallJumpCheck;
+    public WallCheck2 fallingMovementWallCheck;
 
     [Header("States-Basic Action Map")]
     public PlayerStateIdle playerStateIdle;
@@ -42,11 +42,14 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public HurtboxManager hurtboxManager;
     [HideInInspector] public BlockParryManager blockParryManager; // accessed by PlayerParryingState
     [HideInInspector] public GroundCheck groundCheck; // accessed by Idle
-    [HideInInspector] public WallCheck2 wallCheck;
     [HideInInspector] public Health playerHealth; // accessed by PlayerStateHurt
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
     [HideInInspector] public SHORYUKEN shoryukenChecker;
+
+    [Header("Current State")]
+    [SerializeField] private string currentStateName;
+    PlayerBaseState currentState;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -77,7 +80,6 @@ public class PlayerStateManager : MonoBehaviour
         characterJumper = GetComponent<CharacterJumper>();
         playerInput = gameObject.GetComponent<PlayerInput>();
         groundCheck = GetComponentInChildren<GroundCheck>();
-        wallCheck = GetComponentInChildren<WallCheck2>();
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         blockParryManager = GetComponentInChildren<BlockParryManager>();
         playerHealth = GetComponent<Health>();
@@ -91,7 +93,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered += OnActionTriggered;
         groundCheck.OnGroundedChanged += OnStateGroundedChange;
-        wallCheck.OnWallCollisionChanged += OnWallCheckChange;
+        wallJumpCheck.OnWallCollisionChanged += OnwallJumpCheckChange;
+        fallingMovementWallCheck.OnWallCollisionChanged += OnFallingWallCheckChange;
         hurtboxManager.HurtEvent += FlagOnPlayerHurtboxHit;
         blockParryManager.BlockerHitEvent += FlagOnBlockerHit;
         playerHealth.DeathEvent += OnDeath;
@@ -106,7 +109,8 @@ public class PlayerStateManager : MonoBehaviour
     {
         playerInput.onActionTriggered -= OnActionTriggered;
         groundCheck.OnGroundedChanged -= OnStateGroundedChange;
-        wallCheck.OnWallCollisionChanged -= OnWallCheckChange;
+        wallJumpCheck.OnWallCollisionChanged -= OnwallJumpCheckChange;
+        fallingMovementWallCheck.OnWallCollisionChanged -= OnFallingWallCheckChange;
         hurtboxManager.HurtEvent -= FlagOnPlayerHurtboxHit;
         blockParryManager.BlockerHitEvent -= FlagOnBlockerHit;
         playerHealth.DeathEvent -= OnDeath;
@@ -464,12 +468,22 @@ public class PlayerStateManager : MonoBehaviour
             characterJumper.ResetDoubleJump();
     }
 
-    void OnWallCheckChange(bool isInWall)
+    /// <summary>
+    /// used for wall jump
+    /// </summary>
+    void OnwallJumpCheckChange(bool isInWall)
     {
         if (isInWall)
-            currentState.WallCheckEntered();
+            currentState.WallJumpCheckEntered();
         else
-            currentState.WallCheckExited();
+            currentState.WallJumpCheckExited();
+    }
+    /// <summary>
+    /// Used for allowing player to continue moving after a wall has been jumped over
+    /// </summary>
+    void OnFallingWallCheckChange(bool isInFallingWall)
+    {
+        currentState.FallingWallCheckChanged(isInFallingWall);
     }
 
     void OnFallingApexReached()

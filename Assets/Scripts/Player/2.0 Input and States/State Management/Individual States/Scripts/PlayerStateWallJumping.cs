@@ -19,7 +19,7 @@ public class PlayerStateWallJumping : PlayerBaseState
         //stateManager.characterMover.SetVelocityX(0);
     }
 
-    public override void WallCheckEntered()
+    public override void WallJumpCheckEntered()
     {
         stateManager.SwitchState(stateManager.playerStateWallSlide);
     }

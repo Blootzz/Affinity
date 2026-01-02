@@ -30,7 +30,7 @@ public class GroundCheck : MonoBehaviour
 
         if (DidWeActuallyJustFindAVerticalWall())
         {
-            print("GroundCheck, False positive - just a vertical wall");
+            //print("GroundCheck, False positive - just a vertical wall");
             return;
         }
 
@@ -48,6 +48,8 @@ public class GroundCheck : MonoBehaviour
             //print("ground check is still occupied");
             return;
         }
+
+        print("Calling exit event");
 
         IsGrounded = false;
         OnGroundedChanged?.Invoke(IsGrounded);
@@ -71,7 +73,7 @@ public class GroundCheck : MonoBehaviour
         if (hitWall.collider != null && hitFloor.collider == null)
             return true;
 
-        print("Floor linecast hit: " + hitFloor.collider.name);
+        //print("Floor linecast hit: " + hitFloor.collider.name);
         return false;
     }
 }
