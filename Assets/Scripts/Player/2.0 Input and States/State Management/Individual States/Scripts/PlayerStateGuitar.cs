@@ -39,4 +39,9 @@ public class PlayerStateGuitar : PlayerBaseState
     {
         stateManager.guitarController.ProcessGuitarSpriteCycleInput(forward);
     }
+
+    public override void Exit()
+    {
+        stateManager.SwitchState(stateManager.playerStateIdle);
+    }
 }
