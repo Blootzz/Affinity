@@ -44,12 +44,14 @@ public class PlayerStateFalling : PlayerBaseState
 
     public override void WallJumpCheckEntered()
     {
-        stateManager.SwitchState(stateManager.playerStateWallSlide);
+        // only if player is holding in towards wall
+        if (stateManager.GetLastSetXInput() != 0)
+            stateManager.SwitchState(stateManager.playerStateWallSlide);
     }
 
     public override void FallingApexReached()
     {
-        if (stateManager.wallJumpCheck.GetIsInWall())
+        if (stateManager.wallJumpCheck.GetIsInWall() && stateManager.GetLastSetXInput() != 0)
         {
             stateManager.SwitchState(stateManager.playerStateWallSlide);
         }
