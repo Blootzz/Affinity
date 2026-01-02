@@ -25,6 +25,7 @@ public class GuitarController : MonoBehaviour
 
     AudioSource audioSource;
     GuitarSpriteSelection guitarSpriteSelection;
+    StrummingArmSpriteSelection strumSpriteSelection;
 
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
@@ -34,6 +35,7 @@ public class GuitarController : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
+        strumSpriteSelection = GetComponentInChildren<StrummingArmSpriteSelection>();
     }
     void Start()
     {
@@ -47,6 +49,7 @@ public class GuitarController : MonoBehaviour
     public void EnterNoteInput(int note)
     {
         activeNoteIndex = note - 1;
+        strumSpriteSelection.Strum();
         Play();
     }
     public void ApplyChordModifier(ChordType chordType)
