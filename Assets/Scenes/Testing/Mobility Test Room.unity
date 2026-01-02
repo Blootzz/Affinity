@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 30124305}
   - component: {fileID: 30124306}
+  - component: {fileID: 30124307}
   m_Layer: 7
   m_Name: Guitar
   m_TagString: Untagged
@@ -207,6 +208,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &30124307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30124304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14366a39beba994aac32da6b18cab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1749646601, guid: 4fe89c93732160b45865a162d6389508, type: 3}
+  - {fileID: 649716476, guid: 4fe89c93732160b45865a162d6389508, type: 3}
+  - {fileID: -1188777260, guid: 4fe89c93732160b45865a162d6389508, type: 3}
+  - {fileID: -549013523, guid: 4fe89c93732160b45865a162d6389508, type: 3}
+  guitarIndex: 0
 --- !u!1001 &66515259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,7 +236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.871969
+      value: -10.8645315
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3025,7 +3044,7 @@ Transform:
   m_GameObject: {fileID: 1175745852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.871969, y: -1.0400001, z: -10}
+  m_LocalPosition: {x: -10.8645315, y: -1.0400001, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4608,6 +4627,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 826527193436979594, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Name
       value: Anselm 2.0
@@ -4656,6 +4679,10 @@ PrefabInstance:
       propertyPath: timeManager
       value: 
       objectReference: {fileID: 240228623}
+    - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: guitarController
+      value: 
+      objectReference: {fileID: 3105599406997228892}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: allNotesContainer
       value: 
@@ -4687,6 +4714,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4862773099974078404, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
   m_PrefabInstance: {fileID: 3105599406997228888}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3105599406997228892 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ee7871aa82d81245a44c13d7cbfd200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5657717883751818383
 PrefabInstance:
   m_ObjectHideFlags: 0

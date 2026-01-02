@@ -4,10 +4,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerStateManager : MonoBehaviour
 {
+    [Header("Disabled Obj References")]
     public PlayerHitbox playerHitbox;
-    PlayerBaseState currentState;
-    [SerializeField] private string currentStateName;
     [SerializeField] GameObject ledgeGrabChecker; // set in editor
+    public GuitarController guitarController;
+
+    [Header("Current State")]
+    [SerializeField] private string currentStateName;
+    PlayerBaseState currentState;
 
     [Header("States-Basic Action Map")]
     public PlayerStateIdle playerStateIdle;
@@ -42,7 +46,6 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
     [HideInInspector] public SHORYUKEN shoryukenChecker;
-    public GuitarController guitarController;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -80,7 +83,6 @@ public class PlayerStateManager : MonoBehaviour
         playerPoise = GetComponent<Poise>();
         colorFlasher = GetComponent<ColorFlash>();
         shoryukenChecker = GetComponent<SHORYUKEN>();
-        guitarController = GetComponentInChildren<GuitarController>();
     }
 
     // Event Subscription
