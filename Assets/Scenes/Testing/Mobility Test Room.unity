@@ -236,7 +236,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.8645315
+      value: -10.87439
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4700,6 +4700,10 @@ PrefabInstance:
       propertyPath: guitarController
       value: 
       objectReference: {fileID: 3105599406997228892}
+    - target: {fileID: 5112905442110581288, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: playerStateCrouching
+      value: 
+      objectReference: {fileID: 11400000, guid: 12b62b1f5039f5f41be645fd28fb4976, type: 2}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: allNotesContainer
       value: 

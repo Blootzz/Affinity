@@ -18,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerStateAttacking playerStateAttacking;
     public PlayerStateBlocking playerStateBlocking;
     public PlayerStateBlockSlide playerStateBlockSlide;
+    public PlayerStateCrouching playerStateCrouching;
     public PlayerStateFalling playerStateFalling;
     public PlayerStateHurt playerStateHurt;
     public PlayerStateJumping playerStateJumping;

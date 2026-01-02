@@ -23,6 +23,11 @@ public class PlayerStateIdle : PlayerBaseState
             stateManager.SwitchState(stateManager.playerStateRunning);
             return; // exit this state
         }
+        if (stateManager.GetLastSetYInput() < 0)
+        {
+            stateManager.SwitchState(stateManager.playerStateCrouching);
+            return; // exit this state
+        }
 
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.DynamicIdle);
         stateManager.GetComponent<PhysicsMaterialManager>().SetRbHighFriction();
@@ -36,7 +41,14 @@ public class PlayerStateIdle : PlayerBaseState
 
     public override void HorizontalAxis()
     {
-        stateManager.SwitchState(stateManager.playerStateRunning);
+        if (stateManager.GetLastSetXInput() != 0)
+            stateManager.SwitchState(stateManager.playerStateRunning);
+    }
+
+    public override void VerticalAxis()
+    {
+        if (stateManager.GetLastSetYInput() < 0)
+            stateManager.SwitchState(stateManager.playerStateCrouching);
     }
 
     public override void JumpStart()
