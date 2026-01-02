@@ -11,6 +11,7 @@ public class GroundCheck : MonoBehaviour
     BoxCollider2D myCollider;
     List<Collider2D> overlapResults = new List<Collider2D>();
 
+    [Tooltip("WARNING: including Physics Colliders layer will cause this to falsely detect player body in lower LineCast")]
     [SerializeField] LayerMask DetectionLayerMask;
     [Header("Wall Detection Points")]
     [SerializeField] Transform wallPointA;
@@ -28,11 +29,17 @@ public class GroundCheck : MonoBehaviour
     {
         //print("entering: " + collision.name);
 
+        //// if incoming object is NOT on layer in this mask (result == 0)
+        //if (((1 << collision.gameObject.layer) & DetectionLayerMask) == 0)
+        //    return;
+
         if (DidWeActuallyJustFindAVerticalWall())
         {
             //print("GroundCheck, False positive - just a vertical wall");
             return;
         }
+
+        print("entered ground");
 
         IsGrounded = true;
         OnGroundedChanged?.Invoke(IsGrounded);
@@ -52,7 +59,7 @@ public class GroundCheck : MonoBehaviour
             return;
         }
 
-        print("Calling exit event");
+        //print("Calling exit event");
 
         IsGrounded = false;
         OnGroundedChanged?.Invoke(IsGrounded);
@@ -65,7 +72,7 @@ public class GroundCheck : MonoBehaviour
         {
             foreach (Collider2D collision in overlapResults)
             {
-                print("overlapResults contains: " + collision.gameObject.name);
+                //print("overlapResults contains: " + collision.gameObject.name);
                 // if object matches DetectionLayerMask, return true
                 if (((1 << collision.gameObject.layer) & DetectionLayerMask) != 0)
                     return true;
