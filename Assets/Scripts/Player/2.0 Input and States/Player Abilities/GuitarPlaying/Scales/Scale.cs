@@ -7,3 +7,9 @@ public class Scale : ScriptableObject
     [Header("1 = half step, 2 = whole step")]
     public int[] spacings = new int[10]; // 1s and 2s for half and whole steps, respectively
 }
+
+[CreateAssetMenu(menuName = "Guitar/All Scales Container")]
+public class AllScalesContainer : ScriptableObject
+{
+    public Scale[] scales;
+}
