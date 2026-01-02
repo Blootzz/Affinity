@@ -11,7 +11,7 @@ public class GroundCheck : MonoBehaviour
     BoxCollider2D myCollider;
     List<Collider2D> overlapResults = new List<Collider2D>();
 
-    [SerializeField] LayerMask LineCastLayerMask;
+    [SerializeField] LayerMask DetectionLayerMask;
     [Header("Wall Detection Points")]
     [SerializeField] Transform wallPointA;
     [SerializeField] Transform wallPointB;
@@ -42,10 +42,13 @@ public class GroundCheck : MonoBehaviour
     {
         //print("exiting: " + collision.name);
 
+        //// if incoming object is NOT on layer in this mask (result == 0)
+        //if (((1 << collision.gameObject.layer) & DetectionLayerMask) == 0)
+        //    return;
+
         // evaluate if there really is nothing in GroundCheck
         if (IsGroundCheckStillOccupied())
         {
-            //print("ground check is still occupied");
             return;
         }
 
@@ -59,7 +62,15 @@ public class GroundCheck : MonoBehaviour
     {
         overlapResults.Clear();
         if (myCollider.Overlap(overlapResults) != 0)
-            return true;
+        {
+            foreach (Collider2D collision in overlapResults)
+            {
+                print("overlapResults contains: " + collision.gameObject.name);
+                // if object matches DetectionLayerMask, return true
+                if (((1 << collision.gameObject.layer) & DetectionLayerMask) != 0)
+                    return true;
+            }
+        }
         return false;
     }
 
@@ -68,8 +79,8 @@ public class GroundCheck : MonoBehaviour
     /// </summary>
     bool DidWeActuallyJustFindAVerticalWall()
     {
-        RaycastHit2D hitWall = Physics2D.Linecast(wallPointA.position, wallPointB.position, LineCastLayerMask);
-        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointA.position, floorPointB.position, LineCastLayerMask);
+        RaycastHit2D hitWall = Physics2D.Linecast(wallPointA.position, wallPointB.position, DetectionLayerMask);
+        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointA.position, floorPointB.position, DetectionLayerMask);
         if (hitWall.collider != null && hitFloor.collider == null)
             return true;
 
