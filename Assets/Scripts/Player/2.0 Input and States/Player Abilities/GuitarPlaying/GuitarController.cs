@@ -24,34 +24,21 @@ public class GuitarController : MonoBehaviour
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
     AudioSource audioSource;
+    GuitarSpriteSelection guitarSpriteSelection;
 
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
     bool sustainEnabled = false;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
+    }
+    void Start()
+    {
         AssignScale();
     }
-
-    void AssignScale()
-    {
-        // assign first button (Alpha1) to root note
-        int runningAllNotesIndex = rootIndexAllNotes;
-        notesInKey[0] = allNotesContainer.allNotes[runningAllNotesIndex];
-
-        // need to assign Note to all 9 remaining number keys according to spacings
-        for (int i=1; i<10; i++)
-        {
-            // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
-            // add runningAllNotesIndex to itself to cumulatively increment index
-            runningAllNotesIndex = allScalesContainer.scales[(int)indexSelectedScale].spacings[i - 1] + runningAllNotesIndex;
-            notesInKey[i] = allNotesContainer.allNotes[runningAllNotesIndex];
-        }
-    }
-
 
     /// <summary>
     /// Turns note designation into an index
@@ -89,6 +76,7 @@ public class GuitarController : MonoBehaviour
                 break;
         }
 
+        print("playing: " + audioSource.clip.name);
         // sustain
         // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
         if (sustainEnabled)
@@ -101,5 +89,26 @@ public class GuitarController : MonoBehaviour
     public void SetSustain(bool setValue)
     {
         sustainEnabled = setValue;
+    }
+
+    void AssignScale()
+    {
+        // assign first button (Alpha1) to root note
+        int runningAllNotesIndex = rootIndexAllNotes;
+        notesInKey[0] = allNotesContainer.allNotes[runningAllNotesIndex];
+
+        // need to assign Note to all 9 remaining number keys according to spacings
+        for (int i=1; i<10; i++)
+        {
+            // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
+            // add runningAllNotesIndex to itself to cumulatively increment index
+            runningAllNotesIndex = allScalesContainer.scales[(int)indexSelectedScale].spacings[i - 1] + runningAllNotesIndex;
+            notesInKey[i] = allNotesContainer.allNotes[runningAllNotesIndex];
+        }
+    }
+
+    public void ProcessGuitarSpriteCycleInput(bool forward)
+    {
+        guitarSpriteSelection.CycleGuitar(forward);
     }
 }

@@ -374,6 +374,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "IncrementGuitarSpriteUp",
+                    "type": "Button",
+                    "id": "08b873c3-54d8-4a9e-9aa6-705bb71557e2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "IncrementGuitarSpriteDown",
+                    "type": "Button",
+                    "id": "c41659f8-7ad5-48df-90b4-5d3c2b8a0b05",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -539,6 +557,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sustain",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1a32d0da-162e-46ac-8b08-304b98acb894",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncrementGuitarSpriteUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca1ac9a8-b538-4c0b-927c-0fae964226a9",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncrementGuitarSpriteDown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

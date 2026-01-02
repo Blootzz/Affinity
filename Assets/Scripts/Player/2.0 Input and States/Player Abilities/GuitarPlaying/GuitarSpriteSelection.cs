@@ -16,10 +16,23 @@ public class GuitarSpriteSelection : MonoBehaviour
         sr.sprite = sprites[guitarIndex];
     }
 
-    public void ChangeGuitar(int newIndex)
+    public void CycleGuitar(bool forwards)
     {
-        guitarIndex = newIndex;
+        if (forwards)
+            guitarIndex++;
+        else
+            guitarIndex--;
+
+        CatchOutOfBounds();
+
         sr.sprite = sprites[guitarIndex];
     }
 
+    void CatchOutOfBounds()
+    {
+        if (guitarIndex < 0)
+            guitarIndex = sprites.Length - 1;
+        if (guitarIndex >= sprites.Length)
+            guitarIndex = 0;
+    }
 }

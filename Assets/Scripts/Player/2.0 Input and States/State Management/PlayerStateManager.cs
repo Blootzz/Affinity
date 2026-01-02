@@ -9,7 +9,7 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private string currentStateName;
     [SerializeField] GameObject ledgeGrabChecker; // set in editor
 
-    [Header("States-Map Basic")]
+    [Header("States-Basic Action Map")]
     public PlayerStateIdle playerStateIdle;
     public PlayerStateAttacking playerStateAttacking;
     public PlayerStateBlocking playerStateBlocking;
@@ -27,7 +27,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerStateSHORYUKEN playerStateSHORYUKEN;
     public PlayerStateWallJumping playerStateWallJumping;
     public PlayerStateWallSlide playerStateWallSlide;
-    [Header("States-Map Guitar")]
+    [Header("States-Guitar Action Map")]
     public PlayerStateGuitar playerStateGuitar;
 
     PlayerInput playerInput;
@@ -42,7 +42,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
     [HideInInspector] public SHORYUKEN shoryukenChecker;
-    [HideInInspector] public GuitarController guitarController;
+    public GuitarController guitarController;
 
     bool flagHurtboxHit = false;
     bool flagBlockerHit = false;
@@ -256,6 +256,11 @@ public class PlayerStateManager : MonoBehaviour
             DoStatePlayGuitarNote(9);
         if (context.action.name.Equals("10th"))
             DoStatePlayGuitarNote(10);
+
+        if (context.action.name.Equals("IncrementGuitarSpriteUp"))
+            DoStateGuitarIncrement(true);
+        if (context.action.name.Equals("IncrementGuitarSpriteDown"))
+            DoStateGuitarIncrement(false);
     }
 
     #region Horizontal Control
@@ -363,6 +368,10 @@ public class PlayerStateManager : MonoBehaviour
     void DoStateUseSustain(bool enabled)
     {
         currentState.UseSustain(enabled);
+    }
+    void DoStateGuitarIncrement(bool forward)
+    {
+        currentState.IncrementGuitarSprite(forward);
     }
 
 

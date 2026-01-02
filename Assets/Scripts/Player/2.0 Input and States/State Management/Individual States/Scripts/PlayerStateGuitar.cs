@@ -10,12 +10,14 @@ public class PlayerStateGuitar : PlayerBaseState
     public override void OnEnter()
     {
         stateManager.SwitchActionMap("Guitar");
+        stateManager.guitarController.gameObject.SetActive(true);
         stateManager.playerAnimationManager.PlayAnimationFromString("GuitarBaseLayer");
     }
 
     public override void OnExit()
     {
         stateManager.SwitchActionMap("Basic");
+        stateManager.guitarController.gameObject.SetActive(false);
     }
 
     public override void PlayNote(int note)
@@ -31,5 +33,10 @@ public class PlayerStateGuitar : PlayerBaseState
     public override void UseSustain(bool useSustain)
     {
         stateManager.guitarController.SetSustain(useSustain);
+    }
+
+    public override void IncrementGuitarSprite(bool forward)
+    {
+        stateManager.guitarController.ProcessGuitarSpriteCycleInput(forward);
     }
 }
