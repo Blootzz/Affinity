@@ -13,3 +13,15 @@ public class AllScalesContainer : ScriptableObject
 {
     public Scale[] scales;
 }
+
+public enum ScaleType
+{
+    // uses underscore to prevent autocapitalization in the editor
+    Scale_I,
+    Scale_ii,
+    Scale_iii,
+    Scale_IV,
+    Scale_V,
+    Scale_vi,
+    Scale_vii
+}

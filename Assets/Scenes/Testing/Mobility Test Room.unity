@@ -4315,6 +4315,10 @@ PrefabInstance:
       propertyPath: allScalesContainer
       value: 
       objectReference: {fileID: 11400000, guid: 56f7677e843cb0d40ac286f7b53a0835, type: 2}
+    - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: indexSelectedScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
