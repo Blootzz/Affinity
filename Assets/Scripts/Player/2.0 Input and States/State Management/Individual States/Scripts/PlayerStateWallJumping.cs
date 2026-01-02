@@ -29,4 +29,9 @@ public class PlayerStateWallJumping : PlayerBaseState
         stateManager.SwitchState(stateManager.playerStateFalling);
     }
 
+    public override void JumpStart()
+    {
+        if (stateManager.characterJumper.CheckIfDoubleJumpIsPossible())
+            stateManager.SwitchState(stateManager.playerStateDoubleJumping);
+    }
 }
