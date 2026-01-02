@@ -34,4 +34,9 @@ public class PlayerStateWallJumping : PlayerBaseState
         if (stateManager.characterJumper.CheckIfDoubleJumpIsPossible())
             stateManager.SwitchState(stateManager.playerStateDoubleJumping);
     }
+
+    public override void ProcessGroundCheckEvent(bool isGrounded)
+    {
+        // nothing - avoids cancelling wall jump state and going straight into falling state
+    }
 }

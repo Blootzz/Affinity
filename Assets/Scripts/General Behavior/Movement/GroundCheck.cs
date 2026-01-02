@@ -11,9 +11,13 @@ public class GroundCheck : MonoBehaviour
     BoxCollider2D myCollider;
     List<Collider2D> overlapResults = new List<Collider2D>();
 
+    [SerializeField] LayerMask LineCastLayerMask;
     [Header("Wall Detection Points")]
-    [SerializeField] Transform pointA;
-    [SerializeField] Transform pointB;
+    [SerializeField] Transform wallPointA;
+    [SerializeField] Transform wallPointB;
+    [Header("Floor Detection Points")]
+    [SerializeField] Transform floorPointA;
+    [SerializeField] Transform floorPointB;
 
     private void Awake()
     {
@@ -25,7 +29,10 @@ public class GroundCheck : MonoBehaviour
         //print("entering: " + collision.name);
 
         if (DidWeActuallyJustFindAVerticalWall())
+        {
+            print("GroundCheck, False positive - just a vertical wall");
             return;
+        }
 
         IsGrounded = true;
         OnGroundedChanged?.Invoke(IsGrounded);
@@ -36,8 +43,11 @@ public class GroundCheck : MonoBehaviour
         //print("exiting: " + collision.name);
 
         // evaluate if there really is nothing in GroundCheck
-        if (!IsGroundCheckStillOccupied())
+        if (IsGroundCheckStillOccupied())
+        {
+            //print("ground check is still occupied");
             return;
+        }
 
         IsGrounded = false;
         OnGroundedChanged?.Invoke(IsGrounded);
@@ -51,11 +61,17 @@ public class GroundCheck : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Returns true if the wall LineCast hits and the floor LineCast doesn't
+    /// </summary>
     bool DidWeActuallyJustFindAVerticalWall()
     {
-        RaycastHit2D hit = Physics2D.Linecast(pointA.position, pointB.position);
-        if (hit.collider != null)
+        RaycastHit2D hitWall = Physics2D.Linecast(wallPointA.position, wallPointB.position, LineCastLayerMask);
+        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointA.position, floorPointB.position, LineCastLayerMask);
+        if (hitWall.collider != null && hitFloor.collider == null)
             return true;
+
+        print("Floor linecast hit: " + hitFloor.collider.name);
         return false;
     }
 }
