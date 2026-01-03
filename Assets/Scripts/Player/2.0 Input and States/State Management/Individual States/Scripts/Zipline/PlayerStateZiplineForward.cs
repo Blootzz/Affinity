@@ -16,18 +16,19 @@ public class PlayerStateZiplineForward : PlayerBaseState
         // adjust offset depending on facing right or left
         Vector2 adjustedOffset = new Vector2(positionOffset.x * (stateManager.faceRight ? 1 : -1), positionOffset.y);
         // assign offset to player
-        stateManager.characterMover.SetRBPosition(stateManager.ledgeGrabPos + adjustedOffset);
+        //stateManager.characterMover.SetRBPosition(stateManager.ledgeGrabPos + adjustedOffset);
 
         // animation sets playerHitbox.SetActive to true
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
 
         // place player on rope
-        stateManager.characterMover.SetRBPosition(ropeController.BeginRide());
+        stateManager.characterMover.SetRBPosition(ropeController.BeginRide(stateManager.transform.position.x));
     }
 
     public override void OnExit()
     {
         stateManager.characterMover.SetRbType(RigidbodyType2D.Dynamic);
+        ropeController.RevertSpritesToNormal();
     }
 
     public override void DoFixedUpdate()
@@ -35,7 +36,7 @@ public class PlayerStateZiplineForward : PlayerBaseState
         int inputDirection = 0;
         if (stateManager.GetLastSetXInput() > 0)
             inputDirection = 1;
-        else
+        if (stateManager.GetLastSetXInput() < 0)
             inputDirection = -1;
 
         stateManager.characterMover.SetRBPosition(ropeController.GetRiderPosition(inputDirection));

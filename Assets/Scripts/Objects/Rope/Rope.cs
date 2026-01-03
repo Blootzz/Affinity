@@ -26,6 +26,10 @@ public class Rope : MonoBehaviour
 
     Vector2 riderPosition;
 
+    [InspectorButton(nameof(OnButtonClicked))]
+    public bool DrawRope;
+    private void OnButtonClicked() { Start(); RevertSpritesToNormal(); }
+
     void Start()
     {
         // get references to each component
@@ -51,7 +55,7 @@ public class Rope : MonoBehaviour
         gameObject.GetComponent<EdgeCollider2D>().points = endPoints;
     }
 
-    void RevertSpritesToNormal() // change angle of leftLength to point towards rightKnot, and extend leftLength to rightKnot. rightLength is zero units long
+    public void RevertSpritesToNormal() // change angle of leftLength to point towards rightKnot, and extend leftLength to rightKnot. rightLength is zero units long
     {
         // find defaultAngle from leftKnot to rightKnot
         float defaultAngle = FindAngleBetween(leftKnot.transform.position, rightKnot.transform.position);
@@ -222,14 +226,15 @@ public class Rope : MonoBehaviour
         // Atan2 takes into account all quadrants of angles, while normal tan loses information
     }
 
-    public Vector2 BeginRide()
+    public Vector2 BeginRide(float riderEntryXPos)
     {
         //place player exactly on path
+        riderPosition.x = riderEntryXPos;
         float proportionalHeight = CalculateProportionalHeight();
         CalculateVerticalIndent();
         float newPlayerY = proportionalHeight - verticalIndent;
+        //print("starting with riderEntryXPos: " + riderEntryXPos + " | proportionalHeight: "+proportionalHeight + " | verticalIndent: "+verticalIndent);
         riderPosition = new Vector2(riderPosition.x, newPlayerY);
-        print("Placing Player at: " +newPlayerY);
 
         return riderPosition;
     }
