@@ -32,6 +32,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerStateSHORYUKEN playerStateSHORYUKEN;
     public PlayerStateWallJumping playerStateWallJumping;
     public PlayerStateWallSlide playerStateWallSlide;
+    public PlayerStateZiplineForward playerStateZiplineForward;
     [Header("States-Guitar Action Map")]
     public PlayerStateGuitar playerStateGuitar;
 
@@ -191,7 +192,6 @@ public class PlayerStateManager : MonoBehaviour
             DoInputsBasicMap(context);
         else if (currentMapName.Equals("Guitar"))
             DoInputsGuitarMap(context);
-
     }
     void DoInputsBasicMap(InputAction.CallbackContext context)
     {
