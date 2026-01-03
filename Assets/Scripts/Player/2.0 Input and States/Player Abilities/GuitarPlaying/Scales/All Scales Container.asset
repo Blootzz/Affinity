@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 32bdc3d77c63ce34ea1ae1fa6b54c289, type: 3}
   m_Name: All Scales Container
-  m_EditorClassIdentifier: GuitarPlaying::AllScalesContainer
+  m_EditorClassIdentifier: 
   scales:
   - {fileID: 11400000, guid: f1fd66a416395ff4ebd4c2abb0529420, type: 2}
   - {fileID: 11400000, guid: 4c9e925d890b62342b8a0953d3b4cb6d, type: 2}

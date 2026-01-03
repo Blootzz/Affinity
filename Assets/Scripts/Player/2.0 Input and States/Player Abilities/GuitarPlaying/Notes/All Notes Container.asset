@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: AllNotesContainer
-  m_EditorClassIdentifier: GuitarPlaying::AllNotesContainer
+  m_Script: {fileID: 11500000, guid: 6e8861152eeea1a4cb48696c46588961, type: 3}
+  m_Name: All Notes Container
+  m_EditorClassIdentifier: 
   allNotes:
   - {fileID: 11400000, guid: e6e9861b6a789de4191cc64da9500010, type: 2}
   - {fileID: 11400000, guid: 78c001551300c1d4ab6e1541bb542351, type: 2}

@@ -8,11 +8,7 @@ public class Scale : ScriptableObject
     public int[] spacings = new int[10]; // 1s and 2s for half and whole steps, respectively
 }
 
-[CreateAssetMenu(menuName = "Guitar/All Scales Container")]
-public class AllScalesContainer : ScriptableObject
-{
-    public Scale[] scales;
-}
+
 
 public enum ScaleType
 {

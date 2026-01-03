@@ -20,8 +20,9 @@ public class PlayerStateZiplineForward : PlayerBaseState
         // assign offset to player
         //stateManager.characterMover.SetRBPosition(stateManager.ledgeGrabPos + adjustedOffset);
 
-        // animation sets playerHitbox.SetActive to true
-        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
+        //stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
+        // handles animations
+        HorizontalAxis();
 
         // place player on rope
         stateManager.characterMover.SetRBPosition(ropeController.BeginRide(stateManager.transform.position.x));
@@ -51,6 +52,26 @@ public class PlayerStateZiplineForward : PlayerBaseState
 
     public override void HorizontalAxis()
     {
+        // movement gets outputted by GetRiderPosition in DoFixedUpdate
+        // select animations here
+        if (stateManager.GetLastSetXInput() > 0)
+        {
+            if (stateManager.faceRight)
+                stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
+            else
+                stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineBackward);
+            return;
+        }
+        if (stateManager.GetLastSetXInput() < 0)
+        {
+            if (!stateManager.faceRight)
+                stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
+            else
+                stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineBackward);
+            return;
+        }
+
+        stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineStill);
 
     }
 

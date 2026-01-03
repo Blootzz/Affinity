@@ -58,6 +58,7 @@ public class PlayerAnimationManager : MonoBehaviour
     public int ZipAttackForward { get; private set; }
     public int ZipAttackBackward { get; private set; }
     public int ZiplineApproach { get; private set; }
+    public int ZiplineStill { get; private set; }
 
     // Armed or Unarmed version of animation will keep track of which of the two animations to play (Idle means armed Idle)
     public int DynamicIdle { get; private set; } // changes idle to pant depending on how much health
@@ -138,6 +139,7 @@ public class PlayerAnimationManager : MonoBehaviour
         ZipAttackForward = Animator.StringToHash("ZipAttackForward");
         ZipAttackBackward = Animator.StringToHash("ZipAttackBackward");
         ZiplineApproach = Animator.StringToHash("ZiplineApproach");
+        ZiplineStill = Animator.StringToHash(animationPrefix + "ZiplineStill");
 
         SetChangingAnimations();
     }

@@ -71,7 +71,6 @@ public class Rope : MonoBehaviour
 
     void RedrawRopeWithIndent()
     {
-
         // rotate leftLength
         // indent already taken into account by player position
         float leftAngle = FindAngleBetween(leftKnot.transform.position, riderPosition);
@@ -89,14 +88,15 @@ public class Rope : MonoBehaviour
     /// <summary>
     /// Called by stateManager.currentState.DoFixedUpdate
     /// Uses fixedDeltaTime for slow motion
+    /// Uses <paramref name="normalizedXMovement"/> to account for slope
     /// </summary>
-    void SimulateMovement(int movementDirection)
+    void SimulateMovement(float normalizedXMovement)
     {
         // These variables in combination with the "else" statement prevent player from sliding straight down at ends
         Vector2 oldPosition = riderPosition;
 
         // determine X value for player to move to
-        float newPlayerX = riderPosition.x + movementDirection * horizontalSpeed * Time.fixedDeltaTime * 50;
+        float newPlayerX = riderPosition.x + normalizedXMovement * horizontalSpeed * Time.fixedDeltaTime * 50;
 
         // only proceed if within bounds of knots
         if (newPlayerX > leftKnot.transform.position.x && newPlayerX < rightKnot.transform.position.x)
@@ -229,7 +229,15 @@ public class Rope : MonoBehaviour
     public Vector2 BeginRide(float riderEntryXPos)
     {
         //place player exactly on path
-        riderPosition.x = riderEntryXPos;
+
+        // check bounds
+        if (riderEntryXPos < leftKnot.transform.position.x)
+            riderPosition.x = leftKnot.transform.position.x;
+        else if (riderEntryXPos > rightKnot.transform.position.x)
+            riderPosition.x = rightKnot.transform.position.x;
+        else
+            riderPosition.x = riderEntryXPos;
+
         float proportionalHeight = CalculateProportionalHeight();
         CalculateVerticalIndent();
         float newPlayerY = proportionalHeight - verticalIndent;
@@ -241,11 +249,15 @@ public class Rope : MonoBehaviour
 
     /// <summary>
     /// Direction: backwards = -1, no movement = 0, forwards = 1
+    /// Normalizes knot direction and multiplies x component by <paramref name="direction"/>
     /// Simulates rope movement and returns the calculated rider position
     /// </summary>
     public Vector2 GetRiderPosition(int direction)
     {
-        SimulateMovement(direction);
+        float normalizedDirection = (rightKnot.transform.position - leftKnot.transform.position).normalized.x;
+
+
+        SimulateMovement(direction * normalizedDirection);
         return riderPosition;
     }
 
