@@ -7,6 +7,7 @@ public class PlayerStateManager : MonoBehaviour
     [Header("Disabled Obj References")]
     public PlayerHitbox playerHitbox;
     [SerializeField] GameObject ledgeGrabChecker; // set in editor
+    [SerializeField] RopeDetector ropeDetector;
     public GuitarController guitarController;
 
     [Header("Explicit Obj References")]
@@ -47,6 +48,7 @@ public class PlayerStateManager : MonoBehaviour
     [HideInInspector] public Poise playerPoise;
     [HideInInspector] public ColorFlash colorFlasher;
     [HideInInspector] public SHORYUKEN shoryukenChecker;
+    [HideInInspector] public Rope ropeController;
 
     [Header("Current State")]
     [SerializeField] private string currentStateName;
@@ -103,6 +105,7 @@ public class PlayerStateManager : MonoBehaviour
         characterMover.HorVelocityHitZeroEvent += OnHorVelocityHitZero;
         ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent += OnLedgeGrabFound;
         characterJumper.HitApexEvent += OnFallingApexReached;
+        ropeDetector.RopeFoundEvent += OnRopeFound;
     }
 
     // Event Unsubscription
@@ -119,6 +122,7 @@ public class PlayerStateManager : MonoBehaviour
         characterMover.HorVelocityHitZeroEvent -= OnHorVelocityHitZero;
         ledgeGrabChecker.GetComponent<LedgeGrabChecker>().LedgeGrabEvent -= OnLedgeGrabFound;
         characterJumper.HitApexEvent -= OnFallingApexReached;
+        ropeDetector.RopeFoundEvent -= OnRopeFound;
     }
 
     private void Start()
@@ -130,6 +134,7 @@ public class PlayerStateManager : MonoBehaviour
     private void FixedUpdate()
     {
         EvaluateIncomingAttack();
+        DoStateFixedUpdate();
     }
 
     void EvaluateIncomingAttack()
@@ -424,12 +429,6 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
-    void OnLedgeGrabFound(Vector2 ledgePos)
-    {
-        ledgeGrabPos = ledgePos;
-        SwitchState(playerStateLedgeHang);
-    }
-
     void DoStateGuitar()
     {
         currentState.OpenGuitar();
@@ -458,6 +457,11 @@ public class PlayerStateManager : MonoBehaviour
     void DoStateExit()
     {
         currentState.Exit();
+    }
+
+    void DoStateFixedUpdate()
+    {
+        currentState.DoFixedUpdate();
     }
     #endregion
 
@@ -506,6 +510,17 @@ public class PlayerStateManager : MonoBehaviour
         hurtboxManager.DisableOneFrame();
 
         currentState.ProcessBlockerHit();
+    }
+
+    void OnLedgeGrabFound(Vector2 ledgePos)
+    {
+        ledgeGrabPos = ledgePos;
+        SwitchState(playerStateLedgeHang);
+    }
+    void OnRopeFound(Rope ropeController)
+    {
+        playerStateZiplineForward.ropeController = ropeController;
+        SwitchState(playerStateZiplineForward);
     }
 
     void OnDeath()

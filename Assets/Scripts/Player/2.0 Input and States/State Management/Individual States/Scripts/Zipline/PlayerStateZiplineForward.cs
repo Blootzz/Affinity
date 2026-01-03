@@ -6,6 +6,8 @@ public class PlayerStateZiplineForward : PlayerBaseState
     [Tooltip("Sum of this offset and the ledge position equals good player position while facing right")]
     [SerializeField] Vector2 positionOffset = new Vector2(-.2755f, -0.851f);
 
+    [HideInInspector] public Rope ropeController;
+
     public override void OnEnter()
     {
         stateManager.characterMover.SetRbType(RigidbodyType2D.Kinematic);
@@ -23,6 +25,17 @@ public class PlayerStateZiplineForward : PlayerBaseState
     public override void OnExit()
     {
         stateManager.characterMover.SetRbType(RigidbodyType2D.Dynamic);
+    }
+
+    public override void DoFixedUpdate()
+    {
+        int inputDirection = 0;
+        if (stateManager.GetLastSetXInput() > 0)
+            inputDirection = 1;
+        else
+            inputDirection = -1;
+
+        stateManager.characterMover.SetRBPosition(ropeController.GetRiderPosition(inputDirection));
     }
 
     public override void JumpStart()
