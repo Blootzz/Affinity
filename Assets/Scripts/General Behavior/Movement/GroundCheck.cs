@@ -39,7 +39,7 @@ public class GroundCheck : MonoBehaviour
             return;
         }
 
-        //print("entered ground");
+        //print("entered ground: "+collision.gameObject.layer);
 
         IsGrounded = true;
         OnGroundedChanged?.Invoke(IsGrounded);

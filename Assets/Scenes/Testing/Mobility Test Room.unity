@@ -539,9 +539,25 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1390804309937158771, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379474, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_Size.x
       value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310482032928, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310699939505, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310699939518, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -554,6 +570,10 @@ PrefabInstance:
     - target: {fileID: 1390804310882198818, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_Name
       value: Rope (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310882198818, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310882198819, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -593,6 +613,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310882198819, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804311254039656, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804311313980949, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5195,9 +5223,25 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1390804309937158771, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379474, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_Size.x
       value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310482032928, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310699939505, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310699939518, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5210,6 +5254,10 @@ PrefabInstance:
     - target: {fileID: 1390804310882198818, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_Name
       value: Rope (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310882198818, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310882198819, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5249,6 +5297,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310882198819, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804311254039656, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804311313980949, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
