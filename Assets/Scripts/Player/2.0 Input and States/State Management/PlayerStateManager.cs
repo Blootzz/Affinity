@@ -161,6 +161,8 @@ public class PlayerStateManager : MonoBehaviour
     public void SwitchState(PlayerBaseState newState)
     {
         currentState?.OnExit();
+        //if (newState != null && currentState != null)
+        //    print("Switching from " + currentState.name + " to " + newState.name);
         currentState = newState;
         currentStateName = newState.GetType().Name;
         currentState.SetStateManager(this);

@@ -5305,6 +5305,10 @@ PrefabInstance:
       propertyPath: LineCastLayerMask.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 7445529422289367513, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: DetectionLayerMask.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: allNotesContainer
       value: 
