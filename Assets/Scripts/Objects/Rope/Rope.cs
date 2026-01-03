@@ -8,13 +8,12 @@ public class Rope : MonoBehaviour
     [SerializeField] float ropeSpriteHeight = 0.175f;
     Vector2 knotToKnotDistance;
 
-    float verticalIndent; // variable calculated to find how low player should be on rope
     public float indentMultiplier_RopeLength = .15f; // scales how much total rope length increases verticalIndent
     public float indentMultiplier_NearestKnot = .15f; // scales how much proximity away from nearest anchor increases verticalIndent
+    float verticalIndent; // variable calculated to find how low player should be on rope
 
     // player movement
     [SerializeField] float horizontalSpeed = .1f;
-    bool playerIsOnRope = false;
 
     public GameObject leftRope;
     public GameObject rightRope;
@@ -83,21 +82,8 @@ public class Rope : MonoBehaviour
         rightLength.GetComponent<SpriteRenderer>().size = new Vector2((rightKnot.transform.position - (Vector3)riderPosition).magnitude, ropeSpriteHeight);
     }
 
-    public void BeginRide()
-    {
-        playerIsOnRope = true;
-
-        //place player exactly on path
-        float proportionalHeight = leftKnot.transform.position.y // based off left knot for world space
-                + (riderPosition.x - leftKnot.transform.position.x) * (knotToKnotDistance.y / knotToKnotDistance.x); // proportionality from player distance from left knot
-                                                                                                                                    // determine Y value for player to move to
-        CalculateVerticalIndent();
-        float newPlayerY = proportionalHeight - verticalIndent;
-        riderPosition = new Vector2(riderPosition.x, newPlayerY);
-        print("Placing Player at: " +newPlayerY);
-    }
-
     /// <summary>
+    /// Called by stateManager.currentState.DoFixedUpdate
     /// Uses fixedDeltaTime for slow motion
     /// </summary>
     void SimulateMovement(int movementDirection)
@@ -111,9 +97,7 @@ public class Rope : MonoBehaviour
         // only proceed if within bounds of knots
         if (newPlayerX > leftKnot.transform.position.x && newPlayerX < rightKnot.transform.position.x)
         {
-            // determine proportionalHeight (a.k.a. what the vertical component of the player should be on if the rope was perfectly taught)
-            float proportionalHeight = leftKnot.transform.position.y // based off left knot for world space
-                + (riderPosition.x - leftKnot.transform.position.x) * (knotToKnotDistance.y / knotToKnotDistance.x); // proportionality from player distance from left knot
+            float proportionalHeight = CalculateProportionalHeight();
 
             // determine Y value for player to move to
             CalculateVerticalIndent();
@@ -129,7 +113,28 @@ public class Rope : MonoBehaviour
         {
             riderPosition = oldPosition;
         }
-    }// FixedUpdate()
+    }
+
+    /// <summary>
+    /// Determine proportionalHeight (a.k.a. what the vertical component of the player should be on if the rope was perfectly taught)
+    /// </summary>
+    float CalculateProportionalHeight()
+    {
+        return leftKnot.transform.position.y // based off left knot for world space
+                + (riderPosition.x - leftKnot.transform.position.x) * (knotToKnotDistance.y / knotToKnotDistance.x);
+    }
+
+    void CalculateVerticalIndent()
+    {
+        float distanceToNearestKnot;
+        // find x distance to nearest knot
+        if (riderPosition.x - leftKnot.transform.position.x < knotToKnotDistance.x / 2) // if player is on left side of rope
+            distanceToNearestKnot = riderPosition.x - leftKnot.transform.position.x;
+        else
+            distanceToNearestKnot = -1 * (riderPosition.x - rightKnot.transform.position.x); // player.x - rightKnot.x will be negative so it is multiplied by -1
+
+        verticalIndent = (distanceToNearestKnot * indentMultiplier_NearestKnot) * (knotToKnotDistance.x * indentMultiplier_RopeLength);
+    }
 
     //private void Update()
     //{
@@ -209,23 +214,24 @@ public class Rope : MonoBehaviour
     //    }    
     //}
 
-    void CalculateVerticalIndent()
-    {
-        float distanceToNearestKnot;
-        // find x distance to nearest knot
-        if (riderPosition.x - leftKnot.transform.position.x < knotToKnotDistance.x / 2) // if player is on left side of rope
-            distanceToNearestKnot = riderPosition.x - leftKnot.transform.position.x;
-        else
-            distanceToNearestKnot = -1 * (riderPosition.x - rightKnot.transform.position.x); // player.x - rightKnot.x will be negative so it is multiplied by -1
-
-        verticalIndent = (distanceToNearestKnot * indentMultiplier_NearestKnot) * (knotToKnotDistance.x * indentMultiplier_RopeLength);
-    }
 
     float FindAngleBetween(Vector2 startingPoint, Vector2 targetPoint)
     {
         Vector2 difference = targetPoint - startingPoint;
         return Mathf.Rad2Deg * Mathf.Atan2(difference.y, difference.x); // returns angle of difference vector
         // Atan2 takes into account all quadrants of angles, while normal tan loses information
+    }
+
+    public Vector2 BeginRide()
+    {
+        //place player exactly on path
+        float proportionalHeight = CalculateProportionalHeight();
+        CalculateVerticalIndent();
+        float newPlayerY = proportionalHeight - verticalIndent;
+        riderPosition = new Vector2(riderPosition.x, newPlayerY);
+        print("Placing Player at: " +newPlayerY);
+
+        return riderPosition;
     }
 
     /// <summary>

@@ -20,6 +20,9 @@ public class PlayerStateZiplineForward : PlayerBaseState
 
         // animation sets playerHitbox.SetActive to true
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.ZiplineForward);
+
+        // place player on rope
+        stateManager.characterMover.SetRBPosition(ropeController.BeginRide());
     }
 
     public override void OnExit()
