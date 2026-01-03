@@ -10,6 +10,8 @@ public class PlayerStateZiplineForward : PlayerBaseState
 
     public override void OnEnter()
     {
+        stateManager.characterJumper.ResetDoubleJump();
+
         stateManager.characterMover.SetRbType(RigidbodyType2D.Kinematic);
         stateManager.characterMover.SetVelocity(Vector2.zero);
 
