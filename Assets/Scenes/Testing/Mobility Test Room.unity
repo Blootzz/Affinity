@@ -292,7 +292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 152762522}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Floor LineCasts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -527,6 +527,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804309937158769, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 5.46
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804310699939518, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.46
@@ -696,6 +712,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: -5.8250012
+      objectReference: {fileID: 0}
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[0].y
+      value: 4.6900005
+      objectReference: {fileID: 0}
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 4.6099997
+      objectReference: {fileID: 0}
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[1].y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804309937158769, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804309937158769, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -708,9 +744,21 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379472, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9798388
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379472, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1997897
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804310278379474, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 11.340319
       objectReference: {fileID: 0}
     - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_SortingOrder
@@ -2646,7 +2694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 877517397}
   - component: {fileID: 877517398}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Floor Point A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3292,7 +3340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1067207491}
   - component: {fileID: 1067207492}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Point A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3378,7 +3426,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1125506012}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall LineCasts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4844,7 +4892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1520264713}
   - component: {fileID: 1520264714}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wall Point B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5018,7 +5066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1633434243}
   - component: {fileID: 1633434244}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Floor Point B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5135,6 +5183,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[0].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570933556492367525, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Points.Array.data[1].x
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804309937158769, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1390804310278379475, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
+      propertyPath: m_Size.x
+      value: 5.46
+      objectReference: {fileID: 0}
     - target: {fileID: 1390804310699939518, guid: 719bacbf68226a2409c7eff93eb2504d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.46
