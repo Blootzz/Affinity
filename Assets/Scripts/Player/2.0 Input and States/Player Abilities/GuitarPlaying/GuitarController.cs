@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum ChordType
 {
@@ -19,7 +21,8 @@ public class GuitarController : MonoBehaviour
     [Tooltip("Determines what scale to use")]
     public ScaleType indexSelectedScale = ScaleType.Scale_I;
 
-    // max rootNoteIndex should be 11
+    [Tooltip("If the player can play the 10th, this should be no greater than 1 octave + 2 whole steps from last index")]
+    [SerializeField] int maxRootNoteIndex = 27;
     
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
@@ -30,6 +33,12 @@ public class GuitarController : MonoBehaviour
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
     bool sustainEnabled = false;
+
+    [Header("HUD update events")]
+    public UnityEvent<bool> CycleScaleInputEvent;
+    public UnityEvent<bool> CycleKeyInputEvent;
+    public UnityEvent<int, bool> NoteInputEvent;
+    public UnityEvent<int, bool> ChordModifierInputEvent;
 
     private void Awake()
     {
@@ -46,15 +55,23 @@ public class GuitarController : MonoBehaviour
     /// Turns note designation into an index
     /// Plays the note according to activeChordType
     /// </summary>
-    public void EnterNoteInput(int note)
+    public void EnterNoteInput(int note, bool buttonDown)
     {
+        NoteInputEvent?.Invoke(note, buttonDown);
+        if (!buttonDown)
+            return;
+
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
         Play();
     }
-    public void ApplyChordModifier(ChordType chordType)
+    public void ApplyChordModifier(ChordType chordType, bool buttonDown)
     {
-        activeChord = chordType;
+        ChordModifierInputEvent?.Invoke((int)chordType, buttonDown);
+
+        // only update chord type if player let go of active chord
+        if (chordType.Equals(activeChord))
+            activeChord = chordType;
     }
     void Play()
     {
@@ -89,11 +106,6 @@ public class GuitarController : MonoBehaviour
 
     }
 
-    public void SetSustain(bool setValue)
-    {
-        sustainEnabled = setValue;
-    }
-
     void AssignScale()
     {
         // assign first button (Alpha1) to root note
@@ -113,5 +125,45 @@ public class GuitarController : MonoBehaviour
     public void ProcessGuitarSpriteCycleInput(bool forward)
     {
         guitarSpriteSelection.CycleGuitar(forward);
+    }
+    public void ProcessCycleScaleInput(bool forward, bool buttonDown)
+    {
+        CycleScaleInputEvent?.Invoke(buttonDown);
+        if (!buttonDown)
+            return;
+
+        indexSelectedScale = (ScaleType) ((int)indexSelectedScale + (forward ? 1 : -1));
+
+        // check out of bounds
+        if ((int)indexSelectedScale < 0)
+            indexSelectedScale = (ScaleType)(allScalesContainer.scales.Length - 1);
+        if ((int)indexSelectedScale > allScalesContainer.scales.Length - 1)
+            indexSelectedScale = 0;
+
+        // double check
+        if (!Enum.IsDefined(typeof(ScaleType), (int)indexSelectedScale))
+            Debug.LogWarning("Invalid ScaleType selected: " + (int)indexSelectedScale);
+
+        AssignScale();
+    }
+    public void ProcessCycleKeyInput(bool forward, bool buttonDown)
+    {
+        CycleKeyInputEvent?.Invoke(buttonDown);
+        if (!buttonDown)
+            return;
+
+        rootIndexAllNotes += forward ? 1 : -1;
+
+        if (rootIndexAllNotes < 0)
+            rootIndexAllNotes = maxRootNoteIndex;
+        if (rootIndexAllNotes > maxRootNoteIndex)
+            rootIndexAllNotes = 0;
+
+        AssignScale();
+    }
+
+    public void SetSustain(bool setValue)
+    {
+        sustainEnabled = setValue;
     }
 }

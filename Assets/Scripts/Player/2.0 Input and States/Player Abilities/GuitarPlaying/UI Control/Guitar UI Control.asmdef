@@ -1,0 +1,16 @@
+{
+    "name": "UIControl",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f87c31f01d4cebf44a47f20648e27b95"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

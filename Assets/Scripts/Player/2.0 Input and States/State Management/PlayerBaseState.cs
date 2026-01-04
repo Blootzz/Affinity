@@ -59,10 +59,10 @@ public abstract class PlayerBaseState : ScriptableObject
     }
     public virtual void FallingApexReached() { }
     public virtual void OpenGuitar() { }
-    public virtual void PlayNote(int noteNum) { }
-    public virtual void ApplyChord(ChordType chordNum) { }
-    public virtual void UseSustain(bool useSustain) { }
-    public virtual void IncrementGuitarSprite(bool forward) { }
+    //public virtual void PlayNote(int noteNum) { }
+    //public virtual void ApplyChord(ChordType chordNum) { }
+    //public virtual void UseSustain(bool useSustain) { }
+    //public virtual void IncrementGuitarSprite(bool forward) { }
     public virtual void Exit() { Debug.Log("implement pause here"); }
     public virtual void DoFixedUpdate() { }
 }

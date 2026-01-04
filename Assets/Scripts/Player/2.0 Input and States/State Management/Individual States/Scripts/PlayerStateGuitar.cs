@@ -20,24 +20,33 @@ public class PlayerStateGuitar : PlayerBaseState
         stateManager.guitarController.gameObject.SetActive(false);
     }
 
-    public override void PlayNote(int note)
+    public void PlayNote(int note, bool buttonDown)
     {
-        stateManager.guitarController.EnterNoteInput(note);
+        stateManager.guitarController.EnterNoteInput(note, buttonDown);
     }
 
-    public override void ApplyChord(ChordType chordNum)
+    public void ApplyChord(ChordType chordNum, bool buttonDown)
     {
-        stateManager.guitarController.ApplyChordModifier(chordNum);
-    }
 
-    public override void UseSustain(bool useSustain)
+        stateManager.guitarController.ApplyChordModifier(chordNum, buttonDown);
+    }
+    public void UseSustain(bool useSustain)
     {
         stateManager.guitarController.SetSustain(useSustain);
     }
 
-    public override void IncrementGuitarSprite(bool forward)
+    public void IncrementGuitarSprite(bool forward)
     {
         stateManager.guitarController.ProcessGuitarSpriteCycleInput(forward);
+    }
+
+    public void CycleKey(bool forward, bool buttonDown)
+    {
+        stateManager.guitarController.ProcessCycleKeyInput(forward, buttonDown);
+    }
+    public void CycleScale(bool forward, bool buttonDown)
+    {
+        stateManager.guitarController.ProcessCycleScaleInput(forward, buttonDown);
     }
 
     public override void Exit()
