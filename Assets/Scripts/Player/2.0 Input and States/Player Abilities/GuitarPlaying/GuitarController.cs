@@ -34,9 +34,9 @@ public class GuitarController : MonoBehaviour
     ChordType activeChord = ChordType.None;
     bool sustainEnabled = false;
 
-    [Header("HUD update events")]
-    public UnityEvent<bool> CycleScaleInputEvent;
-    public UnityEvent<bool> CycleKeyInputEvent;
+    [Header("UI update events")]
+    public UnityEvent<bool, bool> CycleHorizontalArrowInputEvent;
+    public UnityEvent<bool, bool> CycleVerticalArrowInputEvent;
     public UnityEvent<int, bool> NoteInputEvent;
     public UnityEvent<int, bool> ChordModifierInputEvent;
 
@@ -126,9 +126,19 @@ public class GuitarController : MonoBehaviour
     {
         guitarSpriteSelection.CycleGuitar(forward);
     }
+
+
     public void ProcessCycleScaleInput(bool forward, bool buttonDown)
     {
-        CycleScaleInputEvent?.Invoke(buttonDown);
+        CycleHorizontalArrowInputEvent?.Invoke(forward, buttonDown);
+        DoCycleScaleLogic(forward, buttonDown);
+    }
+
+    public void BUTTON_CycleScaleForward() => DoCycleScaleLogic(true, true);
+    public void BUTTON_CycleScaleBackward() => DoCycleScaleLogic(false, true);
+
+    public void DoCycleScaleLogic(bool forward, bool buttonDown)
+    {
         if (!buttonDown)
             return;
 
@@ -146,9 +156,24 @@ public class GuitarController : MonoBehaviour
 
         AssignScale();
     }
+
+
+    /// <summary>
+    /// call from input action. Fires event listened to by UI to update button visuals but EVENT DOES NOT DO LOGIC
+    /// </summary>
     public void ProcessCycleKeyInput(bool forward, bool buttonDown)
     {
-        CycleKeyInputEvent?.Invoke(buttonDown);
+        CycleVerticalArrowInputEvent?.Invoke(forward, buttonDown);
+        DoCycleKeyLogic(forward, buttonDown);
+    }
+
+    /// called by UI button
+    /// assign to whatever clickable button should advance the key up
+    public void BUTTON_CycleKeyForward() => DoCycleKeyLogic(true, true);
+    public void BUTTON_CycleKeyBackward() => DoCycleKeyLogic(false, true);
+
+    void DoCycleKeyLogic(bool forward, bool buttonDown)
+    {
         if (!buttonDown)
             return;
 
