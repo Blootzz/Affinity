@@ -6,10 +6,17 @@ using UnityEngine.UI;
 // As long as no custom types are involved, no asemdef reference should be required
 public class GuitarUIController : MonoBehaviour
 {
+    [Header("Arrow Button Visuals")]
     [SerializeField] Button UpArrow;
     [SerializeField] Button DownArrow;
     [SerializeField] Button RightArrow;
     [SerializeField] Button LeftArrow;
+
+    [Header("Note Illumination")]
+    [SerializeField] Color32 lightBlue;
+    [SerializeField] Color32 darkBlue;
+    [Tooltip("Parent containing all the notes. All notes contain another child (the illuminated number)")]
+    [SerializeField] GameObject NoteMarkersParent;
 
     /// <summary>
     /// Needs to be triggered by GuitarController
@@ -45,5 +52,24 @@ public class GuitarUIController : MonoBehaviour
         }
         else
             arrowButton.OnPointerUp(new PointerEventData(EventSystem.current));
+    }
+
+    /// <summary>
+    /// must be zero-indexed. Will probably behave incorrectly if notes before root are added
+    /// notePlayedIndex is the child index of the note in Object "Note Markers".
+    /// The illuminated number is the child of that child
+    /// </summary>
+    public void LISTEN_IlluminateOnNotePlayed(int notePlayedIndex, bool buttonDown)
+    {
+        Color32 updatedColor;
+        if (buttonDown)
+            updatedColor = lightBlue;
+        else
+            updatedColor = darkBlue;
+
+        Image selectedImage = NoteMarkersParent.transform.GetChild(notePlayedIndex). // get correct note by index
+            transform.GetChild(0).GetComponent<Image>(); // image is first child of note
+
+        selectedImage.color = updatedColor;
     }
 }

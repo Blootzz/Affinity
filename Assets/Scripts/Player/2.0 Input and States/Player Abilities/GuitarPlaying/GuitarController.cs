@@ -37,7 +37,7 @@ public class GuitarController : MonoBehaviour
     [Header("UI update events")]
     public UnityEvent<bool, bool> CycleHorizontalArrowInputEvent;
     public UnityEvent<bool, bool> CycleVerticalArrowInputEvent;
-    public UnityEvent<int, bool> NoteInputEvent;
+    public UnityEvent<int, bool> NoteInputEvent; // must be zero-indexed
     public UnityEvent<int, bool> ChordModifierInputEvent;
 
     private void Awake()
@@ -57,7 +57,7 @@ public class GuitarController : MonoBehaviour
     /// </summary>
     public void EnterNoteInput(int note, bool buttonDown)
     {
-        NoteInputEvent?.Invoke(note, buttonDown);
+        NoteInputEvent?.Invoke(note-1, buttonDown);
         if (!buttonDown)
             return;
 
