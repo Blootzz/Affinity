@@ -459,8 +459,7 @@ public class PlayerStateManager : MonoBehaviour
         ((PlayerStateGuitar)currentState).PlayNote(noteNum, buttonDown);
     }
     /// <summary>
-    /// Passes on int to guitarController
-    /// 0 = major, 1 = minor, 2 = power
+    /// Passes on int to guitarController, should never be "None" since there is no input action for "None" chord
     /// </summary>
     void DoStateChord(ChordType chordNum, bool buttonDown)
     {

@@ -12,6 +12,11 @@ public class GuitarUIController : MonoBehaviour
     [SerializeField] Button RightArrow;
     [SerializeField] Button LeftArrow;
 
+    [Header("Chord Modifier Button Visuals")]
+    [SerializeField] Button MajorChordButton;
+    [SerializeField] Button MinorChordButton;
+    [SerializeField] Button PowerChordButton;
+
     [Header("Note Illumination")]
     [SerializeField] Color32 lightBlue;
     [SerializeField] Color32 darkBlue;
@@ -31,9 +36,7 @@ public class GuitarUIController : MonoBehaviour
             arrowButton = DownArrow;
 
         if (buttonDown)
-        {
             arrowButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        }
         else
             arrowButton.OnPointerUp(new PointerEventData(EventSystem.current));
     }
@@ -47,11 +50,39 @@ public class GuitarUIController : MonoBehaviour
             arrowButton = RightArrow;
 
         if (buttonDown)
-        {
             arrowButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        }
         else
             arrowButton.OnPointerUp(new PointerEventData(EventSystem.current));
+    }
+
+    public void LISTEN_OnChordButtonPressed(int indexChordType, bool buttonDown)
+    {
+        Button chordButtonToChange;
+
+        ChordType chordType = (ChordType)indexChordType;
+        switch (chordType)
+        {
+            case ChordType.None:
+                Debug.LogError("How tf did ChordType.None get here? This should just be for processing input actions for chord modifiers");
+                return; // avoids null ref
+            case ChordType.MajorChord:
+                chordButtonToChange = MajorChordButton;
+                break;
+            case ChordType.MinorChord:
+                chordButtonToChange = MinorChordButton;
+                break;
+            case ChordType.PowerChord:
+                chordButtonToChange = PowerChordButton;
+                break;
+            default:
+                Debug.LogError("Invalid chord type to change button sprite");
+                return; // avoids null ref
+        }
+
+        if (buttonDown)
+            chordButtonToChange.OnPointerDown(new PointerEventData(EventSystem.current));
+        else
+            chordButtonToChange.OnPointerUp(new PointerEventData(EventSystem.current));
     }
 
     /// <summary>

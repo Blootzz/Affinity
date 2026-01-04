@@ -197,6 +197,9 @@ MonoBehaviour:
   DownArrow: {fileID: 940083909}
   RightArrow: {fileID: 1921781507}
   LeftArrow: {fileID: 1398650962}
+  MajorChordButton: {fileID: 1426047183}
+  MinorChordButton: {fileID: 1656800227}
+  PowerChordButton: {fileID: 1778384415}
   lightBlue:
     serializedVersion: 2
     rgba: 4294890624
@@ -4289,6 +4292,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   singleFlashSeconds: 0.2
   repeatingFlashInterval: 0.2
+--- !u!114 &1426047183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3010517861695189622, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1496809533
 GameObject:
   m_ObjectHideFlags: 0
@@ -4422,11 +4436,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496809533}
   m_CullTransparentMesh: 1
+--- !u!114 &1656800227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1454136536449832369, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &1751218398 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 1161608376481169887, guid: 0afbd2e61b04d284ba60413e55031e31, type: 3}
   m_PrefabInstance: {fileID: 938633272}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1778384415 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6987127614279229340, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+  m_PrefabInstance: {fileID: 3105599406997228888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1870489554 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7410439986543881496, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
@@ -4996,6 +5032,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1454136536449832369, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1475173430455418637, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5043,6 +5083,14 @@ PrefabInstance:
     - target: {fileID: 1858006117596252548, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Name
       value: Bottom Arrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2486501104207274403, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Name
+      value: Button Minor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010517861695189622, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3329007068370987877, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -5136,6 +5184,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6987127614279229340, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7308558987778226774, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5152,6 +5204,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8886732929563263656, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Name
+      value: Button Power
+      objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: NoteInputEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -5162,7 +5218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: ChordModifierInputEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: NoteInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5185,6 +5241,10 @@ PrefabInstance:
       value: LISTEN_IlluminateOnNotePlayed
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: ChordModifierInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 193115831}
+    - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleScaleInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -5195,6 +5255,10 @@ PrefabInstance:
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleVerticalArrowInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: ChordModifierInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LISTEN_OnChordButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleVerticalArrowInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5225,6 +5289,10 @@ PrefabInstance:
       value: LISTEN_OnHorizontalArrowButtonPressed
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: ChordModifierInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GuitarUIController, UIControl
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleVerticalArrowInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GuitarUIController, UIControl
       objectReference: {fileID: 0}
@@ -5237,12 +5305,20 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: ChordModifierInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleVerticalArrowInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8998265802615454844, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: CycleHorizontalArrowInputEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9055220882174881507, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: m_Name
+      value: Button Major
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
