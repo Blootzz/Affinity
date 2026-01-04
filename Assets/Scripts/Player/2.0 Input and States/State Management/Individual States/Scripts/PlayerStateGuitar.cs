@@ -27,7 +27,6 @@ public class PlayerStateGuitar : PlayerBaseState
 
     public void ApplyChord(ChordType chordNum, bool buttonDown)
     {
-
         stateManager.guitarController.ApplyChordModifier(chordNum, buttonDown);
     }
     public void UseSustain(bool useSustain)

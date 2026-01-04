@@ -412,6 +412,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CycleScaleForward",
+                    "type": "Button",
+                    "id": "eb0cc583-a76d-4d77-8fee-689dddd10972",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleScaleBackward",
+                    "type": "Button",
+                    "id": "ff488757-de2d-46ba-b3ca-fad0799c2e98",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleKeyRootForward",
+                    "type": "Button",
+                    "id": "b5bb3272-fb52-4a6a-93a4-4b46672f220b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CycleKeyRootBackward",
+                    "type": "Button",
+                    "id": "0ccdd12e-b5fb-4d76-aa74-8f70b1d52810",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -599,6 +635,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "IncrementGuitarSpriteDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f20570b4-a8aa-4ec4-8df4-12e997bc6a18",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleScaleForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ef0e29f-021d-4579-a4db-fdfa5aa7831e",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleScaleBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5adbe6a-f750-4e0f-b1bf-40fe4105ae7d",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleKeyRootForward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8133c21a-d3f4-4e54-8744-247a3ba3bc5e",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CycleKeyRootBackward",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

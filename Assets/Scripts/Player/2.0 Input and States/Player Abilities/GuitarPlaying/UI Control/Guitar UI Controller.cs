@@ -23,6 +23,13 @@ public class GuitarUIController : MonoBehaviour
     [Tooltip("Parent containing all the notes. All notes contain another child (the illuminated number)")]
     [SerializeField] GameObject NoteMarkersParent;
 
+    [Header("Selector Square Positioning Data")]
+    [SerializeField] RectTransform SelectorSquareRectTransform;
+    [Tooltip("Distance from far left of panel just to get on to first scale option")]
+    [SerializeField] float baseSelectorOffset = 6;
+    [Header("Position difference between each scale on panel")]
+    [SerializeField] float selectorDistancePerScale = 34;
+
     /// <summary>
     /// Needs to be triggered by GuitarController
     /// Does not do button.onClick() logic. Let the button lead straight to GuitarController.BUTTON_CycleKeyForward()
@@ -47,7 +54,7 @@ public class GuitarUIController : MonoBehaviour
         if (usingRightArrow)
             arrowButton = RightArrow;
         else
-            arrowButton = RightArrow;
+            arrowButton = LeftArrow;
 
         if (buttonDown)
             arrowButton.OnPointerDown(new PointerEventData(EventSystem.current));
@@ -102,5 +109,14 @@ public class GuitarUIController : MonoBehaviour
             transform.GetChild(0).GetComponent<Image>(); // image is first child of note
 
         selectedImage.color = updatedColor;
+    }
+
+    /// <summary>
+    /// sets selector square to target scale based on index
+    /// </summary>
+    public void LISTEN_OnAssignedScale(int scaleIndex)
+    {
+        float newXPosition = baseSelectorOffset + selectorDistancePerScale * scaleIndex;
+        SelectorSquareRectTransform.anchoredPosition = new Vector2(newXPosition, 0);
     }
 }
