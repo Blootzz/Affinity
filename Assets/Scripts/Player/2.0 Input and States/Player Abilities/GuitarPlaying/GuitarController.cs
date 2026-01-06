@@ -27,6 +27,7 @@ public class GuitarController : MonoBehaviour
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
     AudioSource audioSource;
+    SnapshotSelector snapshotSelector;
     GuitarSpriteSelection guitarSpriteSelection;
     StrummingArmSpriteSelection strumSpriteSelection;
 
@@ -47,9 +48,20 @@ public class GuitarController : MonoBehaviour
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        snapshotSelector = GetComponent<SnapshotSelector>();
         guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
         strumSpriteSelection = GetComponentInChildren<StrummingArmSpriteSelection>();
     }
+
+    private void OnEnable()
+    {
+        snapshotSelector.SwitchToGuitar();
+    }
+    private void OnDisable()
+    {
+        snapshotSelector.SwitchToDefault();
+    }
+
     void Start()
     {
         AssignScale();

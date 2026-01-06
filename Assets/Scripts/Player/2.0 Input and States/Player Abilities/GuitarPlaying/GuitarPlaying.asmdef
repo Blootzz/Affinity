@@ -1,3 +1,16 @@
 {
-	"name": "GuitarPlaying"
+    "name": "GuitarPlaying",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bb8ac93894b27c34fa0bc20077fedbc3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

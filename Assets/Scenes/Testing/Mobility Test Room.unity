@@ -6076,6 +6076,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: 2
       addedObject: {fileID: 3105599406997228895}
+    - targetCorrespondingSourceObject: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3105599406997228897}
     - targetCorrespondingSourceObject: {fileID: 8086617297591115080, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: -1
       addedObject: {fileID: 193115831}
@@ -6154,6 +6157,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.4979354}
   m_Radius: 0.49824655
+--- !u!114 &3105599406997228897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270224100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e240674fa7c2274d80a8e54cbbe496e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AudioManagement::SnapshotSelector
+  defaultEvenSnapshot: {fileID: 24500006, guid: 0d625c7b97a78c6409dd2eb0c3c47fdb, type: 2}
+  guitarSnapshot: {fileID: 6246715522167386913, guid: 0d625c7b97a78c6409dd2eb0c3c47fdb, type: 2}
+  transitionSeconds: 0.3
 --- !u!1001 &5657717883751818383
 PrefabInstance:
   m_ObjectHideFlags: 0
