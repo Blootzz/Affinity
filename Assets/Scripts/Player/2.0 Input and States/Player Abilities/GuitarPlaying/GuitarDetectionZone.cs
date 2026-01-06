@@ -44,7 +44,6 @@ public class GuitarDetectionZone : MonoBehaviour
     /// </summary>
     void RecordNote(int noteIndex, ChordType chordType)
     {
-        print("recording note: " + noteIndex + " | chordType: " + chordType);
         // shift all values to the left and add this at the end
         // stop short of final index to avoid i+1 out of bounds error. [Length-1] will be filled in after for loop
         for (int i = 0; i <= notesRecorded.Length - 2; i++)
@@ -52,10 +51,7 @@ public class GuitarDetectionZone : MonoBehaviour
         notesRecorded[^1] = new RecordableNote(noteIndex, chordType); // ^1 = Length-1
 
         if (EvaluateNoteSequence())
-        {
-            print("Successful comparison between answerKey and notesRecorded");
             SuccessfulNotesEvent?.Invoke();
-        }
     }
 
     // if one RecordableNote does note match, returns false
