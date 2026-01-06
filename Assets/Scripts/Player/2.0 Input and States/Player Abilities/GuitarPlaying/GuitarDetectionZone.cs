@@ -12,9 +12,8 @@ public class GuitarDetectionZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponentInChildren<GuitarController>())
+        if (collision.TryGetComponent(out guitarController))
         {
-            guitarController = collision.GetComponentInChildren<GuitarController>();
             guitarController.BroadcastNoteEvent += RecordNote;
         }
     }
@@ -23,9 +22,13 @@ public class GuitarDetectionZone : MonoBehaviour
     {
         if (collision.GetComponentInChildren<GuitarController>())
         {
+            // prevents exit play error. Exiting play still runs code below, possibly due to being called twice?
+            if (guitarController == null)
+                return;
+
             guitarController.BroadcastNoteEvent -= RecordNote;
             guitarController = null;
-        }
+         }
     }
 
     private void Start()
@@ -41,6 +44,7 @@ public class GuitarDetectionZone : MonoBehaviour
     /// </summary>
     void RecordNote(int noteIndex, ChordType chordType)
     {
+        print("recording note: " + noteIndex + " | chordType: " + chordType);
         // shift all values to the left and add this at the end
         // stop short of final index to avoid i+1 out of bounds error. [Length-1] will be filled in after for loop
         for (int i = 0; i <= notesRecorded.Length - 2; i++)
@@ -59,7 +63,7 @@ public class GuitarDetectionZone : MonoBehaviour
     {
         for (int i = 0; i < answerKey.Length; i++)
         {
-            if (!answerKey[1].Equals(notesRecorded[i]))
+            if (!answerKey[i].Equals(notesRecorded[i]))
                 return false;
         }
         return true;

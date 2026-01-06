@@ -67,16 +67,24 @@ public class GuitarController : MonoBehaviour
 
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
-        Play();
         BroadcastNoteEvent?.Invoke(note-1, activeChord);
+        Play();
     }
     public void ApplyChordModifier(ChordType chordType, bool buttonDown)
     {
         ChordModifierInputEvent?.Invoke((int)chordType, buttonDown);
 
-        // only update chord type if player let go of active chord
-        if (chordType.Equals(activeChord))
+        if (buttonDown)
+        {
             activeChord = chordType;
+            return;
+        }
+        // if receiving input same as active chord AND releasing the chord, clear chord modifier
+        if (chordType.Equals(activeChord) && !buttonDown)
+        {
+            activeChord = ChordType.None;
+            return;
+        }
     }
     void Play()
     {
@@ -101,6 +109,11 @@ public class GuitarController : MonoBehaviour
                 break;
         }
 
+        if (audioSource.clip == null)
+        {
+            print("no clip found");
+            return;
+        }
         print("playing: " + audioSource.clip.name);
         // sustain
         // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
