@@ -51,7 +51,7 @@ public class GuitarDetectionZone : MonoBehaviour
         notesRecorded[^1] = new RecordableNote(noteIndex, chordType); // ^1 = Length-1
 
         if (EvaluateNoteSequence())
-            SuccessfulNotesEvent?.Invoke();
+             SuccessfulNotesEvent?.Invoke();
     }
 
     // if one RecordableNote does note match, returns false

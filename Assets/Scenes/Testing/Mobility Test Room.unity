@@ -4727,8 +4727,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7ec90b26c9b5354795bfed8fda77ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: GuitarPlaying::GuitarDetectionZone
-  answerKey: []
-  notesRecorded: []
+  answerKey:
+  - allNoteIndex: 0
+    chordType: 1
+  - allNoteIndex: 1
+    chordType: 2
+  notesRecorded:
+  - allNoteIndex: 0
+    chordType: 0
+  - allNoteIndex: 0
+    chordType: 0
   SuccessfulNotesEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5646,7 +5654,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 826527193436979594, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Name
@@ -5840,6 +5848,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4400115951363008069, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5994334859495479739, guid: 0d625c7b97a78c6409dd2eb0c3c47fdb, type: 2}
     - target: {fileID: 5104496145526908873, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: timeManager
       value: 
@@ -6059,10 +6071,10 @@ PrefabInstance:
       addedObject: {fileID: 129218042}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 3105599406997228896}
     - targetCorrespondingSourceObject: {fileID: 490457001091837058, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 3105599406997228895}
     - targetCorrespondingSourceObject: {fileID: 8086617297591115080, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       insertIndex: -1

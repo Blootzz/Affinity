@@ -1,15 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!244 &-8796408036257472545
+--- !u!244 &-8063250232748974520
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_EffectID: 35708e6a8160ee64faebe06f726e07b4
+  m_EffectID: c62f83a2bd4b6594f9e44c39a8f0030e
   m_EffectName: Attenuation
-  m_MixLevel: cedb1266c6c83fd42a2d4973ad192999
+  m_MixLevel: 15c6af55bd19fb54e8c7a4d0b09005da
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-3412875572786722688
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 6d14f6fd59074ae48ad18ebd0f123cb0
+  m_EffectName: Attenuation
+  m_MixLevel: cc32a2b386f62404bb75da8a8b307dba
   m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
@@ -28,6 +42,58 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-1685226173901378182
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 1b3f93e4d61d4ad4d9c2a335ff03b914
+  m_EffectName: Attenuation
+  m_MixLevel: 77e7d32aa16ce52449c977c3348779e2
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!244 &-1575152219401733407
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9d1e61dd259b5f642a2104f1237c279e
+  m_EffectName: Lowpass
+  m_MixLevel: 88082ccfbd055af4e9aa57ee85eaa2a0
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: b70febeac14c78b448c65fc1d5cb082c
+  - m_ParameterName: Resonance
+    m_GUID: 913f9e44dbdf33641aa84a4df30fb221
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-1558856326318127795
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Music Duck
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: b134ee6e59e5fac4e9f45c5d079b77c3
+  m_Children: []
+  m_Volume: b9bbfe38709599746996b13823e93426
+  m_Pitch: 1550666eb74cce141b6805439dda9153
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -3412875572786722688}
+  - {fileID: -1575152219401733407}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -39,6 +105,7 @@ AudioMixerController:
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
   - {fileID: 24500006}
+  - {fileID: 6246715522167386913}
   m_StartSnapshot: {fileID: 24500006}
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
@@ -49,7 +116,9 @@ AudioMixerController:
     - 7085a100fb1d02e4e8794600f45c966c
     - 13d8d3a4e83093b4e8f1afb520ae72cd
     - a4f492d5f8a61e8459de15d689c42a85
-    - 2971b76fed9955948b620687abccb8b2
+    - df294b31ea417f345a83ef4d4ac6d5d6
+    - b134ee6e59e5fac4e9f45c5d079b77c3
+    - 28fb65a12ccd73e4094659d041c16a04
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -65,13 +134,12 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: 3313847882962371698}
   - {fileID: 1371314022765239646}
-  - {fileID: 4826009766096490426}
   m_Volume: c44e13a93b9d2a04ea19c2550f782810
   m_Pitch: 7faadc9cd769c994cba4011e22878a72
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 24400004}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 3
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -95,10 +163,11 @@ AudioMixerSnapshotController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Snapshot
+  m_Name: Default - Even
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 93916e2ab4dd7ec4fb347265beab188e
-  m_FloatValues: {}
+  m_FloatValues:
+    b70febeac14c78b448c65fc1d5cb082c: 22000
   m_TransitionOverrides: {}
 --- !u!243 &1371314022765239646
 AudioMixerGroupController:
@@ -109,13 +178,15 @@ AudioMixerGroupController:
   m_Name: Sound FX
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: a4f492d5f8a61e8459de15d689c42a85
-  m_Children: []
+  m_Children:
+  - {fileID: 8429214218584201454}
+  - {fileID: 5994334859495479739}
   m_Volume: 0222ad447b99e53438b20f2f71103da5
   m_Pitch: 3f1a09e06c156ca42a4bea7e07437d9e
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -2770137212385330106}
-  m_UserColorIndex: 0
+  m_UserColorIndex: 3
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
@@ -142,32 +213,81 @@ AudioMixerGroupController:
   m_Name: Music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 13d8d3a4e83093b4e8f1afb520ae72cd
-  m_Children: []
+  m_Children:
+  - {fileID: -1558856326318127795}
   m_Volume: 408e63b8141706f4d8b6fb5347b75db2
   m_Pitch: 86c403893d4697743bce3e1d1a046183
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 2463494071445495992}
+  m_UserColorIndex: 3
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &5994334859495479739
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Guitar Duck
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: df294b31ea417f345a83ef4d4ac6d5d6
+  m_Children: []
+  m_Volume: eadd65de445031d4394a6d540fb33d0d
+  m_Pitch: 1dca38725d851e64bbc713abd69d5c6b
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -8063250232748974520}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!243 &4826009766096490426
-AudioMixerGroupController:
+--- !u!245 &6246715522167386913
+AudioMixerSnapshotController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guitar
   m_AudioMixer: {fileID: 24100000}
-  m_GroupID: 2971b76fed9955948b620687abccb8b2
+  m_SnapshotID: a933ef32cdd9204418ef39ab93c4ef6c
+  m_FloatValues:
+    7ab98dd2fae1d1c4684572afa2ab03f9: -19.928473
+    b9bbfe38709599746996b13823e93426: -19.928473
+  m_TransitionOverrides: {}
+--- !u!243 &8429214218584201454
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SFX Duck
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 28fb65a12ccd73e4094659d041c16a04
   m_Children: []
-  m_Volume: 3a73469e565525348975bbee0b7dd9fa
-  m_Pitch: c540207bce25c2c41b92d8b878a41ee2
+  m_Volume: 7ab98dd2fae1d1c4684572afa2ab03f9
+  m_Pitch: 0a0555697418ba4459787e7062e66fc4
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: -8796408036257472545}
+  - {fileID: -1685226173901378182}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &8481937641314921757
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 32180018fbfcd874c88f48541140303e
+  m_EffectName: Lowpass Simple
+  m_MixLevel: 1cb30041443979c4db504cdd45a4ca81
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: c16bd6a9693542a43b1902229dede780
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
