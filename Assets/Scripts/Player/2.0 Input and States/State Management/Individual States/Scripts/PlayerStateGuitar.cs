@@ -12,6 +12,9 @@ public class PlayerStateGuitar : PlayerBaseState
         stateManager.SwitchActionMap("Guitar");
         stateManager.guitarController.gameObject.SetActive(true);
         stateManager.playerAnimationManager.PlayAnimationFromString("GuitarBaseLayer");
+
+        if (!stateManager.faceRight)
+            stateManager.ForceFlip();
     }
 
     public override void OnExit()
