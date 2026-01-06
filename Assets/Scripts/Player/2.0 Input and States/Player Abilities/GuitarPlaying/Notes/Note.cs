@@ -9,7 +9,7 @@ public class Note : ScriptableObject
     public AudioClip minor;
     public AudioClip power;
 
-    public string ToString()
+    public override string ToString()
     {
         char octaveChar = name[0];
         string outputName = "";

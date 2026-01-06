@@ -41,6 +41,9 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<int, bool> ChordModifierInputEvent;
     public UnityEvent<int, int> AssignedScaleEvent; // passes index of root note and index of current scale
 
+    // C# event for GuitarDetectionZone to listen to
+    public event Action<int, ChordType> BroadcastNoteEvent;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -65,6 +68,7 @@ public class GuitarController : MonoBehaviour
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
         Play();
+        BroadcastNoteEvent?.Invoke(note-1, activeChord);
     }
     public void ApplyChordModifier(ChordType chordType, bool buttonDown)
     {
