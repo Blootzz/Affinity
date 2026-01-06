@@ -3,7 +3,7 @@ using System;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] public float health { get; private set; } = 100;
+    [SerializeField] float health = 100;
     public event Action DeathEvent; // subscribed to by PlayerStateManager
     public event Action<float> HealthChangedEvent; // subscribed to by HealthBar
 

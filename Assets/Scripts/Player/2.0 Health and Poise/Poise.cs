@@ -6,7 +6,7 @@ public class Poise : MonoBehaviour
     [SerializeField] float maxPoise = 100;
     [SerializeField] float missedParryPoisePenalty = 20;
 
-    public float poise { get; private set; }
+    [SerializeField] float poise;
     public event Action PoiseDepletedEvent; // subscribed to by PlayerStateManager
     public event Action<float> PoiseChangedEvent; // subscribed to by PoiseBar
 

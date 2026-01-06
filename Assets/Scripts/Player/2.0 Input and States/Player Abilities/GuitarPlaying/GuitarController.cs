@@ -39,7 +39,7 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<bool, bool> CycleVerticalArrowInputEvent;
     public UnityEvent<int, bool> NoteInputEvent; // must be zero-indexed
     public UnityEvent<int, bool> ChordModifierInputEvent;
-    public UnityEvent<int> AssignedScaleEvent; // passes index of current scale
+    public UnityEvent<int, int> AssignedScaleEvent; // passes index of root note and index of current scale
 
     private void Awake()
     {
@@ -122,7 +122,7 @@ public class GuitarController : MonoBehaviour
             notesInKey[i] = allNotesContainer.allNotes[runningAllNotesIndex];
         }
 
-        AssignedScaleEvent?.Invoke((int)indexSelectedScale);
+        AssignedScaleEvent?.Invoke(rootIndexAllNotes, (int)indexSelectedScale);
     }
 
     public void ProcessGuitarSpriteCycleInput(bool forward)

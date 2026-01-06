@@ -2,7 +2,8 @@
     "name": "UIControl",
     "rootNamespace": "",
     "references": [
-        "GUID:f87c31f01d4cebf44a47f20648e27b95"
+        "GUID:f87c31f01d4cebf44a47f20648e27b95",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
