@@ -36,6 +36,7 @@ public class GuitarController : MonoBehaviour
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
     bool sustainEnabled = false;
+    int sharpFlatIndexModifier = 0; // used to increment what note index to play depending on if sharp or flat is held down
 
     [Header("UI update events")]
     public UnityEvent<bool, bool> CycleHorizontalArrowInputEvent;
@@ -44,6 +45,7 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<int, bool> ChordModifierInputEvent;
     public UnityEvent<int, int> AssignedScaleEvent; // passes index of root note and index of current scale
     public UnityEvent<bool, bool> PitchShiftEvent;
+    public UnityEvent<bool, bool> SharpFlatEvent;
     public UnityEvent<bool> HideMenuEvent;
 
     // C# event for GuitarDetectionZone to listen to
@@ -61,6 +63,7 @@ public class GuitarController : MonoBehaviour
     private void OnEnable()
     {
         snapshotSelector.SwitchToGuitar();
+        sharpFlatIndexModifier = 0;
     }
     private void OnDisable()
     {
@@ -105,6 +108,7 @@ public class GuitarController : MonoBehaviour
     }
     void Play()
     {
+        Note noteToPlay = NoteWithSharpFlatModifier();
         // notes have already been assigned to a scale
         // activeNoteIndex has already been assigned in EnterNoteInput
         switch (activeChord)
@@ -148,7 +152,7 @@ public class GuitarController : MonoBehaviour
         notesInKey[0] = allNotesContainer.allNotes[runningAllNotesIndex];
 
         // need to assign Note to all 9 remaining number keys according to spacings
-        for (int i = 1; i < 10; i++)
+        for (int i = 1; i < notesInKey.Length; i++)
         {
             // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
             // add runningAllNotesIndex to itself to cumulatively increment index
@@ -237,6 +241,48 @@ public class GuitarController : MonoBehaviour
     void DoBendLogic(bool useHalfStep, bool buttonDown)
     {
         pitchShifter.PitchShift(useHalfStep, buttonDown);
+    }
+
+    public void ProcessSharpFlat(bool useSharp, bool buttonDown)
+    {
+        SharpFlatEvent?.Invoke(useSharp, buttonDown);
+        DoSharpFlat(useSharp, buttonDown);
+    }
+    void DoSharpFlat(bool useSharp, bool buttonDown)
+    {
+        if (buttonDown)
+        {
+            sharpFlatIndexModifier = useSharp ? 1 : -1;
+            return;
+        }
+
+        // ignore button up input if it wasn't the last sharp/flat button pressed down
+        // If this input is the same as the last button, set modifier to 0
+        int input = useSharp ? 1 : -1;
+        if (input == sharpFlatIndexModifier)
+            sharpFlatIndexModifier = 0;
+
+    }
+    // called when a new index is selected in EnterNoteInput
+    Note NoteWithSharpFlatModifier()
+    {
+        int i; // all notes index
+        for (i = 0; i < allNotesContainer.allNotes.Length - 1; i++)
+        {
+            if (allNotesContainer.allNotes[i].Equals(notesInKey[activeNoteIndex]))
+                break;
+        }
+        
+        // apply Sharp or flat adder/subtractor
+        i += sharpFlatIndexModifier;
+
+        // correct out of bounds error by resetting it back to what it was before modifier
+        if (i == -1)
+            i = 0;
+        if (i == allNotesContainer.allNotes.Length)
+            i = allNotesContainer.allNotes.Length - 1;
+
+        return allNotesContainer.allNotes[i];
     }
 
     public void ProcessToggleHideMenu(bool buttonDown)

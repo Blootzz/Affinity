@@ -311,6 +311,17 @@ public class PlayerStateManager : MonoBehaviour
             return;
         }
 
+        if (context.action.name.Equals("Sharp"))
+        {
+            ((PlayerStateGuitar)currentState).SharpFlat(true, context.started);
+            return;
+        }
+        if (context.action.name.Equals("Flat"))
+        {
+            ((PlayerStateGuitar)currentState).SharpFlat(false, context.started);
+            return;
+        }
+
         if (context.action.name.Equals("HideMenu"))
         {
             ((PlayerStateGuitar)currentState).ToggleHideMenu(context.started);

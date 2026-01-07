@@ -56,6 +56,11 @@ public class PlayerStateGuitar : PlayerBaseState
         stateManager.guitarController.ProcessBend(useHalfStep, buttonDown);
     }
 
+    public void SharpFlat(bool usingSharp, bool buttonDown)
+    {
+        stateManager.guitarController.ProcessSharpFlat(usingSharp, buttonDown);
+    }
+
     public void ToggleHideMenu(bool buttonDown)
     {
         stateManager.guitarController.ProcessToggleHideMenu(buttonDown);

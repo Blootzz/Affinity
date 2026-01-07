@@ -22,6 +22,10 @@ public class GuitarUIController : MonoBehaviour
     [SerializeField] Button HalfBendButton;
     [SerializeField] Button WholeBendButton;
 
+    [Header("Sharp/Flat Buttons")]
+    [SerializeField] Button SharpButton;
+    [SerializeField] Button FlatButton;
+
     [Header("Other Buttons")]
     [SerializeField] Button HideMenuButton;
 
@@ -195,6 +199,19 @@ public class GuitarUIController : MonoBehaviour
             bendButton.OnPointerDown(new PointerEventData(EventSystem.current));
         else
             bendButton.OnPointerUp(new PointerEventData(EventSystem.current));
+    }
+    public void LISTEN_OnSharpFlat(bool useSharp, bool buttonDown)
+    {
+        Button sharpOrFlatButton;
+        if (useSharp)
+            sharpOrFlatButton = SharpButton;
+        else
+            sharpOrFlatButton = FlatButton;
+
+        if (buttonDown)
+            sharpOrFlatButton.OnPointerDown(new PointerEventData(EventSystem.current));
+        else
+            sharpOrFlatButton.OnPointerUp(new PointerEventData(EventSystem.current));
     }
 
     public void LISTEN_OnHideMenu(bool buttonDown)
