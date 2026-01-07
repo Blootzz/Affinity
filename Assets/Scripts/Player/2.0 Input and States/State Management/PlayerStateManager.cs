@@ -311,6 +311,11 @@ public class PlayerStateManager : MonoBehaviour
             return;
         }
 
+        if (context.action.name.Equals("HideMenu"))
+        {
+            ((PlayerStateGuitar)currentState).ToggleHideMenu(context.started);
+        }
+
         if (context.action.name.Equals("1st"))
         {
             ((PlayerStateGuitar)currentState).PlayNote(1, context.started);

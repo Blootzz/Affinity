@@ -14,6 +14,7 @@ public enum ChordType
 
 public class GuitarController : MonoBehaviour
 {
+    [SerializeField] GameObject GuitarUICanvas; // used to enable and disable with Hide Menu
     [SerializeField] AllNotesContainer allNotesContainer;
     [SerializeField] AllScalesContainer allScalesContainer;
     [Tooltip("Determines the root of the scale. 0 = low E, 1 = F, 2 = F#")]
@@ -23,7 +24,7 @@ public class GuitarController : MonoBehaviour
 
     [Tooltip("If the player can play the 10th, this should be no greater than 1 octave + 2 whole steps from last index")]
     [SerializeField] int maxRootNoteIndex = 27;
-    
+
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
     AudioSource audioSource;
@@ -43,6 +44,7 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<int, bool> ChordModifierInputEvent;
     public UnityEvent<int, int> AssignedScaleEvent; // passes index of root note and index of current scale
     public UnityEvent<bool, bool> PitchShiftEvent;
+    public UnityEvent<bool> HideMenuEvent;
 
     // C# event for GuitarDetectionZone to listen to
     public event Action<int, ChordType> BroadcastNoteEvent;
@@ -76,13 +78,13 @@ public class GuitarController : MonoBehaviour
     /// </summary>
     public void EnterNoteInput(int note, bool buttonDown)
     {
-        NoteInputEvent?.Invoke(note-1, buttonDown);
+        NoteInputEvent?.Invoke(note - 1, buttonDown);
         if (!buttonDown)
             return;
 
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
-        BroadcastNoteEvent?.Invoke(note-1, activeChord);
+        BroadcastNoteEvent?.Invoke(note - 1, activeChord);
         Play();
     }
     public void ApplyChordModifier(ChordType chordType, bool buttonDown)
@@ -146,7 +148,7 @@ public class GuitarController : MonoBehaviour
         notesInKey[0] = allNotesContainer.allNotes[runningAllNotesIndex];
 
         // need to assign Note to all 9 remaining number keys according to spacings
-        for (int i=1; i<10; i++)
+        for (int i = 1; i < 10; i++)
         {
             // out of allNotes, increment index by scale spacing. Select scale using scaleIndex (0=major)
             // add runningAllNotesIndex to itself to cumulatively increment index
@@ -177,7 +179,7 @@ public class GuitarController : MonoBehaviour
         if (!buttonDown)
             return;
 
-        indexSelectedScale = (ScaleType) ((int)indexSelectedScale + (forward ? 1 : -1));
+        indexSelectedScale = (ScaleType)((int)indexSelectedScale + (forward ? 1 : -1));
 
         // check out of bounds
         if ((int)indexSelectedScale < 0)
@@ -235,5 +237,22 @@ public class GuitarController : MonoBehaviour
     void DoBendLogic(bool useHalfStep, bool buttonDown)
     {
         pitchShifter.PitchShift(useHalfStep, buttonDown);
+    }
+
+    public void ProcessToggleHideMenu(bool buttonDown)
+    {
+        HideMenuEvent?.Invoke(buttonDown);
+        DoToggleHideMenuLogic(buttonDown);
+    }
+    void DoToggleHideMenuLogic(bool buttonDown)
+    {
+        // only execute when buttonDown == true
+        if (!buttonDown)
+            return;
+
+        if (GuitarUICanvas.activeInHierarchy)
+            GuitarUICanvas.SetActive(false);
+        else
+            GuitarUICanvas.SetActive(true);
     }
 }

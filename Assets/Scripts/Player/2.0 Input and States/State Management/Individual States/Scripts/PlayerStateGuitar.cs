@@ -56,6 +56,11 @@ public class PlayerStateGuitar : PlayerBaseState
         stateManager.guitarController.ProcessBend(useHalfStep, buttonDown);
     }
 
+    public void ToggleHideMenu(bool buttonDown)
+    {
+        stateManager.guitarController.ProcessToggleHideMenu(buttonDown);
+    }
+
     public override void Exit()
     {
         stateManager.SwitchState(stateManager.playerStateIdle);

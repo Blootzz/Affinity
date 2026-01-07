@@ -448,6 +448,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "BendWhole",
+                    "type": "Button",
+                    "id": "dfdc2c2c-cbd4-4ba5-949c-4411067f238a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BendHalf",
+                    "type": "Button",
+                    "id": "aeedeb6b-b9e4-413b-9ca1-4d1cf9ff1e49",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "HideMenu",
+                    "type": "Button",
+                    "id": "430b7893-c22b-40a3-b8b9-524a1f46a548",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -679,6 +706,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CycleKeyRootBackward",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3d28d10-995d-4e5e-9faa-ff940bac3dce",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BendWhole",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d3e353c-6077-4318-a214-937e2a345a80",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BendHalf",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b05d24a-76f2-483c-a64f-92791aee58ba",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HideMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

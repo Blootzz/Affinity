@@ -22,6 +22,9 @@ public class GuitarUIController : MonoBehaviour
     [SerializeField] Button HalfBendButton;
     [SerializeField] Button WholeBendButton;
 
+    [Header("Other Buttons")]
+    [SerializeField] Button HideMenuButton;
+
     [Header("Selector Square Positioning Data")]
     [SerializeField] RectTransform SelectorSquareRectTransform;
     [Tooltip("Distance from far left of panel just to get on to first scale option")]
@@ -192,5 +195,13 @@ public class GuitarUIController : MonoBehaviour
             bendButton.OnPointerDown(new PointerEventData(EventSystem.current));
         else
             bendButton.OnPointerUp(new PointerEventData(EventSystem.current));
+    }
+
+    public void LISTEN_OnHideMenu(bool buttonDown)
+    {
+        if (buttonDown)
+            HideMenuButton.OnPointerDown(new PointerEventData(EventSystem.current));
+        else
+            HideMenuButton.OnPointerUp(new PointerEventData(EventSystem.current));
     }
 }
