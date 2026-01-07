@@ -260,95 +260,105 @@ public class PlayerStateManager : MonoBehaviour
         // actions that can be either started or canceled
         if (context.action.name.Equals("MajorChord"))
         {
-            DoStateChord(ChordType.MajorChord, context.started);
+            ((PlayerStateGuitar)currentState).ApplyChord(ChordType.MajorChord, context.started);
             return;
         }
         if (context.action.name.Equals("MinorChord"))
         {
-            DoStateChord(ChordType.MinorChord, context.started);
+            ((PlayerStateGuitar)currentState).ApplyChord(ChordType.MinorChord, context.started);
             return;
         }
         if (context.action.name.Equals("PowerChord"))
         {
-            DoStateChord(ChordType.PowerChord, context.started);
+            ((PlayerStateGuitar)currentState).ApplyChord(ChordType.PowerChord, context.started);
             return;
         }
 
         if (context.action.name.Equals("Sustain"))
         {
-            DoStateUseSustain(context.started);
+            ((PlayerStateGuitar)currentState).UseSustain(context.started);
             return;
         }
 
         if (context.action.name.Equals("CycleScaleForward"))
         {
-            DoStateCycleScale(true, context.started);
+            ((PlayerStateGuitar)currentState).CycleScale(true, context.started);
             return;
         }
         if (context.action.name.Equals("CycleScaleBackward"))
         {
-            DoStateCycleScale(false, context.started);
+            ((PlayerStateGuitar)currentState).CycleScale(false, context.started);
             return;
         }
         if (context.action.name.Equals("CycleKeyRootForward"))
         {
-            DoStateCycleKeyRoot(true, context.started);
+            ((PlayerStateGuitar)currentState).CycleKey(true, context.started);
             return;
         }
         if (context.action.name.Equals("CycleKeyRootBackward"))
         {
-            DoStateCycleKeyRoot(false, context.started);
+            ((PlayerStateGuitar)currentState).CycleKey(false, context.started);
+            return;
+        }
+        if (context.action.name.Equals("BendHalf"))
+        {
+            ((PlayerStateGuitar)currentState).Bend(true, context.started);
+            return;
+        }
+        if (context.action.name.Equals("BendWhole"))
+        {
+            ((PlayerStateGuitar)currentState).Bend(false, context.started);
             return;
         }
 
         if (context.action.name.Equals("1st"))
         {
-            DoStatePlayGuitarNote(1, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(1, context.started);
             return;
         }
         if (context.action.name.Equals("2nd"))
         {
-            DoStatePlayGuitarNote(2, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(2, context.started);
             return;
         }
         if (context.action.name.Equals("3rd"))
         {
-            DoStatePlayGuitarNote(3, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(3, context.started);
             return;
         }
         if (context.action.name.Equals("4th"))
         {
-            DoStatePlayGuitarNote(4, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(4, context.started);
             return;
         }
         if (context.action.name.Equals("5th"))
         {
-            DoStatePlayGuitarNote(5, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(5, context.started);
             return;
         }
         if (context.action.name.Equals("6th"))
         {
-            DoStatePlayGuitarNote(6, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(6, context.started);
             return;
         }
         if (context.action.name.Equals("7th"))
         {
-            DoStatePlayGuitarNote(7, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(7, context.started);
             return;
         }
         if (context.action.name.Equals("8th"))
         {
-            DoStatePlayGuitarNote(8, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(8, context.started);
             return;
         }
         if (context.action.name.Equals("9th"))
         {
-            DoStatePlayGuitarNote(9, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(9, context.started);
             return;
         }
         if (context.action.name.Equals("10th"))
         {
-            DoStatePlayGuitarNote(10, context.started);
+            ((PlayerStateGuitar)currentState).PlayNote(10, context.started);
             return;
         }
        
@@ -358,12 +368,12 @@ public class PlayerStateManager : MonoBehaviour
 
         if (context.action.name.Equals("IncrementGuitarSpriteUp"))
         {
-            DoStateGuitarIncrement(true);
+            ((PlayerStateGuitar)currentState).IncrementGuitarSprite(true);
             return;
         }
         if (context.action.name.Equals("IncrementGuitarSpriteDown"))
         {
-            DoStateGuitarIncrement(false);
+            ((PlayerStateGuitar)currentState).IncrementGuitarSprite(false);
             return;
         }
         if (context.action.name.Equals("Exit"))
@@ -454,34 +464,6 @@ public class PlayerStateManager : MonoBehaviour
     {
         currentState.OpenGuitar();
     }
-    void DoStatePlayGuitarNote(int noteNum, bool buttonDown)
-    {
-        ((PlayerStateGuitar)currentState).PlayNote(noteNum, buttonDown);
-    }
-    /// <summary>
-    /// Passes on int to guitarController, should never be "None" since there is no input action for "None" chord
-    /// </summary>
-    void DoStateChord(ChordType chordNum, bool buttonDown)
-    {
-        ((PlayerStateGuitar)currentState).ApplyChord(chordNum, buttonDown);
-    }
-    void DoStateUseSustain(bool enabled)
-    {
-        ((PlayerStateGuitar)currentState).UseSustain(enabled);
-    }
-    void DoStateGuitarIncrement(bool forward)
-    {
-        ((PlayerStateGuitar)currentState).IncrementGuitarSprite(forward);
-    }
-    void DoStateCycleScale(bool forward, bool buttonDown)
-    {
-        ((PlayerStateGuitar)currentState).CycleScale(forward, buttonDown);
-    }
-    void DoStateCycleKeyRoot(bool forward, bool buttonDown)
-    {
-        ((PlayerStateGuitar)currentState).CycleKey(forward, buttonDown);
-    }
-
 
     void DoStateExit()
     {

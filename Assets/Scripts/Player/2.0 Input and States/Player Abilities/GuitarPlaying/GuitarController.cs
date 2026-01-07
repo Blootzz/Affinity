@@ -30,6 +30,7 @@ public class GuitarController : MonoBehaviour
     SnapshotSelector snapshotSelector;
     GuitarSpriteSelection guitarSpriteSelection;
     StrummingArmSpriteSelection strumSpriteSelection;
+    PitchShifter pitchShifter;
 
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
@@ -41,6 +42,7 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<int, bool> NoteInputEvent; // must be zero-indexed
     public UnityEvent<int, bool> ChordModifierInputEvent;
     public UnityEvent<int, int> AssignedScaleEvent; // passes index of root note and index of current scale
+    public UnityEvent<bool, bool> PitchShiftEvent;
 
     // C# event for GuitarDetectionZone to listen to
     public event Action<int, ChordType> BroadcastNoteEvent;
@@ -51,6 +53,7 @@ public class GuitarController : MonoBehaviour
         snapshotSelector = GetComponent<SnapshotSelector>();
         guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
         strumSpriteSelection = GetComponentInChildren<StrummingArmSpriteSelection>();
+        pitchShifter = GetComponent<PitchShifter>();
     }
 
     private void OnEnable()
@@ -222,5 +225,15 @@ public class GuitarController : MonoBehaviour
     public void SetSustain(bool setValue)
     {
         sustainEnabled = setValue;
+    }
+
+    public void ProcessBend(bool useHalfStep, bool buttonDown)
+    {
+        PitchShiftEvent?.Invoke(useHalfStep, buttonDown);
+        DoBendLogic(useHalfStep, buttonDown);
+    }
+    void DoBendLogic(bool useHalfStep, bool buttonDown)
+    {
+        pitchShifter.PitchShift(useHalfStep, buttonDown);
     }
 }

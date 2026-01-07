@@ -51,6 +51,11 @@ public class PlayerStateGuitar : PlayerBaseState
         stateManager.guitarController.ProcessCycleScaleInput(forward, buttonDown);
     }
 
+    public void Bend(bool useHalfStep, bool buttonDown)
+    {
+        stateManager.guitarController.ProcessBend(useHalfStep, buttonDown);
+    }
+
     public override void Exit()
     {
         stateManager.SwitchState(stateManager.playerStateIdle);

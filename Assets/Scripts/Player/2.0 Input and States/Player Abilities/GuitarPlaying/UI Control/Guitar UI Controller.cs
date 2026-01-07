@@ -18,6 +18,10 @@ public class GuitarUIController : MonoBehaviour
     [SerializeField] Button MinorChordButton;
     [SerializeField] Button PowerChordButton;
 
+    [Header("Bend modifiers")]
+    [SerializeField] Button HalfBendButton;
+    [SerializeField] Button WholeBendButton;
+
     [Header("Selector Square Positioning Data")]
     [SerializeField] RectTransform SelectorSquareRectTransform;
     [Tooltip("Distance from far left of panel just to get on to first scale option")]
@@ -42,6 +46,7 @@ public class GuitarUIController : MonoBehaviour
     [Header("Text fields to update on scale change")]
     [SerializeField] TextMeshProUGUI rootText;
     [SerializeField] TextMeshProUGUI scaleText;
+
 
     /// <summary>
     /// Needs to be triggered by GuitarController
@@ -173,5 +178,19 @@ public class GuitarUIController : MonoBehaviour
     {
         rootText.text = allNotesContainer.allNotes[rootNoteIndex].ToString();
         scaleText.text = allScalesContainer.scales[scaleIndex].nameDesignation;
+    }
+
+    public void LISTEN_OnBendPitch(bool useHalfStep, bool buttonDown)
+    {
+        Button bendButton;
+        if (useHalfStep)
+            bendButton = HalfBendButton;
+        else
+            bendButton = WholeBendButton;
+
+        if (buttonDown)
+            bendButton.OnPointerDown(new PointerEventData(EventSystem.current));
+        else
+            bendButton.OnPointerUp(new PointerEventData(EventSystem.current));
     }
 }

@@ -10,17 +10,17 @@ public class PitchShifter : MonoBehaviour
     public bool useFastBend = false;
     [SerializeField] float fastBendSeconds = 0.2f;
     [SerializeField] float slowBendSeconds = 0.6f;
-    float halfStepPitchAdder = 1 / 12f;
-    float wholeStepPitchAdder = 2 / 12f;
+    readonly float halfStepPitchAdder = 1 / 12f;
+    readonly float wholeStepPitchAdder = 2 / 12f;
 
-    public void PitchShift(bool up, bool useHalfStep)
+    public void PitchShift(bool useHalfStep, bool pitchUp)
     {
         StopAllCoroutines();
         audioSource.pitch = 1;
-        StartCoroutine(ShiftPitchPerFixedUpdate(up, useHalfStep));
+        StartCoroutine(ShiftPitchPerFixedUpdate(useHalfStep, pitchUp));
     }
 
-    IEnumerator ShiftPitchPerFixedUpdate(bool bendUp, bool useHalfStep)
+    IEnumerator ShiftPitchPerFixedUpdate(bool useHalfStep, bool bendUp)
     {
         float numFixedUpdates = (useFastBend ? fastBendSeconds : slowBendSeconds) / Time.fixedDeltaTime;
         float totalBendPitchAdder = useHalfStep ? halfStepPitchAdder : wholeStepPitchAdder;
