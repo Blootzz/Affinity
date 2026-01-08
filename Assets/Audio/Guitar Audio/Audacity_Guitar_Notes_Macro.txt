@@ -1,0 +1,7 @@
+Stereo to Mono:
+Normalize:peak=-1 removeDC=1
+NoiseReduction:Use_Preset="<Current Settings>"
+SelectTime:End="10" Start="3"
+Delete:
+SelectTime:End="3" Start="2.7"
+FadeOut:Use_Preset="<Current Settings>"
