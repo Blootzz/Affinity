@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ae1f8f5bbb93449989dff1f3e23801, type: 3}
   m_Name: 5C#
   m_EditorClassIdentifier: 
-  pluck: {fileID: 0}
-  major: {fileID: 0}
-  minor: {fileID: 0}
-  power: {fileID: 0}
+  pluck: {fileID: 8300000, guid: f4324cf50e14a3f4684f8dc473bc2f17, type: 3}
+  major: {fileID: 8300000, guid: 1036f29130d15874999e5f29bbf050a6, type: 3}
+  minor: {fileID: 8300000, guid: b4fa6af2237c4c74dab3e363f27b1bae, type: 3}
+  power: {fileID: 8300000, guid: ede2f24fc7f7b1d47ae3a14f5b5b9e0b, type: 3}

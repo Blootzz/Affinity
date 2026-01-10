@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ae1f8f5bbb93449989dff1f3e23801, type: 3}
   m_Name: 3E
   m_EditorClassIdentifier: 
-  pluck: {fileID: 0}
-  major: {fileID: 0}
-  minor: {fileID: 0}
-  power: {fileID: 0}
+  pluck: {fileID: 8300000, guid: dabb09cb478b799428ed946ebd36e70c, type: 3}
+  major: {fileID: 8300000, guid: cc5b0526776ed5f4c8ac439634dbb697, type: 3}
+  minor: {fileID: 8300000, guid: fc35caebe39e13a4eab7e9670a5c8da5, type: 3}
+  power: {fileID: 8300000, guid: 555329d9159753f408d5c50e490bb044, type: 3}
