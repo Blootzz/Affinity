@@ -27,14 +27,12 @@ public class GuitarController : MonoBehaviour
 
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
-    [SerializeField] AudioSource mainAudioSource;
     [SerializeField] AudioSource sustainAudioSource;
     SnapshotSelector snapshotSelector;
     GuitarSpriteSelection guitarSpriteSelection;
     StrummingArmSpriteSelection strumSpriteSelection;
-    [SerializeField] PitchShifter mainSourcePitchShifter;
     [SerializeField] PitchShifter sustainPitchShifter;
-    VolumeController mainVolumeController;
+    [SerializeField] DuoSourceManager duoSourceManager; // used to alternate audio sources to prevent pop transition
 
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
@@ -59,7 +57,6 @@ public class GuitarController : MonoBehaviour
         snapshotSelector = GetComponent<SnapshotSelector>();
         guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
         strumSpriteSelection = GetComponentInChildren<StrummingArmSpriteSelection>();
-        mainVolumeController = GetComponent<VolumeController>();
     }
 
     private void OnEnable()
@@ -88,14 +85,13 @@ public class GuitarController : MonoBehaviour
         {
             // checking activeNoteIndex before it is updated to see if we are cancelling the most recent note
             if (!sustainEnabled && activeNoteIndex == note-1)
-                mainVolumeController.FadeOut();
+                duoSourceManager.FadeBoth();
 
             //mainSourcePitchShifter.OnPlayNextNote(note, buttonDown);
             //sustainPitchShifter.OnPlayNextNote(note, buttonDown);
             return;
         }
 
-        mainVolumeController.ResetVolume();
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
         BroadcastNoteEvent?.Invoke(note - 1, activeChord);
@@ -156,8 +152,7 @@ public class GuitarController : MonoBehaviour
             sustainAudioSource.PlayOneShot(clipToPlay);
         else
         {
-            mainAudioSource.clip = clipToPlay;
-            mainAudioSource.Play();
+            duoSourceManager.PlayClipSmart(clipToPlay);
         }
 
     }
@@ -257,7 +252,7 @@ public class GuitarController : MonoBehaviour
     }
     void DoBendLogic(bool useHalfStep, bool buttonDown)
     {
-        mainSourcePitchShifter.PitchShift(useHalfStep, buttonDown);
+        duoSourceManager.PitchShiftSmart(useHalfStep, buttonDown);
         sustainPitchShifter.PitchShift(useHalfStep, buttonDown);
     }
 

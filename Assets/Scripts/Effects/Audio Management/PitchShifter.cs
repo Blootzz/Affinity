@@ -20,7 +20,6 @@ public class PitchShifter : MonoBehaviour
 
     public void PitchShift(bool useHalfStep, bool pitchUp)
     {
-        print("gameObject.name: " + gameObject.name);
         ResetAll();
         StartCoroutine(ShiftPitchPerFixedUpdate(useHalfStep, pitchUp));
     }
