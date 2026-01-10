@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class PitchShifter : MonoBehaviour
 {
@@ -13,29 +14,38 @@ public class PitchShifter : MonoBehaviour
     readonly float halfStepPitchAdder = 1 / 12f;
     readonly float wholeStepPitchAdder = 2 / 12f;
 
+    //bool shiftActive = false; // tracker so OnPlayNextNote knows how to handle note input
+    bool isBentUp = false; // tracker to help cancel pitch shift so negative input is nullified
+    //int noteLastPlayedIndex;
+
     public void PitchShift(bool useHalfStep, bool pitchUp)
     {
-        StopAllCoroutines();
-        audioSource.pitch = 1;
+        print("gameObject.name: " + gameObject.name);
+        ResetAll();
         StartCoroutine(ShiftPitchPerFixedUpdate(useHalfStep, pitchUp));
     }
 
     IEnumerator ShiftPitchPerFixedUpdate(bool useHalfStep, bool bendUp)
     {
+        //shiftActive = true;
+
         float numFixedUpdates = (useFastBend ? fastBendSeconds : slowBendSeconds) / Time.fixedDeltaTime;
         float totalBendPitchAdder = useHalfStep ? halfStepPitchAdder : wholeStepPitchAdder;
         
         // bend up -> traverse forwards
         if (bendUp)
         {
+            isBentUp = true;
+
             for (float bendX = 0; bendX <= 1; bendX += 1/numFixedUpdates)
             {
                 audioSource.pitch = 1 + bendPitchGraph.Evaluate(bendX) * totalBendPitchAdder;
                 yield return new WaitForFixedUpdate();
             }
         }
-        else // bend down -> traverse backwards
+        else if(isBentUp) // bend down -> traverse loop backwards
         {
+            
             for (float bendX = 1; bendX >= 0; bendX -= 1 / numFixedUpdates)
             {
                 audioSource.pitch = 1 + bendPitchGraph.Evaluate(bendX) * totalBendPitchAdder;
@@ -43,5 +53,28 @@ public class PitchShifter : MonoBehaviour
             }
         }
 
+        //shiftActive = false;
+    }
+
+    public void OnPlayNextNote(int noteIndex, bool buttonDown)
+    {
+        //noteLastPlayedIndex = noteIndex;
+
+        if (buttonDown)
+        {
+
+        }
+
+        if (!buttonDown)
+        {
+
+        }
+            
+    }
+
+    void ResetAll()
+    {
+        StopAllCoroutines();
+        audioSource.pitch = 1;
     }
 }

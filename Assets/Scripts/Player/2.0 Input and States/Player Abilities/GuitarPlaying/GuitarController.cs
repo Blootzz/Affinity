@@ -27,11 +27,14 @@ public class GuitarController : MonoBehaviour
 
     public Note[] notesInKey = new Note[10]; // assignment of Notes depending on scale
 
-    AudioSource audioSource;
+    [SerializeField] AudioSource mainAudioSource;
+    [SerializeField] AudioSource sustainAudioSource;
     SnapshotSelector snapshotSelector;
     GuitarSpriteSelection guitarSpriteSelection;
     StrummingArmSpriteSelection strumSpriteSelection;
-    PitchShifter pitchShifter;
+    [SerializeField] PitchShifter mainSourcePitchShifter;
+    [SerializeField] PitchShifter sustainPitchShifter;
+    VolumeController mainVolumeController;
 
     int activeNoteIndex = 1;
     ChordType activeChord = ChordType.None;
@@ -53,11 +56,10 @@ public class GuitarController : MonoBehaviour
 
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
         snapshotSelector = GetComponent<SnapshotSelector>();
         guitarSpriteSelection = GetComponentInChildren<GuitarSpriteSelection>();
         strumSpriteSelection = GetComponentInChildren<StrummingArmSpriteSelection>();
-        pitchShifter = GetComponent<PitchShifter>();
+        mainVolumeController = GetComponent<VolumeController>();
     }
 
     private void OnEnable()
@@ -83,8 +85,17 @@ public class GuitarController : MonoBehaviour
     {
         NoteInputEvent?.Invoke(note - 1, buttonDown);
         if (!buttonDown)
-            return;
+        {
+            // checking activeNoteIndex before it is updated to see if we are cancelling the most recent note
+            if (!sustainEnabled && activeNoteIndex == note-1)
+                mainVolumeController.FadeOut();
 
+            //mainSourcePitchShifter.OnPlayNextNote(note, buttonDown);
+            //sustainPitchShifter.OnPlayNextNote(note, buttonDown);
+            return;
+        }
+
+        mainVolumeController.ResetVolume();
         activeNoteIndex = note - 1;
         strumSpriteSelection.Strum();
         BroadcastNoteEvent?.Invoke(note - 1, activeChord);
@@ -109,39 +120,45 @@ public class GuitarController : MonoBehaviour
     void Play()
     {
         Note noteToPlay = NoteWithSharpFlatModifier();
+        AudioClip clipToPlay = null;
+
         // notes have already been assigned to a scale
         // activeNoteIndex has already been assigned in EnterNoteInput
         switch (activeChord)
         {
             case ChordType.None:
-                audioSource.clip = noteToPlay.pluck;
+                clipToPlay = noteToPlay.pluck;
                 break;
             case ChordType.MajorChord:
-                audioSource.clip = noteToPlay.major;
+                clipToPlay = noteToPlay.major;
                 break;
             case ChordType.MinorChord:
-                audioSource.clip = noteToPlay.minor;
+                clipToPlay = noteToPlay.minor;
                 break;
             case ChordType.PowerChord:
-                audioSource.clip = noteToPlay.power;
+                clipToPlay = noteToPlay.power;
                 break;
             default:
                 Debug.LogWarning("No appropriate chord type entered for ChordType: " + activeChord);
                 break;
         }
 
-        if (audioSource.clip == null)
+        if (clipToPlay == null)
         {
             print("no clip found");
             return;
         }
         print("playing: " + noteToPlay);
+
         // sustain
         // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
         if (sustainEnabled)
-            audioSource.PlayOneShot(audioSource.clip);
+            sustainAudioSource.PlayOneShot(clipToPlay);
         else
-            audioSource.Play();
+        {
+            mainAudioSource.clip = clipToPlay;
+            mainAudioSource.Play();
+        }
 
     }
 
@@ -240,7 +257,8 @@ public class GuitarController : MonoBehaviour
     }
     void DoBendLogic(bool useHalfStep, bool buttonDown)
     {
-        pitchShifter.PitchShift(useHalfStep, buttonDown);
+        mainSourcePitchShifter.PitchShift(useHalfStep, buttonDown);
+        sustainPitchShifter.PitchShift(useHalfStep, buttonDown);
     }
 
     public void ProcessSharpFlat(bool useSharp, bool buttonDown)
