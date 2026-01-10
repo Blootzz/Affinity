@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: 3G
   m_EditorClassIdentifier: 
   pluck: {fileID: 8300000, guid: f295bbfc2b7f29443b7ed4a2f3b922c0, type: 3}
-  major: {fileID: 8300000, guid: 859a4b7a3dd6a2b49b7b02b110113351, type: 3}
-  minor: {fileID: 8300000, guid: 0acddd04bdf018c41b5dfbb47bab7e4f, type: 3}
+  major: {fileID: 8300000, guid: 2bcf3d27085b784469de885b8478cd49, type: 3}
+  minor: {fileID: 8300000, guid: c88ca93c9848a4c409030e4de9dc0fda, type: 3}
   power: {fileID: 8300000, guid: 720d93a95425c8045b0b2cb5983b0196, type: 3}

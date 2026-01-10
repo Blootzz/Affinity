@@ -114,16 +114,16 @@ public class GuitarController : MonoBehaviour
         switch (activeChord)
         {
             case ChordType.None:
-                audioSource.clip = notesInKey[activeNoteIndex].pluck;
+                audioSource.clip = noteToPlay.pluck;
                 break;
             case ChordType.MajorChord:
-                audioSource.clip = notesInKey[activeNoteIndex].major;
+                audioSource.clip = noteToPlay.major;
                 break;
             case ChordType.MinorChord:
-                audioSource.clip = notesInKey[activeNoteIndex].minor;
+                audioSource.clip = noteToPlay.minor;
                 break;
             case ChordType.PowerChord:
-                audioSource.clip = notesInKey[activeNoteIndex].power;
+                audioSource.clip = noteToPlay.power;
                 break;
             default:
                 Debug.LogWarning("No appropriate chord type entered for ChordType: " + activeChord);
@@ -135,7 +135,7 @@ public class GuitarController : MonoBehaviour
             print("no clip found");
             return;
         }
-        print("playing: " + audioSource.clip.name);
+        print("playing: " + noteToPlay);
         // sustain
         // Play() will be interrupted by next Play() while PlayOneShot() will not be interrupted
         if (sustainEnabled)
@@ -272,7 +272,7 @@ public class GuitarController : MonoBehaviour
             if (allNotesContainer.allNotes[i].Equals(notesInKey[activeNoteIndex]))
                 break;
         }
-        
+
         // apply Sharp or flat adder/subtractor
         i += sharpFlatIndexModifier;
 
