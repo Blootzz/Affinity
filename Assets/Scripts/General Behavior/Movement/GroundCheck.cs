@@ -6,7 +6,8 @@ using UnityEngine;
 public class GroundCheck : MonoBehaviour
 {
     public event Action<bool> OnGroundedChanged; // subscribed to by PlayerStateManager.DoStateGroundedChange(bool isGrounded)
-    public bool IsGrounded { get; private set; }
+    [SerializeField] bool isGrounded;
+    public bool IsGrounded => isGrounded;
 
     BoxCollider2D myCollider;
     List<Collider2D> overlapResults = new List<Collider2D>();
@@ -17,21 +18,56 @@ public class GroundCheck : MonoBehaviour
     [SerializeField] Transform wallPointA;
     [SerializeField] Transform wallPointB;
     [Header("Floor Detection Points")]
-    [SerializeField] Transform floorPointA;
-    [SerializeField] Transform floorPointB;
+    [SerializeField] Transform floorPointAFront;
+    [SerializeField] Transform floorPointBFront;
+    [SerializeField] Transform floorPointABack;
+    [SerializeField] Transform floorPointBBack;
 
-    private void Awake()
+    private void Start()
     {
-        myCollider = GetComponent<BoxCollider2D>();
+        isGrounded = EvaluateFloorCheck();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
+    {
+        print("EvaluateFloorCheck: " + EvaluateFloorCheck());
+        if (!isGrounded)
+        {
+            if (EvaluateFloorCheck())
+            {
+                // in the air and floor check was found
+                FoundGround();
+                return;
+            }
+            // in the air and floor was not found
+            return;
+        }
+
+        // else IsGrounded is true. search for when player leaves ground entirely
+        if (!EvaluateFloorCheck())
+            LeftGround();
+    }
+
+    /// <summary>
+    ///  returns true if either pair of floor points returns true on LineCast
+    /// </summary>
+    bool EvaluateFloorCheck()
+    {
+        RaycastHit2D hitFloor1 = Physics2D.Linecast(floorPointAFront.position, floorPointBFront.position, DetectionLayerMask);
+        if (hitFloor1.collider != null)
+            return true;
+
+        RaycastHit2D hitFloor2 = Physics2D.Linecast(floorPointABack.position, floorPointBBack.position, DetectionLayerMask);
+        if (hitFloor2.collider != null)
+            return true;
+
+        return false;
+
+    }
+
+    private void FoundGround()
     {
         //print("entering: " + collision.name);
-
-        //// if incoming object is NOT on layer in this mask (result == 0)
-        //if (((1 << collision.gameObject.layer) & DetectionLayerMask) == 0)
-        //    return;
 
         if (DidWeActuallyJustFindAVerticalWall())
         {
@@ -41,45 +77,41 @@ public class GroundCheck : MonoBehaviour
 
         //print("entered ground: "+collision.gameObject.layer);
 
-        IsGrounded = true;
-        OnGroundedChanged?.Invoke(IsGrounded);
+        isGrounded = true;
+        OnGroundedChanged?.Invoke(isGrounded);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void LeftGround()
     {
         //print("exiting: " + collision.name);
 
-        //// if incoming object is NOT on layer in this mask (result == 0)
-        //if (((1 << collision.gameObject.layer) & DetectionLayerMask) == 0)
-        //    return;
-
         // evaluate if there really is nothing in GroundCheck
-        if (IsGroundCheckStillOccupied())
-        {
-            return;
-        }
+        //if (IsGroundCheckStillOccupied())
+        //{
+        //    return;
+        //}
 
         //print("Calling exit event");
 
-        IsGrounded = false;
-        OnGroundedChanged?.Invoke(IsGrounded);
+        isGrounded = false;
+        OnGroundedChanged?.Invoke(isGrounded);
     }
 
-    bool IsGroundCheckStillOccupied()
-    {
-        overlapResults.Clear();
-        if (myCollider.Overlap(overlapResults) != 0)
-        {
-            foreach (Collider2D collision in overlapResults)
-            {
-                //print("overlapResults contains: " + collision.gameObject.name);
-                // if object matches DetectionLayerMask, return true
-                if (((1 << collision.gameObject.layer) & DetectionLayerMask) != 0)
-                    return true;
-            }
-        }
-        return false;
-    }
+    //bool IsGroundCheckStillOccupied()
+    //{
+    //    overlapResults.Clear();
+    //    if (myCollider.Overlap(overlapResults) != 0)
+    //    {
+    //        foreach (Collider2D collision in overlapResults)
+    //        {
+    //            //print("overlapResults contains: " + collision.gameObject.name);
+    //            // if object matches DetectionLayerMask, return true
+    //            if (((1 << collision.gameObject.layer) & DetectionLayerMask) != 0)
+    //                return true;
+    //        }
+    //    }
+    //    return false;
+    //}
 
     /// <summary>
     /// Returns true if the wall LineCast hits and the floor LineCast doesn't
@@ -87,7 +119,7 @@ public class GroundCheck : MonoBehaviour
     bool DidWeActuallyJustFindAVerticalWall()
     {
         RaycastHit2D hitWall = Physics2D.Linecast(wallPointA.position, wallPointB.position, DetectionLayerMask);
-        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointA.position, floorPointB.position, DetectionLayerMask);
+        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointAFront.position, floorPointBFront.position, DetectionLayerMask);
         if (hitWall.collider != null && hitFloor.collider == null)
             return true;
 
