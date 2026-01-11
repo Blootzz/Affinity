@@ -9,7 +9,10 @@ public class DuoSourceManager : MonoBehaviour
     PitchShifter pitchShifter1;
     PitchShifter pitchShifter2;
 
-    bool source1Free = true;
+    bool playSource1Next = true;
+
+    bool isBendActive = false; // if note 1 is bent and not released, note 2 should also be bent
+    bool usingHalfStep; // used to track most recent bend type
 
     private void Awake()
     {
@@ -21,22 +24,31 @@ public class DuoSourceManager : MonoBehaviour
 
     public void PlayClipSmart(AudioClip clipToPlay)
     {
-        if (source1Free)
+        if (playSource1Next)
         {
+            if (isBendActive)
+                pitchShifter1.SnapToBend(usingHalfStep);
+            
             source1.clip = clipToPlay;
             source1.Play();
             volumeController1.ResetVolume();
+
             volumeController2.FadeOut();
+            pitchShifter2.ResetAll();
         }
         else
         {
+            if (isBendActive)
+                pitchShifter2.SnapToBend(usingHalfStep);
             source2.clip = clipToPlay;
             source2.Play();
             volumeController2.ResetVolume();
+
             volumeController1.FadeOut();
+            pitchShifter1.ResetAll();
         }
 
-        source1Free = !source1Free;
+        playSource1Next = !playSource1Next;
     }
 
     public void FadeBoth()
@@ -46,7 +58,12 @@ public class DuoSourceManager : MonoBehaviour
     }
     public void PitchShiftSmart(bool useHalfStep, bool buttonDown)
     {
-        if (!source1Free) // source is most recently used
+        if (buttonDown)
+            isBendActive = true;
+        else
+            isBendActive = false;
+
+        if (!playSource1Next) // source is most recently used
             pitchShifter1.PitchShift(useHalfStep, buttonDown);
         else
             pitchShifter2.PitchShift(useHalfStep, buttonDown);

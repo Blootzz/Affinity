@@ -11,8 +11,8 @@ public class PitchShifter : MonoBehaviour
     public bool useFastBend = false;
     [SerializeField] float fastBendSeconds = 0.2f;
     [SerializeField] float slowBendSeconds = 0.6f;
-    readonly float halfStepPitchAdder = 1 / 12f;
-    readonly float wholeStepPitchAdder = 2 / 12f;
+    readonly float halfStepPitchAdder = 0.059463f;
+    readonly float wholeStepPitchAdder = 0.122462f;
 
     //bool shiftActive = false; // tracker so OnPlayNextNote knows how to handle note input
     bool isBentUp = false; // tracker to help cancel pitch shift so negative input is nullified
@@ -71,9 +71,17 @@ public class PitchShifter : MonoBehaviour
             
     }
 
-    void ResetAll()
+    public void ResetAll()
     {
         StopAllCoroutines();
         audioSource.pitch = 1;
+    }
+
+    /// <summary>
+    /// Used to allow note 1 to be bent then note 2 is immediately bent and can be released
+    /// </summary>
+    public void SnapToBend(bool useHalfBend)
+    {
+        audioSource.pitch = 1 + (useHalfBend ? halfStepPitchAdder : wholeStepPitchAdder);
     }
 }
