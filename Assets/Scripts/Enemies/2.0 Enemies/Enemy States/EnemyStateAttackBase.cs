@@ -13,8 +13,8 @@ public class EnemyStateAttackBase : EnemyBaseState
     /// </summary>
     public override void OnEnter()
     {
-        stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetEnableAllHitboxes(true);
-        stateManager.gameObject.GetComponentInChildren<EnemyHitboxManager>().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
+        stateManager.GetHitboxManager().SetEnableAllHitboxes(true);
+        stateManager.GetHitboxManager().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
 
         stateManager.facePlayer.OneTimeCheck();
         stateManager.facePlayer.SetEnableAutomaticFlip(false);

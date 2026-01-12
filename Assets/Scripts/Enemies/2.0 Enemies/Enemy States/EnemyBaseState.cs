@@ -14,17 +14,13 @@ public abstract class EnemyBaseState : ScriptableObject
     {
         this.stateManager = newStateManager;
     }
-    public virtual void OnEnter()
-    {
-    }
-    public virtual void OnExit()
-    {
-    }
-    public virtual void EndStateByAnimation()
-    {
-    }
-    public virtual void OnPlayerEnteredAttackZone()
-    {
+    public virtual void OnEnter() { }
+    public virtual void OnExit() { }
+    public virtual void EndStateByAnimation() { }
+    public virtual void OnPlayerEnteredAttackZone() { }
+    public virtual void OnPlayerExitedAttackZone()
+    { 
+        stateManager.SwitchState(stateManager.stateIdle); 
     }
 
     // chatgpt code lmao
@@ -47,7 +43,5 @@ public abstract class EnemyBaseState : ScriptableObject
         stateManager.StopApproachingPlayer();
     }
 
-    public virtual void OnStateUtilityTimerEnd()
-    {
-    }
+    public virtual void OnStateUtilityTimerEnd() { }
 }

@@ -23,8 +23,9 @@ public class EnemyStateManager : MonoBehaviour
     [HideInInspector] public Health health;
     [HideInInspector] public Poise poise;
     [HideInInspector] public HurtboxManager hurtboxManager;
+    [SerializeField] EnemyHitboxManager hitboxManager; // accessed by EnemyStateAttackBase to be enabled
     [HideInInspector] public Animator animator;
-    [SerializeField] DetectZoneByTag attackDetectZone;
+    [SerializeField] DetectZoneByTag agroZone;
     [HideInInspector] public CharacterMover characterMover;
     [HideInInspector] public FacePlayer facePlayer;
     [HideInInspector] public ColorFlash colorFlasher;
@@ -61,7 +62,7 @@ public class EnemyStateManager : MonoBehaviour
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         animator = GetComponent<Animator>();
         colorFlasher = GetComponent<ColorFlash>();
-        if (attackDetectZone == null)
+        if (agroZone == null)
             Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
         if (TryGetComponent(out CharacterMover cm))
             characterMover = cm;
@@ -79,16 +80,29 @@ public class EnemyStateManager : MonoBehaviour
         hurtboxManager.HurtEvent += OnHurtboxHit;
         health.DeathEvent += OnDeath;
         poise.PoiseDepletedEvent += OnPoiseDepleted;
-        attackDetectZone.TargetFoundEvent += OnPlayerEnteredAttackZone;
+        agroZone.TargetFoundEvent += OnPlayerEnteredAgroZone;
+        agroZone.TargetExitedEvent += OnPlayerExitedAgroZone;
     }
     private void OnDisable()
     {
         hurtboxManager.HurtEvent -= OnHurtboxHit;
         health.DeathEvent -= OnDeath;
         poise.PoiseDepletedEvent -= OnPoiseDepleted;
-        attackDetectZone.TargetFoundEvent -= OnPlayerEnteredAttackZone;
+        agroZone.TargetFoundEvent -= OnPlayerEnteredAgroZone;
+        agroZone.TargetExitedEvent -= OnPlayerExitedAgroZone;
     }
 
+    public void SwitchState(EnemyBaseState newState)
+    {
+        if (currentState != null)
+            currentState.OnExit();
+        currentState = newState;
+        currentStateName = newState.GetType().Name;
+        currentState.SetStateManager(this);
+        currentState.OnEnter();
+    }
+
+    // ================================================== Event Listeners ======================================================
     /// <summary>
     /// Deducts health by (incoming hitbox damage) x poiseBreakDamageMultiplier if applicable
     /// </summary>
@@ -118,17 +132,7 @@ public class EnemyStateManager : MonoBehaviour
         SwitchState(statePoiseBreak);
     }
 
-    public void SwitchState(EnemyBaseState newState)
-    {
-        if (currentState != null)
-            currentState.OnExit();
-        currentState = newState;
-        currentStateName = newState.GetType().Name;
-        currentState.SetStateManager(this);
-        currentState.OnEnter();
-    }
-
-    void OnPlayerEnteredAttackZone(GameObject pObj)
+    void OnPlayerEnteredAgroZone(GameObject pObj)
     {
         playerObj = pObj;
         // update FacePlayer data before any state change
@@ -136,7 +140,13 @@ public class EnemyStateManager : MonoBehaviour
         currentState.OnPlayerEnteredAttackZone();
         isAggro = true;
     }
+    void OnPlayerExitedAgroZone(GameObject pObj)
+    {
+        currentState.OnPlayerExitedAttackZone();
+        isAggro = true;
+    }
 
+    // ============================================= Executive Methods ======================================
     /// <summary>
     /// Calls SlideTowardPlayer, passes player transform
     /// </summary>
@@ -149,6 +159,8 @@ public class EnemyStateManager : MonoBehaviour
     {
         GetComponent<SlideTowardPlayer>().EndSlide();
     }
+
+    //======================================= Animation Events ======================================
     public void ANIM_ApproachPlayer()
     {
         currentState.BeginLerpToPlayerByAnimation();
@@ -163,6 +175,7 @@ public class EnemyStateManager : MonoBehaviour
         currentState.EndStateByAnimation();
     }
 
+    // ================================================== Timer ===================================================
     bool isTimerBusy = false;
     public void BeginStateUtilityTimer(float seconds)
     {
@@ -186,9 +199,12 @@ public class EnemyStateManager : MonoBehaviour
         currentState.OnStateUtilityTimerEnd();
     }
 
+
     /// <summary>
     /// tracked in EnemyStateManager to determine how to process incoming hits for poise break vulnerability
     /// </summary>
     /// <param name="newValue"></param>
     public void SetIsPoiseBroken(bool newValue) => isPoiseBroken = newValue;
+
+    public EnemyHitboxManager GetHitboxManager() => hitboxManager;
 }
