@@ -5,9 +5,6 @@ using UnityEngine;
 public class PlayerStateWallSlide : PlayerBaseState
 {
     [SerializeField] float slideDownVelocityY = -2;
-    //public PlayerStateWallSlide(PlayerStateManager stateManager) : base(stateManager)
-    //{
-    //}
 
     public override void OnEnter()
     {

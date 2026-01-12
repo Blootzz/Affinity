@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GroundCheck : MonoBehaviour
 {
@@ -18,100 +19,71 @@ public class GroundCheck : MonoBehaviour
     [SerializeField] Transform wallPointA;
     [SerializeField] Transform wallPointB;
     [Header("Floor Detection Points")]
-    [SerializeField] Transform floorPointAFront;
+    [SerializeField] Transform floorPointAFront; // previousFrontPos is just this but from the last update step
+    [SerializeField] Transform floorPointABack; // previousFrontPos is just this but from the last update step
     [SerializeField] Transform floorPointBFront;
-    [SerializeField] Transform floorPointABack;
     [SerializeField] Transform floorPointBBack;
+
+    Vector2 previousFrontPos; // used to ensure frame doesn't skip A to B Linecasts, records Front A position
 
     private void Start()
     {
+        previousFrontPos = floorPointAFront.position;
         isGrounded = EvaluateFloorCheck();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        print("EvaluateFloorCheck: " + EvaluateFloorCheck());
-        if (!isGrounded)
+        if (isGrounded)
         {
-            if (EvaluateFloorCheck())
+            if (!EvaluateFloorCheck())
             {
-                // in the air and floor check was found
-                FoundGround();
-                return;
+                //print("leaving ground");
+                ToggleIsGrounded();
             }
-            // in the air and floor was not found
-            return;
+        }
+        else
+        {
+            if (EvaluateFloorCheck() && !DidWeActuallyJustFindAVerticalWall())
+            {
+                //print("Entering ground");
+                ToggleIsGrounded();
+            }
         }
 
-        // else IsGrounded is true. search for when player leaves ground entirely
-        if (!EvaluateFloorCheck())
-            LeftGround();
+        // update previousPointBPos so that next comparison will use point from previous update, so colliders can't be skipped
+        previousFrontPos = floorPointAFront.position;
+
+        // physics step will happen after this loop
     }
 
     /// <summary>
-    ///  returns true if either pair of floor points returns true on LineCast
+    /// Called on FixedUpdate and will return true every frame player is grounded
     /// </summary>
+    /// <returns> true if either pair of floor points returns true on LineCast</returns>
     bool EvaluateFloorCheck()
     {
-        RaycastHit2D hitFloor1 = Physics2D.Linecast(floorPointAFront.position, floorPointBFront.position, DetectionLayerMask);
-        if (hitFloor1.collider != null)
+        //print("previousFrontPos: "+previousFrontPos);
+        //print("-> floorPointBFront: " +  floorPointBFront.position);
+        RaycastHit2D hitFloorFront = Physics2D.Linecast(previousFrontPos, floorPointBFront.position, DetectionLayerMask);
+        if (hitFloorFront.collider != null)
             return true;
 
-        RaycastHit2D hitFloor2 = Physics2D.Linecast(floorPointABack.position, floorPointBBack.position, DetectionLayerMask);
-        if (hitFloor2.collider != null)
+        //print("-> floorPointBBack: " +  floorPointBBack.position);
+        // uses floorPointABack to prevent turnaround error off wall jump
+        RaycastHit2D hitFloorBack = Physics2D.Linecast(floorPointABack.position, floorPointBBack.position, DetectionLayerMask);
+        if (hitFloorBack.collider != null)
             return true;
 
         return false;
 
     }
 
-    private void FoundGround()
+    void ToggleIsGrounded()
     {
-        //print("entering: " + collision.name);
-
-        if (DidWeActuallyJustFindAVerticalWall())
-        {
-            //print("GroundCheck, False positive - just a vertical wall");
-            return;
-        }
-
-        //print("entered ground: "+collision.gameObject.layer);
-
-        isGrounded = true;
+        isGrounded = !isGrounded;
         OnGroundedChanged?.Invoke(isGrounded);
     }
-
-    private void LeftGround()
-    {
-        //print("exiting: " + collision.name);
-
-        // evaluate if there really is nothing in GroundCheck
-        //if (IsGroundCheckStillOccupied())
-        //{
-        //    return;
-        //}
-
-        //print("Calling exit event");
-
-        isGrounded = false;
-        OnGroundedChanged?.Invoke(isGrounded);
-    }
-
-    //bool IsGroundCheckStillOccupied()
-    //{
-    //    overlapResults.Clear();
-    //    if (myCollider.Overlap(overlapResults) != 0)
-    //    {
-    //        foreach (Collider2D collision in overlapResults)
-    //        {
-    //            //print("overlapResults contains: " + collision.gameObject.name);
-    //            // if object matches DetectionLayerMask, return true
-    //            if (((1 << collision.gameObject.layer) & DetectionLayerMask) != 0)
-    //                return true;
-    //        }
-    //    }
-    //    return false;
-    //}
 
     /// <summary>
     /// Returns true if the wall LineCast hits and the floor LineCast doesn't
@@ -119,7 +91,7 @@ public class GroundCheck : MonoBehaviour
     bool DidWeActuallyJustFindAVerticalWall()
     {
         RaycastHit2D hitWall = Physics2D.Linecast(wallPointA.position, wallPointB.position, DetectionLayerMask);
-        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointAFront.position, floorPointBFront.position, DetectionLayerMask);
+        RaycastHit2D hitFloor = Physics2D.Linecast(floorPointABack.position, floorPointBBack.position, DetectionLayerMask);
         if (hitWall.collider != null && hitFloor.collider == null)
             return true;
 
