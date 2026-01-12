@@ -1,8 +1,7 @@
 {
-    "name": "GuitarPlaying",
+    "name": "GuitarAudio",
     "rootNamespace": "",
     "references": [
-        "GUID:e4aabc2e480c46849a19e4b213c9283b",
         "GUID:46e9c65871d348c449c72e93672f6f99"
     ],
     "includePlatforms": [],

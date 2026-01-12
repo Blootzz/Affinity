@@ -1,23 +1,24 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "States/Player/Running")]
 public class PlayerStateRunning : PlayerStateIdle
 {
-    // needs a special constructor because HorizontalAxis can't get called by OnEnter
-    //public PlayerStateRunning(PlayerStateManager newStateManager) : base(newStateManager)
-    //{
-    //}
+    public event Action<bool> StartedRunningEvent; // listened to by FootstepController
 
     public override void OnEnter()
     {
         HorizontalAxis();
         stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.AorURun);
+        StartedRunningEvent?.Invoke(true);
     }
 
     public override void OnExit()
     {
         base.OnExit();
         stateManager.characterMover.SetHorizontalMovementVelocity(0);
+        StartedRunningEvent?.Invoke(false);
     }
 
     public override void HorizontalAxis()
