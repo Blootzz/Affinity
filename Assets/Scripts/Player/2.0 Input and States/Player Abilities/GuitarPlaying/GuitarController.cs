@@ -48,6 +48,7 @@ public class GuitarController : MonoBehaviour
     public UnityEvent<bool, bool> PitchShiftEvent;
     public UnityEvent<bool, bool> SharpFlatEvent;
     public UnityEvent<bool> HideMenuEvent;
+    public UnityEvent<bool> SustainEvent;
 
     // C# event for GuitarDetectionZone to listen to
     public event Action<int, ChordType> BroadcastNoteEvent;
@@ -186,7 +187,6 @@ public class GuitarController : MonoBehaviour
         CycleHorizontalArrowInputEvent?.Invoke(forward, buttonDown);
         DoCycleScaleLogic(forward, buttonDown);
     }
-
     public void BUTTON_CycleScaleForward() => DoCycleScaleLogic(true, true);
     public void BUTTON_CycleScaleBackward() => DoCycleScaleLogic(false, true);
 
@@ -219,7 +219,6 @@ public class GuitarController : MonoBehaviour
         CycleVerticalArrowInputEvent?.Invoke(forward, buttonDown);
         DoCycleKeyLogic(forward, buttonDown);
     }
-
     /// called by UI button
     /// assign to whatever clickable button should advance the key up
     public void BUTTON_CycleKeyForward() => DoCycleKeyLogic(true, true);
@@ -240,9 +239,14 @@ public class GuitarController : MonoBehaviour
         AssignScale();
     }
 
-    public void SetSustain(bool setValue)
+    public void SetSustain(bool buttonDown)
     {
-        sustainEnabled = setValue;
+        SustainEvent?.Invoke(buttonDown);
+        DoSustainLogic(buttonDown);
+    }
+    void DoSustainLogic(bool buttonDown)
+    {
+        sustainEnabled = buttonDown;
     }
 
     public void ProcessBend(bool useHalfStep, bool buttonDown)

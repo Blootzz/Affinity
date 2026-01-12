@@ -28,6 +28,7 @@ public class GuitarUIController : MonoBehaviour
 
     [Header("Other Buttons")]
     [SerializeField] Button HideMenuButton;
+    [SerializeField] Button SustainButton;
 
     [Header("Selector Square Positioning Data")]
     [SerializeField] RectTransform SelectorSquareRectTransform;
@@ -67,10 +68,7 @@ public class GuitarUIController : MonoBehaviour
         else
             arrowButton = DownArrow;
 
-        if (buttonDown)
-            arrowButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        else
-            arrowButton.OnPointerUp(new PointerEventData(EventSystem.current));
+        UpdateButtonVisualStatus(arrowButton, buttonDown);
     }
 
     public void LISTEN_OnHorizontalArrowButtonPressed(bool usingRightArrow, bool buttonDown)
@@ -81,10 +79,7 @@ public class GuitarUIController : MonoBehaviour
         else
             arrowButton = LeftArrow;
 
-        if (buttonDown)
-            arrowButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        else
-            arrowButton.OnPointerUp(new PointerEventData(EventSystem.current));
+        UpdateButtonVisualStatus(arrowButton, buttonDown);
     }
 
     public void LISTEN_OnChordButtonPressed(int indexChordType, bool buttonDown)
@@ -111,10 +106,7 @@ public class GuitarUIController : MonoBehaviour
                 return; // avoids null ref
         }
 
-        if (buttonDown)
-            chordButtonToChange.OnPointerDown(new PointerEventData(EventSystem.current));
-        else
-            chordButtonToChange.OnPointerUp(new PointerEventData(EventSystem.current));
+        UpdateButtonVisualStatus(chordButtonToChange, buttonDown);
     }
 
     /// <summary>
@@ -195,10 +187,7 @@ public class GuitarUIController : MonoBehaviour
         else
             bendButton = WholeBendButton;
 
-        if (buttonDown)
-            bendButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        else
-            bendButton.OnPointerUp(new PointerEventData(EventSystem.current));
+        UpdateButtonVisualStatus(bendButton, buttonDown);
     }
     public void LISTEN_OnSharpFlat(bool useSharp, bool buttonDown)
     {
@@ -208,17 +197,24 @@ public class GuitarUIController : MonoBehaviour
         else
             sharpOrFlatButton = FlatButton;
 
-        if (buttonDown)
-            sharpOrFlatButton.OnPointerDown(new PointerEventData(EventSystem.current));
-        else
-            sharpOrFlatButton.OnPointerUp(new PointerEventData(EventSystem.current));
+        UpdateButtonVisualStatus(sharpOrFlatButton, buttonDown);
     }
 
     public void LISTEN_OnHideMenu(bool buttonDown)
     {
+        UpdateButtonVisualStatus(HideMenuButton, buttonDown);
+    }
+
+    public void LISTEN_OnSustain(bool buttonDown)
+    {
+        UpdateButtonVisualStatus(SustainButton, buttonDown);
+    }
+
+    void UpdateButtonVisualStatus(Button buttonToChange, bool buttonDown)
+    {
         if (buttonDown)
-            HideMenuButton.OnPointerDown(new PointerEventData(EventSystem.current));
+            buttonToChange.OnPointerDown(new PointerEventData(EventSystem.current));
         else
-            HideMenuButton.OnPointerUp(new PointerEventData(EventSystem.current));
+            buttonToChange.OnPointerUp(new PointerEventData(EventSystem.current));
     }
 }
