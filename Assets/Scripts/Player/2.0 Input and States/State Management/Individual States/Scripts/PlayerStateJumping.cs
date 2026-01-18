@@ -1,11 +1,10 @@
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(menuName = "States/Player/Jumping")]
 public class PlayerStateJumping : PlayerStateFalling
 {
-    //public PlayerStateJumping(PlayerStateManager newStateManager) : base(newStateManager)
-    //{
-    //}
+    public event Action JumpAudioEvent; // listened to by jump audio source
 
     public override void OnEnter()
     {
@@ -21,6 +20,7 @@ public class PlayerStateJumping : PlayerStateFalling
     public virtual void JumpEffects()
     {
         stateManager.groundCheck.GetComponent<JumpLandDustFXManager>().EnableJumpDust();
+        JumpAudioEvent?.Invoke();
     }
 
     public override void JumpCancel()

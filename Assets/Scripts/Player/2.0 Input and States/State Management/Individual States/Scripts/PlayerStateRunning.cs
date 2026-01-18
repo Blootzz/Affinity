@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "States/Player/Running")]
 public class PlayerStateRunning : PlayerStateIdle

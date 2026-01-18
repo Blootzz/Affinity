@@ -1,9 +1,11 @@
 using UnityEngine;
-
+using System;
 
 [CreateAssetMenu(menuName = "States/Player/WallSlide")]
 public class PlayerStateWallSlide : PlayerBaseState
 {
+    public event Action<bool, bool> StartedSlideEvent; // listened to by WallSlideAudioSource
+
     [SerializeField] float slideDownVelocityY = -2;
 
     public override void OnEnter()
@@ -14,12 +16,14 @@ public class PlayerStateWallSlide : PlayerBaseState
 
         stateManager.characterMover.SetRbType(RigidbodyType2D.Kinematic);
         SlideDown();
+        StartedSlideEvent?.Invoke(true, stateManager.faceRight);
     }
 
     public override void OnExit()
     {
         stateManager.characterMover.SetRbType(RigidbodyType2D.Dynamic);
         stateManager.EnableLedgeGrabCheck(false);
+        StartedSlideEvent?.Invoke(false, stateManager.faceRight);
     }
 
     /// <summary>

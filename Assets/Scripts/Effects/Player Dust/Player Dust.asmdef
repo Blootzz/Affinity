@@ -1,10 +1,8 @@
 {
-    "name": "PlayerAudioManagers",
+    "name": "PlayerDust",
     "rootNamespace": "",
     "references": [
-        "GUID:46e9c65871d348c449c72e93672f6f99",
-        "GUID:030e71f08dab54249958aa41a0c780bf",
-        "GUID:c42a6723dda71ab41bc51a8dfa22e21d"
+        "GUID:030e71f08dab54249958aa41a0c780bf"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
