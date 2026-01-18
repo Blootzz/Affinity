@@ -8,7 +8,7 @@ public class FootstepController : MonoBehaviour
 
     float timer; // used to determine when stepSeconds has been reached
     
-    PlayerStateManager stateManager;
+    [SerializeField] PlayerStateManager stateManager;
     bool isInRunningState = false;
 
     private void OnEnable()
