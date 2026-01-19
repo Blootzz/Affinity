@@ -35,17 +35,15 @@ public class WallSlideDustEmitterController : MonoBehaviour
 
         if (faceRight)
         {
-            print("Right");
             // set parameters facing right
-            particleRenderer.flip.Set(0, 0, 0);
-            particleRenderer.pivot.Set(0, rightPivotY, 0);
+            particleRenderer.flip = new Vector3(0, 0, 0);
+            particleRenderer.pivot = new Vector3(0, rightPivotY, 0);
         }
         else
         {
-            print("Left");
             // set parameters facing left
-            particleRenderer.flip.Set(0, 1, 0);
-            particleRenderer.pivot.Set(0, leftPivotY, 0);
+            particleRenderer.flip = new Vector3(0, 1, 0);
+            particleRenderer.pivot = new Vector3(0, leftPivotY, 0);
         }
 
         wallDust.Play();
