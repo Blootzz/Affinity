@@ -28,7 +28,10 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void EndStateByAnimation()
     {
         base.EndStateByAnimation();
-        stateManager.SwitchState(stateManager.stateOnExitingPoiseBreak);
+        if (stateManager.stateOnExitingPoiseBreak != null)
+            stateManager.SwitchState(stateManager.stateOnExitingPoiseBreak);
+        else
+            stateManager.SwitchState(stateManager.stateIdle);
     }
 
     void StartFlashing()
