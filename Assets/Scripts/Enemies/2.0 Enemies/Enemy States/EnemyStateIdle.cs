@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "States/Enemy/Idle")]
 public class EnemyStateIdle : EnemyBaseState
 {
     

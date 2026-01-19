@@ -67,11 +67,10 @@ public class FacePlayer : MonoBehaviour
     public void OneTimeCheck()
     {
         PerFrameLogic();
-        print("isTrackingPlayer: " + isTrackingPlayer);
-        print("enableAutomaticFlip: " + enableAutomaticFlip);
-        print("playerIsRightOfEnemy: " + playerIsRightOfEnemy);
-        print("playerIsRightOfEnemy: " + playerIsRightOfEnemy);
-        print("faceRight: " + faceRight);
+        //print("isTrackingPlayer: " + isTrackingPlayer);
+        //print("enableAutomaticFlip: " + enableAutomaticFlip);
+        //print("playerIsRightOfEnemy: " + playerIsRightOfEnemy);
+        //print("faceRight: " + faceRight);
     }
 
     public bool GetFaceRight()

@@ -77,19 +77,27 @@ public class EnemyStateManager : MonoBehaviour
 
     private void OnEnable()
     {
-        hurtboxManager.HurtEvent += OnHurtboxHit;
+        if (hurtboxManager != null)
+            hurtboxManager.HurtEvent += OnHurtboxHit;
         health.DeathEvent += OnDeath;
         poise.PoiseDepletedEvent += OnPoiseDepleted;
-        agroZone.TargetFoundEvent += OnPlayerEnteredAgroZone;
-        agroZone.TargetExitedEvent += OnPlayerExitedAgroZone;
+        if (agroZone != null)
+        {
+            agroZone.TargetFoundEvent += OnPlayerEnteredAgroZone;
+            agroZone.TargetExitedEvent += OnPlayerExitedAgroZone;
+        }
     }
     private void OnDisable()
     {
-        hurtboxManager.HurtEvent -= OnHurtboxHit;
+        if (hurtboxManager != null)
+            hurtboxManager.HurtEvent -= OnHurtboxHit;
         health.DeathEvent -= OnDeath;
         poise.PoiseDepletedEvent -= OnPoiseDepleted;
-        agroZone.TargetFoundEvent -= OnPlayerEnteredAgroZone;
-        agroZone.TargetExitedEvent -= OnPlayerExitedAgroZone;
+        if (agroZone != null)
+        {
+            agroZone.TargetFoundEvent -= OnPlayerEnteredAgroZone;
+            agroZone.TargetExitedEvent -= OnPlayerExitedAgroZone;
+        }
     }
 
     public void SwitchState(EnemyBaseState newState)

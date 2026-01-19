@@ -4,11 +4,6 @@ using System;
 [CreateAssetMenu(menuName = "States/Enemy/Poise Break")]
 public class EnemyStatePoiseBreak : EnemyBaseState
 {
-    //public EnemyStatePoiseBreak(EnemyStateManager newStateManager) : base(newStateManager)
-    //{
-    //    base.OnEnter();
-    //}
-
     public override void OnEnter()
     {
         base.OnEnter();
@@ -16,7 +11,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
             stateManager.animator.Play("PoiseBreak", -1, 0);
         else
             Debug.LogError("Does not contain animation \"PoiseBreak\"");
-        stateManager.facePlayer.SetEnableAutomaticFlip(true);
+        stateManager.facePlayer.SetEnableAutomaticFlip(false);
         StartFlashing();
 
         stateManager.SetIsPoiseBroken(true); // logic used for player attack damage bonus
@@ -24,7 +19,7 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void OnExit()
     {
         base.OnExit();
-        stateManager.facePlayer.SetEnableAutomaticFlip(false);
+        stateManager.facePlayer.SetEnableAutomaticFlip(true);
         StopFlashing();
 
         stateManager.SetIsPoiseBroken(false);
