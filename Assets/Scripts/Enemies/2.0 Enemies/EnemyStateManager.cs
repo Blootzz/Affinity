@@ -62,8 +62,8 @@ public class EnemyStateManager : MonoBehaviour
         hurtboxManager = GetComponentInChildren<HurtboxManager>();
         animator = GetComponent<Animator>();
         colorFlasher = GetComponent<ColorFlash>();
-        if (agroZone == null)
-            Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
+        //if (agroZone == null)
+        //    Debug.LogWarning("Please drag and drop DetectZoneByTag reference to this script");
         if (TryGetComponent(out CharacterMover cm))
             characterMover = cm;
         if (TryGetComponent(out FacePlayer fPlayer))

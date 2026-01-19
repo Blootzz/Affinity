@@ -28,6 +28,8 @@ public class BlockParryManager : MonoBehaviour
         // State calls CreateVisualEffect so it can pass in faceRight and bool parryInsteadOfBlock
         visualEffectSpawnPosition = blockerEffectWorldPosition;
 
+        enemyHitbox.GetBlocked(); // optional additional behavior for cases like if a projectile needs to know it was parried
+
         BlockerHitEvent?.Invoke();
     }
 
@@ -74,10 +76,10 @@ public class BlockParryManager : MonoBehaviour
         GetIncomingEnemyHitbox().RelayHitboxLandedToManager();
     }
 
-    public void ParryEnemy()
-    {
-        GetIncomingEnemyHitbox().GetParried();
-    }
+    //public void ParryEnemy()
+    //{
+    //    GetIncomingEnemyHitbox().GetParried();
+    //}
 
     
 

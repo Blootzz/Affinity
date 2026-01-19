@@ -4,7 +4,8 @@ public class EnemyHitbox : BaseHitbox
 {
     [Tooltip("Only enter positive x value since it will be flipped by attackFaceRight")]
     [SerializeField] Vector2 damageKnockback;
-    [SerializeField] bool attackFaceRight;
+    [Tooltip("Used to apply knockback in correct direction")]
+    [SerializeField] protected bool attackFaceRight;
     [SerializeField] float blockStunTime;
     [SerializeField] float blockKnockbackVelocity;
     [SerializeField] bool mustBlockUp;
@@ -57,11 +58,16 @@ public class EnemyHitbox : BaseHitbox
             Debug.LogWarning(name + " does not have a parent EnemyHitboxManager to disable all hitboxes");
     }
 
-    public void GetParried()
+    public virtual void GetParried()
     {
         if (transform.parent.TryGetComponent<EnemyHitboxManager>(out EnemyHitboxManager enemyHitboxManager))
             enemyHitboxManager.ChildHitboxParried(this);
         else
             Debug.LogWarning(name + " does not have a parent EnemyHitboxManager to process parry");
+    }
+
+    public virtual void GetBlocked()
+    {
+
     }
 }
