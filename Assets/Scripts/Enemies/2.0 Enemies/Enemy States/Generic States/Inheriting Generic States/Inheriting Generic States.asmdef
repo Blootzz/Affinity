@@ -1,0 +1,16 @@
+{
+    "name": "InheritingGenericStates",
+    "rootNamespace": "",
+    "references": [
+        "GUID:99859fe5c1e041948a0abf498342dd67"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

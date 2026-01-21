@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "States/Enemy/Idle")]
+[CreateAssetMenu(menuName = "States/Enemy/Generic States/Main/Idle")]
 public class EnemyStateIdle : EnemyBaseState
 {
     

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(menuName = "States/Enemy/Poise Break")]
+[CreateAssetMenu(menuName = "States/Enemy/Generic States/Main/Poise Break")]
 public class EnemyStatePoiseBreak : EnemyBaseState
 {
     public override void OnEnter()

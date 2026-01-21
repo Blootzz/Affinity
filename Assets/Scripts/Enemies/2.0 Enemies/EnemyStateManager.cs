@@ -40,20 +40,20 @@ public class EnemyStateManager : MonoBehaviour
     [Tooltip("Used by classes such as HammerStateAttack2 to keep track of repetitions")]
     public int repeatStateCounter = 0;
 
-    [InspectorButton(nameof(OnButtonClicked1))]
-    public bool Idle;
-    private void OnButtonClicked1()
-    {
-        Time.timeScale = 1;
-        SwitchState(stateIdle);
-    }
-    [InspectorButton(nameof(OnButtonClicked2))]
-    public bool Attack;
-    private void OnButtonClicked2()
-    {
-        Time.timeScale = .25f;
-        SwitchState(stateAttack1);
-    }
+    //[InspectorButton(nameof(OnButtonClicked1))]
+    //public bool Idle;
+    //private void OnButtonClicked1()
+    //{
+    //    Time.timeScale = 1;
+    //    SwitchState(stateIdle);
+    //}
+    //[InspectorButton(nameof(OnButtonClicked2))]
+    //public bool Attack;
+    //private void OnButtonClicked2()
+    //{
+    //    Time.timeScale = .25f;
+    //    SwitchState(stateAttack1);
+    //}
 
     void Awake()
     {

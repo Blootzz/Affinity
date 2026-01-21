@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkeletonMedStunned
+  m_Name: PoiseBreak
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,11 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 7854634988746529495, guid: a656723d3bbd5ac42b6a917933510cee,
-        type: 3}
+      value: {fileID: 7854634988746529495, guid: a656723d3bbd5ac42b6a917933510cee, type: 3}
     - time: 0.6666667
-      value: {fileID: 2552417261852606043, guid: a656723d3bbd5ac42b6a917933510cee,
-        type: 3}
+      value: {fileID: 2552417261852606043, guid: a656723d3bbd5ac42b6a917933510cee, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
