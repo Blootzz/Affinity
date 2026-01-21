@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class LargeDoor : Interactable
 {
-    public override void Execute()
-    {
-        base.Execute();
-        GetComponent<Animator>().SetTrigger("OpenDoor");
-    }
+    //public override void Execute()
+    //{
+    //    base.Execute();
+    //    GetComponent<Animator>().SetTrigger("OpenDoor");
+    //}
 
-    public void LoadNewArea()
-    {
-        GetComponent<AreaLoader>().LoadScene();
-    }
+    //public void LoadNewArea()
+    //{
+    //    GetComponent<AreaLoader>().LoadScene();
+    //}
 
 }

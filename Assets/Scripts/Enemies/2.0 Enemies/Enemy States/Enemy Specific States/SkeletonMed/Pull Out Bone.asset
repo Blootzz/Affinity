@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3b16152236159c4d9e75edc0113d831, type: 3}
-  m_Name: Switch State By End Animation
+  m_Name: Pull Out Bone
   m_EditorClassIdentifier: InheritingGenericStates::SwitchStateByEndAnimation
   nextState: {fileID: 0}
-  startAnimation: 
+  animationNameToPlayOnStart: 
   checkEnemyAggro: 0
   noAggroState: {fileID: 0}

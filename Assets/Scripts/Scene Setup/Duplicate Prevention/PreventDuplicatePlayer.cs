@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PreventDuplicatePlayer : MonoBehaviour
 {
-    void Awake()
-    {
-        int numPlayers = FindObjectsOfType<PreventDuplicatePlayer>().Length;
+    //void Awake()
+    //{
+    //    int numPlayers = FindObjectsOfType<PreventDuplicatePlayer>().Length;
 
-        if (numPlayers != 1)
-        {
-            // Destroy the extra instance
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
+    //    if (numPlayers != 1)
+    //    {
+    //        // Destroy the extra instance
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //}
 }

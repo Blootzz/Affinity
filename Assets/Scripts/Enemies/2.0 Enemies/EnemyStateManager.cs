@@ -11,9 +11,9 @@ public class EnemyStateManager : MonoBehaviour
     [Header("Standard States")]
     public EnemyStateIdle stateIdle;
     public EnemyStateWalk stateWalk;
-    public EnemyStateAttack1 stateAttack1;
-    public EnemyStateAttack2 stateAttack2;
-    public EnemyStateAttack3 stateAttack3;
+    public EnemyBaseState stateAttack1;
+    public EnemyBaseState stateAttack2;
+    public EnemyBaseState stateAttack3;
     public EnemyStatePoiseBreak statePoiseBreak;
     [SerializeField] string currentStateName;
 
