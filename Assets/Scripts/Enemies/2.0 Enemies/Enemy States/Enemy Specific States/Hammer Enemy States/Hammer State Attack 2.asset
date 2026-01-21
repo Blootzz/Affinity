@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3505dd8a0cc40a42a320646e3e00685, type: 3}
   m_Name: Hammer State Attack 2
   m_EditorClassIdentifier: 
+  stateAnimation: {fileID: 7400000, guid: 83988912cac8b7e46b3f9616e5a0a471, type: 2}

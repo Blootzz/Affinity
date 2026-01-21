@@ -1,0 +1,19 @@
+{
+    "name": "EnemySpecificStates",
+    "rootNamespace": "",
+    "references": [
+        "GUID:97e366f2b06dea04ea6729382caa8420",
+        "GUID:99859fe5c1e041948a0abf498342dd67",
+        "GUID:c42a6723dda71ab41bc51a8dfa22e21d",
+        "GUID:119e1d06239231e44868237acd2f2f9e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

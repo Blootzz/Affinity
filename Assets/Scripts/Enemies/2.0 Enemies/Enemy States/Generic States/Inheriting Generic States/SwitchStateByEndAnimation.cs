@@ -4,22 +4,12 @@ using UnityEngine;
 public class SwitchStateByEndAnimation : EnemyBaseState
 {
     [SerializeField] EnemyBaseState nextState;
-    [Tooltip("The animation that should play upon this generic state being started. Whatever state is assigned to nextState is in charge of its own animation")]
-    [SerializeField] Animation animationNameToPlayOnStart;
 
     [Header("Optional Aggro Logic")]
     [Tooltip("Should this check if enemy is aggro?")]
     [SerializeField] bool checkEnemyAggro = false;
     [Tooltip("State to enter if the enemy isn't aggro")]
     [SerializeField] EnemyBaseState noAggroState;
-
-    public override void OnEnter()
-    {
-        if (animationNameToPlayOnStart != null)
-            stateManager.animator.Play(animationNameToPlayOnStart.name);
-        else
-            Debug.LogError("Enemy, SwitchStateByAnimation, No animation entered in inspector");
-    }
 
     public override void EndStateByAnimation()
     {

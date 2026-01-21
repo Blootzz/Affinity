@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a39d9f52ccaa71e4182aa80d426bdcfe, type: 3}
   m_Name: Hammer State Walk
   m_EditorClassIdentifier: 
+  stateAnimation: {fileID: 7400000, guid: 4def0127d2258904c8f9fe9043999a3c, type: 2}
   walkSpeed: 2

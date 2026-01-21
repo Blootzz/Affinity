@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c9aa76698a65334297b50fc389938a0, type: 3}
   m_Name: Hammer State Idle
   m_EditorClassIdentifier: 
+  stateAnimation: {fileID: 7400000, guid: 8fc70f73e84a8724c91aea6d752a77b9, type: 2}
