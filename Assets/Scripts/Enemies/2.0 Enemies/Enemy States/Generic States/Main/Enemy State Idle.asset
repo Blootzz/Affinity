@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d464816905a6a4e81bdb5514fd211b, type: 3}
   m_Name: Enemy State Idle
   m_EditorClassIdentifier: Enemies::EnemyStateIdle
+  stateAnimation: {fileID: 0}
+  onAggroEnterAction1: 1
