@@ -5,7 +5,8 @@ public class FacePlayer : MonoBehaviour
     //[SerializeField] DetectZoneByTag attackDetectZone;
     Transform playerTransform;
     bool playerIsRightOfEnemy = false;
-    bool faceRight = false;
+    [Tooltip("Toggle this in editor to callibrate which way the enemy is facing")]
+    [SerializeField] bool faceRight = false;
     bool isTrackingPlayer = false;
 
     bool enableAutomaticFlip = true; // used by enemy states so enemy doesn't have perfect aim
