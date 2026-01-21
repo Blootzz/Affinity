@@ -43114,7 +43114,7 @@ GameObject:
   - component: {fileID: 797928819}
   - component: {fileID: 797928818}
   - component: {fileID: 797928817}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tilemap-SecretWall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44798,7 +44798,7 @@ GameObject:
   - component: {fileID: 1207361634}
   - component: {fileID: 1207361639}
   - component: {fileID: 1207361640}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tilemap-SecretWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51552,7 +51552,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735259493}
   - component: {fileID: 1735259492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52214,7 +52214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4003379857870880748, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: TargetLayerMask.m_Bits
-      value: 641
+      value: 2689
       objectReference: {fileID: 0}
     - target: {fileID: 4557916265937955009, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Layer
@@ -52226,7 +52226,7 @@ PrefabInstance:
       objectReference: {fileID: 240228623}
     - target: {fileID: 7445529422289367513, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: DetectionLayerMask.m_Bits
-      value: 513
+      value: 2560
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
