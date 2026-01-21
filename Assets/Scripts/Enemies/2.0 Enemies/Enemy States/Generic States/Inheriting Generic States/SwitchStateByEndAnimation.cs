@@ -5,7 +5,7 @@ public class SwitchStateByEndAnimation : EnemyBaseState
 {
     [SerializeField] EnemyBaseState nextState;
     [Tooltip("The animation that should play upon this generic state being started. Whatever state is assigned to nextState is in charge of its own animation")]
-    [SerializeField] string animationNameToPlayOnStart;
+    [SerializeField] Animation animationNameToPlayOnStart;
 
     [Header("Optional Aggro Logic")]
     [Tooltip("Should this check if enemy is aggro?")]
@@ -16,7 +16,7 @@ public class SwitchStateByEndAnimation : EnemyBaseState
     public override void OnEnter()
     {
         if (animationNameToPlayOnStart != null)
-            stateManager.animator.Play("startAnimation");
+            stateManager.animator.Play(animationNameToPlayOnStart.name);
         else
             Debug.LogError("Enemy, SwitchStateByAnimation, No animation entered in inspector");
     }

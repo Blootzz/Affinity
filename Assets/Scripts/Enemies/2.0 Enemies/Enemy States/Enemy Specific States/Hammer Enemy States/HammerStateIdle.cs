@@ -19,7 +19,7 @@ public class HammerStateIdle : EnemyStateIdle
 
     public override void OnPlayerEnteredAttackZone()
     {
-        stateManager.SwitchState(stateManager.stateAttack1);
+        stateManager.SwitchState(stateManager.stateAction1);
     }
 
     // 30% chance to skip shuffle state and go straight into attacking
@@ -47,17 +47,17 @@ public class HammerStateIdle : EnemyStateIdle
         switch (randInt)
         {
             case 1:
-                stateManager.SwitchState(stateManager.stateAttack1);
+                stateManager.SwitchState(stateManager.stateAction1);
                 break;
             case 2:
                 // does random number of HammerStateAttack2
                 //stateManager.SwitchState(new HammerStateAttack2(stateManager, Random.Range(1,3)));
                 stateManager.repeatStateCounter = Random.Range(1, 3);
-                stateManager.SwitchState(stateManager.stateAttack2);
+                stateManager.SwitchState(stateManager.stateAction2);
                 break;
             case 3:
                 //stateManager.SwitchState(new HammerStateAttack3(stateManager));
-                stateManager.SwitchState(stateManager.stateAttack3);
+                stateManager.SwitchState(stateManager.stateAction3);
                 break;
             default:
                 Debug.LogError("No designated state to do next");

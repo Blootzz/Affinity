@@ -4,17 +4,18 @@ using System;
 public abstract class EnemyBaseState : ScriptableObject
 {
     protected EnemyStateManager stateManager;
+    [SerializeField] protected AnimationClip stateAnimation;
 
-    // Constructor sets stateManager
-    //public EnemyBaseState(EnemyStateManager newStateManager)
-    //{
-    //    this.stateManager = newStateManager;
-    //}
     public void SetStateManager(EnemyStateManager newStateManager)
     {
         this.stateManager = newStateManager;
     }
-    public virtual void OnEnter() { }
+    public virtual void OnEnter() {
+        if (stateAnimation != null)
+            stateManager.animator.Play(stateAnimation.name);
+        else
+            Debug.LogWarning("No animation assigned for " + stateManager.gameObject.name + " state " + stateManager.currentStateName);
+    }
     public virtual void OnExit() { }
     public virtual void EndStateByAnimation() { }
     public virtual void OnPlayerEnteredAttackZone() { }

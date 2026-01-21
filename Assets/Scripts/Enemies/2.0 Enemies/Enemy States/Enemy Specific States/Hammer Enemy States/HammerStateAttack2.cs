@@ -4,14 +4,7 @@ using UnityEngine;
 public class HammerStateAttack2 : EnemyStateAttack2
 {
     int attackRepeatLimit = 1;
-
-
     float lerpToPlayerStrength = 0.3f;
-
-    //public HammerStateAttack2(EnemyStateManager newStateManager, int startingAttackCount) : base(newStateManager)
-    //{
-    //    this.stateManager = newStateManager;
-    //}
 
     public override void OnEnter()
     {
@@ -24,10 +17,10 @@ public class HammerStateAttack2 : EnemyStateAttack2
         if (stateManager.repeatStateCounter < attackRepeatLimit)
         {
             stateManager.repeatStateCounter++;
-            stateManager.SwitchState(stateManager.stateAttack2);
+            stateManager.SwitchState(stateManager.stateAction2);
         }
         else
-            stateManager.SwitchState(stateManager.stateAttack3);
+            stateManager.SwitchState(stateManager.stateAction3);
     }
 
     public override void BeginLerpToPlayerByAnimation()

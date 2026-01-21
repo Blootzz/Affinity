@@ -7,10 +7,14 @@ public class EnemyStatePoiseBreak : EnemyBaseState
     public override void OnEnter()
     {
         base.OnEnter();
-        if (AnimatorHasClip(stateManager.animator, "PoiseBreak"))
-            stateManager.animator.Play("PoiseBreak", -1, 0);
-        else
-            Debug.LogError("Does not contain animation \"PoiseBreak\"");
+        if (stateAnimation == null)
+        {
+            if (AnimatorHasClip(stateManager.animator, "PoiseBreak"))
+                stateManager.animator.Play("PoiseBreak", -1, 0);
+            else
+                Debug.LogError("Does not contain animation \"PoiseBreak\"");
+        }
+
         stateManager.facePlayer.SetEnableAutomaticFlip(false);
         StartFlashing();
 

@@ -5,11 +5,6 @@ public class HammerStateWalk : EnemyStateWalk
 {
     public float walkSpeed;
 
-    //public HammerStateWalk(EnemyStateManager newStateManager) : base(newStateManager)
-    //{
-    //    this.stateManager = newStateManager;
-    //}
-
     public override void OnEnter()
     {
         base.OnEnter();
@@ -25,7 +20,7 @@ public class HammerStateWalk : EnemyStateWalk
     public override void OnStateUtilityTimerEnd()
     {
         if (Random.value > 0.5f)
-            stateManager.SwitchState(stateManager.stateAttack1);
+            stateManager.SwitchState(stateManager.stateAction1);
         else
             ShuffleRandomly();
     }

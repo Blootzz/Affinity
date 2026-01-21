@@ -3,17 +3,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Enemy/Generic States/Main/Idle")]
 public class EnemyStateIdle : EnemyBaseState
 {
-    
-    //public EnemyStateIdle(EnemyStateManager newStateManager) : base(newStateManager)
-    //{
-    //    this.stateManager = newStateManager;
-    //}
-
     /// <summary>
     /// Plays "Idle" animation if found
     /// </summary>
     public override void OnEnter()
     {
+        if (stateAnimation != null)
+            return;
+
         if (AnimatorHasClip(stateManager.animator, "Idle"))
             stateManager.animator.Play("Idle");
         else
