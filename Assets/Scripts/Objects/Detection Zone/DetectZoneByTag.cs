@@ -8,12 +8,16 @@ public class DetectZoneByTag : MonoBehaviour
     public event Action<GameObject> TargetExitedEvent;
     [SerializeField] Vector2 startingWorldPos;
 
+     bool targetInZone = false;
+    public bool TargetInZone => targetInZone;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(searchForThisTag))
         {
             //print("Player entered attack zone");
             TargetFoundEvent?.Invoke(collision.gameObject);
+            targetInZone = true;
         }
     }
 
@@ -22,6 +26,7 @@ public class DetectZoneByTag : MonoBehaviour
         if (collision.CompareTag(searchForThisTag))
         {
             TargetExitedEvent?.Invoke(collision.gameObject);
+            targetInZone = false;
         }
     }
 
