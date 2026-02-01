@@ -13,11 +13,11 @@ public class FlyLinearKinematic : MonoBehaviour
 
     private void Start()
     {
-        projectile.Rb.bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
 
     public virtual void FixedUpdate()
     {
-        transform.position += Time.fixedDeltaTime * 60 * projectile.Speed * (projectile.AttackFaceRight ? 1 : -1) * projectile.GetAngle;
+        transform.position += Time.fixedDeltaTime * 60 * projectile.GetSpeed() * (projectile.GetAttackFaceRight() ? 1 : -1) * projectile.GetAngle();
     }// basic linear movement
 }

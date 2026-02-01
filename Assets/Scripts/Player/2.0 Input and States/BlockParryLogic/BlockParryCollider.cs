@@ -20,4 +20,14 @@ public class BlockParryCollider : MonoBehaviour
         }
     }
 
+    // most hitboxes should be triggers, but this would be used for things like the training ball
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // only process EnemyHitboxes
+        if (collision.gameObject.TryGetComponent(out EnemyHitbox enemyHitbox))
+        {
+            blockParryManager.FireBlockerHitEvent(enemyHitbox, effectSpawnPoint.transform.position);
+        }
+    }
+
 }

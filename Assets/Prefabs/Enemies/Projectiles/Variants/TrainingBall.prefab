@@ -52,12 +52,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5904795528215472220, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3d352a8d155df6c4c88a2d71d7288a54, type: 3}
+    - target: {fileID: 6097612939323663646, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8239935201365474691, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Mass
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8239935201365474691, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8239935201365474691, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1499283303382653859, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7769023974872010738}
+    - targetCorrespondingSourceObject: {fileID: 1499283303382653859, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6868018188975142997}
   m_SourcePrefab: {fileID: 100100000, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+--- !u!1 &7544028694165033627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1499283303382653859, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+  m_PrefabInstance: {fileID: 8970959454849960248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7769023974872010738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544028694165033627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5443fc5fc645b468f0e17a266a824d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProjectileBehaviours::LaunchDynamic
+--- !u!114 &6868018188975142997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7544028694165033627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a496e7ab16002a4b94137127492123f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GeneralBehavior::SelfDestruct
+  useStartTimer: 1
+  time: 4
