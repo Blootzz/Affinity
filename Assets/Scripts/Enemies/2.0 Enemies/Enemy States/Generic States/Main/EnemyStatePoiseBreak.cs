@@ -15,6 +15,8 @@ public class EnemyStatePoiseBreak : EnemyBaseState
                 Debug.LogError("Does not contain animation \"PoiseBreak\"");
         }
 
+        stateManager.characterMover.SetRbType(RigidbodyType2D.Dynamic);
+
         stateManager.facePlayer.SetEnableAutomaticFlip(false);
         StartFlashing();
 

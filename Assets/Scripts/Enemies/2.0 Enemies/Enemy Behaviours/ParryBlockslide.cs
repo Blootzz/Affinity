@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class Blockslide : MonoBehaviour
+public class ParryBlockslide : MonoBehaviour
 {
     [SerializeField] EnemyHitboxManager hitboxManager;
     
