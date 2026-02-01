@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class EnemyStateAttackBase : EnemyBaseState
 {
-    //public EnemyStateAttackBase(EnemyStateManager newStateManager) : base(newStateManager)
-    //{
-    //    this.stateManager = newStateManager;
-    //}
-
     /// <summary>
     /// Base: Enables all colliders for this enemy
     /// and sets rb to kinematic
     /// </summary>
     public override void OnEnter()
     {
+        base.OnEnter(); // does animation
         stateManager.GetHitboxManager().SetEnableAllHitboxes(true);
         stateManager.GetHitboxManager().SetHitboxAttackFaceRight(stateManager.facePlayer.GetFaceRight());
 

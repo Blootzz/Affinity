@@ -12,6 +12,7 @@ public class DetectZoneByTag : MonoBehaviour
     {
         if (collision.CompareTag(searchForThisTag))
         {
+            //print("Player entered attack zone");
             TargetFoundEvent?.Invoke(collision.gameObject);
         }
     }

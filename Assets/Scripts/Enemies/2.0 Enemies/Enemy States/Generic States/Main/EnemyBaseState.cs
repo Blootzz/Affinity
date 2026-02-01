@@ -11,10 +11,15 @@ public abstract class EnemyBaseState : ScriptableObject
         this.stateManager = newStateManager;
     }
     public virtual void OnEnter() {
+        //Debug.Log(stateManager.name + " BaseState.OnEnter");
         if (stateAnimation != null)
-            stateManager.animator.Play(stateAnimation.name);
+        {
+            //Debug.Log(stateManager.name + " Playing animation: " + stateAnimation.name);
+            stateManager.animator.Play(stateAnimation.name, 0, 0);
+        }
         else
-            Debug.LogWarning("No animation assigned for " + stateManager.gameObject.name + " state " + stateManager.currentStateName);
+            Debug.LogWarning("No animation assigned for " + stateManager.gameObject.name + " state " + stateManager.currentStateName + 
+                "\nIgnore if using Generic state that manually attempts to play animation by string name");
     }
     public virtual void OnExit() { }
     public virtual void EndStateByAnimation() { }
