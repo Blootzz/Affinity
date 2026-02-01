@@ -43862,10 +43862,10 @@ MonoBehaviour:
   projectile: {fileID: 7544028694165033627, guid: a3365e93455fa9046b84daae7918eeee, type: 3}
   detectZone: {fileID: 53922642}
   secondsBetweenShots: 2
-  minSpeed: 51.79
-  maxSpeed: 72.11
-  minAngleDeg: 10
-  maxAngleDeg: 80
+  minSpeed: 40
+  maxSpeed: 50
+  minAngleDeg: 30
+  maxAngleDeg: 60
 --- !u!1001 &791850205
 PrefabInstance:
   m_ObjectHideFlags: 0
