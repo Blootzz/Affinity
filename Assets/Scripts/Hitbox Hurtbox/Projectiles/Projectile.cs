@@ -16,6 +16,8 @@ public class Projectile : EnemyHitbox
     [SerializeField] bool destroyOnBlock = true;
     [SerializeField] bool destroyOnParry = false;
 
+    [SerializeField] bool isParried = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,7 +41,7 @@ public class Projectile : EnemyHitbox
         PlayerHitbox playerHitbox = gameObject.AddComponent<PlayerHitbox>();
         playerHitbox.SetDamage(damage * reflectMultiplier);
 
-        //parried = true;
+        isParried = true;
 
         GetComponent<BaseProjectileBehaviour>().Reflect();
     }
@@ -60,5 +62,6 @@ public class Projectile : EnemyHitbox
     public bool GetAttackFaceRight() { return attackFaceRight; }
     public float GetSpeed() { return speed; }
     public Vector3 GetAngle() { return angle; }
+    public bool GetIsParried() { return isParried; }
 
 }// Projectile
