@@ -49,13 +49,14 @@ public class EnemyHitbox : BaseHitbox
 
         if (this == null)
         {
-            // object has already destroyed itself (like in projectile's case)
+            Debug.LogError("this is null and has probably been destroyed");
             return;
         }
 
         if (transform.parent == null)
         {
-            Debug.LogWarning(name + " does not have a parent to disable all hitboxes");
+            // will happen when projectile is blocked or parried
+            //Debug.LogWarning(name + " does not have a parent to disable all hitboxes");
             return;
         }
 

@@ -44,6 +44,7 @@ public class Projectile : EnemyHitbox
         //parried = true;
         // default behavior
         angle *= -1;
+        GetComponent<BaseProjectileBehaviour>().Launch();
     }
 
     public void SetFaceRight(bool faceRight)
