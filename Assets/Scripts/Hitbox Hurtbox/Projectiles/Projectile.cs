@@ -23,14 +23,12 @@ public class Projectile : EnemyHitbox
 
     public override void GetBlocked()
     {
-        print("Get blocked");
         if (destroyOnBlock)
             Destroy(this.gameObject);
     }
 
     public override void GetParried()
     {
-        print("Get parried");
         if (destroyOnParry)
         {
             Destroy(this.gameObject);
@@ -42,9 +40,8 @@ public class Projectile : EnemyHitbox
         playerHitbox.SetDamage(damage * reflectMultiplier);
 
         //parried = true;
-        // default behavior
-        angle *= -1;
-        GetComponent<BaseProjectileBehaviour>().Launch();
+
+        GetComponent<BaseProjectileBehaviour>().Reflect();
     }
 
     public void SetFaceRight(bool faceRight)

@@ -13,4 +13,10 @@ public class FlyLinearKinematic : BaseProjectileBehaviour
     {
         transform.position += Time.fixedDeltaTime * 60 * projectile.GetSpeed() * (projectile.GetAttackFaceRight() ? 1 : -1) * projectile.GetAngle();
     }// basic linear movement
+
+    public override void Reflect()
+    {
+        projectile.SetAngle(projectile.GetAngle() * -1);
+        // already moving
+    }
 }

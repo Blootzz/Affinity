@@ -26,4 +26,6 @@ public class BaseProjectileBehaviour : MonoBehaviour
     }
 
     public virtual void InFixedUpdate() { }
+
+    public virtual void Reflect() { }
 }
