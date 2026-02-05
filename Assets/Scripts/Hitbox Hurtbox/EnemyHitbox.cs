@@ -46,6 +46,13 @@ public class EnemyHitbox : BaseHitbox
     public void RelayHitboxLandedToManager()
     {
         // disable all hitboxes
+
+        if (this == null)
+        {
+            // object has already destroyed itself (like in projectile's case)
+            return;
+        }
+
         if (transform.parent == null)
         {
             Debug.LogWarning(name + " does not have a parent to disable all hitboxes");

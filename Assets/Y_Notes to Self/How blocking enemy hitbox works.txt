@@ -1,0 +1,30 @@
+How blocking enemy hitbox works
+
+BlockParryCollider.OnCollisionEnter2D()
+|
+V
+FireBlockerHitEvent() -> Fires BlockerHitEvent which leads to PSManager
+
+			blockParryManager.BlockerHitEvent
+			|
+			V
+FixedUpdate		FlagOnBlockerHit(becomes true for FixedUpdate)
+|
+V
+EvaluateIncomingAttack
+|
+V
+PSManager.OnBlockerHit
+|
+V
+PlayerStateBlocking.ProcessBlockerHit()
+|
+V
+PlayerStateBlocking.BlockSuccessful()
+|
+V
+BlockParryManager.OnSuccessfulBlock(faceRight)
+1. Effects
+2. (incoming) Hitbox.RelayHitboxLandedToManager()
+3. (incoming).GetBlocked()
+

@@ -13,6 +13,8 @@ public class Projectile : EnemyHitbox
 
     //[SerializeField] bool parried = false;
     [SerializeField] float reflectMultiplier = 1.5f;
+    [SerializeField] bool destroyOnBlock = true;
+    [SerializeField] bool destroyOnParry = false;
 
     private void Awake()
     {
@@ -21,11 +23,21 @@ public class Projectile : EnemyHitbox
 
     public override void GetBlocked()
     {
-        Destroy(this.gameObject);
+        print("Get blocked");
+        if (destroyOnBlock)
+            Destroy(this.gameObject);
     }
 
     public override void GetParried()
     {
+        print("Get parried");
+        if (destroyOnParry)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        // become a playerHitbox that can hit enemies
         PlayerHitbox playerHitbox = gameObject.AddComponent<PlayerHitbox>();
         playerHitbox.SetDamage(damage * reflectMultiplier);
 

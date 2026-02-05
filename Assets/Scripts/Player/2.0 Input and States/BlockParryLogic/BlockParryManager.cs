@@ -28,7 +28,7 @@ public class BlockParryManager : MonoBehaviour
         // State calls CreateVisualEffect so it can pass in faceRight and bool parryInsteadOfBlock
         visualEffectSpawnPosition = blockerEffectWorldPosition;
 
-        enemyHitbox.GetBlocked(); // optional additional behavior for cases like if a projectile needs to know it was parried
+        //enemyHitbox.GetBlocked(); // optional additional behavior for cases like if a projectile needs to know it was parried
 
         BlockerHitEvent?.Invoke();
     }
@@ -82,12 +82,19 @@ public class BlockParryManager : MonoBehaviour
     //}
 
     
-
+    /// <summary>
+    /// Called by PlayerStateBLocking
+    /// Calls SuccessfulBlockEvent which triggers BlockParryEffects.cs
+    /// Disables sibling hitboxes if possible
+    /// </summary>
+    /// <param name="faceRight"></param>
     public void OnSuccessfulBlock(bool faceRight)
     {
         SuccessfulBlockEvent?.Invoke(faceRight);
 
         DisableHitboxCollider();
+
+        GetIncomingEnemyHitbox().GetBlocked();
     }
 
     public void OnSuccessfulParry(bool faceRight)
