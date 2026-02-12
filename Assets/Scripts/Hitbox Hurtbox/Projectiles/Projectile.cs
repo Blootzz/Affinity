@@ -25,7 +25,7 @@ public class Projectile : EnemyHitbox
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        print("found collision");
+        print("found collision with: "+collision.gameObject.name);
     }
 
     public override void GetBlocked()

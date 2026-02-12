@@ -123,10 +123,12 @@ MonoBehaviour:
   blockedInactiveColor:
     serializedVersion: 2
     rgba: 2162615969
-  Rb: {fileID: 0}
-  speed: 0.2
+  speed: 0.02
   angle: {x: 1, y: 0, z: 0}
   reflectMultiplier: 1.5
+  destroyOnBlock: 1
+  destroyOnParry: 0
+  isParried: 0
 --- !u!1 &9022524379425273395
 GameObject:
   m_ObjectHideFlags: 0
