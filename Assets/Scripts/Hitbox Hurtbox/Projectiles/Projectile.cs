@@ -23,6 +23,11 @@ public class Projectile : EnemyHitbox
         rb = GetComponent<Rigidbody2D>();
     }
 
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("found collision");
+    }
+
     public override void GetBlocked()
     {
         if (destroyOnBlock)

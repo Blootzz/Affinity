@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotating Bone
       objectReference: {fileID: 0}
+    - target: {fileID: 1499283303382653859, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5404546398291331678, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.158821
@@ -56,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 794812ab8b0b7244985351526037b3ca, type: 2}
+    - target: {fileID: 9022524379425273395, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

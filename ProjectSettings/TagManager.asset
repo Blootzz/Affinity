@@ -19,16 +19,16 @@ TagManager:
   - Editor Tool
   - Water
   - UI
-  - Hitbox Hurtbox
+  - 
   - Physics Colliders
   - Detection Zone
   - Ground
   - GroundCheck
   - EnemyPhysics
-  - 
-  - 
-  - 
-  - 
+  - PlayerHitbox
+  - EnemyHurtbox
+  - PlayerHurtbox
+  - EnemyHitbox
   - 
   - 
   - 

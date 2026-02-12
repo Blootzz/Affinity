@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrainingBall
       objectReference: {fileID: 0}
+    - target: {fileID: 1499283303382653859, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 5315470566479636687, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: destroyOnParry
       value: 0
@@ -75,6 +79,10 @@ PrefabInstance:
     - target: {fileID: 8239935201365474691, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: m_GravityScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022524379425273395, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: m_Layer
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
