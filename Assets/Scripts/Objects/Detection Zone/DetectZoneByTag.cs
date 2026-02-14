@@ -11,12 +11,18 @@ public class DetectZoneByTag : MonoBehaviour
     bool targetInZone = false;
     public bool TargetInZone => targetInZone;
 
+    /// <summary>
+    /// reference of object found by detectZone. Does not go null after object leaves zone
+    /// </summary>
+    [HideInInspector] public GameObject TrackedTargetPersistent;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag(searchForThisTag))
         {
             //print("Player entered attack zone");
             targetInZone = true;
+            TrackedTargetPersistent = collision.gameObject;
             TargetFoundEvent?.Invoke(collision.gameObject);
         }
     }
