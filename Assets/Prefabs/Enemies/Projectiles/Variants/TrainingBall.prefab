@@ -17,8 +17,20 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5315470566479636687, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315470566479636687, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: destroyOnParry
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315470566479636687, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: damageKnockback.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315470566479636687, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
+      propertyPath: damageKnockback.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5404546398291331678, guid: b639e9e79ff7d624e994d5800d8fade1, type: 3}
       propertyPath: m_LocalPosition.x

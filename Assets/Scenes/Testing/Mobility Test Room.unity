@@ -54084,7 +54084,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   parryCount: 0
-  goalNum: 2
+  goalNum: 10
   displayText: {fileID: 1013625792}
   successColor:
     serializedVersion: 2
@@ -54599,7 +54599,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 477273205196207614, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Layer
-      value: 4
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 580407205875797555, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_Layer

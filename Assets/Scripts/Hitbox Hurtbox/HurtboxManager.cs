@@ -3,6 +3,9 @@ using System;
 
 public class HurtboxManager : MonoBehaviour
 {
+    /// <summary>
+    /// Listened to by Player and Enemy StateManagers
+    /// </summary>
     public event Action HurtEvent;
     GameObject incomingHitbox;
     bool temporaryDisable = false; // used to prevent double on same frame when blocker was hit first
@@ -14,6 +17,32 @@ public class HurtboxManager : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (temporaryDisable)
+            return;
+        if (invulnerabilityOn)
+            return;
+
+        if (collision.gameObject.GetComponent<BaseHitbox>())
+        {
+            incomingHitbox = collision.gameObject;
+
+            if (canBeHitByPlayer && incomingHitbox.GetComponent<PlayerHitbox>())
+            {
+                HurtEvent?.Invoke();
+                return;
+            }
+            else if (canBeHitByEnemy && incomingHitbox.GetComponent<EnemyHitbox>())
+            {
+                HurtEvent?.Invoke();
+                return;
+            }
+        }
+    }
+
+    // for physical interactions
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print(gameObject.name + " collided with incoming: " + collision.gameObject.name);
         if (temporaryDisable)
             return;
         if (invulnerabilityOn)
