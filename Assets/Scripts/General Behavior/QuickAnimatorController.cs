@@ -10,7 +10,8 @@ public class QuickAnimatorController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void PlayAnimation()
+    // possibly called by UnityEvent
+    public void LISTENER_PlayAnimation()
     {
         animator.Play(animationToPlay.name);
     }
