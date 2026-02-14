@@ -26,7 +26,10 @@ public class ZoneParryDetect : MonoBehaviour
         detectZone.TargetExitedEvent -= DetectZone_TargetExitedEvent;
 
         // extra unsubscribe from parry event in case this object is destroyed while still subscribed
-        foundBlockParryManager.SuccessfulParryEvent -= OnParry;
+        if (foundBlockParryManager != null)
+        {
+            foundBlockParryManager.SuccessfulParryEvent -= OnParry;
+        }
     }
 
     private void DetectZone_TargetFoundEvent(GameObject obj)
