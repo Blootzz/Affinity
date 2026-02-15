@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using UnityEditor.ShaderKeywordFilter;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -102,6 +103,14 @@ public class EnemyStateManager : MonoBehaviour
 
     public void SwitchState(EnemyBaseState newState)
     {
+        if (newState == null)
+        {
+            Debug.LogError(gameObject.name + " trying to switch to null state out of " +currentStateName);
+            return;
+        }
+
+        //print(gameObject.name + " switching to " + newState.name);
+
         if (currentState != null)
             currentState.OnExit();
         currentState = newState;
@@ -169,19 +178,10 @@ public class EnemyStateManager : MonoBehaviour
     }
 
     //======================================= Animation Events ======================================
-    public void ANIM_ApproachPlayer()
-    {
-        currentState.BeginLerpToPlayerByAnimation();
-    }
-    public void ANIM_StopApproachingPlayer()
-    {
-        currentState.EndLerpToPlayerByAnimation();
-    }
-
-    public void ANIM_EndStateByAnimation()
-    {
-        currentState.EndStateByAnimation();
-    }
+    public void ANIM_ApproachPlayer() => currentState.BeginLerpToPlayerByAnimation();
+    public void ANIM_StopApproachingPlayer() => currentState.EndLerpToPlayerByAnimation();
+    public void ANIM_EndStateByAnimation() => currentState.EndStateByAnimation();
+    public void ANIM_MidAnimationEvent() => currentState.MidAnimationEvent();
 
     // ================================================== Timer ===================================================
     bool isTimerBusy = false;

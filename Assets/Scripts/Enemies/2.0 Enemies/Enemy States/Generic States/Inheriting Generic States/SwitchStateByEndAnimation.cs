@@ -13,6 +13,8 @@ public class SwitchStateByEndAnimation : EnemyBaseState
 
     public override void EndStateByAnimation()
     {
+        //Debug.Log(stateManager.name + " end state by animation");
+
         stateManager.repeatStateCounter = 0;
         if (!checkEnemyAggro)
         {
@@ -22,8 +24,14 @@ public class SwitchStateByEndAnimation : EnemyBaseState
 
         // use aggroCheck
         if (stateManager.isAggro)
+        {
+            //Debug.Log("isAggro = false, switching to nextState");
             stateManager.SwitchState(nextState);
+        }
         else
+        {
+            //Debug.Log("isAggro = false, switching to noAggroState");
             stateManager.SwitchState(noAggroState);
+        }
     }
 }

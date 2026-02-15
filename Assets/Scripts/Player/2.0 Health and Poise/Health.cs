@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     public void DeductHealth(float damage)
     {
         health -= damage;
-        HealthChangedEvent(health);
+        HealthChangedEvent?.Invoke(health);
 
         if (health <= 0)
             Die();

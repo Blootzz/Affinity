@@ -23,6 +23,7 @@ public abstract class EnemyBaseState : ScriptableObject
     }
     public virtual void OnExit() { }
     public virtual void EndStateByAnimation() { }
+    public virtual void MidAnimationEvent() { }
     public virtual void OnPlayerEnteredAttackZone() { }
     public virtual void OnPlayerExitedAttackZone()
     { 

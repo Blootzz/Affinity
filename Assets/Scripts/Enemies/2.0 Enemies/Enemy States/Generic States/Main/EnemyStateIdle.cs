@@ -29,7 +29,7 @@ public class EnemyStateIdle : EnemyBaseState
     {
 
         base.OnPlayerEnteredAttackZone();
-        Debug.Log(stateManager.gameObject.name + " calling base.OnPlayerEnteredAttackZone");
+        //Debug.Log(stateManager.gameObject.name + " calling base.OnPlayerEnteredAttackZone");
         //Debug.Log(stateManager.stateAction1.name);
         if (onAggroEnterAction1)
             stateManager.SwitchState(stateManager.stateAction1);

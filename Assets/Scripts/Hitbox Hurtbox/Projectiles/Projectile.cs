@@ -18,6 +18,8 @@ public class Projectile : EnemyHitbox
 
     [SerializeField] bool isParried = false;
 
+    [SerializeField] LayerMask MaskAfterParry;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,6 +45,8 @@ public class Projectile : EnemyHitbox
         }
 
         // become a playerHitbox that can hit enemies
+        gameObject.layer = MaskAfterParry;
+
         PlayerHitbox playerHitbox = gameObject.AddComponent<PlayerHitbox>();
         playerHitbox.SetDamage(damage * reflectMultiplier);
 

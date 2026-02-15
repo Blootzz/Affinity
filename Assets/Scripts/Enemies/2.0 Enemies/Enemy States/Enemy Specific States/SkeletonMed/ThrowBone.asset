@@ -17,4 +17,7 @@ MonoBehaviour:
   checkEnemyAggro: 1
   noAggroState: {fileID: 11400000, guid: 65382be101353ec43903dc3b6a1e61bc, type: 2}
   bonePrefab: {fileID: 6103788232256587042, guid: 84759a85b676e814e835244e7360ef24, type: 3}
-  spawnOffset: {x: 0, y: 0}
+  spawnOffset: {x: 1, y: -0.2}
+  isRandomHeightEnabled: 1
+  highThrowSpawnY: 0.2
+  lowThrowSpawnY: -0.4
