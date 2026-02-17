@@ -19,8 +19,8 @@ public class PlayerStateParrying : PlayerStateBlocking
     }
     public override void OnExit()
     {
-
         stateManager.blockParryManager.ClearIsParryWindowOpen();
+        Debug.Log("PlayerStateParrying.OnExit clearing blockers");
         stateManager.blockParryManager.SetEnableBlockers(false, false);
 
         stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
@@ -92,6 +92,8 @@ public class PlayerStateParrying : PlayerStateBlocking
                 // consider resuming lower parry animation here
                 isBlockingUp = false;
             }
+
+            Debug.Log("Parrying.Vertical axis setting blockers");
 
             // handle blockers
             // if isInputHoldingUp == false, enable lower, disable upper

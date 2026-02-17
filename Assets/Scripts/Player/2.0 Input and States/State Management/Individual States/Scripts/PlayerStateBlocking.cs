@@ -22,7 +22,10 @@ public class PlayerStateBlocking : PlayerBaseState
     public override void OnExit()
     {
         if (!persistBlockerUponExit)
+        {
+            Debug.Log("PlayerStateBlocking.OnExit clearing blockers");
             stateManager.blockParryManager.SetEnableBlockers(false, false);
+        }
         stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
     }
 
@@ -52,7 +55,8 @@ public class PlayerStateBlocking : PlayerBaseState
             stateManager.playerAnimationManager.PlayAnimation(stateManager.playerAnimationManager.Block);
             isBlockingUp = false;
         }
-        
+
+        Debug.Log("Blocking.Vertical axis setting blockers");
         // handle blockers
         // if isInputHoldingUp == false, enable lower, disable upper
         stateManager.blockParryManager.SetEnableBlockers(!isInputHoldingUp, isInputHoldingUp);
@@ -77,7 +81,6 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void ProcessBlockerHit()
     {
-        Debug.Log("ProcessBlockerHit");
         if (stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockUp())
         {
             if (isBlockingUp)

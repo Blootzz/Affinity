@@ -62,6 +62,7 @@ public class BlockParryManager : MonoBehaviour
     /// <param name="enableUpper"></param>
     public void SetEnableBlockers(bool enableLower, bool enableUpper)
     {
+        //Debug.Log($"Lower: {enableLower} | Upper: {enableUpper}");
         lowerCollider.gameObject.SetActive(enableLower);
         upperCollider.gameObject.SetActive(enableUpper);
     }
