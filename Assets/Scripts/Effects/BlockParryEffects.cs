@@ -31,6 +31,8 @@ public class BlockParryEffects : MonoBehaviour
     {
         bpManager.SuccessfulBlockEvent -= BlockEffects;
         bpManager.SuccessfulParryEvent -= ParryEffects;
+
+        camShake.StopAllCoroutines();
     }
 
     private void Start()

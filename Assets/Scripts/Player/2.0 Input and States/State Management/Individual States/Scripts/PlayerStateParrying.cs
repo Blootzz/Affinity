@@ -31,6 +31,7 @@ public class PlayerStateParrying : PlayerStateBlocking
     /// </summary>
     public override void BlockSuccessful()
     {
+        Debug.Log("BlockSuccessful, checking isParryWindowOpen: "+stateManager.blockParryManager.GetIsParryWindowOpen());
         if (stateManager.blockParryManager.GetIsParryWindowOpen())
         {
             wasParrySuccessful = true;
