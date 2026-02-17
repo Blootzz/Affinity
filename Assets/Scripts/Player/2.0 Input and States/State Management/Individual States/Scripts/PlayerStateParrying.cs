@@ -50,7 +50,13 @@ public class PlayerStateParrying : PlayerStateBlocking
     {
         // restart to chain successful parries
         if (wasParrySuccessful)
-            OnEnter();
+        {
+            // restart parry
+            if (stateManager.GetLastBlockInput())
+                OnEnter();
+            else // attack
+                stateManager.SwitchState(stateManager.playerStateAttacking);
+        }
     }
     public override void JumpStart()
     {
