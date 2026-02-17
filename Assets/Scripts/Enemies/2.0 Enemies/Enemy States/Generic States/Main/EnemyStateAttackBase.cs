@@ -16,6 +16,7 @@ public class EnemyStateAttackBase : EnemyBaseState
         stateManager.facePlayer.SetEnableAutomaticFlip(false);
 
         stateManager.characterMover.SetRbType(RigidbodyType2D.Kinematic);
+        stateManager.characterMover.SetVelocity(Vector2.zero);
     }
 
     /// <summary>

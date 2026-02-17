@@ -77,6 +77,7 @@ public class PlayerStateBlocking : PlayerBaseState
 
     public override void ProcessBlockerHit()
     {
+        Debug.Log("ProcessBlockerHit");
         if (stateManager.blockParryManager.GetIncomingEnemyHitbox().GetMustBlockUp())
         {
             if (isBlockingUp)
