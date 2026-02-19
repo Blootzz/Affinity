@@ -12,6 +12,7 @@ TagManager:
   - Blocker
   - Enemy
   - Projectile
+  - Pickup
   layers:
   - Default
   - TransparentFX
