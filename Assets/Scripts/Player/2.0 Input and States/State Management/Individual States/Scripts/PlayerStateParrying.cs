@@ -5,10 +5,6 @@ public class PlayerStateParrying : PlayerStateBlocking
 {
     bool wasParrySuccessful = false;
 
-    //public PlayerStateParrying(PlayerStateManager newStateManager) : base(newStateManager)
-    //{
-    //}
-
     public override void OnEnter()
     {
         // restart animation so that parry window re-opens in animation
@@ -19,8 +15,9 @@ public class PlayerStateParrying : PlayerStateBlocking
     }
     public override void OnExit()
     {
+        // clear is window open in case animation is unexpectedly interrupted
         stateManager.blockParryManager.ClearIsParryWindowOpen();
-        Debug.Log("PlayerStateParrying.OnExit clearing blockers");
+
         stateManager.blockParryManager.SetEnableBlockers(false, false);
 
         stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
@@ -70,6 +67,7 @@ public class PlayerStateParrying : PlayerStateBlocking
             base.HorizontalAxis();
     }// do nothing
 
+    // On successful parry, switches blockers on the fly
     public override void VerticalAxis()
     {
         if (wasParrySuccessful)
@@ -119,5 +117,24 @@ public class PlayerStateParrying : PlayerStateBlocking
     {
         if (wasParrySuccessful)
             stateManager.SwitchState(stateManager.playerStateSHORYUKEN);
+    }
+
+    /// <summary>
+    /// called by animation. Avoid disabling blockers on successful parry
+    /// </summary>
+    public override void CloseParryWindow()
+    {
+        stateManager.blockParryManager.SetIsParryWindowOpen(false);
+
+        if (wasParrySuccessful)
+        {
+            // do not disable blockers
+        }
+        else
+        {
+            // disable blockers
+            Debug.Log("stateManager.ANIM_ParryWindowClosed clearing blockers");
+            stateManager.blockParryManager.SetEnableBlockers(false, false);
+        }
     }
 }

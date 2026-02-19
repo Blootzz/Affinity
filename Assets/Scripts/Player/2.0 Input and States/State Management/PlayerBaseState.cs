@@ -65,4 +65,5 @@ public abstract class PlayerBaseState : ScriptableObject
     //public virtual void IncrementGuitarSprite(bool forward) { }
     public virtual void Exit() { Debug.Log("implement pause here"); }
     public virtual void DoFixedUpdate() { }
+    public virtual void CloseParryWindow() { }
 }

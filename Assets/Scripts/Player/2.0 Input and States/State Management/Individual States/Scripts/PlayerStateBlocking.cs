@@ -3,8 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "States/Player/Blocking")]
 public class PlayerStateBlocking : PlayerBaseState
 {
+    [Tooltip("flag used to track if enemy hitbox requires upper or lower block")]
     protected bool isBlockingUp = false;
-    bool persistBlockerUponExit = false; // used if entering a new state that utilizes the blockers
+    protected bool persistBlockerUponExit = false; // used if entering a new state that utilizes the blockers
 
     //public PlayerStateBlocking(PlayerStateManager newStateManager) : base(newStateManager)
     //{
@@ -23,7 +24,6 @@ public class PlayerStateBlocking : PlayerBaseState
     {
         if (!persistBlockerUponExit)
         {
-            Debug.Log("PlayerStateBlocking.OnExit clearing blockers");
             stateManager.blockParryManager.SetEnableBlockers(false, false);
         }
         stateManager.GetComponent<PhysicsMaterialManager>().SetRbZeroFrictionBounce();
@@ -56,7 +56,6 @@ public class PlayerStateBlocking : PlayerBaseState
             isBlockingUp = false;
         }
 
-        Debug.Log("Blocking.Vertical axis setting blockers");
         // handle blockers
         // if isInputHoldingUp == false, enable lower, disable upper
         stateManager.blockParryManager.SetEnableBlockers(!isInputHoldingUp, isInputHoldingUp);

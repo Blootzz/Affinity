@@ -620,8 +620,6 @@ public class PlayerStateManager : MonoBehaviour
     /// </summary>
     public void ANIM_ParryWindowClosed()
     {
-        print("stateManager.ANIM_ParryWindowClosed clearing blockers");
-        blockParryManager.SetEnableBlockers(false, false);
-        blockParryManager.SetIsParryWindowOpen(false);
+        currentState.CloseParryWindow();
     }
 }
