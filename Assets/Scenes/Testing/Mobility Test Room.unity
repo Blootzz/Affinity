@@ -506,11 +506,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.11792
+      value: -7.032916
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -25.285002
+      value: -20.207502
       objectReference: {fileID: 0}
     - target: {fileID: 7174289608978597998, guid: 743c98bf01464d144b3802152cdbeba3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -581,13 +581,25 @@ PrefabInstance:
       propertyPath: DestructionEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LISTENER_PlayAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 6771645478469948434, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
+      propertyPath: stateIdle
+      value: 
+      objectReference: {fileID: 11400000, guid: 4fe7fc37a76daa7488fd0b46191f20bd, type: 2}
+    - target: {fileID: 6771645478469948434, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
+      propertyPath: starterState
+      value: 
+      objectReference: {fileID: 11400000, guid: 4fe7fc37a76daa7488fd0b46191f20bd, type: 2}
+    - target: {fileID: 6771645478469948434, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
+      propertyPath: stateOnExitingPoiseBreak
+      value: 
+      objectReference: {fileID: 11400000, guid: 4fe7fc37a76daa7488fd0b46191f20bd, type: 2}
     - target: {fileID: 6858831382482485819, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 8982357094460150541, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
       propertyPath: m_Name
-      value: Dummy
+      value: Dummy 1
       objectReference: {fileID: 0}
     - target: {fileID: 8982357094460150542, guid: 47c2dbecee49ca5419d4ed44cb0334b3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47180,7 +47192,7 @@ Transform:
   m_GameObject: {fileID: 1175745852}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.11792, y: -25.285002, z: -10}
+  m_LocalPosition: {x: -7.032916, y: -20.207502, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54919,11 +54931,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.085003
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -26.085001
+      value: -21.007502
       objectReference: {fileID: 0}
     - target: {fileID: 1408088537757730612, guid: bf8fde12364ddd74782bf1ba56fc5273, type: 3}
       propertyPath: m_LocalPosition.z

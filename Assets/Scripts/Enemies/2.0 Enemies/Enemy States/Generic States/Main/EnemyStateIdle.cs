@@ -27,8 +27,6 @@ public class EnemyStateIdle : EnemyBaseState
 
     public override void OnPlayerEnteredAttackZone()
     {
-
-        base.OnPlayerEnteredAttackZone();
         //Debug.Log(stateManager.gameObject.name + " calling base.OnPlayerEnteredAttackZone");
         //Debug.Log(stateManager.stateAction1.name);
         if (onAggroEnterAction1)
